@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+  <van-search style='width:100%' disabled placeholder="请输入搜索关键词" shape='round'/>
+  <view class="page-section page-section-spacing swiper">
+    <swiper indicator-dots="{{indicatorDots}}" style='height:100%;' indicator-color='#fff' indicator-active-color='#ec9823'
+      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{background}}" wx:key="*this">
+        <swiper-item>
+          <view class="swiper-item {{item}}">
+            <image src="{{item}}"> </image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='flexAround navbar'>
+    <view class='box' bindtap="toPyq">
+      <image src='../../images/index/pyq.png'></image>
+      <text>朋友圈</text>
+    </view>
+    <view class='box'>
+      <image src='../../images/index/recruit.png'></image>
+      <text>人才招聘</text>
+    </view>
+  </view>
+
+</view>

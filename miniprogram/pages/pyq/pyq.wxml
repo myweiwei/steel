@@ -1,0 +1,110 @@
+<!--pages/pyq/pyq.wxml-->
+<view class='pyq'>
+  <view>
+    <view class='ava' wx:if='{{active==1}}'>
+      <view class='avaInfo flexStart'>
+        <image src='../../images/pyq/wode1.png'></image>
+        <view>
+          <text>葬爱家族</text>
+          <view class='avaTime'>12小时前</view>
+        </view>
+        
+      </view>
+      <view class='avaText'>
+        看好你们的老婆，哥要出门了
+      </view>
+      <view class='avaCon'>
+        <image src='../../images/index/img1.jpg'></image>
+      </view>
+      <view class='avaBtn flexAround'>
+        <view class='flexCenter'>
+          <image src='../../images/pyq/zhuanfa.png'></image>
+          转发
+        </view>
+        <view class='flexCenter' bindtap="comment">
+          <image src='../../images/pyq/xiaoxi.png'></image>
+          <text wx:if='{{commCount==0}}'>评论</text>
+          <text wx:else>{{commCount}}</text>
+        </view>
+        <view class='flexCenter'>
+          <image src='../../images/pyq/zan.png'></image>
+          赞
+        </view>
+      </view>
+      <van-popup show="{{ avaShow }}" position="bottom"
+  custom-style="height: 70%;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
+          <view class='totalComment'><text class='strong'>2</text>条评论</view>
+          <view class='commCon'>
+            <view class='commImg'>
+              <image src='../../images/pyq/shoucang2.png'></image>
+            </view>
+            <view>
+              <view class='commName'>葬爱家族</view>
+              <view>
+              <text>哈哈哈</text>
+              <text class='commTime'>26分钟前</text>
+              </view>
+            </view>
+          </view>
+          <view class='commonInner' animation="{{inner}}">
+            <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
+              <view class='commCon'>
+                <view class='commImg'>
+                  <image src='../../images/pyq/shoucang2.png'></image>
+                </view>
+                <view>
+                  <view class='commName'>葬爱家族</view>
+                  <view>
+                  <text>哈哈哈</text>
+                  <text class='commTime'>26分钟前</text>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+          <view class='commTog'>
+            <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
+              <text>-----展开</text>
+              <image src='../../images/pyq/zhankai.png'></image>
+            </view>
+            <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
+              <text>-----收起</text>
+              <image src='../../images/pyq/shouqi.png'></image>
+            </view>
+          </view>
+      </van-popup>
+    </view>
+  </view>
+  <view class='footTab'>
+    <view class='flexAround' style='height:100%;position:relative'>
+      <view class='tabList' bindtap='changeAcitve' data-id='1'>
+        <image wx:if='{{active!=1}}'  src='../../images/pyq/shouye-weixuanzhong.png'></image>
+        <image wx:if='{{active==1}}' src='../../images/pyq/shouye-xuanzhong.png'></image>
+        <text class='{{active==1?"color-active text":"text"}}' >全部</text>
+      </view>
+      <view class='tabList' bindtap='changeAcitve' data-id='2'>
+        <image wx:if='{{active!=2}}'  src='../../images/pyq/tongcheng.png'></image>
+        <image wx:if='{{active==2}}'  src='../../images/pyq/tongcheng1.png'></image>
+        <text class='{{active==2?"color-active text":"text"}}'>同城</text>
+      </view>
+      <view class='tabList' bindtap='toFb'>
+        <view class='add'>
+          <view class='addInner'>
+            <van-icon name="plus" size='70rpx' color='#fff'/>
+          </view>
+        </view>
+        <text class='addtext'>发布</text>
+      </view>
+      <view class='tabList' bindtap='changeAcitve' data-id='3'>
+        <image wx:if='{{active!=3}}'  src='../../images/pyq/shoucang.png'></image>
+        <image wx:if='{{active==3}}'  src='../../images/pyq/shoucang2.png'></image>
+        <text class='{{active==3?"color-active text":"text"}}'>收藏</text>
+      </view>
+      <view class='tabList' bindtap='changeAcitve' data-id='4'>
+        <image wx:if='{{active!=4}}'  src='../../images/pyq/wode1.png'></image>
+        <image wx:if='{{active==4}}'  src='../../images/pyq/wode.png'></image>
+        <text class='{{active==4?"color-active text":"text"}}'>我的</text>
+      </view>
+    </view>
+  </view>
+</view>

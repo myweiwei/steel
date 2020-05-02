@@ -1,0 +1,31 @@
+/**index.wxss**/
+
+.container {
+  height: 100%;
+}
+.swiper {
+  width:100%;
+  height:20%;
+}
+.swiper .swiper-item,.swiper image{
+  width:100%;
+  height:100%;
+}
+.navbar {
+  padding:40rpx 20rpx;
+}
+.navbar .box {
+  width:45%;
+  height:120rpx;
+  line-height: 120rpx;
+  box-shadow: 0 0 20rpx #e7e7e7;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar .box image{
+  width:80rpx;
+  height:80rpx;
+  margin-right:10rpx;
+}

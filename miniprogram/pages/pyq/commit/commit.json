@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTitleText": "发布朋友圈",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#e7e7e7;",
+  "backgroundTextStyle": "dark"
+}

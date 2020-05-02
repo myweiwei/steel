@@ -1,0 +1,123 @@
+// pages/pyq/pyq.js
+Page({
+  
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    active:1,
+    avaShow:false,
+    openFlag:false,
+    inner:{},
+    option:{
+      duration: 100, // 动画执行时间
+      timingFunction: 'ease-in' // 动画执行效果
+    },
+    innerHeight:0,
+    commCount:2
+  },
+  onChange:function(){
+
+  },
+  changeAcitve:function(e){
+    let me=this;
+    me.setData({
+      active: e.currentTarget.dataset.id
+    })
+  },
+  toFb:function(){
+    wx.navigateTo({
+      url: '/pages/pyq/commit/commit'
+    })
+  },
+  comment:function(){
+    let me=this;
+    me.setData({
+      avaShow:true
+    })
+  },
+  onClose:function(){
+    let me=this;
+    me.setData({
+      avaShow: false
+    })
+  },
+  open:function(){
+    let me=this;
+    var box = wx.createAnimation(me.data.option);
+    let hei=40*4;
+    box.height(hei).step();
+    me.setData({
+      inner: box.export(),
+      openFlag:true,
+      innerHeight:hei
+    })
+  },
+  close: function () {
+    let me = this;
+    var box = wx.createAnimation(me.data.option);
+    box.height(0).step();
+    me.setData({
+      inner: box.export(),
+      openFlag: false
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(getCurrentPages());
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+    //选择id
+    var that = this;
+   
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

@@ -1,0 +1,146 @@
+/* pages/pyq/pyq.wxss */
+.pyq {
+  width:100%;
+  height:100%;
+  background-color: #e7e7e7;
+}
+.van-tabbar {
+  width:100%;
+  height:100rpx;
+}
+.add {
+  width:110rpx;
+  height: 110rpx;
+  background:#fff;
+  text-align: center;
+  border-radius:50%;
+  top:-50rpx;
+  position:absolute;
+  box-shadow: 0 0 2rpx 2rpx #e7e7e7;
+  padding:10rpx;
+  box-sizing: border-box;
+}
+.addInner {
+  width:100%;
+  height:100%;
+  background-color:#fb8c3f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.addtext {
+  margin-top:50rpx;
+}
+.tabList {
+  height:100%;
+  width:100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tabList .van-icon {
+  font-size:50rpx;
+}
+.tabList image {
+  width:45rpx;
+  height: 45rpx;
+
+}
+.tabList .text,.addtext {
+  font-size: 20rpx;
+}
+.color-active {
+  color:#fb8c3f;
+}
+
+.ava {
+  margin:15rpx 0;
+  background: #fff;
+}
+.avaInfo {
+  padding:20rpx 0 0 20rpx;
+}
+.avaInfo image{
+  width:70rpx;
+  height:70rpx;
+  border-radius: 50%;
+  margin-right:10rpx;
+}
+.avaInfo text {
+  font-weight:700;
+}
+.avaInfo .avaTime {
+  font-size:20rpx;
+  color:#a3a3a3;
+}
+.avaCon image{
+  width:100%;
+  height:400rpx;
+}
+.avaText {
+  padding:20rpx;
+}
+.avaBtn {
+  width:98%;
+  height:80rpx;
+  margin:0 auto;
+  box-sizing: border-box;
+  border-top:1rpx solid rgb(243, 241, 241);
+}
+.avaBtn image {
+  width:30rpx;
+  height:30rpx;
+  margin-right:10rpx;
+}
+.avaBtn .flexCenter {
+  color:#2c2c2c;
+}
+.totalComment {
+  width:100%;
+  text-align: center;
+  font-weight:500;
+} 
+.commImg {
+  margin-right:10rpx;
+}
+.commImg image {
+  width:30rpx;
+  height:30rpx;
+  border-radius: 50%;
+}
+.commCon {
+  display:flex;
+  justify-content:flex-start;
+  align-items:top;
+  padding:20rpx;
+  word-break:break-all;
+  font-size:30rpx;
+}
+.commTime {
+  color:#a3a3a3;
+  font-size:28rpx;
+  margin-left:10rpx;
+}
+.commName {
+  margin-bottom:10rpx;
+  color:#9e9d9d;
+  font-family: 'MicroSoft YaHei'
+}
+.commonInner {
+  height:0;
+  overflow: hidden;
+}
+.commonInner .commCon{
+  margin-left:40rpx;
+}
+.commTog {
+  font-size:26rpx;
+  color:#a3a3a3;
+  margin-left:50rpx;
+}
+.commTog image {
+  width:25rpx;
+  height:25rpx;
+}

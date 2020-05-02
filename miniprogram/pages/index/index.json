@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-search": "@vant/weapp/search/index"
+  },
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTitleText": "首页",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#000000",
+  "backgroundTextStyle": "dark"
+  
+}
