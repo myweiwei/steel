@@ -14,10 +14,15 @@ Page({
       timingFunction: 'ease-in' // 动画执行效果
     },
     innerHeight:0,
-    commCount:2
+    commCount:2,
+    commentInfo:''
   },
-  onChange:function(){
-
+  onChange:function(val){
+    let me=this;
+    console.log(val.detail);
+    me.setData({
+      commentInfo:val.detail
+    })
   },
   changeAcitve:function(e){
     let me=this;

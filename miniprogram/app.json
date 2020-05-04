@@ -11,5 +11,10 @@
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission":{
+    "scope.userLocation":{
+      "desc":"获取当前位置"
+    }
+  }
 }

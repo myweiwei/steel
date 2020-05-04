@@ -58,6 +58,13 @@
 					"id": -1,
 					"name": "pages/pyq/pyq",
 					"pathName": "pages/pyq/pyq",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pyq/commit/commit",
+					"pathName": "pages/pyq/commit/commit",
 					"scene": null
 				}
 			]

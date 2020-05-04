@@ -34,43 +34,215 @@
       <van-popup show="{{ avaShow }}" position="bottom"
   custom-style="height: 70%;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
           <view class='totalComment'><text class='strong'>2</text>条评论</view>
-          <view class='commCon'>
-            <view class='commImg'>
-              <image src='../../images/pyq/shoucang2.png'></image>
-            </view>
-            <view>
-              <view class='commName'>葬爱家族</view>
+          <scroll-view scroll-y="true" style="height: 80%" >
+            <view class='commCon'>
+              <view class='commImg'>
+                <image src='../../images/pyq/shoucang2.png'></image>
+              </view>
               <view>
-              <text>哈哈哈</text>
-              <text class='commTime'>26分钟前</text>
+                <view class='commName'>葬爱家族</view>
+                <view>
+                <text>哈哈哈</text>
+                <text class='commTime'>26分钟前</text>
+                </view>
               </view>
             </view>
-          </view>
-          <view class='commonInner' animation="{{inner}}">
-            <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
-              <view class='commCon'>
-                <view class='commImg'>
-                  <image src='../../images/pyq/shoucang2.png'></image>
-                </view>
-                <view>
-                  <view class='commName'>葬爱家族</view>
+            <view class='commonInner' animation="{{inner}}">
+              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
+                <view class='commCon'>
+                  <view class='commImg'>
+                    <image src='../../images/pyq/shoucang2.png'></image>
+                  </view>
                   <view>
-                  <text>哈哈哈</text>
-                  <text class='commTime'>26分钟前</text>
+                    <view class='commName'>葬爱家族</view>
+                    <view>
+                    <text>哈哈哈</text>
+                    <text class='commTime'>26分钟前</text>
+                    </view>
                   </view>
                 </view>
+              </scroll-view>
+            </view>
+            <view class='commTog'>
+              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
+                <text>-----展开</text>
+                <image src='../../images/pyq/zhankai.png'></image>
               </view>
-            </scroll-view>
-          </view>
-          <view class='commTog'>
-            <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
-              <text>-----展开</text>
-              <image src='../../images/pyq/zhankai.png'></image>
+              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
+                <text>-----收起</text>
+                <image src='../../images/pyq/shouqi.png'></image>
+              </view>
             </view>
-            <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
-              <text>-----收起</text>
-              <image src='../../images/pyq/shouqi.png'></image>
+            <view class='commCon'>
+              <view class='commImg'>
+                <image src='../../images/pyq/shoucang2.png'></image>
+              </view>
+              <view>
+                <view class='commName'>葬爱家族</view>
+                <view>
+                <text>哈哈哈</text>
+                <text class='commTime'>26分钟前</text>
+                </view>
+              </view>
             </view>
+            <view class='commonInner' animation="{{inner}}">
+              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
+                <view class='commCon'>
+                  <view class='commImg'>
+                    <image src='../../images/pyq/shoucang2.png'></image>
+                  </view>
+                  <view>
+                    <view class='commName'>葬爱家族</view>
+                    <view>
+                    <text>哈哈哈</text>
+                    <text class='commTime'>26分钟前</text>
+                    </view>
+                  </view>
+                </view>
+              </scroll-view>
+            </view>
+            <view class='commTog'>
+              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
+                <text>-----展开</text>
+                <image src='../../images/pyq/zhankai.png'></image>
+              </view>
+              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
+                <text>-----收起</text>
+                <image src='../../images/pyq/shouqi.png'></image>
+              </view>
+            </view>
+             <view class='commCon'>
+              <view class='commImg'>
+                <image src='../../images/pyq/shoucang2.png'></image>
+              </view>
+              <view>
+                <view class='commName'>葬爱家族</view>
+                <view>
+                <text>哈哈哈</text>
+                <text class='commTime'>26分钟前</text>
+                </view>
+              </view>
+            </view>
+            <view class='commonInner' animation="{{inner}}">
+              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
+                <view class='commCon'>
+                  <view class='commImg'>
+                    <image src='../../images/pyq/shoucang2.png'></image>
+                  </view>
+                  <view>
+                    <view class='commName'>葬爱家族</view>
+                    <view>
+                    <text>哈哈哈</text>
+                    <text class='commTime'>26分钟前</text>
+                    </view>
+                  </view>
+                </view>
+              </scroll-view>
+            </view>
+            <view class='commTog'>
+              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
+                <text>-----展开</text>
+                <image src='../../images/pyq/zhankai.png'></image>
+              </view>
+              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
+                <text>-----收起</text>
+                <image src='../../images/pyq/shouqi.png'></image>
+              </view>
+            </view>
+             <view class='commCon'>
+              <view class='commImg'>
+                <image src='../../images/pyq/shoucang2.png'></image>
+              </view>
+              <view>
+                <view class='commName'>葬爱家族</view>
+                <view>
+                <text>哈哈哈</text>
+                <text class='commTime'>26分钟前</text>
+                </view>
+              </view>
+            </view>
+            <view class='commonInner' animation="{{inner}}">
+              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
+                <view class='commCon'>
+                  <view class='commImg'>
+                    <image src='../../images/pyq/shoucang2.png'></image>
+                  </view>
+                  <view>
+                    <view class='commName'>葬爱家族</view>
+                    <view>
+                    <text>哈哈哈</text>
+                    <text class='commTime'>26分钟前</text>
+                    </view>
+                  </view>
+                </view>
+              </scroll-view>
+            </view>
+            <view class='commTog'>
+              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
+                <text>-----展开</text>
+                <image src='../../images/pyq/zhankai.png'></image>
+              </view>
+              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
+                <text>-----收起</text>
+                <image src='../../images/pyq/shouqi.png'></image>
+              </view>
+            </view>
+             <view class='commCon'>
+              <view class='commImg'>
+                <image src='../../images/pyq/shoucang2.png'></image>
+              </view>
+              <view>
+                <view class='commName'>葬爱家族</view>
+                <view>
+                <text>哈哈哈</text>
+                <text class='commTime'>26分钟前</text>
+                </view>
+              </view>
+            </view>
+            <view class='commonInner' animation="{{inner}}">
+              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
+                <view class='commCon'>
+                  <view class='commImg'>
+                    <image src='../../images/pyq/shoucang2.png'></image>
+                  </view>
+                  <view>
+                    <view class='commName'>葬爱家族</view>
+                    <view>
+                    <text>哈哈哈</text>
+                    <text class='commTime'>26分钟前</text>
+                    </view>
+                  </view>
+                </view>
+              </scroll-view>
+            </view>
+            <view class='commTog'>
+              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
+                <text>-----展开</text>
+                <image src='../../images/pyq/zhankai.png'></image>
+              </view>
+              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
+                <text>-----收起</text>
+                <image src='../../images/pyq/shouqi.png'></image>
+              </view>
+            </view>
+          </scroll-view>
+          <view class='footTab'>
+            <van-cell-group>
+              <van-field
+                value="{{ commentInfo }}"
+                center
+                clearable
+                placeholder="留下你的精彩评论吧"
+                border="{{ false }}"
+                use-button-slot
+                bind:change="onChange"
+              >
+                <van-button slot="button" size="small" type="primary">
+                <image wx:if='{{!commentInfo}}' src='../../images/pyq/fasong.png'></image>
+                <image wx:else src='../../images/pyq/fasong1.png'></image>
+                </van-button>
+              </van-field>
+            </van-cell-group>
           </view>
       </van-popup>
     </view>

@@ -1,5 +1,10 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-uploader": "@vant/weapp/uploader/index"
+  },
   "navigationBarBackgroundColor": "#FFFFFF",
   "navigationBarTitleText": "发布朋友圈",
   "navigationBarTextStyle": "black",

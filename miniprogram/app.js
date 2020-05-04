@@ -16,5 +16,25 @@ App({
     }
 
     this.globalData = {}
+  },
+  loadCity: function (longitude, latitude) {
+    var page = this
+    wx.request({
+      url: 'https://api.map.baidu.com/geocoder/v2/?ak=nuXmYS0mH29u7b929gLoEvdP5fzr9bqR&location=' + latitude + ',' + longitude + '&output=json',
+      data: {},
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // success  
+        console.log(res);
+        var city = res.data.result;
+        return city;
+      },
+      fail: function () {
+        page.setData({ currentCity: "获取定位失败" });
+      },
+
+    })
   }
 })
