@@ -26,27 +26,35 @@
 .addressInfo {
   padding:10rpx 20rpx;
   border:1rpx solid #ccc;
-  background-color: #f7f8fa;
-  width:40%;
+  background-color: #eaeaec;
+  width:50%;
   border-radius:50rpx;
-  color:#ccc;
+  color:rgb(161, 156, 156);
   font-size:28rpx;
   margin-top:30rpx;
   margin-left:16rpx;
 }
+.addressInfo .address {
+  width:100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  word-break: break-all;
+}
 .active {
-  color:#6149f6;
+  color:#4939b1;
 }
 .videoLoa {
   width: 90px;
   height: 90px;
   margin-left:8px ;
-  background-color: #f7f8fa;
+  background-color: #eaeaec;
   border-radius: 8px;
   text-align: center;
   padding-top:30rpx;
   box-sizing: border-box;
-  color:#ccc;
+  color:rgb(161, 156, 156);
 }
 .footer {
   position:fixed;

@@ -11,6 +11,38 @@
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#fb8c3f",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/pyq/shouye-weixuanzhong.png",
+        "selectedIconPath": "images/pyq/shouye-xuanzhong.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "附近订单",
+        "iconPath": "images/index/layer.png",
+        "selectedIconPath": "images/index/layer1.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/index/qiyeguanli1.png",
+        "selectedIconPath": "images/index/qiyeguanli.png",
+        "text": "附近企业"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/pyq/wode1.png",
+        "selectedIconPath": "images/pyq/wode.png",
+        "text": "我的"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json",
   "permission":{
     "scope.userLocation":{

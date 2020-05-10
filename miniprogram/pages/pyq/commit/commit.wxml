@@ -31,14 +31,14 @@
     </view>
   </van-uploader>
   <view class='addressInfo flexBetween'  bindtap='getLocation' >
-    <view class='flexStart'>
-      <van-icon wx:if='{{!address}}' name="location"size='30rpx' color='#aaa;'/>
-      <van-icon wx:else name="location"size='30rpx' color='#6149f6;'/>
+    <view class='flexStart' style='width:90%'>
+      <van-icon wx:if='{{!address}}' name="location"size='30rpx' color='rgb(161, 156, 156)'/>
+      <van-icon wx:else name="location"size='30rpx' color='#4939b1;'/>
       <text wx:if='{{!address}}'>你在哪里？</text>
-      <text wx:else class='active'>{{province}},{{city}}</text>
+      <text wx:else class='active address'>{{province}}</text>
     </view>
     <view>
-      <van-icon name="cross" wx:if='{{address}}'/>
+      <van-icon name="cross" color='rgb(161, 156, 156)' catchtap="delAddress" wx:if='{{address}}'/>
     </view>
   </view>
   <view class='footer'>

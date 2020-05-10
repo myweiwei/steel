@@ -8,7 +8,11 @@ Page({
     vertical: false,
     autoplay: false,
     interval: 2000,
-    duration: 500
+    duration: 500,
+    msgList: [
+      { url: "url", title: "恭喜xxx完成任务退回200进入领奖区" },
+      { url: "url", title: "恭喜xxx获得XXX奖励" },
+      { url: "url", title: "恭喜xxx完成任务退回300进入领奖区" }]
   },
   toPyq:function(){
     wx.navigateTo({

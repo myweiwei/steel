@@ -66,31 +66,20 @@ Page({
   },
   getLocation:function(){
     let me=this;
-    wx.getLocation({
-      type: 'wgs84',
+    wx.chooseLocation({
       success(res) {
-        me.loadCity(res.longitude, res.latitude);
+        me.setData({
+          province: res.address,
+          address: true
+        })
       }
     })
   },
-  loadCity: function (longitude, latitude) {
-    var me = this;
-    wx.request({
-      url: 'https://api.map.baidu.com/geocoder/v2/?ak=nuXmYS0mH29u7b929gLoEvdP5fzr9bqR&location=' + latitude + ',' + longitude + '&output=json',
-      data: {},
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        var city = res.data.result.addressComponent;
-        me.setData({
-          province: city.province,
-          city:city.city,
-          address:true
-        })
-      },
-      fail: function () {
-      },
+  delAddress:function(){
+    let me=this;
+    me.setData({
+      province:"",
+      address:false
     })
   },
   /**
