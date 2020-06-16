@@ -1,252 +1,121 @@
 <!--pages/pyq/pyq.wxml-->
 <view class='pyq'>
-  <view>
-    <view class='ava' wx:if='{{active==1}}'>
-      <view class='avaInfo flexStart'>
-        <image src='../../images/pyq/wode1.png'></image>
-        <view>
-          <text>葬爱家族</text>
-          <view class='avaTime'>12小时前</view>
-        </view>
-        
-      </view>
-      <view class='avaText'>
-        看好你们的老婆，哥要出门了
-      </view>
-      <view class='avaCon'>
-        <image src='../../images/index/img1.jpg'></image>
-      </view>
-      <view class='avaBtn flexAround'>
-        <view class='flexCenter'>
-          <image src='../../images/pyq/zhuanfa.png'></image>
-          转发
-        </view>
-        <view class='flexCenter' bindtap="comment">
-          <image src='../../images/pyq/xiaoxi.png'></image>
-          <text wx:if='{{commCount==0}}'>评论</text>
-          <text wx:else>{{commCount}}</text>
-        </view>
-        <view class='flexCenter'>
-          <image src='../../images/pyq/zan.png'></image>
-          赞
-        </view>
-      </view>
-      <van-popup show="{{ avaShow }}" position="bottom"
-  custom-style="height: 70%;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
-          <view class='totalComment'><text class='strong'>2</text>条评论</view>
-          <scroll-view scroll-y="true" style="height: 80%" >
-            <view class='commCon'>
-              <view class='commImg'>
-                <image src='../../images/pyq/shoucang2.png'></image>
-              </view>
-              <view>
-                <view class='commName'>葬爱家族</view>
-                <view>
-                <text>哈哈哈</text>
-                <text class='commTime'>26分钟前</text>
-                </view>
-              </view>
+  <view style='margin-bottom:150rpx;'>
+    <view  style="height:100%">
+      <view class='ava' wx:for='{{list}}' wx:key='id'>
+        <view class='flexBetween'>
+          <view class='avaInfo flexStart'>
+            <image src='{{item.headIcon}}'></image>
+            <view>
+              <text>{{item.nickName?item.nickName:"无"}}</text>
+              <view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
             </view>
-            <view class='commonInner' animation="{{inner}}">
-              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
-                <view class='commCon'>
-                  <view class='commImg'>
-                    <image src='../../images/pyq/shoucang2.png'></image>
-                  </view>
-                  <view>
-                    <view class='commName'>葬爱家族</view>
-                    <view>
-                    <text>哈哈哈</text>
-                    <text class='commTime'>26分钟前</text>
-                    </view>
-                  </view>
-                </view>
-              </scroll-view>
-            </view>
-            <view class='commTog'>
-              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
-                <text>-----展开</text>
-                <image src='../../images/pyq/zhankai.png'></image>
-              </view>
-              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
-                <text>-----收起</text>
-                <image src='../../images/pyq/shouqi.png'></image>
-              </view>
-            </view>
-            <view class='commCon'>
-              <view class='commImg'>
-                <image src='../../images/pyq/shoucang2.png'></image>
-              </view>
-              <view>
-                <view class='commName'>葬爱家族</view>
-                <view>
-                <text>哈哈哈</text>
-                <text class='commTime'>26分钟前</text>
-                </view>
-              </view>
-            </view>
-            <view class='commonInner' animation="{{inner}}">
-              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
-                <view class='commCon'>
-                  <view class='commImg'>
-                    <image src='../../images/pyq/shoucang2.png'></image>
-                  </view>
-                  <view>
-                    <view class='commName'>葬爱家族</view>
-                    <view>
-                    <text>哈哈哈</text>
-                    <text class='commTime'>26分钟前</text>
-                    </view>
-                  </view>
-                </view>
-              </scroll-view>
-            </view>
-            <view class='commTog'>
-              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
-                <text>-----展开</text>
-                <image src='../../images/pyq/zhankai.png'></image>
-              </view>
-              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
-                <text>-----收起</text>
-                <image src='../../images/pyq/shouqi.png'></image>
-              </view>
-            </view>
-             <view class='commCon'>
-              <view class='commImg'>
-                <image src='../../images/pyq/shoucang2.png'></image>
-              </view>
-              <view>
-                <view class='commName'>葬爱家族</view>
-                <view>
-                <text>哈哈哈</text>
-                <text class='commTime'>26分钟前</text>
-                </view>
-              </view>
-            </view>
-            <view class='commonInner' animation="{{inner}}">
-              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
-                <view class='commCon'>
-                  <view class='commImg'>
-                    <image src='../../images/pyq/shoucang2.png'></image>
-                  </view>
-                  <view>
-                    <view class='commName'>葬爱家族</view>
-                    <view>
-                    <text>哈哈哈</text>
-                    <text class='commTime'>26分钟前</text>
-                    </view>
-                  </view>
-                </view>
-              </scroll-view>
-            </view>
-            <view class='commTog'>
-              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
-                <text>-----展开</text>
-                <image src='../../images/pyq/zhankai.png'></image>
-              </view>
-              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
-                <text>-----收起</text>
-                <image src='../../images/pyq/shouqi.png'></image>
-              </view>
-            </view>
-             <view class='commCon'>
-              <view class='commImg'>
-                <image src='../../images/pyq/shoucang2.png'></image>
-              </view>
-              <view>
-                <view class='commName'>葬爱家族</view>
-                <view>
-                <text>哈哈哈</text>
-                <text class='commTime'>26分钟前</text>
-                </view>
-              </view>
-            </view>
-            <view class='commonInner' animation="{{inner}}">
-              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
-                <view class='commCon'>
-                  <view class='commImg'>
-                    <image src='../../images/pyq/shoucang2.png'></image>
-                  </view>
-                  <view>
-                    <view class='commName'>葬爱家族</view>
-                    <view>
-                    <text>哈哈哈</text>
-                    <text class='commTime'>26分钟前</text>
-                    </view>
-                  </view>
-                </view>
-              </scroll-view>
-            </view>
-            <view class='commTog'>
-              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
-                <text>-----展开</text>
-                <image src='../../images/pyq/zhankai.png'></image>
-              </view>
-              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
-                <text>-----收起</text>
-                <image src='../../images/pyq/shouqi.png'></image>
-              </view>
-            </view>
-             <view class='commCon'>
-              <view class='commImg'>
-                <image src='../../images/pyq/shoucang2.png'></image>
-              </view>
-              <view>
-                <view class='commName'>葬爱家族</view>
-                <view>
-                <text>哈哈哈</text>
-                <text class='commTime'>26分钟前</text>
-                </view>
-              </view>
-            </view>
-            <view class='commonInner' animation="{{inner}}">
-              <scroll-view scroll-y="true" style="height: {{innerHeight}}" >
-                <view class='commCon'>
-                  <view class='commImg'>
-                    <image src='../../images/pyq/shoucang2.png'></image>
-                  </view>
-                  <view>
-                    <view class='commName'>葬爱家族</view>
-                    <view>
-                    <text>哈哈哈</text>
-                    <text class='commTime'>26分钟前</text>
-                    </view>
-                  </view>
-                </view>
-              </scroll-view>
-            </view>
-            <view class='commTog'>
-              <view class='flexStart' bindtap="open" wx:if='{{openFlag==false}}'>
-                <text>-----展开</text>
-                <image src='../../images/pyq/zhankai.png'></image>
-              </view>
-              <view class='flexStart' bindtap="close" wx:if='{{openFlag==true}}'>
-                <text>-----收起</text>
-                <image src='../../images/pyq/shouqi.png'></image>
-              </view>
-            </view>
-          </scroll-view>
-          <view class='footTab'>
-            <van-cell-group>
-              <van-field
-                value="{{ commentInfo }}"
-                center
-                clearable
-                placeholder="留下你的精彩评论吧"
-                border="{{ false }}"
-                use-button-slot
-                bind:change="onChange"
-              >
-                <van-button slot="button" size="small" type="primary">
-                <image wx:if='{{!commentInfo}}' src='../../images/pyq/fasong.png'></image>
-                <image wx:else src='../../images/pyq/fasong1.png'></image>
-                </van-button>
-              </van-field>
-            </van-cell-group>
           </view>
-      </van-popup>
+          <view class='del' wx:if='{{item.isOwn==1}}' data-item='{{item}}' bindtap='del'>删除</view>
+        </view>
+        <view class='avaText'>
+          {{item.dynamicTitle}}
+        </view>
+        <view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
+          <video wx:if='{{item.videoType==1}}' src="{{item.dynamicImgVideoList[0]}}" object-fit='cover' show-progress></video>
+          <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" src='{{itemName}}' mode='aspectFit' class='{{item.dynamicImgVideoList.length>1?"moreImg":""}}'></image>
+        </view>
+        <view class='color-gray'>{{item.dynamicArea}}</view>
+        <view class='avaBtn flexAround'>
+          <view class='flexCenter'>
+            <image src='../../images/pyq/zhuanfa.png'></image>
+            转发
+          </view>
+          <view class='flexCenter' data-item='{{item}}' bindtap="comment">
+            <image src='../../images/pyq/xiaoxi.png'></image>
+            <text wx:if='{{item.commentCount==0}}'>评论</text>
+            <text wx:else>{{item.commentCount}}</text>
+          </view>
+          <view bindtap='addSc' data-item='{{item}}'  class='{{item.isSupport==1?"flexCenter color-orange":"flexCenter"}}'>
+            <image src='../../images/pyq/zan.png' wx:if='{{!item.isSupport}}'></image>
+            <image src='../../images/pyq/zan1.png' wx:else></image>
+            赞<text  wx:if='{{item.supportCount&&item.supportCount>=0}}'>{{item.supportCount}}</text>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
+  <van-popup show="{{ avaShow }}" position="bottom" custom-style="height: 70%;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
+      <view class='totalComment'><text class='strong'>{{commentCount}}</text>条评论</view>
+      <scroll-view scroll-y="true" style="height: 80%" >
+        <view wx:for='{{commonList}}'>
+          <view class='commCon' data-item='{{item}}' data-item1='{{item}}' catchtap='toComment' bindlongpress='longPress'>
+            <view class='commImg'>
+              <image src='../../images/pyq/shoucang2.png'></image>
+            </view>
+            <view>
+              <view class='commName'>
+                <text wx:if='{{item.fromUid!=userid}}'>{{item.send}}</text>
+                <text wx:else>我</text>
+              </view>
+              <view>
+                <text>{{item.content}}</text>
+                <text class='commTime'>{{item.timeDiff}}</text>
+              </view>
+            </view>
+          </view>
+          <view>
+          </view>
+          <view wx:if='{{item.openFlag}}' >
+            <view class='commonInner'  wx:for='{{item.eaDynamicCommentExtendList}}' wx:for-item="itemName">
+              <scroll-view scroll-y="true" >
+                <view class='commCon' data-item='{{item}}' data-item1='{{itemName}}' catchtap='toComment'  bindlongpress='longPress'>
+                  <view class='commImg'>
+                    <image src='../../images/pyq/shoucang2.png'></image>
+                  </view>
+                  <view>
+                    <view class='commName'>
+                    <text wx:if='{{itemName.fromUid!=userid}}'>{{itemName.send}}</text>
+                    <text wx:if='{{itemName.fromUid==userid}}'>我</text>
+                    <text class='huifu'>回复</text>
+                    <text wx:if='{{itemName.toUid!=userid}}'>{{itemName.receive}}</text>
+                    <text wx:else>我</text>
+                    </view>
+                    <view>
+                    <text>{{itemName.content}}</text>
+                    <text class='commTime'>{{itemName.timeDiff}}</text>
+                    </view>
+                  </view>
+                </view>
+              </scroll-view>
+            </view>
+          </view>
+          <view class='commTog'>
+            <view class='flexStart' data-id='{{item.commentId}}' bindtap="open" wx:if='{{item.openFlag==false}}'>
+              <text>-----展开</text>
+              <image src='../../images/pyq/zhankai.png'></image>
+            </view>
+            <view class='flexStart' data-id='{{item.commentId}}' bindtap="close" wx:if='{{item.openFlag==true}}'>
+              <text>-----收起</text>
+              <image src='../../images/pyq/shouqi.png'></image>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class='footTab'>
+        <van-cell-group>
+          <van-field
+            value="{{ commentInfo }}"
+            center
+            clearable
+            placeholder="留下你的精彩评论吧"
+            border="{{ false }}"
+            use-button-slot
+            bind:change="onChange"
+          >
+            <van-button slot="button" size="small" type="primary">
+              <image wx:if='{{!commentInfo}}' src='../../images/pyq/fasong.png'></image>
+              <image wx:else src='../../images/pyq/fasong1.png'  data-sta='0' bindtap='saveCommentBefore'></image>
+            </van-button>
+          </van-field>
+        </van-cell-group>
+      </view>
+  </van-popup>
   <view class='footTab'>
     <view class='flexAround' style='height:100%;position:relative'>
       <view class='tabList' bindtap='changeAcitve' data-id='1'>
@@ -279,4 +148,22 @@
       </view>
     </view>
   </view>
+  <van-popup show="{{ avaShow1 }}" position="bottom" custom-style="height: 50%;padding:70rpx 20rpx;box-sizing:border-box;" bind:close="onClose1" round closeable>
+    <van-cell-group>
+      <van-field
+        value="{{ commentInfo1 }}"
+        center
+        clearable
+        placeholder="{{avaShowList.send1}}"
+        border="{{ false }}"
+        use-button-slot
+        bind:change="onChange1"
+      >
+        <van-button slot="button" size="small" class='btn' type="primary">
+          <image wx:if='{{!commentInfo1}}' src='../../images/pyq/fasong.png'></image>
+          <image wx:else src='../../images/pyq/fasong1.png' data-sta='1' bindtap="saveCommentBefore"></image>
+        </van-button>
+      </van-field>
+    </van-cell-group>
+  </van-popup>
 </view>

@@ -3,7 +3,8 @@ const app = getApp()
 
 Page({
   data: {
-    background: ['../../images/index/img1.jpg', '../../images/index/img2.jpg', '../../images/index/img3.jpg'],
+    baseUrl:'',
+    background: [],
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -13,6 +14,11 @@ Page({
       { url: "url", title: "恭喜xxx完成任务退回200进入领奖区" },
       { url: "url", title: "恭喜xxx获得XXX奖励" },
       { url: "url", title: "恭喜xxx完成任务退回300进入领奖区" }]
+  },
+  moreProduct:function(){
+    wx.navigateTo({
+      url: '/pages/product/product'
+    })
   },
   toPyq:function(){
     wx.navigateTo({
@@ -34,6 +40,7 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              console.log(res);
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
@@ -44,7 +51,40 @@ Page({
       }
     })
   },
-
+  getBanner:function(){
+    let me = this;
+    app.wxRequest('get', '/ea-service-other/other/banners', {}, function (data) {
+      if (data.statusCode == 200) {
+        me.setData({
+          background:data.data.data
+        })
+      }
+      else {
+      }
+    })
+  },
+  onShow:function(){
+    var that = this;
+    that.setData({
+      baseUrl: app.globalData.baseUrl
+    })
+    if (app.globalData.token == '') {
+      app.getUser(that.getBanner);
+    }
+  },
+  getInfo:function(){
+    wx.getUserInfo({
+      success: function (res) {
+        var userInfo = res.userInfo
+        var nickName = userInfo.nickName
+        var avatarUrl = userInfo.avatarUrl
+        var gender = userInfo.gender //性别 0：未知、1：男、2：女
+        var province = userInfo.province
+        var city = userInfo.city
+        var country = userInfo.country
+      }
+    })
+  },
   onGetUserInfo: function(e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({

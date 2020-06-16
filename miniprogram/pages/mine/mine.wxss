@@ -1,0 +1,36 @@
+/* pages/mine/mine.wxss */
+.price {
+  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin:0 auto;
+}
+.price view {
+  width:47%;
+  margin:1%;
+  height:80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border:1rpx solid #f09f14;
+  border-radius: 10rpx;
+}
+.label {
+  height:50rpx;
+  line-height: 50rpx;
+  color:#666;
+  margin-left:1%;
+}
+.footer {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:98%;
+  padding-left:1%;
+  box-sizing: border-box;
+}
+.active {
+  color:#fff;
+  background: #f09f14;
+}

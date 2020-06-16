@@ -1,9 +1,10 @@
 <!--pages/pyq/commit/commit.wxml-->
 <view class='commit'>
   <van-cell-group >
-    <van-field  custom-style='width:100%;height:30%;box-sizing:border-box' bindtap='btnClick'
-      value="{{ message }}"
+    <van-field  custom-style='width:100%;height:30%;box-sizing:border-box'            bindtap='btnClick'
+      value="{{ dynamicTitle }}"
       label=""
+      bind:change="onChange"
       type="textarea"
       autosize
       placeholder="分享新鲜事"
@@ -30,18 +31,47 @@
       <view>上传视频</view>
     </view>
   </van-uploader>
-  <view class='addressInfo flexBetween'  bindtap='getLocation' >
-    <view class='flexStart' style='width:90%'>
-      <van-icon wx:if='{{!address}}' name="location"size='30rpx' color='rgb(161, 156, 156)'/>
-      <van-icon wx:else name="location"size='30rpx' color='#4939b1;'/>
-      <text wx:if='{{!address}}'>你在哪里？</text>
-      <text wx:else class='active address'>{{province}}</text>
-    </view>
-    <view>
-      <van-icon name="cross" color='rgb(161, 156, 156)' catchtap="delAddress" wx:if='{{address}}'/>
-    </view>
+  <br />
+  <van-cell-group>
+      <van-field
+      value="{{ province }}"
+      placeholder="所在位置"
+      border="{{ false }}"
+      bindtap="getLocation"
+      right-icon='arrow'
+      readonly
+      >
+        <van-icon name="location" slot='left-icon' color='{{!address?"#ccc":"#07c160"}}' class='m-r-10 f-40'/>
+      </van-field>
+      <van-field
+      value="{{ dynamicType }}"
+      custom-style='{color:"red"}'
+      placeholder="类型"
+      border="{{ false }}"
+      right-icon='arrow'
+      readonly
+      bindtap='showPop'
+      >
+        <van-icon name="question" slot='left-icon' color='{{!dynamicType?"#ccc":"#07c160"}}' class='m-r-10 f-40'/>
+      </van-field>
+  </van-cell-group>
+  <van-popup
+    show="{{ show }}"
+    position="bottom"
+    custom-style="height: 40%;"
+  >
+  <view style='height:100%'>
+    <!-- <van-picker columns="{{ columns }}" bind:change="onTypeChange" /> -->
+    <van-picker
+      show-toolbar
+      title="选择类型"
+      columns="{{ columns }}"
+      bind:cancel="onClose"
+      bind:confirm="onConfirm1"
+    />
   </view>
+  </van-popup>
   <view class='footer'>
-    <van-button color="linear-gradient(to right, orange, #f7d501)" round size='large'>发送</van-button>
+    <van-button color="linear-gradient(to right, orange, #f7d501)" round size='large' bindtap='uploadFiles'>发送</van-button>
   </view>
 </view>

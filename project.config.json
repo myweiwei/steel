@@ -74,6 +74,12 @@
 					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/product/product",
+					"pathName": "pages/product/product",
+					"scene": null
 				}
 			]
 		}

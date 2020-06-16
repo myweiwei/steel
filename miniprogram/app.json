@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/product/product",
     "pages/pyq/pyq",
-    "pages/pyq/commit/commit"
+    "pages/pyq/commit/commit",
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundColor": "#FFF",
@@ -36,7 +38,7 @@
         "text": "附近企业"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/mine/mine",
         "iconPath": "images/pyq/wode1.png",
         "selectedIconPath": "images/pyq/wode.png",
         "text": "我的"

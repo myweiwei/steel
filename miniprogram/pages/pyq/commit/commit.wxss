@@ -23,28 +23,6 @@
   line-height: 60rpx;
   text-align: center;
 }
-.addressInfo {
-  padding:10rpx 20rpx;
-  border:1rpx solid #ccc;
-  background-color: #eaeaec;
-  width:50%;
-  border-radius:50rpx;
-  color:rgb(161, 156, 156);
-  font-size:28rpx;
-  margin-top:30rpx;
-  margin-left:16rpx;
-}
-.addressInfo .address {
-  width:100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  display: inline-block;
-  word-break: break-all;
-}
-.active {
-  color:#4939b1;
-}
 .videoLoa {
   width: 90px;
   height: 90px;
@@ -55,6 +33,7 @@
   padding-top:30rpx;
   box-sizing: border-box;
   color:rgb(161, 156, 156);
+  margin-bottom:30rpx;
 }
 .footer {
   position:fixed;
@@ -64,3 +43,4 @@
   padding-left:1%;
   box-sizing: border-box;
 }
+

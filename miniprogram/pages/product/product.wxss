@@ -1,0 +1,41 @@
+/* pages/product/product.wxss */
+.productList .img{
+  width:180rpx;
+  height:180rpx;
+  border-radius: 10rpx;
+  margin-right:20rpx;
+  position: relative;
+}
+.hot {
+  position: absolute;
+  top:3%;
+  left:4.5%;
+  width:90rpx;
+  height:100rpx;
+}
+.productInfo {
+  padding:20rpx;
+  margin:20rpx;
+  height:180rpx;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  justify-content: flex-start;
+}
+.xxInfo {
+  font-size:26rpx;
+  color:#666;
+  line-height:40rpx;
+
+}
+.price {
+  margin-top:20rpx;
+  color:rgb(231, 24, 24);
+} 
+.price text {
+  font-size:16rpx;
+}

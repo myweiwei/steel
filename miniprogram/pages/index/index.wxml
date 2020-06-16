@@ -8,7 +8,7 @@
         <block wx:for="{{background}}" wx:key="*this">
           <swiper-item>
             <view class="swiper-item {{item}}">
-              <image src="{{item}}"> </image>
+              <image src="{{item.bannerImg}}"> </image>
             </view>
           </swiper-item>
         </block>
@@ -40,7 +40,7 @@
     <view class='product'>
       <view class='normal_title flexBetween'>
         <view>优秀产品</view>
-        <view class='flexStart'>
+        <view class='flexStart' bindtap="moreProduct">
           <text>更多</text>
           <van-icon name="arrow" />
         </view>

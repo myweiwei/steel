@@ -1,0 +1,25 @@
+<!--pages/product/product.wxml-->
+<view class='productList'>
+  <view class='flexStart productInfo'>
+    <image class='img' src='../../images/index/img1.jpg'></image>
+    <image class='hot' src='../../images/product/HOT.png'></image>
+    <view class='info'>
+      <view class='xxInfo'>北京厨房整体橱柜定做全屋定制吸塑门板欧式石英石台面不锈钢厨柜北京厨房整体橱柜定做全屋</view>
+      <view class='price'><text>￥</text>850</view>
+    </view>
+  </view>
+  <view class='flexStart productInfo'>
+    <image class='img' src='../../images/index/img1.jpg'></image>
+    <view class='info'>
+      <view class='xxInfo'>北京厨房整体橱柜定做全屋定制吸塑门板欧式石英石台面不锈钢厨柜北京厨房整体橱柜定做全屋定制吸塑门</view>
+      <view class='price'><text>￥</text>850</view>
+    </view>
+  </view>
+  <view class='flexStart productInfo'>
+    <image class='img' src='../../images/index/img1.jpg'></image>
+    <view class='info'>
+      <view class='xxInfo'>北京厨房整体橱柜定做全屋定制吸塑门板欧式石英石台面不锈钢厨柜北京厨房整体橱柜定做全屋定制吸塑</view>
+      <view class='price'><text>￥</text>850</view>
+    </view>
+  </view>
+</view>

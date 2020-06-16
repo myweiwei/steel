@@ -1,8 +1,6 @@
 /* pages/pyq/pyq.wxss */
 .pyq {
   width:100%;
-  height:100%;
-  background-color: #e7e7e7;
 }
 .van-tabbar {
   width:100%;
@@ -56,8 +54,8 @@
 }
 
 .ava {
-  margin:15rpx 0;
   background: #fff;
+  border-bottom:15rpx solid #e7e7e7;
 }
 .avaInfo {
   padding:20rpx 0 0 20rpx;
@@ -75,9 +73,11 @@
   font-size:20rpx;
   color:#a3a3a3;
 }
-.avaCon image{
+.avaCon {
   width:100%;
-  height:400rpx;
+}
+.avaCon .moreImg {
+  width:50%;
 }
 .avaText {
   padding:20rpx;
@@ -125,12 +125,12 @@
 }
 .commName {
   margin-bottom:10rpx;
-  color:#9e9d9d;
+  color:#666;
   font-family: 'MicroSoft YaHei'
 }
 .commonInner {
-  height:0;
-  overflow: hidden;
+  /* height:0;
+  overflow: hidden; */
 }
 .commonInner .commCon{
   margin-left:40rpx;
@@ -144,7 +144,25 @@
   width:25rpx;
   height:25rpx;
 }
+
 .footTab image {
   width:50rpx;
   height:50rpx;
+}
+::-webkit-scrollbar {
+  width: 0!important;
+  height:0!important;
+  color:#fff!important;
+}
+.huifu {
+  margin:0 8rpx;
+  color:#9e9d9d;
+}
+.btn image {
+  width:50rpx;
+  height:50rpx;
+}
+.del {
+  margin:0 10rpx;
+  color:#2c2c2c;
 }

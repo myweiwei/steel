@@ -1,0 +1,31 @@
+<!--pages/mine/mine.wxml-->
+<view bindtap='addNew'>
+  发布头条
+</view>
+<van-popup
+  show="{{ show }}"
+  closeable
+  close-icon="close"
+  position="bottom"
+  custom-style="height: 70%"
+  bind:close="onClose"
+>
+  <view>
+    <view style='margin-top:80rpx;height:100rpx;'>
+      <van-field
+          value="{{ newvalue }}"
+          type="textarea"
+          placeholder="请输入头条信息"
+          autosize
+          border="{{ false }}"
+        />
+    </view>
+    <view class='label'>选择充值天数：</view>
+    <view class='price'>
+      <view wx:for='{{priceList}}' class='{{activeIndex==index?"active":""}}' data-index='{{index}}' bindtap="choosePrice">{{item}}</view>
+    </view>
+    <view class='footer'>
+      <van-button color="linear-gradient(to right, orange, #f7d501)" round size='large'>提交</van-button>
+    </view>
+  </view>
+</van-popup>

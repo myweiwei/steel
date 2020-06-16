@@ -51,6 +51,17 @@ page {
   height:0!important;
   color:transparent!important;
 }
-
+.m-r-10 {
+  margin-right:10rpx;
+}
+.f-40 {
+  font-size:40rpx;
+}
+.color-gray {
+  color:#666;
+}
+.color-orange {
+  color:#fb8c3f!important;
+}
 
 
