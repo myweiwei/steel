@@ -1,0 +1,6 @@
+<van-circle value="{{value}}" color="{{gradientColor}}" layer-color="#000" text="{{percent}}"  clockwise="{{ false }}"/>
+  <image src="{{teacher_icon}}" style="width:150rpx; height:150rpx;"></image>
+  <image src="{{user_icon}}" style="width:150rpx; height:150rpx;"></image>
+
+
+<view bindtap="goRestroom">进入休息室</view>
