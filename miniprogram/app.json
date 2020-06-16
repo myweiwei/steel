@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/consult/enter/enter",
+    "pages/consult/restroom/restroom",
     "pages/index/index",
     "pages/pyq/pyq",
     "pages/pyq/commit/commit"

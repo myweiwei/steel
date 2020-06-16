@@ -1,8 +1,6 @@
 {
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index",
-    "van-popup": "@vant/weapp/popup/index",
-    "van-field": "@vant/weapp/field/index"
+
   },
   "navigationBarBackgroundColor": "#FFFFFF",
   "navigationBarTitleText": "朋友圈",

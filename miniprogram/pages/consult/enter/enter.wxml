@@ -1,0 +1,2 @@
+
+<view bindtap="goRestroom">进入休息室</view>
