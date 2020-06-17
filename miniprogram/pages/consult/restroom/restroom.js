@@ -5,15 +5,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    percent: 50,
-    value: 80,
+    percent: 100,
+    value: 100,
     gradientColor: {
       '0%': '#509ffb',
       '50%': '#40e5ff',
-      '100%': '#509ffb',
+      '100%': '#509ffb'
 
     },
+    teacher_icon:"",
+    user_icon:"",
+    notice:"消息通知"
   },
+  
+  timer: function () {
+    let promise = new Promise((resolve, reject) => {
+      let setTimer = setInterval(() => {
+          this.setData({
+            value: this.data.value - 1,
+            percent: this.data.percent - 1
+          })
+          if (this.data.value <= 0) {
+            //退出休息室
+            resolve(setTimer)
+          }
+        }
+        , 1000)
+    })
+    promise.then((setTimer) => {
+      clearInterval(setTimer)
+    })
+  },
+
 
   goRestroom:function(){
     //连接socket，代表进入房间
@@ -37,32 +60,53 @@ Page({
       console.log('WebSocket连接打开失败，请检查！')
     });
   },
+  exitRestroom:function(){
+    wx.closeSocket();
+    wx.navigateBack();
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.timer();
+    wx.connectSocket({
+      url: 'ws://192.168.1.133:5555/websocket/1234/121',
+      method: 'GET',
+      success: function(){
+        isConnect: true
+        console.log("连接成功...")
+      },
+      fail: function(){
+        isConnect: false
+        console.log("连接失败...")
+      }
+    });
+    wx.onSocketOpen(function (res) {
+      console.log('WebSocket连接已打开！')
+    });
+ 
+    wx.onSocketError(function (res) {
+      console.log('WebSocket连接打开失败，请检查！')
+    });
+
+
     var that = this;
     wx.onSocketMessage(function(res){
       
       var json = JSON.parse(res.data); 
       console.log(json)
      
-      if(json.msg == "技师进入了房间"){
-        console.log("-----------------success");
-        that.setData({
-          teacher_icon: json.data.icon
-        })
-      }
-      if(json.msg == "技师离开了房间"){
-        console.log("-----------------success22222");
-        that.setData({
-          teacher_icon: ""
-        })
-      }
       if(json.msg == "用户进入了房间"){
         console.log("-----------------success");
         that.setData({
           user_icon: json.data.icon
+        })
+      }
+      if(json.msg == "技师进入了房间"){
+        console.log("-----------------success22222");
+        that.setData({
+          teacher_icon: json.data.icon
         })
       }
       if(json.msg == "用户离开了房间"){
@@ -71,18 +115,26 @@ Page({
           user_icon: ""
         })
       }
-      if(json.msg == "获取到用户信息"){
+    
+      if(json.msg == "技师离开了房间"){
         console.log("-----------------success22222");
         that.setData({
-          user_icon: json.data.icon
+          teacher_icon: ""
         })
       }
-      if(json.msg == "获取到技师信息"){
-        console.log("-----------------success22222");
+
+      if(json.msg == "都进入了房间，马上开始"){
         that.setData({
-          teacher_icon: json.data.icon
+          notice: "准备好！马上开始！"
         })
+        new Promise(resolve => {
+          setTimeout(resolve, 5)
+        });
+        console.log("go..... room");
       }
+
+     
+     
     })
   },
 
