@@ -2,6 +2,7 @@
   "pages": [
     "pages/consult/enter/enter",
     "pages/consult/restroom/restroom",
+   
     "pages/index/index",
     "pages/product/product",
     "pages/pyq/pyq",
