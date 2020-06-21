@@ -69,7 +69,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options);
     that.restroom(options.restroomId,options.userId)
     wx.onSocketMessage(function(res){
       var json = JSON.parse(res.data); 
@@ -138,14 +137,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    let me = this;
+    me.exitRestroom();
   },
 
   /**

@@ -27,7 +27,7 @@ Page({
   },
   submit:function(){
     wx.navigateTo({
-      url: '/pages/consult/restroom/restroom?userId="121"&restroomId="'+this.data.val
+      url: '/pages/consult/restroom/restroom?userId=121&restroomId=1234'
     })
   },
   moreProduct:function(){
