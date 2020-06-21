@@ -37,7 +37,7 @@ Page({
       clearInterval(setTimer)
     })
   },
-  restroom:function(){
+  restroom: function (restroomId, userId){
     //连接socket，代表进入房间
     wx.connectSocket({
       url: app.globalData.socketIp + restroomId+'/'+userId,
@@ -68,31 +68,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.timer();
-    wx.connectSocket({
-      url: 'ws://192.168.1.133:5555/websocket/1234/121',
-      method: 'GET',
-      success: function(){
-        isConnect: true
-        console.log("连接成功...")
-      },
-      fail: function(){
-        isConnect: false
-        console.log("连接失败...")
-      }
-    });
-    wx.onSocketOpen(function (res) {
-      console.log('WebSocket连接已打开！')
-    });
- 
-    wx.onSocketError(function (res) {
-      console.log('WebSocket连接打开失败，请检查！')
-    });
-
-
     var that = this;
     console.log(options);
-    that.goRestroom(options.restroomId,options.userId)
+    that.restroom(options.restroomId,options.userId)
     wx.onSocketMessage(function(res){
       var json = JSON.parse(res.data); 
       if(json.msg == "用户进入了房间"){
