@@ -10,7 +10,7 @@ Page({
     baseUrl:'',
     pageData:{
       pageNum:1,
-      pageSize:3
+      pageSize:100
     },
     ownpageData:{
       pageNum: 1,
@@ -33,7 +33,9 @@ Page({
     userid:"",
     commentId:"",
     commentCount:0,
-    unGeo:''
+    unGeo:'',
+    info:"已经到底啦",
+    infoShow:false
   },
   toComment:function(e){
     let me=this;
@@ -79,6 +81,7 @@ Page({
         commentInfo1: ""
       })
       me.getComment(me.data.commentId)
+      me.getList();
     })
   },
   longPress:function(e){
@@ -250,12 +253,26 @@ Page({
   getList:function(){
     let me=this;
     app.wxRequest('get', '/ea-service-dynamic/dynamic/dynamicList' + '/' + me.data.pageData.pageNum + '/' + me.data.pageData.pageSize+"/all", {},function(data){
-      let arr=[];
       me.setData({
-        list:me.data.list.concat(data.data.data.list),
+        list:data.data.data.list,
         total:data.data.data.total
       })
     })
+  },
+  getMore:function(){
+    let me=this;
+    let list = "pageData.pageNum";
+    if (me.data.list.length >= me.data.pageData.pageSize){
+      me.setData({
+        [list]: ++me.data.pageData.pageNum
+      })
+      me.getList();
+    }
+    else {
+      me.setData({
+        infoShow:true
+      })
+    }
   },
   getOwnList: function () {
     let me = this;
@@ -309,7 +326,6 @@ Page({
     let me = this;
     app.wxRequest('get', '/ea-service-dynamic/dynamic/dynamicList/' + me.data.cityData.pageNum + '/' + me.data.cityData.pageSize+'/'+area,{},function (data) {
       let arr = [];
-      console.log(data)
       me.setData({
         list: me.data.list.concat(data.data.data.list),
         total: data.data.data.total
@@ -318,7 +334,6 @@ Page({
   },
   addSc:function(e){
     let me=this;
-    console.log(e.currentTarget.dataset.item);
     let support = e.currentTarget.dataset.item.isSupport==1?0:1;
     app.wxRequest('get', '/ea-service-dynamic/support/' + e.currentTarget.dataset.item.dynamicId+ '/' + support, {}, function (data) {
       me.getList();
@@ -372,7 +387,20 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    let me = this;
+    let list = "pageData.pageNum";
+    if (me.data.pageData.pageNum>1){
+      me.setData({
+        [list]: --me.data.pageData.pageNum
+      })
+    }
+    else {
+      me.setData({
+        [list]: 1
+      })
+    }
+    me.getList();
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -381,13 +409,7 @@ Page({
   onReachBottom: function () {
     let me=this;
     if(me.data.active==1){
-      let list = "pageData.pageNum";
-      if (me.data.list.length < me.data.total) {
-        me.setData({
-          [list]: ++me.data.pageData.pageNum
-        })
-        me.getList();
-      }
+      me.getMore();
     }
     else if(me.data.active==4){
       let list = "ownpageData.pageNum";

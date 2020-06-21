@@ -1,6 +1,6 @@
 <!--pages/pyq/pyq.wxml-->
 <view class='pyq'>
-  <view style='margin-bottom:150rpx;'>
+  <view upper-threshold='5'>
     <view  style="height:100%">
       <view class='ava' wx:for='{{list}}' wx:key='id'>
         <view class='flexBetween'>
@@ -18,32 +18,34 @@
         </view>
         <view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
           <video wx:if='{{item.videoType==1}}' src="{{item.dynamicImgVideoList[0]}}" object-fit='cover' show-progress></video>
-          <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" src='{{itemName}}' mode='aspectFit' class='{{item.dynamicImgVideoList.length>1?"moreImg":""}}'></image>
+          <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' mode='aspectFit' class='{{item.dynamicImgVideoList.length>1?"moreImg":""}}'></image>
         </view>
         <view class='color-gray'>{{item.dynamicArea}}</view>
         <view class='avaBtn flexAround'>
-          <view class='flexCenter'>
+          <view class='flexCenter' >
             <image src='../../images/pyq/zhuanfa.png'></image>
-            转发
+            <button open-type="share" ></button>
+            <text open-type="share">转发</text>
           </view>
-          <view class='flexCenter' data-item='{{item}}' bindtap="comment">
+          <view class='flexCenter' data-item='{{item}}' catchtap="comment">
             <image src='../../images/pyq/xiaoxi.png'></image>
             <text wx:if='{{item.commentCount==0}}'>评论</text>
             <text wx:else>{{item.commentCount}}</text>
           </view>
-          <view bindtap='addSc' data-item='{{item}}'  class='{{item.isSupport==1?"flexCenter color-orange":"flexCenter"}}'>
-            <image src='../../images/pyq/zan.png' wx:if='{{!item.isSupport}}'></image>
+          <view bindtap='addSc' data-item='{{item}}'  class='{{item.isSupport==1?"flexCenter  color-orange":"flexCenter"}}'>
+            <image src='../../images/pyq/zan.png' wx:if='{{item.isSupport!=1}}'></image>
             <image src='../../images/pyq/zan1.png' wx:else></image>
             赞<text  wx:if='{{item.supportCount&&item.supportCount>=0}}'>{{item.supportCount}}</text>
           </view>
         </view>
       </view>
+      <view wx:if='{{infoShow}}' class='info'>{{info}}</view>
     </view>
   </view>
   <van-popup show="{{ avaShow }}" position="bottom" custom-style="height: 70%;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
       <view class='totalComment'><text class='strong'>{{commentCount}}</text>条评论</view>
       <scroll-view scroll-y="true" style="height: 80%" >
-        <view wx:for='{{commonList}}'>
+        <view wx:for='{{commonList}}' wx:key='{{commentId}}'>
           <view class='commCon' data-item='{{item}}' data-item1='{{item}}' catchtap='toComment' bindlongpress='longPress'>
             <view class='commImg'>
               <image src='../../images/pyq/shoucang2.png'></image>
@@ -62,7 +64,7 @@
           <view>
           </view>
           <view wx:if='{{item.openFlag}}' >
-            <view class='commonInner'  wx:for='{{item.eaDynamicCommentExtendList}}' wx:for-item="itemName">
+            <view class='commonInner'  wx:for='{{item.eaDynamicCommentExtendList}}' wx:for-item="itemName" wx:key='{{commentId}}'>
               <scroll-view scroll-y="true" >
                 <view class='commCon' data-item='{{item}}' data-item1='{{itemName}}' catchtap='toComment'  bindlongpress='longPress'>
                   <view class='commImg'>
@@ -86,11 +88,11 @@
             </view>
           </view>
           <view class='commTog'>
-            <view class='flexStart' data-id='{{item.commentId}}' bindtap="open" wx:if='{{item.openFlag==false}}'>
+            <view class='flexStart' data-id='{{item.commentId}}' bindtap="open" wx:if='{{item.openFlag==false&&item.eaDynamicCommentExtendList.length}}'>
               <text>-----展开</text>
               <image src='../../images/pyq/zhankai.png'></image>
             </view>
-            <view class='flexStart' data-id='{{item.commentId}}' bindtap="close" wx:if='{{item.openFlag==true}}'>
+            <view class='flexStart' data-id='{{item.commentId}}' bindtap="close" wx:if='{{item.openFlag==true&&item.eaDynamicCommentExtendList.length}}'>
               <text>-----收起</text>
               <image src='../../images/pyq/shouqi.png'></image>
             </view>
@@ -116,7 +118,7 @@
         </van-cell-group>
       </view>
   </van-popup>
-  <view class='footTab'>
+  <!-- <view class='footTab'>
     <view class='flexAround' style='height:100%;position:relative'>
       <view class='tabList' bindtap='changeAcitve' data-id='1'>
         <image wx:if='{{active!=1}}'  src='../../images/pyq/shouye-weixuanzhong.png'></image>
@@ -147,7 +149,7 @@
         <text class='{{active==4?"color-active text":"text"}}'>我的</text>
       </view>
     </view>
-  </view>
+  </view> -->
   <van-popup show="{{ avaShow1 }}" position="bottom" custom-style="height: 50%;padding:70rpx 20rpx;box-sizing:border-box;" bind:close="onClose1" round closeable>
     <van-cell-group>
       <van-field

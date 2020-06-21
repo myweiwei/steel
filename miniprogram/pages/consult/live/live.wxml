@@ -1,0 +1,4 @@
+<view class="page-room">
+  <trtc-room id="trtcroom" config="{{trtcConfig}}"> </trtc-room>
+  
+</view>

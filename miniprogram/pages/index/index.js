@@ -13,7 +13,22 @@ Page({
     msgList: [
       { url: "url", title: "恭喜xxx完成任务退回200进入领奖区" },
       { url: "url", title: "恭喜xxx获得XXX奖励" },
-      { url: "url", title: "恭喜xxx完成任务退回300进入领奖区" }]
+      { url: "url", title: "恭喜xxx完成任务退回300进入领奖区" }],
+    currentIndex:0,
+    teacherList:[],
+    value:''
+  },
+  onChange:function(val){
+    let me=this;
+    console.log(val)
+    me.setData(function(){
+      value: val.detail
+    })
+  },
+  submit:function(){
+    wx.navigateTo({
+      url: '/pages/consult/restroom/restroom?userId="121"&restroomId="'+this.data.val
+    })
   },
   moreProduct:function(){
     wx.navigateTo({
@@ -25,6 +40,18 @@ Page({
       url: '/pages/pyq/pyq'
     })
   },
+  toZx:function(e){
+    let me = this;
+    app.wxRequest('get', '/ea-service-consult/consult/createRestroom/' + e.currentTarget.dataset.id, {}, function (data) {
+      if (data.statusCode == 200) {
+        wx.navigateTo({
+          url: '/pages/consult/restroom/restroom?userId=' + data.data.data.userId + '&restroomId=' + data.data.data.restroomId
+        })
+      }
+      else {
+      }
+    })
+  },
   onLoad: function() {
     if (!wx.cloud) {
       wx.redirectTo({
@@ -32,7 +59,6 @@ Page({
       })
       return
     }
-
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -63,14 +89,41 @@ Page({
       }
     })
   },
+  getTeacher:function(){
+    let me = this;
+    app.wxRequest('get', '/ea-service-consult/consult/teachers', {}, function (data) {
+      if (data.statusCode == 200) {
+        console.log(data);
+        me.setData({
+          teacherList:data.data.data
+        })
+      }
+      else {
+      }
+    })
+  },
+  funcList:function(){
+    let me=this;
+    me.getBanner();
+    me.getTeacher();
+  },
+  handleChange: function (e) {
+    this.setData({
+      currentIndex: e.detail.current
+    })
+  },
   onShow:function(){
     var that = this;
     that.setData({
       baseUrl: app.globalData.baseUrl
     })
     if (app.globalData.token == '') {
-      app.getUser(that.getBanner);
+      app.getUser(that.funcList);
     }
+    else {
+      that.funcList()
+    }
+    
   },
   getInfo:function(){
     wx.getUserInfo({

@@ -96,6 +96,18 @@
 }
 .avaBtn .flexCenter {
   color:#2c2c2c;
+  width:30%;
+  position: relative;
+}
+.avaBtn button {
+  position: absolute;
+  top: -23rpx;
+  left: 47rpx;
+  width: 200rpx;
+  opacity: 0.1;
+  border: transparent;
+  background: transparent;
+  height: 80rpx;
 }
 .totalComment {
   width:100%;
@@ -165,4 +177,9 @@
 .del {
   margin:0 10rpx;
   color:#2c2c2c;
+}
+.info {
+  color:#666;
+  text-align: center;
+  padding:10rpx;
 }

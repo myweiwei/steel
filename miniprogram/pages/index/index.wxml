@@ -1,18 +1,22 @@
 <!--index.wxml-->
 <view class="container">
-<scroll-view scroll-y="true" style="height: 99%" >
-    <van-search style='width:100%' disabled placeholder="请输入搜索关键词" shape='round'/>
-    <view class="page-section page-section-spacing swiper">
-      <swiper indicator-dots="{{indicatorDots}}" style='height:100%;' indicator-color='#fff' indicator-active-color='#ec9823'
-        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{background}}" wx:key="*this">
-          <swiper-item>
-            <view class="swiper-item {{item}}">
-              <image src="{{item.bannerImg}}"> </image>
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
+  <scroll-view scroll-y="true" style="height: 99%;background:#f5f6f6" >
+  <view style='height:94rpx;'>
+    <image class='ban' src='../../images/index/ban.png'></image>
+    <van-search style='width:100%;position:absolute;z-index:100;margin-top:17rpx;' background="#fff" disabled placeholder="请输入搜索关键词" shape='round'/>
+  </view>
+    <view style='height:'>
+      <view class="page-section page-section-spacing swiper">
+        <swiper indicator-dots="{{indicatorDots}}" style='height:100%;display:flex;align-items:center' indicator-color='#fff' indicator-active-color='#1c43aa' previous-margin="50rpx" next-margin="50rpx" bindchange="handleChange" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
+          <block wx:for="{{background}}" wx:key="*this">
+            <swiper-item class="item">
+              <view class="swiper-item" >
+                <image src="{{item.bannerImg}}" class="itemImg {{currentIndex == index ? 'active': ''}}"> </image>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
     </view>
     <view class='flexAround navbar'>
       <view class='box' bindtap="toPyq">
@@ -26,10 +30,10 @@
     </view>
     <view class='adsec'>
       <text class='title'>头条</text>
-      <swiper class="swiper_container" autoplay="true" circular="true" interval="2000" vertical='true'>
+      <swiper class="swiper_container" autoplay="true" circular="true" interval="2000" vertical='true' current='2'>
         <block wx:for="{{msgList}}" wx:key='item'>
           <navigator url="/pages/index/index?title={{item.url}}" open-type="navigate">
-            <swiper-item>
+            <swiper-item >
               <view class="swiper_item">{{item.title}}</view>
             </swiper-item>
           </navigator>
@@ -71,43 +75,49 @@
     <view class='splite'></view>
     <view class='product'>
       <view class='normal_title flexBetween'>
-        <view>优秀技师</view>
+        <view>推荐技师</view>
         <view class='flexStart'>
           <text>更多</text>
           <van-icon name="arrow" />
         </view>
       </view>
+      <view>
+      <van-cell-group>
+        <van-field
+          value="{{ value }}"
+          placeholder="请输入房间号"
+          bind:change="onChange"
+        />
+        <van-button type="default" bindtap='submit'>提交</van-button>
+      </van-cell-group>
+      </view>
        <scroll-view scroll-x='true' class='teacher_list' >
-          <view class='list'>
+          <view class='list' wx:for='{{teacherList}}' wx:key='{{teacherId}}'>
             <view class='list-inner'>
-              <image src='../../images/pyq/wode.png'></image>
-              <text class='zw'>总经理</text>
-              <text class='company'>百度科技有限公司啦啦啦啦</text>
-              <view class='gt_btn'>立即沟通</view>
-            </view>
-          </view>
-          <view class='list'>
-            <view class='list-inner'>
-              <image src='../../images/pyq/wode.png'></image>
-              <text class='zw'>总经理</text>
-              <text class='company'>百度科技有限公司啦啦啦啦</text>
-              <view class='gt_btn'>立即沟通</view>
-            </view>
-          </view>
-          <view class='list'>
-            <view class='list-inner'>
-              <image src='../../images/pyq/wode.png'></image>
-              <text class='zw'>总经理</text>
-              <text class='company'>百度科技有限公司啦啦啦啦</text>
-              <view class='gt_btn'>立即沟通</view>
-            </view>
-          </view>
-          <view class='list'>
-            <view class='list-inner'>
-              <image src='../../images/index/img3.jpg'></image>
-              <text class='zw'>总经理</text>
-              <text class='company'>百度科技有限公司啦啦啦啦</text>
-              <view class='gt_btn'>立即沟通</view>
+              <image src='{{item.headIcon}}' class='head'></image>
+              <text class='zw'>{{item.realName}}</text>
+              <text class='company'>{{item.teacherGoodAt}}</text>
+              <text class='info'>{{item.teacherDescription}}</text>
+              <view class='gt_btn'>
+                <view class='flexBetween'>
+                  <view class='flexStart'>
+                    <text>好评率</text>
+                    <text class='fonWei'>{{item.favorableRate}}%</text>
+                  </view>
+                  <view class='fonWei jq'>{{item.slovePrice/100}}元
+                  /
+                  分钟</view>
+                </view>
+                <view class='flexBetween'>
+                  <view class='flexStart'><text>已帮助</text>
+                  <text class='fonWei'>{{item.solveCount}}</text>人
+                </view>
+                  <view class='image' data-id='{{item.teacherId}}' catchtap="toZx">
+                    <image src='../../images/index/btnBg.png'></image>
+                    <view>立即咨询</view>
+                  </view>
+                </view>
+              </view>
             </view>
           </view>
         </scroll-view>

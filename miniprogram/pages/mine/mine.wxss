@@ -1,4 +1,7 @@
 /* pages/mine/mine.wxss */
+.my {
+  height:100%;
+}
 .price {
   width:100%;
   display: flex;

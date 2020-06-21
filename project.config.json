@@ -27,7 +27,7 @@
 	},
 	"appid": "wx04f582f240549dbb",
 	"projectname": "steel",
-	"libVersion": "2.8.1",
+	"libVersion": "2.11.2",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -84,6 +84,14 @@
 					"id": -1,
 					"name": "pages/product/product",
 					"pathName": "pages/product/product",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "pages/videocall/videocall",
+					"pathName": "pages/videocall/videocall",
+					"query": "",
 					"scene": null
 				}
 			]

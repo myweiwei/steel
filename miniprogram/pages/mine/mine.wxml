@@ -1,6 +1,6 @@
 <!--pages/mine/mine.wxml-->
-<view bindtap='addNew'>
-  发布头条
+<view class='my'>
+  
 </view>
 <van-popup
   show="{{ show }}"

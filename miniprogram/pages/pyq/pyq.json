@@ -9,5 +9,6 @@
   "navigationBarTitleText": "朋友圈",
   "navigationBarTextStyle": "black",
   "backgroundColor": "#FFFFFF",
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh":true
 }
