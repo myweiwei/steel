@@ -93,6 +93,13 @@
 					"pathName": "pages/videocall/videocall",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "pages/videocall/videocall",
+					"pathName": "pages/videocall/videocall",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
