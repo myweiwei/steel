@@ -1,3 +1,4 @@
+
 <van-circle value="{{value}}" color="{{gradientColor}}" layer-color="#000" text="{{percent}}"  clockwise="{{ false }}"/>
   <image src="{{teacher_icon}}" style="width:150rpx; height:150rpx;"></image>
   <image src="{{user_icon}}" style="width:150rpx; height:150rpx;"></image>
@@ -6,3 +7,10 @@
 <view bindtap="goRestroom">进入休息室</view>
 <view bindtap="leaveRestroom">离开休息室</view>
 <view bindtap="goLiveroom">进入聊天室</view>
+<van-circle value="{{value}}" color="{{gradientColor}}" layer-color="#FFF" speed="300" text="{{percent}}" />
+<view>{{notice}}</view>
+ 
+    用户头像：<image src="{{user_icon}}" style="width:150rpx; height:150rpx;"></image>
+  技师头像：<image src="{{teacher_icon}}" style="width:150rpx; height:150rpx;"></image>
+  
+<view bindtap="exitRestroom">离开休息室</view>
