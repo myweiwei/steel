@@ -4,3 +4,5 @@
 
 
 <view bindtap="goRestroom">进入休息室</view>
+<view bindtap="leaveRestroom">离开休息室</view>
+<view bindtap="goLiveroom">进入聊天室</view>

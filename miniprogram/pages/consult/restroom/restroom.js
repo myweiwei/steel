@@ -1,4 +1,5 @@
 // pages/pyq/pyq.js
+const app = getApp()
 Page({
   
   /**
@@ -14,11 +15,13 @@ Page({
 
     },
   },
-
-  goRestroom:function(){
+  leaveRestroom:function(){
+    wx.closeSocket();
+  },
+  goRestroom: function (restroomId, userId){
     //连接socket，代表进入房间
     wx.connectSocket({
-      url: 'ws://192.168.1.133:5555/websocket/1234/121',
+      url: app.globalData.socketIp + restroomId+'/'+userId,
       method: 'GET',
       success: function(){
         isConnect: true
@@ -42,11 +45,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options);
+    that.goRestroom(options.restroomId,options.userId)
     wx.onSocketMessage(function(res){
-      
       var json = JSON.parse(res.data); 
-      console.log(json)
-     
       if(json.msg == "技师进入了房间"){
         console.log("-----------------success");
         that.setData({
@@ -83,6 +85,12 @@ Page({
           teacher_icon: json.data.icon
         })
       }
+    })
+  },
+  goLiveroom:function(){
+    let me=this;
+    wx.navigateTo({
+      url: '/pages/room/room',
     })
   },
 

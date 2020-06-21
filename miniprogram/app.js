@@ -2,8 +2,11 @@
 App({
   globalData:{
     userId:'',
-    baseUrl: 'http://192.168.1.12:50518/api',
-    token:""
+    baseUrl: 'http://192.168.1.8:50518/api',
+    socketIp:"ws://192.168.1.8:5555/websocket/",
+    token:"",
+    headerHeight: 0,
+    statusBarHeight: 0,
   },
   onLaunch: function () {
     let me=this;
@@ -19,6 +22,17 @@ App({
         traceUser: true,
       })
       me.getUser(function(){});
+      const { model, system, statusBarHeight } = wx.getSystemInfoSync()
+      let headHeight
+      if (/iphone\s{0,}x/i.test(model)) {
+        headHeight = 88
+      } else if (system.indexOf('Android') !== -1) {
+        headHeight = 68
+      } else {
+        headHeight = 64
+      }
+      this.globalData.headerHeight = headHeight
+      this.globalData.statusBarHeight = statusBarHeight
     }
   },
   getUser: function (callback){
@@ -62,6 +76,20 @@ App({
         errFun(err);
       }
     })
-  }
+  },
+  onShareAppMessage: function (e) {
+    console.log(e);
+    // return {
+    //   title: '分享标题',
+    //   path: "pages/pyq/pyq",
+    //   imageUrl: '/images/home.png',
+    //   success: (res) => {
+    //     // 分享成功
+    //   },
+    //   fail: (res) => {
+    //     // 分享失败
+    //   }
+    // }
+  },
   
 })
