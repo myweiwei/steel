@@ -80,7 +80,7 @@
   padding: 7rpx 10rpx;
   height: 50rpx;
   box-shadow: 0 0 10rpx #ccc;
-
+  box-sizing: border-box
 }
 .adsec .title {
   font-size:30rpx;

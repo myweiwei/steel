@@ -42,7 +42,7 @@
         "selectedIconPath": "images/pyq/add.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/pyq/pyq",
         "iconPath": "images/pyq/pengyouquan.png",
         "selectedIconPath": "images/pyq/pengyouquan1.png",
         "text": "朋友圈"

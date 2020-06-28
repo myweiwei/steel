@@ -100,6 +100,13 @@
 					"pathName": "pages/videocall/videocall",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/consult/restroom/restroom",
+					"pathName": "pages/consult/restroom/restroom",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
