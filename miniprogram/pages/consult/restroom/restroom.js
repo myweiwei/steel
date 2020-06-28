@@ -17,7 +17,7 @@ Page({
     teacher_icon:"",
     user_icon:"",
     notice:"消息通知",
-    roomID: '1234',
+    roomID: '',
     template: '1v1',
     debugMode: false,
     cloudenv: 'PRO',
@@ -81,9 +81,25 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      roomID: options.restroomId
+    })
     that.restroom(options.restroomId,options.userId)
     wx.onSocketMessage(function(res){
       var json = JSON.parse(res.data); 
+      if (json.msg == "无房间权限") {
+        console.log("-----------------success");
+        wx.showToast({
+          title:"无房间权限",
+          icon: 'none',
+          duration: 4000,
+          success:function(){
+            setTimeout(function () {
+              that.onBack()
+            },1000);
+          }
+        })
+      }
       if(json.msg == "用户进入了房间"){
         console.log("-----------------success");
         that.setData({
@@ -112,7 +128,8 @@ Page({
 
       if(json.msg == "都进入了房间，马上开始"){
         that.setData({
-          notice: "准备好！马上开始！"
+          notice: "准备好！马上开始！",
+          
         })
         new Promise(resolve => {
           setTimeout(resolve, 5)
