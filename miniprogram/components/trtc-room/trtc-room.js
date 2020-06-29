@@ -327,9 +327,6 @@ Component({
     exitRoom() {
       console.log('我要离开.........')
       let me=this;
-      app.wxRequest('get', '/ea-service-consult/consult/endConversation/' + me.data.config.roomID, {}, function (data) {
-        console.log(data);
-      })
       if (this.status.pageLife === 'hide') {
         // 如果是退后台触发 onHide，不能调用 pusher API
         console.warn(TAG_NAME, '小程序最小化时不能调用 exitRoom，如果不想听到远端声音，可以调用取消订阅，如果不想远端听到声音，可以调用取消发布')
@@ -351,9 +348,11 @@ Component({
           console.log(TAG_NAME, 'exitRoom success', this.data.pusher, this.data.streamList, this.data.userList)
           // 20200421 iOS 仍然没有1019事件通知退房，退房事件移动到 exitRoom 方法里，但不是后端通知的退房成功
           this._emitter.emit(EVENT.LOCAL_LEAVE, { userID: this.data.pusher.userID })
-
-          wx.navigateBack({
-            delta: 1,
+          app.wxRequest('get', '/ea-service-consult/consult/endConversation/' + me.data.config.roomID, {}, function (data) {
+            console.log(data);
+            wx.navigateBack({
+              delta: 1,
+            })
           })
         })
       })
