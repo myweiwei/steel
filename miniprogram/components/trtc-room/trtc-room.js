@@ -5,7 +5,7 @@ import Event from 'utils/event.js'
 import * as ENV from 'utils/environment.js'
 import TIM from 'libs/tim-wx.js'
 import MTA from 'libs/mta_analysis.js'
-
+const app = getApp()
 const TAG_NAME = 'TRTC-ROOM'
 const IM_GROUP_TYPE = TIM.TYPES.GRP_CHATROOM // TIM.TYPES.GRP_CHATROOM 体验版IM无数量限制，成员20个， TIM.TYPES.GRP_AVCHATROOM IM体验版最多10个，升级后无限制
 
@@ -326,6 +326,10 @@ Component({
      */
     exitRoom() {
       console.log('我要离开.........')
+      let me=this;
+      app.wxRequest('get', '/ea-service-consult/consult/endConversation/' + me.data.config.roomID, {}, function (data) {
+        console.log(data);
+      })
       if (this.status.pageLife === 'hide') {
         // 如果是退后台触发 onHide，不能调用 pusher API
         console.warn(TAG_NAME, '小程序最小化时不能调用 exitRoom，如果不想听到远端声音，可以调用取消订阅，如果不想远端听到声音，可以调用取消发布')
@@ -347,6 +351,7 @@ Component({
           console.log(TAG_NAME, 'exitRoom success', this.data.pusher, this.data.streamList, this.data.userList)
           // 20200421 iOS 仍然没有1019事件通知退房，退房事件移动到 exitRoom 方法里，但不是后端通知的退房成功
           this._emitter.emit(EVENT.LOCAL_LEAVE, { userID: this.data.pusher.userID })
+
           wx.navigateBack({
             delta: 1,
           })
@@ -1276,15 +1281,17 @@ Component({
     } ,
     _bindEvent() {
       // 远端用户进房
+      let me = this;
       this.userController.on(EVENT.REMOTE_USER_JOIN, (event)=>{
         console.log(TAG_NAME, '远端用户进房', event, event.data.userID)
         this.setData({
           userList: event.data.userList,
         }, () => {
           this._emitter.emit(EVENT.REMOTE_USER_JOIN, { userID: event.data.userID })
-          this._begin();
+          app.wxRequest('get', '/ea-service-consult/consult/startConversation/' + me.data.config.roomID, {}, function (data) {
+            me._begin();
+          })
         })
-        
         console.log(TAG_NAME, 'REMOTE_USER_JOIN', 'streamList:', this.data.streamList, 'userList:', this.data.userList)
       })
       // 远端用户离开

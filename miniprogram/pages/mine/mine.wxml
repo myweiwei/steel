@@ -1,6 +1,9 @@
 <!--pages/mine/mine.wxml-->
 <view class='my'>
-  
+  <view class='top'>
+  </view>
+  <view class='bottom'>
+  </view>
 </view>
 <van-popup
   show="{{ show }}"
