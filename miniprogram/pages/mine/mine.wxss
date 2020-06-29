@@ -2,6 +2,15 @@
 .my {
   height:100%;
 }
+.top {
+  height:30%;
+  background: linear-gradient(to bottom, #1c43aa 0%,#0052b5 100%);
+}
+.bottom {
+  height: 70%;
+  background-color: #0052b5;
+}
+
 .price {
   width:100%;
   display: flex;
