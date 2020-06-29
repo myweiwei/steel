@@ -7,6 +7,7 @@
     "pages/index/index",
     "pages/product/product",
     "pages/pyq/pyq",
+    "pages/near/near",
     "pages/pyq/commit/commit",
     "pages/mine/mine"
   ],
@@ -30,13 +31,13 @@
         "selectedIconPath": "images/pyq/shouye-xuanzhong.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/near/near",
         "text": "附近",
         "iconPath": "images/pyq/tongcheng.png",
         "selectedIconPath": "images/pyq/tongcheng1.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/pyq/commit/commit",
         "text": "",
         "iconPath": "images/pyq/add.png",
         "selectedIconPath": "images/pyq/add.png"
