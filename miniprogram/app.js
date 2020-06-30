@@ -2,8 +2,8 @@
 App({
   globalData:{
     userId:'',
-    baseUrl: 'http://192.168.1.8:50518/api',
-    socketIp:"ws://192.168.1.8:5555/websocket/",
+    baseUrl: 'http://192.168.1.140:50518/api',
+    socketIp:"ws://192.168.1.140:5555/websocket/",
     token:"",
     headerHeight: 0,
     statusBarHeight: 0,
