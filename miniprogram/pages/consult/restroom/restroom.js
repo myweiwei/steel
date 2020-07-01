@@ -103,6 +103,19 @@ Page({
           }
         })
       }
+      if (json.msg == "房间不存在") {
+        console.log("-----------------success");
+        wx.showToast({
+          title: "房间不存在",
+          icon: 'none',
+          duration: 4000,
+          success: function () {
+            setTimeout(function () {
+              that.onBack()
+            }, 1000);
+          }
+        })
+      }
       if(json.msg == "房间已解散") {
         console.log("-----------------success");
         wx.showToast({

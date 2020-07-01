@@ -104,7 +104,7 @@
                     <text>好评率</text>
                     <text class='fonWei'>{{item.favorableRate}}%</text>
                   </view>
-                  <view class='fonWei jq'>{{item.slovePrice/100}}元
+                  <view class='fonWei jq'>{{item.slovePrice}}元
                   /
                   分钟</view>
                 </view>
