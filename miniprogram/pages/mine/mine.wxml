@@ -1,6 +1,15 @@
 <!--pages/mine/mine.wxml-->
 <view class='my'>
   <view class='top'>
+    <van-cell-group>
+      <van-field
+        value="{{ value }}"
+        placeholder="请输入充值金额"
+        border="{{ false }}"
+        bind:change="onChange"
+      />
+    </van-cell-group>
+    <van-button type="default" bindtap='addPrice'>充值</van-button>
   </view>
   <view class='bottom'>
   </view>

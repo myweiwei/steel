@@ -1,4 +1,5 @@
 // pages/mine/mine.js
+const app = getApp()
 Page({
 
   /**
@@ -7,8 +8,34 @@ Page({
   data: {
     show:false,
     newvalue:'',
+    value:'',
     priceList: ['3天（30元）','5天（50元）','7天（70元）','1个月（199元）'],
     activeIndex:0
+  },
+  onChange:function(val){
+    this.setData({
+      value:val.detail
+    })
+  },
+  addPrice:function(){
+    let me=this;
+    app.wxRequest('post', '/ea-service-personal/recharge/recharge/'+me.data.value, {}, function (res) {
+      wx.requestPayment(
+        {
+          timeStamp: res.data.data.data.timeStamp,
+          nonceStr: res.data.data.data.nonceStr,
+          package: res.data.data.data.package,
+          signType: res.data.data.data.signType,
+          paySign: res.data.data.data.paySign,
+          success: function (res) {
+            console.log(res);
+          },
+          fail: function (res) {
+            console.log(res);
+          },
+          complete: function (res) { }
+        })
+    })
   },
   choosePrice:function(e){
     let me=this;
@@ -16,13 +43,6 @@ Page({
     me.setData({
       activeIndex: e.currentTarget.dataset.index
     })
-  },
-  onChange:function(val){
-    let me = this;
-    console.log(val);
-    // me.setData({
-    //   show: false
-    // })
   },
   onClose:function(){
     let me=this;
