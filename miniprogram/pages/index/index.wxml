@@ -84,7 +84,7 @@
       <view>
       <van-cell-group>
         <van-field
-          value="{{ value }}"
+          value="{{ val }}"
           placeholder="请输入房间号"
           bind:change="onChange"
         />

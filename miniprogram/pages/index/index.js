@@ -16,18 +16,21 @@ Page({
       { url: "url", title: "恭喜xxx完成任务退回300进入领奖区" }],
     currentIndex:0,
     teacherList:[],
-    value:''
+    val:''
   },
   onChange:function(val){
     let me=this;
     console.log(val)
-    me.setData(function(){
-      value: val.detail
+    me.setData({
+      val: val.detail
     })
   },
   submit:function(){
-    wx.navigateTo({
-      url: '/pages/consult/restroom/restroom?userId=121&restroomId=1234'
+    let me=this;
+    app.wxRequest('get', '/ea-service-personal/personal/teacherInfoByUserId/', {}, function (data) {
+      wx.navigateTo({
+          url: '/pages/consult/restroom/restroom?userId='+ data.data.data.teacherId+'&restroomId='+me.data.val
+      })
     })
   },
   moreProduct:function(){
@@ -43,12 +46,17 @@ Page({
   toZx:function(e){
     let me = this;
     app.wxRequest('get', '/ea-service-consult/consult/createRestroom/' + e.currentTarget.dataset.id, {}, function (data) {
-      if (data.statusCode == 200) {
-        wx.navigateTo({
-          url: '/pages/consult/restroom/restroom?userId=' + data.data.data.userId + '&restroomId=' + data.data.data.restroomId
+      if (data.data.status != 200) {
+        wx.showToast({
+          title: data.data.msg,
+          icon: 'none',
+          duration: 2000
         })
       }
       else {
+        wx.navigateTo({
+          url: '/pages/consult/restroom/restroom?userId=' + data.data.data.userId + '&restroomId=' + data.data.data.restroomId
+        })
       }
     })
   },

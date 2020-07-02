@@ -81,9 +81,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/product/product",
-					"pathName": "pages/product/product",
+					"id": 4,
+					"name": "pages/mine/mine",
+					"pathName": "pages/mine/mine",
 					"query": "",
 					"scene": null
 				},
@@ -98,6 +98,13 @@
 					"id": 6,
 					"name": "pages/videocall/videocall",
 					"pathName": "pages/videocall/videocall",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/consult/restroom/restroom",
+					"pathName": "pages/consult/restroom/restroom",
 					"query": "",
 					"scene": null
 				}
