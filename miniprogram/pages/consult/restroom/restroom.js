@@ -16,6 +16,8 @@ Page({
     },
     teacher_icon:"",
     user_icon:"",
+    teacher_name: "",
+    user_name: "",
     notice:"消息通知",
     roomID: '',
     template: '1v1',
@@ -29,6 +31,7 @@ Page({
     ],
     headerHeight: app.globalData.headerHeight,
     statusBarHeight: app.globalData.statusBarHeight,
+    
   },
   
   timer: function () {
@@ -102,29 +105,47 @@ Page({
           }
         })
       }
+      if(json.msg == "房间已解散") {
+        console.log("-----------------success");
+        wx.showToast({
+          title: "房间已解散",
+          icon: 'none',
+          duration: 4000,
+          success: function () {
+            setTimeout(function () {
+              that.onBack()
+            }, 1000);
+          }
+        })
+      }
       if(json.msg == "用户进入了房间"){
         console.log("-----------------success");
         that.setData({
-          user_icon: json.data.icon
+          user_icon: json.data.icon,
+          user_name: json.data.name
         })
       }
       if(json.msg == "技师进入了房间"){
         console.log("-----------------success22222");
         that.setData({
-          teacher_icon: json.data.icon
+          teacher_icon: json.data.icon,
+          teacher_name:json.data.name
+
         })
       }
       if(json.msg == "用户离开了房间"){
         console.log("-----------------success22222");
         that.setData({
-          user_icon: ""
+          user_icon: "",
+          user_name: ""
         })
       }
     
       if(json.msg == "技师离开了房间"){
         console.log("-----------------success22222");
         that.setData({
-          teacher_icon: ""
+          teacher_icon: "",
+          teacher_name:''
         })
       }
 
