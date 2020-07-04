@@ -255,6 +255,7 @@ Page({
     })
   },
   enterRoom: function () {
+    let me=this;
     const roomID = this.data.roomID
     const nowTime = new Date()
     if (nowTime - this.tapTime < 1000) {
@@ -288,6 +289,7 @@ Page({
     this.tapTime = nowTime
     this.checkDeviceAuthorize().then((result) => {
       console.log('授权成功', result)
+      wx.closeSocket();
       wx.navigateTo({ url: url })
     }).catch((error) => {
       console.log('没有授权', error)
