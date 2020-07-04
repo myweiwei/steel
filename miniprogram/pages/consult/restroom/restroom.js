@@ -103,6 +103,19 @@ Page({
           }
         })
       }
+      if (json.msg == "房间不存在") {
+        console.log("-----------------success");
+        wx.showToast({
+          title: "房间不存在",
+          icon: 'none',
+          duration: 4000,
+          success: function () {
+            setTimeout(function () {
+              that.onBack()
+            }, 1000);
+          }
+        })
+      }
       if(json.msg == "房间已解散") {
         console.log("-----------------success");
         wx.showToast({
@@ -242,6 +255,7 @@ Page({
     })
   },
   enterRoom: function () {
+    let me=this;
     const roomID = this.data.roomID
     const nowTime = new Date()
     if (nowTime - this.tapTime < 1000) {
@@ -275,6 +289,7 @@ Page({
     this.tapTime = nowTime
     this.checkDeviceAuthorize().then((result) => {
       console.log('授权成功', result)
+      wx.closeSocket();
       wx.navigateTo({ url: url })
     }).catch((error) => {
       console.log('没有授权', error)

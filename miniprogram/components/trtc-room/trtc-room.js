@@ -95,7 +95,9 @@ Component({
     audioReverbTypeArray: ['关闭', 'KTV', '小房间', '大会堂', '低沉', '洪亮', '金属声', '磁性'],
     hours: '0' + 0,   // 时
     minute: '0' + 0,   // 分
-    second: '0' + 0    // 秒
+    second: '0' + 0,    // 秒
+    maxTime:'',
+    timer:null
   },
   /**
    * 生命周期方法
@@ -327,6 +329,7 @@ Component({
     exitRoom() {
       console.log('我要离开.........')
       let me=this;
+      clearInterval(me.timer);
       if (this.status.pageLife === 'hide') {
         // 如果是退后台触发 onHide，不能调用 pusher API
         console.warn(TAG_NAME, '小程序最小化时不能调用 exitRoom，如果不想听到远端声音，可以调用取消订阅，如果不想远端听到声音，可以调用取消发布')
@@ -1236,7 +1239,8 @@ Component({
       var second = that.data.second
       var minute = that.data.minute
       var hours = that.data.hours
-      setInterval(function () {  // 设置定时器
+      var time=0;
+      that.timer=setInterval(function () {  // 设置定时器
         second++
         if (second >= 60) {
           second = 0  //  大于等于60秒归零
@@ -1276,6 +1280,29 @@ Component({
             second: second
           })
         }
+        time++;
+        console.log(time/60);
+        console.log(that.data.maxTime - time / 60);
+        if ((that.data.maxTime-time / 60)==1){
+          wx.showToast({
+            title: "余额不足即将自动挂断！",
+            icon: 'warning',
+            duration: 1000,
+            success: function () {
+            }
+          })
+        }
+        if ((that.data.maxTime-time / 60) <= 0) {
+          wx.showToast({
+            title: "余额已达上限，即将退出！",
+            icon: 'warning',
+            duration: 1000,
+            success: function () {
+              clearInterval(that.timer);
+              that._debugGoBack()
+            }
+          })
+        }
       }, 1000)
     } ,
     _bindEvent() {
@@ -1289,6 +1316,10 @@ Component({
           this._emitter.emit(EVENT.REMOTE_USER_JOIN, { userID: event.data.userID })
           app.wxRequest('get', '/ea-service-consult/consult/startConversation/' + me.data.config.roomID, {}, function (data) {
             me._begin();
+            me.setData({
+              maxTime:data.data.data
+            })
+            console.log(data);
           })
         })
         console.log(TAG_NAME, 'REMOTE_USER_JOIN', 'streamList:', this.data.streamList, 'userList:', this.data.userList)
