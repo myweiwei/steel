@@ -1,0 +1,74 @@
+/* pages/index/comment/comment.wxss */
+.comment {
+  height: 100%;
+  background: linear-gradient(to bottom, #1c43aa 0%,#0052b5 100%);
+}
+.comment .info {
+  font-size:30rpx;
+  text-align: center;
+  color:#Fff;
+}
+.comment .price {
+  font-size:25rpx;
+  margin-top:20rpx;
+}
+.info .time {
+  font-weight:700;
+}
+.commentBox {
+  padding:20rpx;
+  height: 80%;
+  background: #fff;
+  margin:0 10%;
+  margin-top:50rpx;
+  box-sizing: border-box;
+  border-radius: 15rpx;
+  box-shadow: 0 0 15rpx #ccc;
+  text-align: center;
+  position: relative
+}
+.commentBox .icon {
+  width:200rpx;
+  height:200rpx;
+  border-radius: 50%;
+}
+.commentBox .rate {
+  margin-top:30rpx;
+}
+.commentBox .btn {
+  color:#666;
+  font-size: 25rpx;
+  height: 70%;
+}
+.btn .flexCenter {
+  width:80%;
+  margin:20rpx auto;
+}
+.yjj {
+  margin-left:30rpx;
+}
+textarea {
+  width:90%;
+  margin:20rpx auto;
+  height:100%;
+  border:1rpx solid #0052b5;
+  border-radius: 15rpx;
+  text-align: left;
+  padding:10rpx;
+  box-sizing: border-box;
+}
+.flexBetween {
+  width:90%;
+  margin:20rpx auto;
+}
+.submit {
+  position: absolute;
+  bottom:20rpx;
+  width:93%;
+  box-sizing: border-box;
+}
+.van-button--large {
+  margin-top:20rpx;
+  height:80rpx!important;
+  line-height: 80rpx!important;
+}

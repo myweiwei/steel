@@ -4,12 +4,79 @@
 }
 .top {
   height:30%;
+  padding:30rpx 100rpx;
+  box-sizing: border-box;
   background: linear-gradient(to bottom, #1c43aa 0%,#0052b5 100%);
 }
+.top .flexStart .user {
+  width:150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-right:10rpx;
+}
+.top .sm {
+  width:60rpx;
+  height: 50rpx;
+  margin-left:20rpx;
+}
+.top .sm1{
+  width:40rpx;
+  height:40rpx;
+  margin-left:20rpx;
+}
+.top .name {
+  font-size:38rpx;
+  color:#fff;
+}
+.top .name1 {
+  font-size:28rpx;
+  color:#fff;
+}
+.top .smbj {
+  font-size: 28rpx;
+  color:#fff;
+  margin-left:10rpx;
+}
 .bottom {
-  height: 70%;
+  height: 60%;
   background-color: #0052b5;
 }
+.bottomBox {
+  height: 100%;
+  border-radius: 15rpx 15rpx 0 0 ;
+  background: #fff;
+  padding:30rpx;
+  box-sizing: border-box;
+  justify-content:flex-start;
+  flex-wrap: wrap;
+  padding-top: 66rpx;
+  color:#1b1b1b;
+}
+.bottomBox .lilist {
+  width:33.3%;
+  height: 33.3%;
+  text-align: center;
+  font-size:25rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.bottomBox .lilist image{
+  max-width: 100%;
+  max-height: 100%;
+}
+.bottomBox .image {
+  width:60rpx;
+  height:60rpx;
+  margin:20rpx auto;
+}
+.my_17 ,.my_14,.my_11,.my_23,.my_26,.my_28 {
+  border-bottom:1rpx solid rgb(243, 243, 243);
+}
+.my_14,.my_26,.my_36 {
+  border-left:1rpx solid rgb(243, 243, 243);
+  border-right:1rpx solid rgb(243, 243, 243);
+}
+
 
 .price {
   width:100%;

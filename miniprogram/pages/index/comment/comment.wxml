@@ -1,0 +1,35 @@
+<!--pages/index/comment/comment.wxml-->
+<view class='comment'>
+  <view class='info'>
+    <view class='time'>通话{{time}}</view>
+    <view class='price'>共计{{price}}</view>
+  </view>
+  <view class='commentBox'>
+    <image src='{{icon}}' class='icon'></image>
+    <view class='rate'>
+      <van-rate value="{{ score }}" bind:change="onScoreChange" />
+    </view>
+    <view class='btn'>
+        本次通话是否解决了您的问题？
+        <view class='flexCenter'>
+          <van-button round type="default" size='small' wx:if='{{isSolution==1}}' bindtap='solute' data-id='0'>未解决</van-button>
+          <van-button round type="info" size='small'   wx:if='{{isSolution==0}}'>未解决</van-button>
+          <van-button round type="info" size='small' class='yjj' wx:if='{{isSolution==1}}'>已解决</van-button>
+          <van-button round type="default" size='small' class='yjj' bindtap='solute' data-id='1'  wx:if='{{isSolution==0}}'>已解决</van-button>
+        </view>
+        <view style="height: 40%;">
+          <textarea placeholder="给技师点评价吧" value='{{commentContent}}' bindblur='addPj'/>
+        </view>
+        <view class='flexBetween'>
+          <view>
+            <van-checkbox value="{{ isAnonymous }}" bind:change="onCheckChange">是否开启匿名</van-checkbox>
+          </view>
+        </view>
+        <view class='submit'>
+            <van-button round size='large'  color="linear-gradient(to right, #4bb0ff, #6149f6)">
+  提交
+</van-button>
+          </view>
+    </view>
+  </view>
+</view>

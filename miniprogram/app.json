@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/consult/restroom/restroom",
-    "pages/consult/live/live",
     "pages/room/room",
     "pages/videocall/videocall",
     "pages/index/index",
+    "pages/index/teacher/teacher",
+    "pages/index/comment/comment",
     "pages/product/product",
     "pages/pyq/pyq",
     "pages/near/near",

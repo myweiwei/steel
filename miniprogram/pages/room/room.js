@@ -11,6 +11,8 @@ Page({
       userID: '', // 必要参数 用户 ID 可以由您的帐号系统指定
       userSig: '', // 必要参数 身份签名，相当于登录密码的作用
       template: '', // 必要参数 组件模版，支持的值 1v1 grid custom ，注意：不支持动态修改, iOS 不支持 pusher 动态渲染
+      teacherTd:'',
+      icon:''
     },
     showTipToast: false,
     subscribeList: {},
@@ -265,6 +267,8 @@ Page({
     })
     // querystring 只支持传递 String 类型, 注意类型转换
     this.enterRoom({
+      teacherTd:options.userID,
+      icon:options.icon,
       roomID: Number(options.roomID),
       userID: options.userID,
       template: options.template,

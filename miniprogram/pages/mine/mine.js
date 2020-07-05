@@ -9,6 +9,17 @@ Page({
     show:false,
     newvalue:'',
     value:'',
+    iconList:[
+      { name: "完善信息", icon:'my_17'},
+      { name: "我的关注", icon:"my_14"},
+      { name: "咨询记录", icon: "my_11" },
+      { name: "技师专栏", icon: "my_23" },
+      { name: "充值中心", icon: "my_26" },
+      { name: "关联企业", icon: "my_28" },
+      { name: "意见反馈", icon: "my_33" },
+      { name: "联系我们", icon: "my_36" },
+      // { name: "关联企业", icon: "my_28" }
+    ],
     priceList: ['3天（30元）','5天（50元）','7天（70元）','1个月（199元）'],
     activeIndex:0
   },

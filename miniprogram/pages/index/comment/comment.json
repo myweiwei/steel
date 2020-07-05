@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-rate": "@vant/weapp/rate/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-checkbox": "@vant/weapp/checkbox/index"
+  }
+}

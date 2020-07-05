@@ -5,31 +5,23 @@
     <image class='ban' src='../../images/index/ban.png'></image>
     <van-search style='width:100%;position:absolute;z-index:100;margin-top:17rpx;' background="#fff" disabled placeholder="请输入搜索关键词" shape='round'/>
   </view>
-    <view style='height:'>
+    <view class='m-20'>
       <view class="page-section page-section-spacing swiper">
-        <swiper indicator-dots="{{indicatorDots}}" style='height:100%;display:flex;align-items:center' indicator-color='#fff' indicator-active-color='#1c43aa' previous-margin="50rpx" next-margin="50rpx" bindchange="handleChange" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
+        <swiper indicator-dots="{{indicatorDots}}" style='height:100%;display:flex;align-items:center' indicator-color='#fff' indicator-active-color='#1c43aa'  bindchange="handleChange" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
           <block wx:for="{{background}}" wx:key="*this">
             <swiper-item class="item">
               <view class="swiper-item" >
-                <image src="{{item.bannerImg}}" class="itemImg {{currentIndex == index ? 'active': ''}}"> </image>
+                <image src="{{item.bannerImg}}" class="itemImg"> </image>
               </view>
             </swiper-item>
           </block>
         </swiper>
       </view>
     </view>
-    <view class='flexAround navbar'>
-      <view class='box' bindtap="toPyq">
-        <image src='../../images/index/pyq.png'></image>
-        <text>朋友圈</text>
-      </view>
-      <view class='box'>
-        <image src='../../images/index/recruit.png'></image>
-        <text>人才招聘</text>
-      </view>
-    </view>
-    <view class='adsec'>
+    <view class='adsec m-20'>
       <text class='title'>头条</text>
+      <image src='../../images/index/tt.png'></image>
+
       <swiper class="swiper_container" autoplay="true" circular="true" interval="2000" vertical='true' current='2'>
         <block wx:for="{{msgList}}" wx:key='item'>
           <navigator url="/pages/index/index?title={{item.url}}" open-type="navigate">
@@ -40,8 +32,7 @@
         </block>
       </swiper>
     </view>
-    <view class='splite'></view>
-    <view class='product'>
+    <!-- <view class='product'>
       <view class='normal_title flexBetween'>
         <view>优秀产品</view>
         <view class='flexStart' bindtap="moreProduct">
@@ -71,12 +62,11 @@
         <view class='list flexCenter'>aaa</view>
         <view class='list flexCenter'>aaa</view>
       </view>
-    </view>
-    <view class='splite'></view>
-    <view class='product'>
+    </view> -->
+    <view class='product m-20'>
       <view class='normal_title flexBetween'>
         <view>推荐技师</view>
-        <view class='flexStart'>
+        <view class='flexStart' bindtap='toTeacher'>
           <text>更多</text>
           <van-icon name="arrow" />
         </view>
@@ -87,8 +77,12 @@
           value="{{ val }}"
           placeholder="请输入房间号"
           bind:change="onChange"
-        />
-        <van-button type="default" bindtap='submit'>提交</van-button>
+          border="{{ false }}"
+          use-button-slot
+        >
+          <van-button slot="button" size="small" type="default"
+            bindtap='submit'>提交</van-button>
+        </van-field>
       </van-cell-group>
       </view>
        <scroll-view scroll-x='true' class='teacher_list' >

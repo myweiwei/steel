@@ -60,9 +60,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "pages/pyq/pyq",
-					"pathName": "pages/pyq/pyq",
+					"id": 1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				},
@@ -74,16 +74,16 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
+					"id": 3,
+					"name": "pages/index/teacher/teacher",
+					"pathName": "pages/index/teacher/teacher",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 4,
-					"name": "pages/mine/mine",
-					"pathName": "pages/mine/mine",
+					"name": "pages/index/comment/comment",
+					"pathName": "pages/index/comment/comment",
 					"query": "",
 					"scene": null
 				},
@@ -98,6 +98,13 @@
 					"id": 6,
 					"name": "pages/videocall/videocall",
 					"pathName": "pages/videocall/videocall",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/consult/restroom/restroom",
+					"pathName": "pages/consult/restroom/restroom",
 					"query": "",
 					"scene": null
 				},

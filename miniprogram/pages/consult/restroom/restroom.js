@@ -19,7 +19,8 @@ Page({
     teacher_name: "",
     user_name: "",
     notice:"消息通知",
-    roomID: '',
+    roomID: '1234',
+    userId:"",
     template: '1v1',
     debugMode: false,
     cloudenv: 'PRO',
@@ -84,8 +85,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    let pages = getCurrentPages();
+    console.log(pages);
     that.setData({
-      roomID: options.restroomId
+      roomID: options.restroomId,
+      userId:options.userId
     })
     that.restroom(options.restroomId,options.userId)
     wx.onSocketMessage(function(res){
@@ -118,16 +122,16 @@ Page({
       }
       if(json.msg == "房间已解散") {
         console.log("-----------------success");
-        wx.showToast({
-          title: "房间已解散",
-          icon: 'none',
-          duration: 4000,
-          success: function () {
-            setTimeout(function () {
-              that.onBack()
-            }, 1000);
-          }
-        })
+        // wx.showToast({
+        //   title: "房间已解散",
+        //   icon: 'none',
+        //   duration: 4000,
+        //   success: function () {
+        //     setTimeout(function () {
+        //       that.onBack()
+        //     }, 1000);
+        //   }
+        // })
       }
       if(json.msg == "用户进入了房间"){
         console.log("-----------------success");
@@ -163,11 +167,11 @@ Page({
       if(json.msg == "都进入了房间，马上开始"){
         that.setData({
           notice: "准备好！马上开始！",
-          
         })
         new Promise(resolve => {
           setTimeout(resolve, 5)
         });
+        that.enterRoom()
         console.log("go..... room");
       }
 
@@ -285,7 +289,7 @@ Page({
       })
       return
     }
-    const url = `/pages/room/room?roomID=${roomID}&template=${this.data.template}&debugMode=${this.data.debugMode}&cloudenv=${this.data.cloudenv}`
+    const url = `/pages/room/room?roomID=${roomID}&template=${this.data.template}&debugMode=${this.data.debugMode}&cloudenv=${this.data.cloudenv}&icon=${this.data.teacher_icon}&userId=${this.data.userId}`
     this.tapTime = nowTime
     this.checkDeviceAuthorize().then((result) => {
       console.log('授权成功', result)

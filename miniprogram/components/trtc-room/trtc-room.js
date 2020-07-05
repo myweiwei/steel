@@ -27,6 +27,7 @@ Component({
         template: '',
         debugMode: false, // 是否开启调试模式
         enableIM: false, // 是否开启 IM
+        
       },
       observer: function(newVal, oldVal) {
         this._propertyObserver({
@@ -352,10 +353,10 @@ Component({
           // 20200421 iOS 仍然没有1019事件通知退房，退房事件移动到 exitRoom 方法里，但不是后端通知的退房成功
           this._emitter.emit(EVENT.LOCAL_LEAVE, { userID: this.data.pusher.userID })
           app.wxRequest('get', '/ea-service-consult/consult/endConversation/' + me.data.config.roomID, {}, function (data) {
-            console.log(data);
-            wx.navigateBack({
-              delta: 1,
-            })
+            console.log("标记标记"+this.data.config);
+            // wx.redirectTo({
+            //   url: `/pages/index/comment/comment?roomID=${roomID}&template=${this.data.template}&debugMode=${this.data.debugMode}&cloudenv=${this.data.cloudenv}&icon=${this.data.teacher_icon}&userId=${this.data.userId}`,
+            // })
           })
         })
       })
