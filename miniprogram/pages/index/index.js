@@ -60,6 +60,11 @@ Page({
       }
     })
   },
+  toTeacher:function(){
+    wx.navigateTo({
+      url: '/pages/index/teacher/teacher'
+    })
+  },
   onLoad: function() {
     if (!wx.cloud) {
       wx.redirectTo({

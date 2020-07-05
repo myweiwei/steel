@@ -6,11 +6,12 @@
 .ban {
   width:100%;
   position: absolute;
+  height:28%;
   top:0;
 }
 .van-search {
   padding:0px!important;
-  margin:0 40rpx;
+  margin:0 20rpx;
   border-radius: 40rpx;
 }
 .van-search__content {
@@ -18,76 +19,53 @@
 }
 .swiper {
   width:100%;
-  height:400rpx;
+  height:300rpx;
 }
 .swiper .swiper-item {
-  height:80%
+  height:100%
 }
 .swiper image{
-  height:72%;
+  height:100%;
 }
 .imageContainer{
   width: 100%;
-  height: 500rpx;
+  height: 300rpx;
   background: #000;
 }
 .item{
-  height: 500rpx;
+  height:100%;
 }
 .itemImg{
   position: absolute;
   width: 100%;
-  height: 380rpx;
+  height:100%;
   border-radius: 15rpx;
   z-index: 5;
-  opacity: 0.7;
-  top: 13%;
-}
-.swiper .active{
-  opacity: 1;
-  z-index: 10;
-  height: 93%!important;
-  top: 7%;
-  transition:all .2s ease-in 0s;
-}
-.navbar {
-  padding:40rpx 20rpx;
-}
-.navbar .box {
-  width:45%;
-  height:120rpx;
-  line-height: 120rpx;
-  box-shadow: 0 0 20rpx #e7e7e7;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.navbar .box image{
-  width:80rpx;
-  height:80rpx;
-  margin-right:10rpx;
 }
 .adsec{
-  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  margin: 0rpx auto;
   background:#fff;
   border-radius:15rpx;
   padding: 7rpx 10rpx;
   height: 50rpx;
   box-shadow: 0 0 10rpx #ccc;
-  box-sizing: border-box
+  box-sizing: border-box;
+  color:#1d1d1d;
+  font-size:26rpx;
 }
 .adsec .title {
-  font-size:30rpx;
-  padding:0 20rpx 0 0;
-  border-right: 1px solid #e2e1e1;
+  font-size:28rpx;
   font-family: 'Microsoft YaHei';
-  color:#000;
+}
+.adsec image {
+  width:50rpx;
+  height: 30rpx;
+  padding:0 10rpx;
+  border-right: 1px solid #e2e1e1;
+  box-sizing: border-box;
 }
 .swiper_container {
   height: 55rpx;
@@ -101,14 +79,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  letter-spacing: 2px;
-  color:#000;
 }
 .product {
   padding:30rpx;
   border-radius: 15rpx;
   background: #fff;
-  width:100%;
   box-sizing: border-box;
 
 }
@@ -130,7 +105,6 @@
 }
 .teacher_list {
   width:100%;
-  margin-top:30rpx;
   white-space:nowrap;
 }
 .teacher_list .list {
@@ -171,7 +145,7 @@
   text-align: left;
   padding:0 10rpx;
   box-sizing: border-box;
-  height: 80rpx;
+  height:100rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -211,8 +185,8 @@
   margin:0 4rpx;
 }
 .gt_btn .image {
-  width:120rpx;
-  height:40rpx;
+  width:125rpx;
+  height:45rpx;
   position: relative;
 }
 .gt_btn image {

@@ -1,7 +1,7 @@
 <!--pages/mine/mine.wxml-->
 <view class='my'>
   <view class='top'>
-    <van-cell-group>
+    <!-- <van-cell-group>
       <van-field
         value="{{ value }}"
         placeholder="请输入充值金额"
@@ -9,9 +9,31 @@
         bind:change="onChange"
       />
     </van-cell-group>
-    <van-button type="default" bindtap='addPrice'>充值</van-button>
+    <van-button type="default" bindtap='addPrice'>充值</van-button> -->
+    <view class='flexStart'>
+      <image class='user' src='../../images/my/my_23.png'></image>
+      <view>
+        <view class='flexStart'>
+          <text class='name'>aa</text>
+            <!-- <image  class='sm' src='../../images/my/my_03.png'></image>
+            <text class='smbj'>已实名</text> -->
+        </view>
+        <view class='flexStart' style='margin-top:10rpx'>
+          <text class='name1'>余额(元)****</text>
+            <image class='sm1' src='../../images/my/my_07.png'></image>
+        </view>
+      </view>
+    </view>
   </view>
   <view class='bottom'>
+    <view class='bottomBox flexCenter'>
+      <view wx:for='{{iconList}}' wx:key='{{icon}}' class='lilist {{item.icon}}' >
+        <view class='image'>
+          <image src='../../images/my/{{item.icon}}.png'></image>
+        </view>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
   </view>
 </view>
 <van-popup

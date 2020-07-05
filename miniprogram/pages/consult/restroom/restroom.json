@@ -3,8 +3,8 @@
     "van-circle": "@vant/weapp/circle/index"
 
   },
-  "navigationBarBackgroundColor": "#FFFFFF",
-  "navigationBarTitleText": "朋友圈",
+  "navigationBarBackgroundColor": "#39454d",
+  "navigationBarTitleText": "",
   "navigationBarTextStyle": "black",
   "backgroundColor": "#FFFFFF",
   "backgroundTextStyle": "dark"
