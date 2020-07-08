@@ -136,7 +136,7 @@ Page({
           duration: 1000,
           success: function () {
             wx.hideLoading()
-            wx.redirectTo({
+            wx.switchTab({
               url: "/pages/pyq/pyq",
             })
           }

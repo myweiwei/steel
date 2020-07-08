@@ -43,4 +43,8 @@
   padding-left:1%;
   box-sizing: border-box;
 }
+.van-button--large {
+  height:80rpx!important;
+  line-height: 80rpx!important;
+}
 

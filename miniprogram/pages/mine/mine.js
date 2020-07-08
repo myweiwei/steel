@@ -23,6 +23,26 @@ Page({
     priceList: ['3天（30元）','5天（50元）','7天（70元）','1个月（199元）'],
     activeIndex:0
   },
+  onGotUserInfo: function (e) {
+    console.log(e.detail.userInfo);
+  },
+  getUser:function(){
+    console.log(1111);
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(222);
+        var userInfo = res.userInfo
+        var nickName = userInfo.nickName
+        var avatarUrl = userInfo.avatarUrl
+        var gender = userInfo.gender //性别 0：未知、1：男、2：女
+        var province = userInfo.province
+        var city = userInfo.city
+        var country = userInfo.country
+        console.log(res);
+      }
+    })
+
+  },
   onChange:function(val){
     this.setData({
       value:val.detail
@@ -71,7 +91,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let me=this;
+   
   },
 
   /**
@@ -85,7 +106,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUser();
   },
 
   /**

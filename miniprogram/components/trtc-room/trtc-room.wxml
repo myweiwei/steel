@@ -24,7 +24,6 @@
           <view id="message-bottom"></view>
         </view>
       </scroll-view>
-        
     </view>
     <view class="message-panel-bottom">
       <view class="message-input-container">

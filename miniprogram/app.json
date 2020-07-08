@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/consult/restroom/restroom",
     "pages/room/room",
     "pages/videocall/videocall",
-    "pages/index/index",
     "pages/index/teacher/teacher",
     "pages/index/comment/comment",
     "pages/product/product",

@@ -1,19 +1,18 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
-		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -21,15 +20,19 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
+		}
 	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.3",
 	"appid": "wx04f582f240549dbb",
 	"projectname": "steel",
-	"libVersion": "2.11.2",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"cloudfunctionTemplateRoot": "",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -51,7 +54,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -60,58 +63,9 @@
 					"query": ""
 				},
 				{
-					"id": 1,
+					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/pyq/commit/commit",
-					"pathName": "pages/pyq/commit/commit",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "pages/index/teacher/teacher",
-					"pathName": "pages/index/teacher/teacher",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "pages/index/comment/comment",
-					"pathName": "pages/index/comment/comment",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 5,
-					"name": "pages/videocall/videocall",
-					"pathName": "pages/videocall/videocall",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "pages/videocall/videocall",
-					"pathName": "pages/videocall/videocall",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/consult/restroom/restroom",
-					"pathName": "pages/consult/restroom/restroom",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/consult/restroom/restroom",
-					"pathName": "pages/consult/restroom/restroom",
 					"query": "",
 					"scene": null
 				}
