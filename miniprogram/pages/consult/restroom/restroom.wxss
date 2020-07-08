@@ -7,11 +7,15 @@
 .body {
   width:300rpx;
   height: 300rpx;
+  position: relative;
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .circle{
   position: absolute;
-  left: 38%;
-  top: 20.6%;
+  left: 20%;
+  top: 17.6%;
   width: 190rpx;
   height: 190rpx;
   border-radius: 50%;
@@ -31,8 +35,8 @@
 }
 .circle1{
   position: absolute;
-  left: 36.8%;
-  top: 19.8%;
+  left: 16.8%;
+  top: 14%;
   transform: translate(-50% -50%);
   width: 210rpx;
   height: 210rpx;
@@ -44,15 +48,15 @@
 }
 .circle2{
   position: absolute;
-  left: 35.3%;
-  top: 19%;
+  left: 13%;
+  top: 11%;
   transform: translate(-50% -50%);
   width: 230rpx;
   height: 230rpx;
   border-radius: 50%;
   background:#0681c2;
   opacity: 0.3;
-  /* animation:myfirst2 2s infinite linear;  */
+  animation:myfirst2 2s infinite linear; 
   animation-delay:2s; 
   border:1rpx solid #0681c2;
 }

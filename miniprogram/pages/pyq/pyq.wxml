@@ -1,47 +1,47 @@
 <!--pages/pyq/pyq.wxml-->
 <view class='pyq'>
-  <view upper-threshold='5'>
-    <view  style="height:100%">
-      <view class='ava' wx:for='{{list}}' wx:key='id'>
-        <view class='flexBetween'>
-          <view class='avaInfo flexStart'>
-            <image src='{{item.headIcon}}'></image>
-            <view>
-              <text>{{item.nickName?item.nickName:"无"}}</text>
-              <view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
-            </view>
+  <scroll-view scroll-y="true" style="height:99.8%;">
+    <view class='ava' wx:for='{{list}}' wx:key='id'>
+      <view class='flexBetween'>
+        <view class='avaInfo flexStart'>
+          <image src='{{item.headIcon}}'></image>
+          <view>
+            <text>{{item.nickName?item.nickName:"无"}}</text>
+            <view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
           </view>
-          <view class='del' wx:if='{{item.isOwn==1}}' data-item='{{item}}' bindtap='del'>删除</view>
         </view>
-        <view class='avaText'>
-          {{item.dynamicTitle}}
-        </view>
-        <view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
-          <video wx:if='{{item.videoType==1}}' src="{{item.dynamicImgVideoList[0]}}" object-fit='cover' show-progress></video>
-          <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' mode='aspectFit' class='{{item.dynamicImgVideoList.length>1?"moreImg":""}}'></image>
-        </view>
-        <view class='color-gray'>{{item.dynamicArea}}</view>
-        <view class='avaBtn flexAround'>
-          <view class='flexCenter' >
-            <image src='../../images/pyq/zhuanfa.png'></image>
-            <button open-type="share" ></button>
-            <text open-type="share">转发</text>
-          </view>
-          <view class='flexCenter' data-item='{{item}}' catchtap="comment">
-            <image src='../../images/pyq/xiaoxi.png'></image>
-            <text wx:if='{{item.commentCount==0}}'>评论</text>
-            <text wx:else>{{item.commentCount}}</text>
-          </view>
-          <view bindtap='addSc' data-item='{{item}}'  class='{{item.isSupport==1?"flexCenter  color-orange":"flexCenter"}}'>
-            <image src='../../images/pyq/zan.png' wx:if='{{item.isSupport!=1}}'></image>
-            <image src='../../images/pyq/zan1.png' wx:else></image>
-            赞<text  wx:if='{{item.supportCount&&item.supportCount>=0}}'>{{item.supportCount}}</text>
-          </view>
+        <view class='del' wx:if='{{item.isOwn==1}}' data-item='{{item}}' bindtap='del'>
+        <image src='../../images/pyq/del.png'></image>
         </view>
       </view>
-      <view wx:if='{{infoShow}}' class='info'>{{info}}</view>
+      <view class='avaText'>
+        {{item.dynamicTitle}}
+      </view>
+      
+      <view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
+        <video wx:if='{{item.videoType==1}}' src="{{item.dynamicImgVideoList[0]}}" object-fit='cover' show-progress></video>
+        <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?"moreImg":""}}' bindtap='preview'></image>
+      </view>
+      <view class='avaBtn flexAround'>
+        <view class='flexCenter' >
+          <image src='../../images/pyq/zhuanfa.png'></image>
+          <button open-type="share" ></button>
+          <text open-type="share">转发</text>
+        </view>
+        <view class='flexCenter' data-item='{{item}}' catchtap="comment">
+          <image src='../../images/pyq/xiaoxi.png'></image>
+          <text wx:if='{{item.commentCount==0}}'>评论</text>
+          <text wx:else>{{item.commentCount}}</text>
+        </view>
+        <view bindtap='addSc' data-item='{{item}}'  class='{{item.isSupport==1?"flexCenter  color-orange":"flexCenter"}}'>
+          <image src='../../images/pyq/zan.png' wx:if='{{item.isSupport!=1}}'></image>
+          <image src='../../images/pyq/zan1.png' wx:else></image>
+          赞<text  wx:if='{{item.supportCount&&item.supportCount>=0}}'>{{item.supportCount}}</text>
+        </view>
+      </view>
     </view>
-  </view>
+    <!-- <view wx:if='{{infoShow}}' class='info'>{{info}}</view> -->
+  </scroll-view>
   <van-popup show="{{ avaShow }}" position="bottom" custom-style="height: 70%;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
       <view class='totalComment'><text class='strong'>{{commentCount}}</text>条评论</view>
       <scroll-view scroll-y="true" style="height: 80%" >

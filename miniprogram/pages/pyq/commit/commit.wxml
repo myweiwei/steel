@@ -72,6 +72,6 @@
   </view>
   </van-popup>
   <view class='footer'>
-    <van-button color="linear-gradient(to right, orange, #f7d501)" round size='large' bindtap='uploadFiles'>发送</van-button>
+    <van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='uploadFiles'>发送</van-button>
   </view>
 </view>

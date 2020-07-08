@@ -1,5 +1,6 @@
 <!--pages/mine/mine.wxml-->
 <view class='my'>
+<!-- <button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">aaa</button> -->
   <view class='top'>
     <!-- <van-cell-group>
       <van-field
