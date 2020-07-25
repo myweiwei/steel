@@ -49,6 +49,28 @@ Page({
       isAnonymous: val.detail
     })
   },
+  submit:function(){
+    let me = this;
+    app.wxRequest('post', '/ea-service-consult/consult/comment/', {
+      teacherId:me.data.teacherId,
+      isSolution:me.data.isSolution,
+      isAnonymous:me.data.isAnonymous,
+      commentContent: me.data.commentContent
+    }, function (data) {
+      wx.showToast({
+        title: "感谢您的评价",
+        icon: 'none',
+        duration: 4000,
+        success: function () {
+          setTimeout(function () {
+            wx.redirectTo({
+              url: '/pages/index/index',
+            })
+          }, 1000);
+        }
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

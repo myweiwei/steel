@@ -23,6 +23,5 @@
       <image src="{{teacher_icon}}"></image>
       <view>{{teacher_name?teacher_name:"等待进入"}}</view>
     </view>
-    <button bindtap='enterRoom'>enter</button>
   </view>
 </view>

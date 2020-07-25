@@ -293,7 +293,8 @@ Page({
       })
       return
     }
-    const url = `/pages/room/room?roomID=${roomID}&template=${this.data.template}&debugMode=${this.data.debugMode}&cloudenv=${this.data.cloudenv}&icon=${this.data.teacher_icon1}&userId=${this.data.userId}&teacherId=${this.data.teacherId}`
+    let datan = escape(this.data.teacher_icon1)
+    const url = `/pages/room/room?roomID=${roomID}&template=${this.data.template}&debugMode=${this.data.debugMode}&cloudenv=${this.data.cloudenv}&icon=${datan}&userId=${this.data.userId}&teacherId=${this.data.teacherId}`
     this.tapTime = nowTime
     this.checkDeviceAuthorize().then((result) => {
       console.log('授权成功', result)

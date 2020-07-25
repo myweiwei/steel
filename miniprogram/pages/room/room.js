@@ -272,7 +272,7 @@ Page({
     // querystring 只支持传递 String 类型, 注意类型转换
     this.enterRoom({
       teacherId:options.teacherId,
-      icon:options.icon,
+      icon:unescape(options.icon),
       roomID: Number(options.roomID),
       userID: options.userID,
       template: options.template,

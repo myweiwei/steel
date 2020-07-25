@@ -74,7 +74,7 @@ App({
       },
       fail: function (err) {
         //errFun(err);
-        console.log(error)
+        console.log(err)
       }
     })
   },

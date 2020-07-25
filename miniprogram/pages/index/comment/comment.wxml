@@ -26,7 +26,7 @@
           </view>
         </view>
         <view class='submit'>
-            <van-button round size='large'  color="linear-gradient(to right, #4bb0ff, #6149f6)">
+            <van-button round size='large'  color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap='submit'>
   提交
 </van-button>
           </view>
