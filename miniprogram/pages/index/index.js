@@ -27,8 +27,9 @@ Page({
   submit:function(){
     let me=this;
     app.wxRequest('get', '/ea-service-personal/personal/teacherInfoByUserId/', {}, function (data) {
+      console.log(data.data)
       wx.navigateTo({
-          url: '/pages/consult/restroom/restroom?userId='+ data.data.data.teacherId+'&restroomId='+me.data.val
+        url: '/pages/consult/restroom/restroom?teacherId=' + data.data.data.teacherId + '&restroomId=' + me.data.val+'&userId=' + data.data.data.teacherId
       })
     })
   },
@@ -54,7 +55,7 @@ Page({
       }
       else {
         wx.navigateTo({
-          url: '/pages/consult/restroom/restroom?userId=' + data.data.data.userId + '&restroomId=' + data.data.data.restroomId
+          url: '/pages/consult/restroom/restroom?userId=' + data.data.data.userId + '&restroomId=' + data.data.data.restroomId + '&teacherId=' + e.currentTarget.dataset.id
         })
       }
     })

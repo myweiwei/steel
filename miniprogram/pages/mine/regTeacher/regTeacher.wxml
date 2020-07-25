@@ -1,0 +1,101 @@
+<view class='regTeacher'>
+  <view  style='margin:30rpx auto;width:100%;text-align:center'>
+    <view class='img'>选择头像</view>
+    <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="1" bind:after-read="afterRead" bind:delete='delImg'/>
+  </view>
+  <van-cell-group>
+    <van-field
+      value="{{ realName }}"
+      required
+      label="姓名"
+      clearable
+      placeholder="请输入姓名"
+      border="{{ false }}"
+      data-name='realName'
+      bind:change="onChange"
+    />
+    <van-field
+      value="{{ idCardNumber }}"
+      required
+      label='身份证号'
+      data-name='idCardNumber'
+      placeholder="请输入身份证号"
+      border="{{ false }}"
+      clearable
+      bind:change="onChange"
+    />
+    <van-field
+      value="{{ teacherJobPosition }}"
+      required
+      label='职位'
+      data-name='teacherJobPosition'
+      placeholder="如：中土田信高级技师"
+      border="{{ false }}"
+      clearable
+      bind:change="onChange"
+    />
+    <van-field
+      value="{{ teacherGoodAt }}"
+      required
+      label='擅长'
+      data-name='teacherGoodAt'
+      placeholder="如：真空离子镀溅射镀膜"
+      border="{{ false }}"
+      clearable
+      bind:change="onChange"
+    />
+    <van-field
+      value="{{ teacherDescription }}"
+      required
+      label='描述'
+      type="textarea"
+      clearable
+      data-name='teacherDescription'
+      placeholder="如：从业10余年，对不锈钢行业有丰富的经验"
+      border="{{ false }}"
+      bind:change="onChange"
+      autosize='{{true}}'
+    />
+    <van-field
+      value="{{ slovePrice }}"
+      required
+      label='咨询价格'
+      type='number'
+      clearable
+      data-name='slovePrice'
+      placeholder="单位：元/分钟"
+      border="{{ false }}"
+      bind:change="onChange"
+    />
+    <van-field
+      value="{{ phoneNumber }}"
+      label='手机号'
+      clearable
+      required
+      placeholder="请输入手机号"
+      border="{{ false }}"
+      bind:change="onChange"
+      data-name='phoneNumber'
+      use-button-slot
+    >
+      <van-button slot="button" size="small" type="info"
+        >发送验证码
+      </van-button>
+    </van-field>
+     <van-field
+      value="{{ smsCode }}"
+      label='验证码'
+      clearable
+      required 
+      data-name='smsCode'
+      placeholder="请输入验证码"
+      border="{{ false }}"
+      bind:change="onChange"
+      use-button-slot
+    >
+    </van-field>
+  </van-cell-group>
+  <view class='footer'>
+    <van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='submit'>发送</van-button>
+  </view>
+</view>

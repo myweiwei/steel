@@ -15,6 +15,8 @@ Page({
 
     },
     teacher_icon:"",
+    teacher_icon1:'',
+    teacherId:'',
     user_icon:"",
     teacher_name: "",
     user_name: "",
@@ -89,7 +91,8 @@ Page({
     console.log(pages);
     that.setData({
       roomID: options.restroomId,
-      userId:options.userId
+      userId:options.userId,
+      teacherId:options.teacherId
     })
     that.restroom(options.restroomId,options.userId)
     wx.onSocketMessage(function(res){
@@ -144,6 +147,7 @@ Page({
         console.log("-----------------success22222");
         that.setData({
           teacher_icon: json.data.icon,
+          teacher_icon1: json.data.icon,
           teacher_name:json.data.name
 
         })
@@ -157,7 +161,7 @@ Page({
       }
     
       if(json.msg == "技师离开了房间"){
-        console.log("-----------------success22222");
+        console.log("-----------------技师离开了房间");
         that.setData({
           teacher_icon: "",
           teacher_name:''
@@ -289,7 +293,7 @@ Page({
       })
       return
     }
-    const url = `/pages/room/room?roomID=${roomID}&template=${this.data.template}&debugMode=${this.data.debugMode}&cloudenv=${this.data.cloudenv}&icon=${this.data.teacher_icon}&userId=${this.data.userId}`
+    const url = `/pages/room/room?roomID=${roomID}&template=${this.data.template}&debugMode=${this.data.debugMode}&cloudenv=${this.data.cloudenv}&icon=${this.data.teacher_icon1}&userId=${this.data.userId}&teacherId=${this.data.teacherId}`
     this.tapTime = nowTime
     this.checkDeviceAuthorize().then((result) => {
       console.log('授权成功', result)

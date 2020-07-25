@@ -12,10 +12,12 @@
     </van-cell-group>
     <van-button type="default" bindtap='addPrice'>充值</van-button> -->
     <view class='flexStart'>
-      <image class='user' src='../../images/my/my_23.png'></image>
+      <view class='user'>
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
       <view>
         <view class='flexStart'>
-          <text class='name'>aa</text>
+            <open-data type="userNickName"></open-data>
             <!-- <image  class='sm' src='../../images/my/my_03.png'></image>
             <text class='smbj'>已实名</text> -->
         </view>
@@ -28,7 +30,7 @@
   </view>
   <view class='bottom'>
     <view class='bottomBox flexCenter'>
-      <view wx:for='{{iconList}}' wx:key='{{icon}}' class='lilist {{item.icon}}' >
+      <view wx:for='{{iconList}}' wx:key='{{icon}}' class='lilist {{item.icon}}' data-name='{{item.name}}' bindtap="myPop">
         <view class='image'>
           <image src='../../images/my/{{item.icon}}.png'></image>
         </view>
@@ -46,21 +48,11 @@
   bind:close="onClose"
 >
   <view>
-    <view style='margin-top:80rpx;height:100rpx;'>
-      <van-field
-          value="{{ newvalue }}"
-          type="textarea"
-          placeholder="请输入头条信息"
-          autosize
-          border="{{ false }}"
-        />
-    </view>
-    <view class='label'>选择充值天数：</view>
     <view class='price'>
-      <view wx:for='{{priceList}}' class='{{activeIndex==index?"active":""}}' data-index='{{index}}' bindtap="choosePrice">{{item}}</view>
+      <view wx:for='{{priceList}}' class='{{activeIndex==index?"active":""}}' data-index='{{index}}' data-item='{{item}}' bindtap="choosePrice">{{item}}元</view>
     </view>
     <view class='footer'>
-      <van-button color="linear-gradient(to right, orange, #f7d501)" round size='large'>提交</van-button>
+      <van-button color="linear-gradient(to right, #4bb0ff, #6149f6)" round size='large' bindtap='addPrice'>提交</van-button>
     </view>
   </view>
 </van-popup>
