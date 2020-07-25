@@ -1,0 +1,18 @@
+/* pages/mine/regTeacher/regTeacher.wxss */
+.img {
+  font-size:26rpx;
+  color:rgb(129, 123, 123);
+  margin-left:-20rpx;
+}
+.footer {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:98%;
+  padding-left:1%;
+  box-sizing: border-box;
+}
+.van-button--large {
+  height:80rpx!important;
+  line-height: 80rpx!important;
+}

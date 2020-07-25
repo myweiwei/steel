@@ -3,16 +3,17 @@
   height:100%;
 }
 .top {
-  height:30%;
+  height:25%;
   padding:30rpx 100rpx;
   box-sizing: border-box;
   background: linear-gradient(to bottom, #1c43aa 0%,#0052b5 100%);
 }
 .top .flexStart .user {
-  width:150rpx;
-  height: 150rpx;
+  width:130rpx;
+  height: 130rpx;
   border-radius: 50%;
   margin-right:10rpx;
+  overflow:hidden;
 }
 .top .sm {
   width:60rpx;
@@ -28,7 +29,7 @@
   font-size:38rpx;
   color:#fff;
 }
-.top .name1 {
+.top .name1,.flexStart {
   font-size:28rpx;
   color:#fff;
 }
@@ -38,7 +39,7 @@
   margin-left:10rpx;
 }
 .bottom {
-  height: 60%;
+  height: 65%;
   background-color: #0052b5;
 }
 .bottomBox {
@@ -82,23 +83,23 @@
   width:100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  margin:0 auto;
+  margin:70rpx auto;
 }
 .price view {
-  width:47%;
+  width:26%;
   margin:1%;
-  height:80rpx;
-  line-height: 80rpx;
+  height:120rpx;
+  line-height: 120rpx;
   text-align: center;
-  border:1rpx solid #f09f14;
+  border:1rpx solid #1c43aa;
   border-radius: 10rpx;
 }
 .label {
   height:50rpx;
   line-height: 50rpx;
-  color:#666;
+  color:#1c43aa;
   margin-left:1%;
 }
 .footer {
@@ -111,5 +112,5 @@
 }
 .active {
   color:#fff;
-  background: #f09f14;
+  background: #1c43aa;
 }

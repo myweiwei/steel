@@ -5,13 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    icon:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2081452170,4060223007&fm=26&gp=0.jpg',
-    time:'1小时',
-    price:"30元",
+    icon:'',
+    time:'',
+    price:"",
     isAnonymous:false,
     isSolution:1,
     commentContent:"",
-    teacherId:''
+    teacherId:'',
+    score:''
   },
 
   /**
@@ -20,8 +21,10 @@ Page({
   onLoad: function (options) {
     let me=this;
     me.setData({
-      icon:options.icon,
-      teacherId:options.userId
+      icon: unescape(options.icon),
+      teacherId:options.userId,
+      time:options.time,
+      price:options.cost
     })
   },
   addPj:function(val){
@@ -44,6 +47,28 @@ Page({
   onCheckChange:function(val){
     this.setData({
       isAnonymous: val.detail
+    })
+  },
+  submit:function(){
+    let me = this;
+    app.wxRequest('post', '/ea-service-consult/consult/comment/', {
+      teacherId:me.data.teacherId,
+      isSolution:me.data.isSolution,
+      isAnonymous:me.data.isAnonymous,
+      commentContent: me.data.commentContent
+    }, function (data) {
+      wx.showToast({
+        title: "感谢您的评价",
+        icon: 'none',
+        duration: 4000,
+        success: function () {
+          setTimeout(function () {
+            wx.redirectTo({
+              url: '/pages/index/index',
+            })
+          }, 1000);
+        }
+      })
     })
   },
   /**

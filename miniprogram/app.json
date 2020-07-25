@@ -10,7 +10,8 @@
     "pages/pyq/pyq",
     "pages/near/near",
     "pages/pyq/commit/commit",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/mine/regTeacher/regTeacher"
   ],
   "window": {
     "backgroundColor": "#1c43aa",

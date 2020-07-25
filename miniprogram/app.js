@@ -73,7 +73,8 @@ App({
         callback(res);
       },
       fail: function (err) {
-        errFun(err);
+        //errFun(err);
+        console.log(err)
       }
     })
   },

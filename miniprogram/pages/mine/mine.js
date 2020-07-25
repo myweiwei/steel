@@ -7,8 +7,8 @@ Page({
    */
   data: {
     show:false,
-    newvalue:'',
-    value:'',
+    value:'0.01',
+    userInfo:{},
     iconList:[
       { name: "完善信息", icon:'my_17'},
       { name: "我的关注", icon:"my_14"},
@@ -20,17 +20,16 @@ Page({
       { name: "联系我们", icon: "my_36" },
       // { name: "关联企业", icon: "my_28" }
     ],
-    priceList: ['3天（30元）','5天（50元）','7天（70元）','1个月（199元）'],
+    priceList: ['0.01','10','20','30','50','100'],
     activeIndex:0
   },
   onGotUserInfo: function (e) {
     console.log(e.detail.userInfo);
   },
   getUser:function(){
-    console.log(1111);
+    let me=this;
     wx.getUserInfo({
       success: function (res) {
-        console.log(222);
         var userInfo = res.userInfo
         var nickName = userInfo.nickName
         var avatarUrl = userInfo.avatarUrl
@@ -38,10 +37,28 @@ Page({
         var province = userInfo.province
         var city = userInfo.city
         var country = userInfo.country
-        console.log(res);
+        me.setData({
+          userInfo:res
+        })
       }
     })
 
+  },
+  myPop:function(e){
+    let me=this;
+    console.log(e.currentTarget.dataset.name)
+    let name = e.currentTarget.dataset.name;
+    if (name=="充值中心"){
+      me.setData({
+        show: true
+      })
+    }
+    else if (name=='技师专栏'){
+      me.getUser();
+      wx.navigateTo({
+        url: '/pages/mine/regTeacher/regTeacher'
+      })
+    }
   },
   onChange:function(val){
     this.setData({
@@ -70,8 +87,9 @@ Page({
   },
   choosePrice:function(e){
     let me=this;
-    console.log(e.currentTarget.dataset.index);
+    console.log(e.currentTarget.dataset.item);
     me.setData({
+      value: e.currentTarget.dataset.item,
       activeIndex: e.currentTarget.dataset.index
     })
   },
