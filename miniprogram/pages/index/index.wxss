@@ -3,6 +3,10 @@
 .container {
   height: 100%;
 }
+.normal_title {
+  padding:30rpx;
+  box-sizing: border-box;
+}
 .ban {
   width:100%;
   position: absolute;
@@ -81,7 +85,6 @@
   white-space: nowrap;
 }
 .product {
-  padding:30rpx;
   border-radius: 15rpx;
   background: #fff;
   box-sizing: border-box;
@@ -92,7 +95,7 @@
   display: flex;
   display: -webkit-flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin:0 auto;
 }
@@ -106,13 +109,14 @@
 .teacher_list {
   width:100%;
   white-space:nowrap;
+  display: flex;
+  justify-content: space-around;
 }
 .teacher_list .list {
-  width:350rpx;
-  border:2rpx solid #d7d7d7;
-  margin-right:15rpx;
+  width:48%;
   display: inline-block;
-  border-radius: 3rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5rpx #ccc;
 }
 .list-inner {
   display: flex;
@@ -120,15 +124,19 @@
   height:100%;
   align-items: center;
   flex-direction: column;
-  padding-top:30rpx;
+  padding-top:10rpx;
   box-sizing: border-box;
   justify-content: center;
 }
+.flexRight {
+  padding-left:10rpx;
+  flex:1;
+  box-sizing: border-box;
+}
 .list-inner .head {
-  width:150rpx;
-  height: 150rpx;
-  border-radius: 50%;
-  border:2rpx solid #d7d7d7;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 15rpx;
 }
 .list-inner  text {
   height:40rpx;
@@ -157,7 +165,6 @@
 }
 .list-inner .zw {
   color:#000;
-  font-weight: 700;
   font-family: 'Microsoft YaHei';
   font-size:30rpx;
   margin:4rpx 0;
@@ -170,7 +177,7 @@
 .gt_btn {
   width:100%;
   font-size:23rpx; 
-  border-top:2rpx solid #d7d7d7;
+  border-top:1rpx solid #d7d7d7;
   padding:10rpx;
   box-sizing: border-box;
 } 
