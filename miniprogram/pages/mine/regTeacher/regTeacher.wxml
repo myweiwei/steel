@@ -76,11 +76,7 @@
       border="{{ false }}"
       bind:change="onChange"
       data-name='phoneNumber'
-      use-button-slot
     >
-      <van-button slot="button" size="small" type="info"
-        >发送验证码
-      </van-button>
     </van-field>
      <van-field
       value="{{ smsCode }}"
@@ -93,6 +89,13 @@
       bind:change="onChange"
       use-button-slot
     >
+      <van-button slot="button" size="small" type="info" bindtap='send'  wx:if='{{time!=0&&flag==true}}'>
+        <view>获取验证码</view>
+      </van-button>
+       <van-button slot="button" size="small" type="info" wx:if='{{time==0||flag==false}}' disabled="{{!flag}}"
+        >
+        <view>{{time}}后重新获取</view>
+      </van-button>
     </van-field>
   </van-cell-group>
   <view class='footer'>

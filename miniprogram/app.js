@@ -60,6 +60,9 @@ App({
   },
   wxRequest(method, url, data, callback, errFun) {
     let me = this;
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: me.globalData.baseUrl+url,
       method: method,
@@ -70,11 +73,26 @@ App({
       },
       dataType: 'json',
       success: function (res) {
-        callback(res);
+        wx.hideLoading()
+        if(res.data.status==200){
+          callback(res);
+        }
+        else {
+          console.log(res.data.msg);
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+        }
       },
       fail: function (err) {
         //errFun(err);
-        console.log(err)
+        wx.hideLoading()
+        console.log(err);
+        wx.showToast({
+          title: "服务器异常，请稍后再试",
+          icon: 'none'
+        })
       }
     })
   },

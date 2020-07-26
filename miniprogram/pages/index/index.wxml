@@ -85,26 +85,31 @@
         </van-field>
       </van-cell-group>
       </view>
-       <scroll-view scroll-x='true' class='teacher_list' >
-          <view class='list' wx:for='{{teacherList}}' wx:key='{{teacherId}}'>
+      <scroll-view scroll-y='true' class='teacher_list' >
+        <view class='flexAround' style='padding:10rpx;box-sizing:border-box'>
+           <view class='list' wx:for='{{teacherList}}' wx:key='{{teacherId}}'>
             <view class='list-inner'>
-              <image src='{{item.headIcon}}' class='head'></image>
-              <text class='zw'>{{item.realName}}</text>
-              <text class='company'>{{item.teacherGoodAt}}</text>
+              <view class='flexStart' style='width:100%;padding-left:10rpx;box-sizing:border-box;align-items:flex-start'>
+                <image src='{{item.headIcon}}' class='head'></image>
+                <view class='flexRight'>
+                  <view class='zw'>{{item.realName}}</view>
+                  <view class='company'>{{item.teacherGoodAt}}</view>
+                </view>
+              </view>
               <text class='info'>{{item.teacherDescription}}</text>
               <view class='gt_btn'>
                 <view class='flexBetween'>
                   <view class='flexStart'>
                     <text>好评率</text>
-                    <text class='fonWei'>{{item.favorableRate}}%</text>
+                    <text class='fonWei'>{{item.favorableRate?item.favorableRate:0}}%</text>
                   </view>
-                  <view class='fonWei jq'>{{item.slovePrice}}元
+                  <view class='fonWei jq'>{{item.slovePrice?item.slovePrice:0}}元
                   /
                   分钟</view>
                 </view>
                 <view class='flexBetween'>
                   <view class='flexStart'><text>已帮助</text>
-                  <text class='fonWei'>{{item.solveCount}}</text>人
+                  <text class='fonWei'>{{item.solveCount?item.solveCount:0}}</text>人
                 </view>
                   <view class='image' data-id='{{item.teacherId}}' catchtap="toZx">
                     <image src='../../images/index/btnBg.png'></image>
@@ -114,7 +119,8 @@
               </view>
             </view>
           </view>
-        </scroll-view>
+        </view>
+      </scroll-view>
     </view>
   </scroll-view>
 </view>

@@ -7,7 +7,7 @@ Page({
    */
   data: {
     show:false,
-    value:'0.01',
+    value:'10',
     userInfo:{},
     iconList:[
       { name: "完善信息", icon:'my_17'},
@@ -20,8 +20,16 @@ Page({
       { name: "联系我们", icon: "my_36" },
       // { name: "关联企业", icon: "my_28" }
     ],
-    priceList: ['0.01','10','20','30','50','100'],
-    activeIndex:0
+    priceList: ['10','20','30','50','80','100'],
+    activeIndex:0,
+    money:0,
+    showPwd:'false'
+  },
+  showPwdFunc:function(e){
+    console.log(e.currentTarget.dataset.flag)
+    this.setData({
+      showPwd: e.currentTarget.dataset.flag
+    })
   },
   onGotUserInfo: function (e) {
     console.log(e.detail.userInfo);
@@ -43,6 +51,14 @@ Page({
       }
     })
 
+  },
+  getMoney:function(){
+    let me=this;
+    app.wxRequest('get', '/ea-service-personal/personal/user/', {}, function (res) {
+      me.setData({
+        money: res.data.data.accountBalance
+      })
+    })
   },
   myPop:function(e){
     let me=this;
@@ -77,6 +93,16 @@ Page({
           paySign: res.data.data.data.paySign,
           success: function (res) {
             console.log(res);
+            wx.showToast({
+              title: '充值成功',
+              icon: 'success',
+              duration: 1000,
+              success: function () {
+                me.setData({
+                  show:false
+                })
+              }
+            })
           },
           fail: function (res) {
             console.log(res);
@@ -110,7 +136,7 @@ Page({
    */
   onLoad: function (options) {
     let me=this;
-   
+    me.getMoney();
   },
 
   /**
@@ -125,6 +151,9 @@ Page({
    */
   onShow: function () {
     this.getUser();
+    this.setData({
+      show:false
+    })
   },
 
   /**

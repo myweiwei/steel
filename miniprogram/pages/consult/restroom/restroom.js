@@ -125,16 +125,16 @@ Page({
       }
       if(json.msg == "房间已解散") {
         console.log("-----------------success");
-        // wx.showToast({
-        //   title: "房间已解散",
-        //   icon: 'none',
-        //   duration: 4000,
-        //   success: function () {
-        //     setTimeout(function () {
-        //       that.onBack()
-        //     }, 1000);
-        //   }
-        // })
+        wx.showToast({
+          title: "房间已解散",
+          icon: 'none',
+          duration: 4000,
+          success: function () {
+            setTimeout(function () {
+              that.onBack()
+            }, 1000);
+          }
+        })
       }
       if(json.msg == "用户进入了房间"){
         console.log("-----------------success");

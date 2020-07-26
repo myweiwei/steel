@@ -13,6 +13,9 @@
     "pages/mine/mine",
     "pages/mine/regTeacher/regTeacher"
   ],
+  "usingComponents": {
+    "van-loading": "@vant/weapp/loading/index"
+  },
   "window": {
     "backgroundColor": "#1c43aa",
     "backgroundTextStyle": "light",

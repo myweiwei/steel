@@ -90,6 +90,11 @@
   height:220rpx;
   margin-right:10rpx;
 }
+.avaCon .twoImg {
+  width:250rpx;
+  height:260rpx;
+  margin-right:10rpx;
+}
 .avaCon video {
   border-radius: 15rpx;
   width:100%;

@@ -12,7 +12,10 @@ Page({
     teacherDescription:'',
     slovePrice:"",
     phoneNumber:"",
-    smsCode:""
+    smsCode:"",
+    time:125,
+    interval:null,
+    flag:true
   },
   onChange:function(val){
     let me=this;
@@ -22,6 +25,39 @@ Page({
     me.setData({
       [label]: val.detail
     })
+  },
+  send:function(){
+    let me=this;
+    if (!me.data.phoneNumber){
+      wx.showToast({
+        title: '请填写手机号码',
+        icon: "none"
+      })
+      return ;
+    }
+    app.wxRequest('get', '/ea-service-personal/personal/getRegisterCode/'+me.data.phoneNumber, {}, function (data) {
+      me.getTime();
+    })
+  },
+  getTime(){
+    let me=this;
+    let interval=setInterval(function(){
+      let arg=me.data.time;
+      if(arg<=0){
+        clearInterval(interval);
+        me.setData({
+          time: 0,
+          flag:true
+        })
+      }
+      else {
+        arg--;
+        me.setData({
+          time: arg,
+          flag:false
+        })
+      }
+    },1000)
   },
   submit:async function(){
     let me=this;
@@ -102,7 +138,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let me=this;
+   // me.getTime();
   },
   getUser: function () {
     let me = this;

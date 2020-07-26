@@ -7,7 +7,7 @@ Page({
     background: [],
     indicatorDots: true,
     vertical: false,
-    autoplay: false,
+    autoplay: true,
     interval: 2000,
     duration: 500,
     msgList: [

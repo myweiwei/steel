@@ -20,7 +20,7 @@
       
       <view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
         <video wx:if='{{item.videoType==1}}' src="{{item.dynamicImgVideoList[0]}}" object-fit='cover' ></video>
-        <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?"moreImg":""}}' bindtap='preview'></image>
+        <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
       </view>
       <view class='avaBtn flexAround'>
         <view class='flexCenter' >
@@ -48,7 +48,7 @@
         <view wx:for='{{commonList}}' wx:key='{{commentId}}'>
           <view class='commCon' data-item='{{item}}' data-item1='{{item}}' catchtap='toComment' bindlongpress='longPress'>
             <view class='commImg'>
-              <image src='../../images/pyq/shoucang2.png'></image>
+              <image src='{{item.headIcon}}'></image>
             </view>
             <view>
               <view class='commName'>
@@ -68,7 +68,7 @@
               <scroll-view scroll-y="true" >
                 <view class='commCon' data-item='{{item}}' data-item1='{{itemName}}' catchtap='toComment'  bindlongpress='longPress'>
                   <view class='commImg'>
-                    <image src='../../images/pyq/shoucang2.png'></image>
+                    <image src='{{itemName.headIcon}}'></image>
                   </view>
                   <view>
                     <view class='commName'>

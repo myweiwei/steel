@@ -22,8 +22,12 @@
             <text class='smbj'>已实名</text> -->
         </view>
         <view class='flexStart' style='margin-top:10rpx'>
-          <text class='name1'>余额(元)****</text>
-            <image class='sm1' src='../../images/my/my_07.png'></image>
+          <text class='name1'>余额(元)
+            <text wx:if='{{showPwd=="true"}}'>{{money}}</text>
+            <text wx:if='{{showPwd=="false"}}'>****</text>
+          </text>
+            <image class='sm1' src='../../images/my/my_07.png' data-flag='true' bindtap='showPwdFunc' wx:if='{{showPwd=="false"}}'></image>
+            <image class='sm1' src='../../images/my/zhengyan.png' data-flag='false' bindtap='showPwdFunc' wx:if='{{showPwd=="true"}}'></image>
         </view>
       </view>
     </view>

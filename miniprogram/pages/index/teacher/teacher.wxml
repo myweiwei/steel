@@ -21,11 +21,11 @@
           <view class='flexBetween btn1'>
             <view class='flexStart'>
               <text>好评率</text>
-              <text class='color-orange'>{{item.favorableRate}}%</text>
+              <text class='color-orange'>{{item.favorableRate?item.favorableRate:0}}%</text>
             </view>
             <view class='flexStart'>
               <text>已帮助</text>
-              <text>{{item.solveCount}}</text>人
+              <text>{{item.solveCount?item.solveCount:0}}</text>人
             </view>
           </view>
           <view class='flexBetween' style='width:100%'>
