@@ -1,0 +1,82 @@
+<!--pages/index/teacherInfo/teacherInfo.wxml-->
+<view class='teacherInfo'>
+  <scroll-view style='height:calc(100% - 82rpx);margin-bottom:82rpx;' scroll-y="true">
+    <view class='top'>
+      <image src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2076373339,2173673275&fm=26&gp=0.jpg'></image>
+      <view class='name'>李世民</view>
+      <view class='zw'>金瑞普工程师</view>
+      <view >
+        <view class='flexCenter price'>
+          <view>已帮助1080人</view>
+          <view class='m-l-40'>图文咨询15元/次</view>
+        </view>
+        <view class='flexCenter price'>
+          <view>好评率97%</view>
+          <view class='m-l-40'>视频咨询5元/分钟</view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class='flexStart m-t-20'>
+        <view class='title'>专业擅长</view>
+        <view class='info'>纳米调色，仿古铜做旧。</view>
+      </view>
+      <view class='flexStart m-t-20'>
+        <view class='title'>个人简介</view>
+        <view class='info'>从业10年，对不锈钢表面处理，防指纹，纳米调色，仿古铜做旧深有研究，欢迎咨询。</view>
+      </view>
+      <view class='m-t-20'>
+        <view class='title'>个人展示</view>
+        <scroll-view class="scroll-container m-t-20" style='width:100%' scroll-x="true">
+          <view>aaa</view>
+          <view>aaa</view>
+          <view>aaa</view>
+          <view>aaa</view>
+        </scroll-view>
+      </view>
+      <view class='m-t-20 comment'>
+        <view class='title'>用户评价</view>
+        <view class='comInner'>
+          <view class='flexStart'>
+            <image src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2076373339,2173673275&fm=26&gp=0.jpg'></image>
+            <text class='m-l-20'>王**</text>
+          </view>
+          <view class='star'>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+          </view>
+          <view class='info'>技师可以的 奥利给</view>
+        </view>
+        <view class='comInner'>
+          <view class='flexStart'>
+            <image src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2076373339,2173673275&fm=26&gp=0.jpg'></image>
+            <text class='m-l-20'>王**</text>
+          </view>
+          <view class='star'>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+          </view>
+          <view class='info'>技师可以的 奥利给</view>
+        </view>
+        <view class='comInner'>
+          <view class='flexStart'>
+            <image src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2076373339,2173673275&fm=26&gp=0.jpg'></image>
+            <text class='m-l-20'>王**</text>
+          </view>
+          <view class='star'>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+            <image src='../../../images/pyq/shoucang2.png'></image>
+          </view>
+          <view class='info'>技师可以的 奥利给</view>
+        </view>
+      </view>
+      <view class='footer flexStart'>
+        <view>图文咨询</view>
+        <view>在线视频咨询</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

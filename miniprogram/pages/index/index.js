@@ -5,7 +5,7 @@ Page({
   data: {
     baseUrl:'',
     background: [],
-    indicatorDots: true,
+    indicatorDots: false,
     vertical: false,
     autoplay: true,
     interval: 2000,
@@ -16,7 +16,110 @@ Page({
       { url: "url", title: "恭喜xxx完成任务退回300进入领奖区" }],
     currentIndex:0,
     teacherList:[],
-    val:''
+    val:'',
+    curCity:"",
+    statusBarHeight:0
+  },
+  getLocation: function () {
+    let vm = this;
+    wx.getSetting({
+      success: (res) => {
+        console.log(JSON.stringify(res))
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+          wx.showModal({
+            title: '请求授权当前位置',
+            content: '需要获取您的地理位置，请确认授权',
+            success: function (res) {
+              if (res.cancel) {
+                wx.showToast({
+                  title: '拒绝授权',
+                  icon: 'none',
+                  duration: 1000
+                })
+              } else if (res.confirm) {
+                wx.openSetting({
+                  success: function (dataAu) {
+                    if (dataAu.authSetting["scope.userLocation"] == true) {
+                      wx.showToast({
+                        title: '授权成功',
+                        icon: 'success',
+                        duration: 1000
+                      })
+                      //再次授权，调用wx.getLocation的API
+                      vm.getLocationFunc();
+                    } else {
+                      wx.showToast({
+                        title: '授权失败',
+                        icon: 'none',
+                        duration: 1000
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == undefined) {
+          //调用wx.getLocation的API
+          vm.getLocationFunc();
+        }
+        else {
+          //调用wx.getLocation的API
+          vm.getLocationFunc();
+        }
+      }
+    })
+  },
+  // 微信获得经纬度
+  getLocationFunc: function () {
+    let vm = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        console.log(JSON.stringify(res))
+        var latitude = res.latitude
+        var longitude = res.longitude
+        var speed = res.speed
+        var accuracy = res.accuracy;
+        vm.getLocal(latitude, longitude)
+      },
+      fail: function (res) {
+        console.log('fail' + JSON.stringify(res))
+      }
+    })
+  },
+  getLocal: function (latitude, longitude){
+    let that=this;
+    const url = `https://api.map.baidu.com/reverse_geocoding/v3/?ak=FTqHSN5H275UH2yIbPnMlE7qHBnb7etT&output=json&coordtype=wgs84ll&location=${latitude},${longitude}`;
+    const ak = 'FTqHSN5H275UH2yIbPnMlE7qHBnb7etT';
+    //小程序的ajax请求需要在后台安全域名配置增加 开发测试中在详情里勾选-不校验合法域名即可
+    wx.request({
+      url,
+      data: {},
+      success: function (res) {
+        if (res.data.status == "0") {
+          console.log(res.data)
+          res.data.result.addressComponent.city = res.data.result.addressComponent.city.replace('市','')
+          that.setData({
+            curCity: res.data.result.addressComponent.city
+          });
+          wx.hideLoading()
+        } else {
+          that.setData({
+            curCity: '未知',
+          });
+          wx.hideLoading()
+        }
+      }
+    })
+  },
+  toInfo:function(e){
+    let me=this;
+    console.log(e.currentTarget.dataset.id)
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/index/teacherInfo/teacherInfo?id='+id
+    })
   },
   onChange:function(val){
     let me=this;
@@ -115,8 +218,13 @@ Page({
   },
   funcList:function(){
     let me=this;
+    console.log(app.globalData);
+    me.setData({
+      statusBarHeight: app.globalData.statusBarHeight
+    })
     me.getBanner();
     me.getTeacher();
+    me.getLocation()
   },
   handleChange: function (e) {
     this.setData({
@@ -133,6 +241,7 @@ Page({
     }
     else {
       that.funcList()
+      that.getLocation()
     }
     
   },

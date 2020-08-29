@@ -1,12 +1,15 @@
 <!--index.wxml-->
 <view class="container">
-  <scroll-view scroll-y="true" style="height: 99%;background:#f5f6f6" >
-  <view style='height:94rpx;'>
-    <image class='ban' src='../../images/index/ban.png'></image>
-    <van-search style='width:100%;position:absolute;z-index:100;margin-top:17rpx;' background="#fff" disabled placeholder="请输入搜索关键词" shape='round'/>
-  </view>
-    <view class='m-20'>
-      <view class="page-section page-section-spacing swiper">
+  <scroll-view scroll-y="true" style="height: 100%;background:#f5f6f6" >
+    <view style='position:relative;'>
+      <view class='flexBetween' style='position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;margin-top:{{statusBarHeight+"px"}}'>
+        <view style='flex:1;max-width:160rpx;' class='city flexStart'>
+          <text>{{curCity}}</text>
+          <van-icon name="arrow-down" color="#fff"/>
+        </view>
+        <van-search shape='round' style='width:380rpx;z-index:100;color:#fff'  input-class='search_ipt' />
+      </view>
+      <view class="page-section page-section-spacing swiper" >
         <swiper indicator-dots="{{indicatorDots}}" style='height:100%;display:flex;align-items:center' indicator-color='#fff' indicator-active-color='#1c43aa'  bindchange="handleChange" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
           <block wx:for="{{background}}" wx:key="*this">
             <swiper-item class="item">
@@ -18,7 +21,8 @@
         </swiper>
       </view>
     </view>
-    <view class='adsec m-20'>
+    <view class='content'>aaa</view>
+    <!-- <view class='adsec m-20'>
       <text class='title'>头条</text>
       <image src='../../images/index/tt.png'></image>
 
@@ -31,7 +35,7 @@
           </navigator>
         </block>
       </swiper>
-    </view>
+    </view> -->
     <!-- <view class='product'>
       <view class='normal_title flexBetween'>
         <view>优秀产品</view>
@@ -63,7 +67,7 @@
         <view class='list flexCenter'>aaa</view>
       </view>
     </view> -->
-    <view class='product m-20'>
+    <!-- <view class='product m-20'>
       <view class='normal_title flexBetween'>
         <view>推荐技师</view>
         <view class='flexStart' bindtap='toTeacher'>
@@ -86,9 +90,9 @@
       </van-cell-group>
       </view>
       <scroll-view scroll-y='true' class='teacher_list' >
-        <view class='flexAround' style='padding:10rpx;box-sizing:border-box'>
+        <view class='flexBetween' style='padding:10rpx;box-sizing:border-box;flex-wrap: wrap;'>
            <view class='list' wx:for='{{teacherList}}' wx:key='{{teacherId}}'>
-            <view class='list-inner'>
+            <view class='list-inner'data-id='{{item.teacherId}}' catchtap='toInfo'>
               <view class='flexStart' style='width:100%;padding-left:10rpx;box-sizing:border-box;align-items:flex-start'>
                 <image src='{{item.headIcon}}' class='head'></image>
                 <view class='flexRight'>
@@ -121,6 +125,6 @@
           </view>
         </view>
       </scroll-view>
-    </view>
+    </view> -->
   </scroll-view>
 </view>

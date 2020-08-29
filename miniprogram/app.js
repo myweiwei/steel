@@ -2,8 +2,9 @@
 App({
   globalData:{
     userId:'',
-    baseUrl: 'http://192.168.1.12:50518/api',
-    socketIp:"ws://192.168.1.12:5555/websocket/",
+    baseUrl:  'https://eahost.lileiit.com/api',
+    //baseUrl: 'http://192.168.1.5:50518/api',
+    socketIp: "wss://eahost.lileiit.com/websocket/",
     token:"",
     headerHeight: 0,
     statusBarHeight: 0,
@@ -58,11 +59,8 @@ App({
       }
     });
   },
-  wxRequest(method, url, data, callback, errFun) {
+  wxRequest(method, url, data, callback, callback1,errFun) {
     let me = this;
-    wx.showLoading({
-      title: '加载中',
-    })
     wx.request({
       url: me.globalData.baseUrl+url,
       method: method,
@@ -73,22 +71,21 @@ App({
       },
       dataType: 'json',
       success: function (res) {
-        wx.hideLoading()
         if(res.data.status==200){
           callback(res);
         }
         else {
-          console.log(res.data.msg);
           wx.showToast({
             title: res.data.msg,
             icon: 'none'
           })
+          setTimeout(function(){
+            callback1(res)
+          },2000)
         }
       },
       fail: function (err) {
         //errFun(err);
-        wx.hideLoading()
-        console.log(err);
         wx.showToast({
           title: "服务器异常，请稍后再试",
           icon: 'none'

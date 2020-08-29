@@ -19,6 +19,39 @@ Page({
     show:false,
     videoType:0
   },
+  addVideo:function(){
+    let me=this;
+    wx.chooseMedia({
+      count: 1,//传一个
+      mediaType: ['video'],
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,//可拍摄视频的长度。不能大于60秒
+      camera: 'back',
+      success: res => {
+        console.log(res.tempFiles);
+        console.log(res.tempFiles[0].tempFilePath);
+        const tempFilePath = res.tempFiles[0].tempFilePath;
+        console.log(tempFilePath);
+        //选中视频的长度
+        var duration = res.tempFiles[0].duration;//秒
+        var size = res.tempFiles[0].size;//字节
+        var height = res.tempFiles[0].height;
+        var width = res.tempFiles[0].width;
+        var thumbTempFilePath = res.tempFiles[0].thumbTempFilePath;//封面图片
+        console.log(thumbTempFilePath);
+        var arg={};
+        arg.thumbTempFilePath = res.tempFiles[0].thumbTempFilePath;
+        arg.path =tempFilePath;
+        let arr = [];
+        arr.push(arg)
+        me.setData({
+          fileList1: arr,
+          count: 1
+        })
+      }
+    })
+  
+  },
   onChange:function(val){
     let me=this;
     me.setData({
@@ -59,16 +92,6 @@ Page({
       count:1
     })
   },
-  afterRead1(event) {
-    let me = this;
-    const { file } = event.detail;
-    let arr=[];
-    arr.push(file)
-    me.setData({
-      fileList1:arr,
-      count:1
-    })
-  },
   delVideo:function(){
     let me=this;
     wx.showModal({
@@ -102,15 +125,45 @@ Page({
   },
   getLocation:function(){
     let me=this;
-    wx.chooseLocation({
+    wx.openSetting({
       success(res) {
-        console.log(res);
-        me.setData({
-          province: res.address+';'+res.name,
-          address: true
-        })
+        console.log(res.authSetting)
+        // res.authSetting = {
+        //   "scope.userInfo": true,
+        //   "scope.userLocation": true
+        // }
       }
     })
+    // wx.chooseLocation({
+    //   success(res) {
+    //     console.log(res);
+    //     me.setData({
+    //       province: res.address+';'+res.name,
+    //       address: true
+    //     })
+    //   },
+    //   fail(err){
+    //     console.log(err);
+    //     wx.getSetting({
+    //       success(res) {
+    //         console.log(res.authSetting['scope.userLocation'])
+    //         if (res.authSetting['scope.userLocation']==false) {
+    //           console.log(1);
+    //           wx.openSetting({
+    //             success(res) {
+    //               console.log(res.authSetting)
+    //               // res.authSetting = {
+    //               //   "scope.userInfo": true,
+    //               //   "scope.userLocation": true
+    //               // }
+    //             }
+    //           })
+    //         }
+            
+    //       }
+    //     })
+    //   }
+    // })
   },
   delAddress:function(){
     let me=this;
@@ -194,6 +247,7 @@ Page({
   upFile:function(path,i){
     let me=this;
     let arr=[];
+    console.log(path)
     arr=me.data.fileArr;
     return new Promise((resolve,reject)=>{
       wx.uploadFile({
