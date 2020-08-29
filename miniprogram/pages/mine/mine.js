@@ -70,9 +70,14 @@ Page({
       })
     }
     else if (name=='技师专栏'){
-      me.getUser();
+     // me.getUser();
       wx.navigateTo({
         url: '/pages/mine/regTeacher/regTeacher'
+      })
+    }
+    else if(name=="联系我们"){
+      wx.makePhoneCall({
+        phoneNumber: '16619962166',
       })
     }
   },
@@ -135,8 +140,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let me=this;
-    me.getMoney();
+    var that = this;
+    that.setData({
+      baseUrl: app.globalData.baseUrl
+    })
+    if(app.globalData.token!=''){
+      that.getMoney();
+    }
+    else {
+      app.getUser(that.getMoney);
+    }
   },
 
   /**
@@ -150,7 +163,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getUser();
+   // this.getUser();
     this.setData({
       show:false
     })

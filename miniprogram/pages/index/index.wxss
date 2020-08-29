@@ -23,7 +23,7 @@
 }
 .swiper {
   width:100%;
-  height:300rpx;
+  height:400rpx;
 }
 .swiper .swiper-item {
   height:100%
@@ -43,7 +43,6 @@
   position: absolute;
   width: 100%;
   height:100%;
-  border-radius: 15rpx;
   z-index: 5;
 }
 .adsec{
@@ -104,7 +103,7 @@
   background: #f7f7f7;
   padding:20rpx 0 ;
   height:150rpx;
-  margin-top:2%;
+  
 }
 .teacher_list {
   width:100%;
@@ -113,10 +112,11 @@
   justify-content: space-around;
 }
 .teacher_list .list {
-  width:48%;
+  width:49.5%;
   display: inline-block;
   border-radius: 10rpx;
   box-shadow: 0 0 5rpx #ccc;
+  margin-top:8rpx;
 }
 .list-inner {
   display: flex;
@@ -132,6 +132,8 @@
   padding-left:10rpx;
   flex:1;
   box-sizing: border-box;
+  text-overflow:ellipsis;
+  overflow: hidden
 }
 .list-inner .head {
   width: 110rpx;
@@ -154,14 +156,9 @@
   padding:0 10rpx;
   box-sizing: border-box;
   height:100rpx;
-  text-overflow: -o-ellipsis-lastline;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
   align-content: center;
   white-space: normal;
+  overflow-y: auto;
 }
 .list-inner .zw {
   color:#000;
@@ -173,6 +170,9 @@
   color:#1d1d1d;
   margin:4rpx 0;
   font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 .gt_btn {
   width:100%;
@@ -207,4 +207,30 @@
   left:11%;
   transform: translate(-50% -50%);
   color:#fff;
+}
+.van-search__content{
+  background: rgba(255,255,255,0.4)!important;
+}
+.van-search {
+  background:transparent!important;
+  margin:0px;
+}
+.search_ipt,.van-icon-search {
+  color:#fff!important;
+}
+.city text{
+  color:#fff;
+  z-index:100;
+  display: inline-block;
+  font-size: 26rpx;
+}
+.content {
+  background:#fff;
+  border-radius:30rpx 30rpx 0 0;
+  position:relative;
+  top:-20rpx;
+  height: calc(100% - 380rpx)
+}
+.field-index--van-field {
+  padding:6rpx!important;
 }

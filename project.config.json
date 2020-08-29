@@ -89,6 +89,63 @@
 					"id": -1,
 					"name": "pages/index/comment/comment",
 					"pathName": "pages/index/comment/comment",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pyq/pyq",
+					"pathName": "pages/pyq/pyq",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/teacherInfo/teacherInfo",
+					"pathName": "pages/index/teacherInfo/teacherInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pyq/commit/commit",
+					"pathName": "pages/pyq/commit/commit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/consult/restroom/restroom",
+					"pathName": "pages/consult/restroom/restroom",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/room/room",
+					"pathName": "pages/room/room",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/room/room",
+					"pathName": "pages/room/room",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/regEnterprise/regEnterprise",
+					"pathName": "pages/mine/regEnterprise/regEnterprise",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageA/pages/regVipEnterprise/regVipEnterprise",
+					"pathName": "packageA/pages/regVipEnterprise/regVipEnterprise",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -1,0 +1,56 @@
+/* pages/mine/regVipEnterprise/regVipEnterprise.wxss */
+.vip {
+  height: 100%;
+  background: #32303a;
+  position: relative;
+}
+.vip .footer {
+  position: absolute;
+  bottom:10rpx;
+  width:90%;
+  margin-left:5%;
+}
+.vip .van-button {
+  height:80rpx;
+}
+.van-button__text {
+  color:#32303a;
+  font-size:35rpx;
+}
+.model {
+  margin-top:120rpx;
+}
+.model>view {
+  width:200rpx;
+  height:200rpx;
+  position: relative;
+  text-align: center;
+}
+.model view image {
+  width:100%;
+  height:100%;
+}
+.model view .price {
+  position: absolute;
+  width:100%;
+  top:2%;
+  text-align: center;
+}
+.model view .newprice {
+  font-size:40rpx;
+  color:#484848;
+  margin-top:24%;
+  font-weight:700;
+}
+.model view .oldprice {
+  font-size:26rpx;
+  color:#c4997f;
+  height:30rpx;
+  line-height: 30rpx;
+  text-decoration: line-through;
+}
+.model .time {
+  color:#484848;
+  font-size:32rpx;
+  font-weight: 700;
+}

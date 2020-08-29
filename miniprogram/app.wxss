@@ -57,9 +57,18 @@ page {
 .m-t-20 {
   margin-top:20rpx;
 }
+.m-t-50 {
+  margin-top:50rpx;
+}
 .m-20 {
   margin: 20rpx 20rpx 0 20rpx;
   box-sizing: border-box;
+}
+.m-l-20 {
+  margin-left:20rpx;
+}
+.m-l-40 {
+  margin-left:40rpx;
 }
 .f-40 {
   font-size:40rpx;

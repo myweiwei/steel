@@ -1,6 +1,6 @@
 <!--pages/pyq/pyq.wxml-->
 <view class='pyq'>
-  <scroll-view scroll-y="true" style="height:99.8%;">
+  <!-- <scroll-view scroll-y="true" style="height:99.8%;"> -->
     <view class='ava' wx:for='{{list}}' wx:key='id'>
       <view class='flexBetween'>
         <view class='avaInfo flexStart'>
@@ -19,7 +19,18 @@
       </view>
       
       <view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
-        <video wx:if='{{item.videoType==1}}' src="{{item.dynamicImgVideoList[0]}}" object-fit='cover' ></video>
+       <!-- 视频图片层 -->
+        <view wx:if='{{item.videoType==1}}'>
+          <view data-id="{{item.videoindex}}" class="video-image-box shipin-list"  style="display: {{_index == item.videoindex ? 'none' : 'block' }};"   bindtap="videoPlay">
+            <view class="video-cover-box">
+              <image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
+              </image>
+            </view>
+            <!-- 播放按钮 -->
+            <image class="video-image-play" src="../../images/pyq/bofang.png" mode="scaleToFill"></image>
+          </view> 
+          <video wx:if="{{_index == item.videoindex}}" autoplay="true" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover' ></video>
+        </view>
         <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
       </view>
       <view class='avaBtn flexAround'>
@@ -41,7 +52,7 @@
       </view>
     </view>
     <!-- <view wx:if='{{infoShow}}' class='info'>{{info}}</view> -->
-  </scroll-view>
+  <!-- </scroll-view> -->
   <van-popup show="{{ avaShow }}" position="bottom" custom-style="height: 70%;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
       <view class='totalComment'><text class='strong'>{{commentCount}}</text>条评论</view>
       <scroll-view scroll-y="true" style="height: 80%" >

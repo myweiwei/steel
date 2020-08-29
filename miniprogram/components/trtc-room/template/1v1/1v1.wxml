@@ -91,15 +91,15 @@
       </view>
     </view>
     <view class="bottom-btns">
-      <view class="btn-normal" data-key="beautyLevel" data-value="9|0" data-value-type="number" bindtap="_setPuserProperty">
+      <!-- <view class="btn-normal" data-key="beautyLevel" data-value="9|0" data-value-type="number" bindtap="_setPuserProperty">
         <image class="btn-image" src="{{pusher.beautyLevel == 9 ? './static/beauty-true.png': './static/beauty-false.png'}} "></image>
-      </view>
+      </view> -->
       <view class="btn-hangup" bindtap="_hangUp">
         <image class="btn-image" src="./static/hangup.png"></image>
       </view>
-      <view class="btn-normal" bindtap="_toggleIMPanel">
+      <!-- <view class="btn-normal" bindtap="_toggleIMPanel">
         <image class="btn-image" src="{{enableIM? './static/im.png': './static/im-disable.png'}}"></image>
-      </view>
-    </view>
+      </view>-->
+    </view> 
   </view>
 </template>

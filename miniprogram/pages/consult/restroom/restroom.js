@@ -264,7 +264,8 @@ Page({
   },
   enterRoom: function () {
     let me=this;
-    const roomID = this.data.roomID
+    //const roomID = this.data.roomID
+    const roomID='1234';
     const nowTime = new Date()
     if (nowTime - this.tapTime < 1000) {
       return

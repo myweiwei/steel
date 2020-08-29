@@ -355,11 +355,13 @@ Component({
           // 20200421 iOS 仍然没有1019事件通知退房，退房事件移动到 exitRoom 方法里，但不是后端通知的退房成功
           this._emitter.emit(EVENT.LOCAL_LEAVE, { userID: this.data.pusher.userID })
           app.wxRequest('get', '/ea-service-consult/consult/endConversation/' + me.data.config.roomID, {}, function (data) {
-            console.log(data.data);
-            console.log("标记标记" + me.data.config.teacherId + "icon" + me.data.config.icon);
             let datan = escape(me.data.config.icon)
             wx.redirectTo({
               url: `/pages/index/comment/comment?icon=${datan}&userId=${me.data.config.teacherId}&time=${data.data.data.conversationTime}&cost=${data.data.data.cost}`,
+            })
+          },function(){
+            wx.switchTab({
+              url: '/pages/index/index',
             })
           })
         })

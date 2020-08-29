@@ -6,12 +6,23 @@
     "pages/videocall/videocall",
     "pages/index/teacher/teacher",
     "pages/index/comment/comment",
+    "pages/index/teacherInfo/teacherInfo",
     "pages/product/product",
     "pages/pyq/pyq",
+    "pages/pyq/search/search",
     "pages/near/near",
     "pages/pyq/commit/commit",
     "pages/mine/mine",
-    "pages/mine/regTeacher/regTeacher"
+    "pages/mine/regTeacher/regTeacher",
+    "pages/mine/regEnterprise/regEnterprise"
+  ],
+  "subpackages": [
+    {
+      "root": "packageA",
+      "pages": [
+        "pages/regVipEnterprise/regVipEnterprise"
+      ]
+    }
   ],
   "usingComponents": {
     "van-loading": "@vant/weapp/loading/index"
@@ -62,9 +73,9 @@
     ]
   },
   "sitemapLocation": "sitemap.json",
-  "permission":{
-    "scope.userLocation":{
-      "desc":"获取当前位置"
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取当前位置"
     }
   }
 }
