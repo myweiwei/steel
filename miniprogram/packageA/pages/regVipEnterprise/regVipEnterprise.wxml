@@ -1,6 +1,6 @@
 <!--pages/mine/regVipEnterprise/regVipEnterprise.wxml-->
 <view class='vip'>
-  <image src='{{img}}' style='width:100%;height:99%'></image>
+  <image src='{{img}}' style='width:100%;height:1200rpx;'></image>
   <view class='footer'>
     <van-button color="linear-gradient(to right, #f8e4d6,#e8b79a)" round size='large' bindtap='beginVip'>立即开通</van-button>
   </view>

@@ -33,7 +33,7 @@ App({
         headHeight = 64
       }
       this.globalData.headerHeight = headHeight
-      this.globalData.statusBarHeight = statusBarHeight
+      this.globalData.statusBarHeight = statusBarHeight+3
     }
   },
   getUser: function (callback){
