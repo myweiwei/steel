@@ -18,6 +18,11 @@ Page({
     type:'',
     fileList1:[]
   },
+  submit:function(){
+    wx.redirectTo({
+      url: '/pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess',
+    })
+  },
   chooseType:function(){
     let me=this;
     me.setData({

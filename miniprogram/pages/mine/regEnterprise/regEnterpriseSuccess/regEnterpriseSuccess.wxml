@@ -1,0 +1,19 @@
+<view class='regSuc'>
+  <view class='regSuc_top'>
+    <image src='../../../../images/qy/regSuccess.png'></image>
+    <view class='title'>注册成功！</view>
+  </view>
+  <view class='regSuc_cen'>
+    <view class='flexStart' style='align-items:flex-start'>
+      <van-icon name="warning-o" color='#1c8cfa' size='50rpx' style='margin:0 20rpx 0 40rpx '/>
+      <view>
+        <view class='info'>预计在2小时内完成审核！</view>
+        <view class='info'>您可以继续完善其他信息给企业带来更大收益。</view>
+      </view>
+    </view>
+  </view>
+  <view class='regSuc_foot'>
+    <button type="primary" plain="true" bindtap='toIndex'>我知道了</button>
+    <button type="primary" plain="true" style='margin-top:30rpx;' bindtap='toVip'>了解企业VIP</button>
+  </view>
+</view>

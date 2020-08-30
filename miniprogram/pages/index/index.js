@@ -93,25 +93,32 @@ Page({
     const url = `https://api.map.baidu.com/reverse_geocoding/v3/?ak=FTqHSN5H275UH2yIbPnMlE7qHBnb7etT&output=json&coordtype=wgs84ll&location=${latitude},${longitude}`;
     const ak = 'FTqHSN5H275UH2yIbPnMlE7qHBnb7etT';
     //小程序的ajax请求需要在后台安全域名配置增加 开发测试中在详情里勾选-不校验合法域名即可
-    wx.request({
-      url,
-      data: {},
-      success: function (res) {
-        if (res.data.status == "0") {
-          console.log(res.data)
-          res.data.result.addressComponent.city = res.data.result.addressComponent.city.replace('市','')
-          that.setData({
-            curCity: res.data.result.addressComponent.city
-          });
-          wx.hideLoading()
-        } else {
-          that.setData({
-            curCity: '未知',
-          });
-          wx.hideLoading()
+    if (app.globalData.currCity) {
+      this.setData({
+        curCity: app.globalData.currCity
+      })
+    }
+    else {
+      wx.request({
+        url,
+        data: {},
+        success: function (res) {
+          if (res.data.status == "0") {
+            console.log(res.data)
+            res.data.result.addressComponent.city = res.data.result.addressComponent.city.replace('市', '')
+            that.setData({
+              curCity: res.data.result.addressComponent.city
+            });
+            wx.hideLoading()
+          } else {
+            that.setData({
+              curCity: '未知',
+            });
+            wx.hideLoading()
+          }
         }
-      }
-    })
+      })
+    }
   },
   toInfo:function(e){
     let me=this;
@@ -119,6 +126,12 @@ Page({
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/index/teacherInfo/teacherInfo?id='+id
+    })
+  },
+  chooseAddress:function(e){
+    let me=this;
+    wx.navigateTo({
+      url: '/pages/switchCity/switchCity?curr=' + e.currentTarget.dataset.curr
     })
   },
   onChange:function(val){
@@ -168,7 +181,13 @@ Page({
       url: '/pages/index/teacher/teacher'
     })
   },
-  onLoad: function() {
+  onLoad: function(option) {
+    console.log(app.globalData.currCity);
+    if (app.globalData.currCity){
+      this.setData({
+        curCity:app.globalData.currCity
+      })
+    }
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',

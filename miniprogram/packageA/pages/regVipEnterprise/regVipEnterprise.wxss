@@ -6,7 +6,7 @@
 }
 .vip .footer {
   position: absolute;
-  bottom:10rpx;
+  bottom:30rpx;
   width:90%;
   margin-left:5%;
 }

@@ -30,7 +30,7 @@
             right-icon='location' 
           />
           <van-field
-            value="{{ address }}"
+            value="{{ phone }}"
             label="联系方式"
             placeholder="请填写座机或手机号"
             title-width='150rpx'
@@ -57,7 +57,7 @@
           </view>
         </van-cell-group>
         <view class='footer'>
-          <van-button color="linear-gradient(to right, #236eeb,#1c8cfa)" round size='large' bindtap='uploadFiles'>提  交</van-button>
+          <van-button color="linear-gradient(to right, #236eeb,#1c8cfa)" round size='large' bindtap='submit'>提  交</van-button>
         </view>
       </scroll-view>
       <van-popup

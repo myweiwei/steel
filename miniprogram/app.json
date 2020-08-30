@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/consult/restroom/restroom",
     "pages/room/room",
+    "pages/switchCity/switchCity",
     "pages/videocall/videocall",
     "pages/index/teacher/teacher",
     "pages/index/comment/comment",
@@ -14,7 +15,8 @@
     "pages/pyq/commit/commit",
     "pages/mine/mine",
     "pages/mine/regTeacher/regTeacher",
-    "pages/mine/regEnterprise/regEnterprise"
+    "pages/mine/regEnterprise/regEnterprise",
+    "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess"
   ],
   "subpackages": [
     {

@@ -18,7 +18,7 @@ Page({
       { name: "关联企业", icon: "my_28" },
       { name: "意见反馈", icon: "my_33" },
       { name: "联系我们", icon: "my_36" },
-      // { name: "关联企业", icon: "my_28" }
+      { name: "注册企业", icon: "my_28" }
     ],
     priceList: ['10','20','30','50','80','100'],
     activeIndex:0,
@@ -78,6 +78,11 @@ Page({
     else if(name=="联系我们"){
       wx.makePhoneCall({
         phoneNumber: '16619962166',
+      })
+    }
+    else if (name == "注册企业") {
+      wx.navigateTo({
+        url: "/pages/mine/regEnterprise/regEnterprise",
       })
     }
   },
