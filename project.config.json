@@ -28,7 +28,11 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
+<<<<<<< HEAD
 	"libVersion": "2.9.5",
+=======
+	"libVersion": "2.12.2",
+>>>>>>> a0d7ca8ab858eb6674acda28cbf89a48493ffeb5
 	"appid": "wx04f582f240549dbb",
 	"projectname": "steel",
 	"miniprogramRoot": "miniprogram/",
@@ -102,6 +106,7 @@
 					"name": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
 					"pathName": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
 					"query": "",
+<<<<<<< HEAD
 					"scene": null
 				},
 				{
@@ -116,6 +121,8 @@
 					"name": "pages/mine/regEnterprise/regEnterprise",
 					"pathName": "pages/mine/regEnterprise/regEnterprise",
 					"query": "",
+=======
+>>>>>>> a0d7ca8ab858eb6674acda28cbf89a48493ffeb5
 					"scene": null
 				}
 			]
