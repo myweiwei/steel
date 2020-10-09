@@ -61,7 +61,7 @@
           />
           <view class='flexStart m-t-10'>
             <label style='font-size:32rpx;margin-left:6%;width:150rpx;'>营业执照</label>
-            <van-uploader file-list="{{ fileList1 }}" data-type='headicon' deletable="{{ true }}" max-count="1" bind:after-read="afterRead1" bind:delete='delImg1' />
+            <van-uploader file-list="{{ fileList1 }}" data-type='headicon' deletable="{{ true }}" max-count="3" bind:after-read="afterRead1" bind:delete='delImg1' />
           </view>
         </van-cell-group>
         <view class='footer'>
