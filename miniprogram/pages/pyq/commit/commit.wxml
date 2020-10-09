@@ -18,6 +18,12 @@
       <view>上传图片</view>
     </view>
   </van-uploader>
+  <view bindtap='addVideo' style='width:200rpx;display:inline-block;position:absolute;top:30%' wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
+    <view class='videoLoa'>
+        <van-icon name="video-o" size='50rpx' color='#ccc'/>
+        <view>上传视频</view>
+      </view>
+  </view>
   <view wx:for='{{fileList1}}' wx:if='{{fileList1.length}}' wx:key='{{path}}' class='imgList'>
     <video  src="{{item.path}}" object-fit='cover' show-progress>
     </video>
@@ -25,12 +31,12 @@
       <van-icon name="cross" size='50rpx' color='#fff' bindtap='delVideo'/>
     </view>
   </view>
-  <van-uploader bind:after-read="afterRead1" max-count="1" accept='video' multiple='false' wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
+  <!-- <van-uploader bind:after-read="afterRead1" max-count="1" accept='video' multiple='false' wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
     <view class='videoLoa'>
       <van-icon name="video-o" size='50rpx' color='#ccc'/>
       <view>上传视频</view>
     </view>
-  </van-uploader>
+  </van-uploader> -->
   <br />
   <van-cell-group>
       <van-field
@@ -72,6 +78,6 @@
   </view>
   </van-popup>
   <view class='footer'>
-    <van-button color="linear-gradient(to right, orange, #f7d501)" round size='large' bindtap='uploadFiles'>发送</van-button>
+    <van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='uploadFiles'>发送</van-button>
   </view>
 </view>

@@ -1,0 +1,98 @@
+<view class='regEnterprise'>
+  <view class='reg_top'>
+    <view class='title'>
+      <view class='big_title'>企业注册</view>
+      <view style='color:#cae5ff;font-size:32rpx'>提升企业曝光率，让更多的客户找到您</view>
+    </view>
+    <image src='../../../images/qy/qy_top_back.png'></image>
+  </view>
+  <view class='reg_bottom'>
+    <image src='../../../images/qy/qy_bottom_back.png'></image>
+      <view  class='bottom_content'>
+      <scroll-view style='position:relative;height:100%;text-align:center;box-sizing:border-box' scroll-y="true">
+        <van-uploader file-list="{{ fileList }}" data-type='headicon' deletable="{{ true }}" max-count="1" style='width:150rpx;height:150rpx;' bind:after-read="afterRead" bind:delete='delImg' />
+        <view class='img' style='font-size:32rpx;margin-top:10rpx' wx:if='{{!fileList.length}}'>上传LOGO</view>
+        <van-cell-group style='width:70%'>
+          <van-field
+            value="{{ enterpriseName }}"
+            clearable
+            label="企业名称"
+            placeholder="请填写企业名称"
+            title-width='150rpx'
+            bind:change="onEnterpriseChange"
+          />
+          <van-field
+            value="{{ address }}"
+            label="企业地址"
+            placeholder="请定位企业"
+            disabled
+            bindtap='getLocation'
+            title-width='150rpx'
+            right-icon='location' 
+          />
+           <van-field
+            value="{{addressDetail}}"
+            label="详细地址"
+            title-width='150rpx'
+            placeholder="请填写详细地址"
+          />
+          <van-field
+            value="{{ phone }}"
+            label="联系方式"
+            placeholder="请填写座机或手机号"
+            title-width='150rpx'
+            bind:change="onPhoneChange"
+          />
+          <van-field
+            value="{{ number }}"
+            label="企业规模"
+            placeholder="请选择企业规模"
+            title-width='150rpx'
+            bindtap='chooseNum'
+            disabled
+          />
+          <van-field
+            value="{{ type }}"
+            label="企业类型"
+            placeholder="请选择企业类型"
+            title-width='150rpx'
+            bindtap='chooseType'
+            disabled
+          />
+          <view class='flexStart m-t-10'>
+            <label style='font-size:32rpx;margin-left:6%;width:150rpx;'>营业执照</label>
+            <van-uploader file-list="{{ fileList1 }}" data-type='headicon' deletable="{{ true }}" max-count="1" bind:after-read="afterRead1" bind:delete='delImg1' />
+          </view>
+        </van-cell-group>
+        <view class='footer'>
+          <van-button color="linear-gradient(to right, #236eeb,#1c8cfa)" round size='large' bindtap='submit'>提  交</van-button>
+        </view>
+      </scroll-view>
+      <van-popup
+        show="{{ show }}"
+        position="bottom"
+        round
+        custom-style="height: 40%;"
+      >
+        <van-picker bind:cancel="onClose"
+  bind:confirm="onConfirm" show-toolbar columns="{{ columns }}" bind:change="onChange" />
+      </van-popup>
+      <van-popup
+        show="{{ show1 }}"
+        position="bottom"
+        round
+        custom-style="height: 40%;"
+      >
+        <view class='flexBetween' style='padding:20rpx 32rpx;font-size:35rpx;color:#1989fa;border-bottom:1rpx solid #ccc;line-height:54rpx;'>
+          <text bindtap="closeShow">取消</text>
+          <text bindtap="confirmShow">确定</text>
+        </view>
+        <view style='margin-top:70rpx;margin-left:40rpx;'>
+          <ul class='typeList'>
+            <li wx:for='{{liList}}' data-index='{{index}}'  bindtap='addType' class='{{item.active?"activeLi":""}}'>{{item.name}}</li>
+          </ul>
+        </view>
+      </van-popup>
+      </view>
+  </view>
+</view>

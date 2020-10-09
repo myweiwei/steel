@@ -1,7 +1,28 @@
 
-<van-circle value="{{value}}" color="{{gradientColor}}" layer-color="#000" text="{{percent}}"  clockwise="{{ false }}"/>
-  <image src="{{teacher_icon}}" style="width:150rpx; height:150rpx;"></image>
-  <image src="{{user_icon}}" style="width:150rpx; height:150rpx;"></image>
-
-
-<view bindtap="enterRoom" >开始</view>
+<view class='restroom'>
+  <view class='room'>
+    <view>房间号</view>
+    <view style='margin-top:20rpx;'>{{roomID}}</view>
+  </view>
+  <view class="body">
+    <view class="circle">
+      <image src='../../../images/index/phone.png'></image>
+    </view>
+    <view class="circle1"></view>
+    <view class="circle2"></view>
+  </view>
+  <view class='room' style='margin-top:100rpx;font-size:28rpx'>
+    <view>正在为您呼叫技师...</view>
+  </view>
+  <view class='flexBetween'>
+    <view>
+      <image src="{{user_icon}}"></image>
+      <view>{{user_name?user_name:"等待进入"}}</view>
+    </view>
+     <view>
+      <image src="{{teacher_icon}}"></image>
+      <view>{{teacher_name?teacher_name:"等待进入"}}</view>
+    </view>
+    <button bindtap='enterRoom'>进入</button>
+  </view>
+</view>

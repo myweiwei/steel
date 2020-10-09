@@ -1,0 +1,50 @@
+/* pages/index/teacher/teacher.wxss */
+.teacher {
+  height:100%;
+  padding:10rpx;
+  box-sizing: border-box;
+}
+.list {
+  width: 100%;
+  padding: 10rpx;
+  box-sizing: border-box;
+  border-bottom:1px solid rgb(243, 243, 243);
+  color:#1d1d1d;
+  align-items: flex-start;
+}
+.head {
+  width:190rpx;
+  height:150rpx;
+}
+.list .image {
+  position: relative;
+}
+.list .image image {
+  width:150rpx;
+  height:50rpx;
+}
+ .image view {
+  position: absolute;
+  top:13%;
+  left:10%;
+  transform: translate(-50% -50%);
+  color:#fff;
+  font-size:28rpx;
+}
+.company {
+  font-size: 25rpx;
+  color:#666;
+  margin-top:20rpx;
+}
+.list .info {
+  font-size:27rpx;
+  
+}
+.list .jq {
+  font-size: 25rpx;
+  color:#666;
+}
+.gt_btn .btn1 {
+  font-size: 25rpx;
+  color:#aaa;
+}

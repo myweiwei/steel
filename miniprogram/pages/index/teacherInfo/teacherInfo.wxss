@@ -1,0 +1,84 @@
+/* pages/index/teacherInfo/teacherInfo.wxss */
+.teacherInfo {
+  height:100%;
+  overflow: hidden;
+}
+.top {
+  text-align: center;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+  border-bottom:1rpx solid #aaa;
+  color: #1d1d1d;
+}
+.top image {
+  width:160rpx;
+  height: 160rpx;
+  margin-top:40rpx;
+  border-radius:15rpx;
+}
+.top .price {
+  font-size: 28rpx;
+  text-align: left;
+}
+.top .price view{
+  width:30%;
+
+}
+.flexStart {
+  align-items: flex-start;
+  font-size:28rpx;
+}
+.title {
+  width:120rpx;
+  margin:0 20rpx;
+  font-size:28rpx;
+} 
+.flexStart .info {
+  flex:1;
+}
+.scroll-container {
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+}
+.scroll-container view {
+  width:250rpx;
+  height:180rpx;
+  border:1rpx solid #555;
+  margin-left:20rpx;
+  display: inline-block;
+}
+.comment .flexStart image {
+  width:50rpx;
+  height:50rpx;
+  border-radius: 50%;
+}
+.comment .comInner {
+  margin:20rpx;
+  box-sizing: border-box;
+}
+.comment .star image{
+  width:20rpx;
+  height:20rpx;
+  margin:0 5rpx;
+}
+.comment .info {
+  font-size:25rpx;
+}
+.footer {
+  position: fixed;
+  bottom:0;
+  left:0;
+  height:80rpx;
+  line-height: 80rpx;
+  border-top:1rpx solid #666;
+  width:100%;
+  background: #fff;
+}
+.footer view {
+  text-align: center;
+  width:49.5%;
+}
+.footer view:nth-child(1){
+  border-right:1rpx solid #666;
+}

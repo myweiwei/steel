@@ -7,10 +7,84 @@ Page({
    */
   data: {
     show:false,
-    newvalue:'',
-    value:'',
-    priceList: ['3天（30元）','5天（50元）','7天（70元）','1个月（199元）'],
-    activeIndex:0
+    value:'10',
+    userInfo:{},
+    iconList:[
+      { name: "完善信息", icon:'my_17'},
+      { name: "我的关注", icon:"my_14"},
+      { name: "咨询记录", icon: "my_11" },
+      { name: "技师专栏", icon: "my_23" },
+      { name: "充值中心", icon: "my_26" },
+      { name: "关联企业", icon: "my_28" },
+      { name: "意见反馈", icon: "my_33" },
+      { name: "联系我们", icon: "my_36" },
+      { name: "注册企业", icon: "my_28" }
+    ],
+    priceList: ['10','20','30','50','80','100'],
+    activeIndex:0,
+    money:0,
+    showPwd:'false'
+  },
+  showPwdFunc:function(e){
+    console.log(e.currentTarget.dataset.flag)
+    this.setData({
+      showPwd: e.currentTarget.dataset.flag
+    })
+  },
+  onGotUserInfo: function (e) {
+    console.log(e.detail.userInfo);
+  },
+  getUser:function(){
+    let me=this;
+    wx.getUserInfo({
+      success: function (res) {
+        var userInfo = res.userInfo
+        var nickName = userInfo.nickName
+        var avatarUrl = userInfo.avatarUrl
+        var gender = userInfo.gender //性别 0：未知、1：男、2：女
+        var province = userInfo.province
+        var city = userInfo.city
+        var country = userInfo.country
+        me.setData({
+          userInfo:res
+        })
+      }
+    })
+
+  },
+  getMoney:function(){
+    let me=this;
+    app.wxRequest('get', '/personal/user/', {}, function (res) {
+      me.setData({
+        money: res.data.data.accountBalance
+      })
+    })
+  },
+  myPop:function(e){
+    let me=this;
+    console.log(e.currentTarget.dataset.name)
+    let name = e.currentTarget.dataset.name;
+    if (name=="充值中心"){
+      me.setData({
+        show: true
+      })
+    }
+    else if (name=='技师专栏'){
+     // me.getUser();
+      wx.navigateTo({
+        url: '/pages/mine/regTeacher/regTeacher'
+      })
+    }
+    else if(name=="联系我们"){
+      wx.makePhoneCall({
+        phoneNumber: '16619962166',
+      })
+    }
+    else if (name == "注册企业") {
+      wx.navigateTo({
+        url: "/pages/mine/regEnterprise/regEnterprise",
+      })
+    }
   },
   onChange:function(val){
     this.setData({
@@ -19,7 +93,7 @@ Page({
   },
   addPrice:function(){
     let me=this;
-    app.wxRequest('post', '/ea-service-personal/recharge/recharge/'+me.data.value, {}, function (res) {
+    app.wxRequest('post', '/recharge/recharge/'+me.data.value, {}, function (res) {
       wx.requestPayment(
         {
           timeStamp: res.data.data.data.timeStamp,
@@ -29,6 +103,16 @@ Page({
           paySign: res.data.data.data.paySign,
           success: function (res) {
             console.log(res);
+            wx.showToast({
+              title: '充值成功',
+              icon: 'success',
+              duration: 1000,
+              success: function () {
+                me.setData({
+                  show:false
+                })
+              }
+            })
           },
           fail: function (res) {
             console.log(res);
@@ -39,8 +123,9 @@ Page({
   },
   choosePrice:function(e){
     let me=this;
-    console.log(e.currentTarget.dataset.index);
+    console.log(e.currentTarget.dataset.item);
     me.setData({
+      value: e.currentTarget.dataset.item,
       activeIndex: e.currentTarget.dataset.index
     })
   },
@@ -60,7 +145,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    that.setData({
+      baseUrl: app.globalData.baseUrl
+    })
+    if(app.globalData.token!=''){
+      that.getMoney();
+    }
+    else {
+      app.getUser(that.getMoney);
+    }
   },
 
   /**
@@ -74,7 +168,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+   // this.getUser();
+    this.setData({
+      show:false
+    })
   },
 
   /**

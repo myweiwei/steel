@@ -2,8 +2,9 @@
 App({
   globalData:{
     userId:'',
-    baseUrl: 'http://192.168.1.140:50518/api',
-    socketIp:"ws://192.168.1.140:5555/websocket/",
+    // baseUrl:  'https://eahost.lileiit.com/api',
+    baseUrl: 'http://192.168.1.7:1119',
+    socketIp: "wss://eahost.lileiit.com/websocket/",
     token:"",
     headerHeight: 0,
     statusBarHeight: 0,
@@ -32,7 +33,7 @@ App({
         headHeight = 64
       }
       this.globalData.headerHeight = headHeight
-      this.globalData.statusBarHeight = statusBarHeight
+      this.globalData.statusBarHeight = statusBarHeight+3
     }
   },
   getUser: function (callback){
@@ -42,7 +43,7 @@ App({
         if (res.code) {
           //通过wx.login内置函数，得到临时code码
           wx.request({
-            url: me.globalData.baseUrl + '/ea-service-personal/personal/login/' + res.code,
+            url: me.globalData.baseUrl + '/personal/login/' + res.code,
             method: "get",
             data: {
             },
@@ -58,7 +59,7 @@ App({
       }
     });
   },
-  wxRequest(method, url, data, callback, errFun) {
+  wxRequest(method, url, data, callback, callback1,errFun) {
     let me = this;
     wx.request({
       url: me.globalData.baseUrl+url,
@@ -70,10 +71,25 @@ App({
       },
       dataType: 'json',
       success: function (res) {
-        callback(res);
+        if(res.data.status==200){
+          callback(res);
+        }
+        else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+          setTimeout(function(){
+            callback1(res)
+          },2000)
+        }
       },
       fail: function (err) {
-        errFun(err);
+        //errFun(err);
+        wx.showToast({
+          title: "服务器异常，请稍后再试",
+          icon: 'none'
+        })
       }
     })
   },

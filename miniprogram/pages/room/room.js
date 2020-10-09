@@ -11,6 +11,8 @@ Page({
       userID: '', // 必要参数 用户 ID 可以由您的帐号系统指定
       userSig: '', // 必要参数 身份签名，相当于登录密码的作用
       template: '', // 必要参数 组件模版，支持的值 1v1 grid custom ，注意：不支持动态修改, iOS 不支持 pusher 动态渲染
+      teacherId:'',
+      icon:''
     },
     showTipToast: false,
     subscribeList: {},
@@ -28,6 +30,8 @@ Page({
     this.template = params.template
     if (params.template === 'grid') {
       this.data.rtcConfig = {
+        teacherId: params.teacherId,
+        icon:params.icon,
         sdkAppID: params.sdkAppID, // 您的实时音视频服务创建应用后分配的 sdkAppID
         userID: params.userID,
         userSig: params.userSig,
@@ -61,6 +65,8 @@ Page({
       }
     } else {
       this.data.rtcConfig = {
+        teacherId: params.teacherId,
+        icon: params.icon,
         sdkAppID: params.sdkAppID, // 您的实时音视频服务创建应用后分配的 sdkAppID
         userID: params.userID,
         userSig: params.userSig,
@@ -265,6 +271,8 @@ Page({
     })
     // querystring 只支持传递 String 类型, 注意类型转换
     this.enterRoom({
+      teacherId:options.teacherId,
+      icon:unescape(options.icon),
       roomID: Number(options.roomID),
       userID: options.userID,
       template: options.template,

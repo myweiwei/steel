@@ -3,12 +3,14 @@
     "van-button": "@vant/weapp/button/index",
     "van-search": "@vant/weapp/search/index",
     "van-icon": "@vant/weapp/icon/index",
-    "van-field": "@vant/weapp/field/index"
+    "van-field": "@vant/weapp/field/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index"
   },
   "navigationBarBackgroundColor": "#1c43aa",
   "navigationBarTitleText": "",
   "navigationBarTextStyle": "white",
   "backgroundColor": "#f5f5f5",
-  "backgroundTextStyle": "light"
-  
+  "backgroundTextStyle": "light",
+  "navigationStyle": "custom"
 }

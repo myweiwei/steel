@@ -1,0 +1,44 @@
+<!--pages/index/teacher/teacher.wxml-->
+<view class='teacher'>
+  <view style='height:10%;'>
+    <van-search
+      value="{{ goodAt }}"
+      placeholder="擅长领域"
+      use-action-slot
+      bind:change="onChange"
+    >
+      <view slot="action" bind:tap="onClick">搜索</view>
+    </van-search>
+  </view>
+  <scroll-view scroll-y="true" style="height:90%;" >
+    <view class='list flexStart' wx:for='{{teacherList}}' wx:key='{{teacherId}}'>
+      <image src='{{item.headIcon}}' class='head'></image>
+      <view style='margin-left:20rpx;width:100%;box-sizing:border-box'>
+        <view class='zw'>{{item.realName}}</view>
+        <view class='info'>{{item.teacherDescription}}</view>
+        <text class='company'>{{item.teacherGoodAt}}</text>
+        <view class='gt_btn'>
+          <view class='flexBetween btn1'>
+            <view class='flexStart'>
+              <text>好评率</text>
+              <text class='color-orange'>{{item.favorableRate?item.favorableRate:0}}%</text>
+            </view>
+            <view class='flexStart'>
+              <text>已帮助</text>
+              <text>{{item.solveCount?item.solveCount:0}}</text>人
+            </view>
+          </view>
+          <view class='flexBetween' style='width:100%'>
+            <view class='jq'>{{item.slovePrice}}元
+            /
+            分钟</view>
+            <view class='image' data-id='{{item.teacherId}}' catchtap="toZx">
+              <image src='../../../images/index/btnBg.png'></image>
+              <view>立即咨询</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

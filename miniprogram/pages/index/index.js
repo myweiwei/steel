@@ -3,11 +3,13 @@ const app = getApp()
 
 Page({
   data: {
+    latitude:'',
+    longitude:'',
     baseUrl:'',
     background: [],
-    indicatorDots: true,
+    indicatorDots: false,
     vertical: false,
-    autoplay: false,
+    autoplay: true,
     interval: 2000,
     duration: 500,
     msgList: [
@@ -16,20 +18,142 @@ Page({
       { url: "url", title: "恭喜xxx完成任务退回300进入领奖区" }],
     currentIndex:0,
     teacherList:[],
-    val:''
+    val:'',
+    curCity:"",
+    statusBarHeight:0
+  },
+  getLocation: function () {
+    console.log("getLocation...");
+    let vm = this;
+    wx.getSetting({
+      success: (res) => {
+        console.log(JSON.stringify(res))
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+          wx.showModal({
+            title: '请求授权当前位置',
+            content: '需要获取您的地理位置，请确认授权',
+            success: function (res) {
+              if (res.cancel) {
+                wx.showToast({
+                  title: '拒绝授权',
+                  icon: 'none',
+                  duration: 1000
+                })
+              } else if (res.confirm) {
+                wx.openSetting({
+                  success: function (dataAu) {
+                    if (dataAu.authSetting["scope.userLocation"] == true) {
+                      wx.showToast({
+                        title: '授权成功',
+                        icon: 'success',
+                        duration: 1000
+                      })
+                      //再次授权，调用wx.getLocation的API
+                      vm.getLocationFunc();
+                    } else {
+                      wx.showToast({
+                        title: '授权失败',
+                        icon: 'none',
+                        duration: 1000
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == undefined) {
+          //调用wx.getLocation的API
+          vm.getLocationFunc();
+        }
+        else {
+          //调用wx.getLocation的API
+          vm.getLocationFunc();
+        }
+      }
+    })
+  },
+  // 微信获得经纬度
+  getLocationFunc: function () {
+    let vm = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        console.log("进来了");
+        console.log(JSON.stringify(res))
+        var latitude = res.latitude
+        var longitude = res.longitude
+
+        console.log("wei:" + latitude);
+        console.log(longitude);
+        vm.setData({longitude:res.longitude,latitude:res.latitude});
+        var speed = res.speed
+        var accuracy = res.accuracy;
+        vm.getLocal(latitude, longitude)
+      },
+      fail: function (res) {
+        console.log('fail' + JSON.stringify(res))
+      }
+    })
+  },
+  getLocal: function (latitude, longitude){
+    let that=this;
+    const url = `https://api.map.baidu.com/reverse_geocoding/v3/?ak=FTqHSN5H275UH2yIbPnMlE7qHBnb7etT&output=json&coordtype=wgs84ll&location=${latitude},${longitude}`;
+    const ak = 'FTqHSN5H275UH2yIbPnMlE7qHBnb7etT';
+    //小程序的ajax请求需要在后台安全域名配置增加 开发测试中在详情里勾选-不校验合法域名即可
+    if (app.globalData.currCity) {
+      this.setData({
+        curCity: app.globalData.currCity
+      })
+    }
+    else {
+      wx.request({
+        url,
+        data: {},
+        success: function (res) {
+          if (res.data.status == "0") {
+            console.log(res.data)
+            res.data.result.addressComponent.city = res.data.result.addressComponent.city.replace('市', '')
+            that.setData({
+              curCity: res.data.result.addressComponent.city
+            });
+            wx.hideLoading()
+          } else {
+            that.setData({
+              curCity: '未知',
+            });
+            wx.hideLoading()
+          }
+        }
+      })
+    }
+  },
+  toInfo:function(e){
+    let me=this;
+    console.log(e.currentTarget.dataset.id)
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/index/teacherInfo/teacherInfo?id='+id
+    })
+  },
+  chooseAddress:function(e){
+    let me=this;
+    wx.navigateTo({
+      url: '/pages/switchCity/switchCity?curr=' + e.currentTarget.dataset.curr
+    })
   },
   onChange:function(val){
     let me=this;
-    console.log(val)
     me.setData({
       val: val.detail
     })
   },
   submit:function(){
     let me=this;
-    app.wxRequest('get', '/ea-service-personal/personal/teacherInfoByUserId/', {}, function (data) {
+    app.wxRequest('get', '/personal/teacherInfoByUserId/', {}, function (data) {
+      console.log(data.data)
       wx.navigateTo({
-          url: '/pages/consult/restroom/restroom?userId='+ data.data.data.teacherId+'&restroomId='+me.data.val
+        url: '/pages/consult/restroom/restroom?teacherId=' + data.data.data.teacherId + '&restroomId=' + me.data.val+'&userId=' + data.data.data.teacherId
       })
     })
   },
@@ -55,12 +179,23 @@ Page({
       }
       else {
         wx.navigateTo({
-          url: '/pages/consult/restroom/restroom?userId=' + data.data.data.userId + '&restroomId=' + data.data.data.restroomId
+          url: '/pages/consult/restroom/restroom?userId=' + data.data.data.userId + '&restroomId=' + data.data.data.restroomId + '&teacherId=' + e.currentTarget.dataset.id
         })
       }
     })
   },
-  onLoad: function() {
+  toTeacher:function(){
+    wx.navigateTo({
+      url: '/pages/index/teacher/teacher'
+    })
+  },
+  onLoad: function(option) {
+    console.log(app.globalData.currCity);
+    if (app.globalData.currCity){
+      this.setData({
+        curCity:app.globalData.currCity
+      })
+    }
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -74,7 +209,6 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              console.log(res);
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
@@ -87,7 +221,7 @@ Page({
   },
   getBanner:function(){
     let me = this;
-    app.wxRequest('get', '/ea-service-other/other/banners', {}, function (data) {
+    app.wxRequest('get', '/other/banners', {}, function (data) {
       if (data.statusCode == 200) {
         me.setData({
           background:data.data.data
@@ -99,9 +233,8 @@ Page({
   },
   getTeacher:function(){
     let me = this;
-    app.wxRequest('get', '/ea-service-consult/consult/teachers', {}, function (data) {
+    app.wxRequest('get', '/consult/teachers', {}, function (data) {
       if (data.statusCode == 200) {
-        console.log(data);
         me.setData({
           teacherList:data.data.data
         })
@@ -112,8 +245,14 @@ Page({
   },
   funcList:function(){
     let me=this;
+    console.log(app.globalData);
+    me.setData({
+      statusBarHeight: app.globalData.statusBarHeight
+    })
     me.getBanner();
     me.getTeacher();
+    console.log("invoke location");
+    me.getLocation()
   },
   handleChange: function (e) {
     this.setData({
@@ -130,6 +269,7 @@ Page({
     }
     else {
       that.funcList()
+      that.getLocation()
     }
     
   },
@@ -155,76 +295,11 @@ Page({
       })
     }
   },
-
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
+  goEnterprise:function(){
+    var me = this;
+    wx.navigateTo({
+      url: '/pages/enterprise/enterprise?longtitude=' + me.data.longitude + "&latitude=" + me.data.latitude
     })
-  },
-
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-        
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-            
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
+  }
 
 })
