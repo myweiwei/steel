@@ -79,9 +79,11 @@ App({
             title: res.data.msg,
             icon: 'none'
           })
-          setTimeout(function(){
-            callback1(res)
-          },2000)
+          if (callback1){
+            setTimeout(function () {
+              callback1(res)
+            }, 2000)
+          }
         }
       },
       fail: function (err) {

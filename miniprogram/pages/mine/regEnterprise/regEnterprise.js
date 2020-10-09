@@ -25,7 +25,8 @@ Page({
     liclass:{},
     type:'',
     fileList1:[],
-    iconPath:''
+    iconPath:'',
+    fileArr1:[]
   },
   
   onPhoneChange:function(event){
@@ -38,73 +39,123 @@ Page({
   },
   submit:function(){
     let me=this;
-    me.validateParam();
-    if(me.data.fileList[0] == null){
-      //如果没有上传LOGO，就不走上传逻辑
-      me.submitForm();
+    var flag=me.validateParam();
+    if (flag!=false){
+      if (!me.data.fileList.length) {
+        //如果没有上传LOGO，就不走上传逻辑
+        me.data.iconPath = '';
+        me.uploadFiles();
+      }
+      else {
+        wx.uploadFile({
+          url: app.globalData.baseUrl + '/dynamic/fileupload',
+          filePath: me.data.fileList[0].path,
+          name: 'file',
+          formData: {
+          },
+          header: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': app.globalData.token
+          },
+          success: function (res) {
+            me.setData({
+              iconPath: JSON.parse(res.data).data
+            });
+            me.uploadFiles();
+          }, fail: function (err) {
+          }
+        })
+      }
     }
-
-    // wx.uploadFile({
-    //   url: app.globalData.baseUrl + '/dynamic/fileupload',
-    //   filePath: me.data.fileList[0].path,
-    //   name: 'file',
-    //   formData: {
-    //   },
-    //   header: {
-    //     "Content-Type": "multipart/form-data",
-    //     'Authorization': app.globalData.token
-    //   },
-    //   success: function (res) {
-    //     me.setData({
-    //       iconPath:JSON.parse(res.data).data
-    //     });
-    //      //上传图片后，拿到图片地址提交
-    //      console.log("选中" + me.enterpriseName);
-    //      console.log("选中" + me.address);
-    //      console.log("选中" + me.phone);
-    //      console.log("选中" + me.number);
-    //      console.log("选中" + me.liList);
-    //      var requestParam = {};
-    //      requestParam.enterpriseLogo = me.iconPath;
-    //      requestParam.enterpriseName = "";
-    //      requestParam.longitude = "";
-
-
-
-    //   }, fail: function (err) {
-    //   }
-    // })
+  },
+  upFile: function (path, i) {
+    let me = this;
+    let arr = [];
+    console.log(path)
+    arr = me.data.fileArr1;
+    return new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: app.globalData.baseUrl + '/dynamic/fileupload',
+        filePath: path,
+        name: 'file',
+        formData: {
+        },
+        header: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': app.globalData.token
+        },
+        success: function (res) {
+          arr.push(JSON.parse(res.data).data);
+          if (i == 1 && res.statusCode == 200) {
+            me.setData({
+              fileArr1: arr
+            })
+            me.submitForm();
+          }
+          resolve('ok');
+        }, fail: function (err) {
+          reject();
+        }
+      })
+    })
+  },
+  uploadFiles: async function () {
+    var me = this;
+    wx.showLoading({
+      title: '上传中',
+    })
+    //将保存的图片路径用来循环
+    if (me.data.fileList1.length) {
+      var arr = [];
+      let flag = 0;
+      for (let i = 0; i < me.data.fileList1.length; i++) {
+        if (i == me.data.fileList1.length - 1) {
+          flag = 1;
+        }
+        await me.upFile(me.data.fileList1[i].path, flag)
+      }
+    } else {
+      console.log("没有上传图片")
+    }
 
   },
   validateParam:function(){
     let me = this;
-    if(me.data.enterpriseName == ""){
+    if (me.data.enterpriseName == "") {
       wx.showToast({
-        title:  "企业名称不能为空",
+        title: "企业名称不能为空",
         icon: 'none',
         duration: 2000//持续的时间
       })
       return false;
     }
-    if(me.data.address == ""){
+    if (me.data.address == "") {
       wx.showToast({
-        title:  "企业地址不能为空",
+        title: "企业地址不能为空",
         icon: 'none',
         duration: 2000//持续的时间
       })
       return false;
     }
-    if(me.data.phone == ""){
+    if (me.data.phone == "") {
       wx.showToast({
-        title:  "联系方式不能为空",
+        title: "联系方式不能为空",
         icon: 'none',
         duration: 2000//持续的时间
       })
       return false;
     }
-    if(me.data.type == ""){
+    if (me.data.type == "") {
       wx.showToast({
-        title:  "企业类型不能为空",
+        title: "企业类型不能为空",
+        icon: 'none',
+        duration: 2000//持续的时间
+      })
+      return false;
+    }
+    if (!me.data.fileList1.length) {
+      wx.showToast({
+        title: "请至少上传一张营业执照",
         icon: 'none',
         duration: 2000//持续的时间
       })
@@ -120,8 +171,10 @@ Page({
       "latitude":me.data.latitude,
       "enterpriseAddress":me.data.address,
       "enterpriseTelephone":me.data.phone,
-      "enterpriseScale":me.data.number
-      // "enterpriseType":me.data.type
+      "enterpriseScale":me.data.number,
+      "enterpriseType": me.data.type.toString(),
+      "enterpriseLogo": me.data.iconPath,
+      "businessLicense": me.data.fileArr1
     }, 
     function (data) {
       if (data.data.status == 200) {
@@ -184,7 +237,7 @@ Page({
   //营业执照
   afterRead1: function (e) {
     let me = this;
-    let arr = [];
+    let arr = me.data.fileList1;
     arr.push(e.detail.file);
     me.setData({
       fileList1: arr
@@ -192,7 +245,9 @@ Page({
   },
   delImg1: function (e) {
     let me = this;
-    let arr = [];
+    let arr =me.data.fileList1;
+    arr.splice(e.detail.index,1);
+    console.log(e.detail.index);
     me.setData({
       fileList1: arr
     })
