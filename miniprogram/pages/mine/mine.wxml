@@ -1,8 +1,8 @@
 <!--pages/mine/mine.wxml-->
 <view class='my'>
 <!-- <button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">aaa</button> -->
-  <view class='top'>
-    <!-- <van-cell-group>
+ <view class='top'> 
+ <van-cell-group>
       <van-field
         value="{{ value }}"
         placeholder="请输入充值金额"
@@ -10,17 +10,17 @@
         bind:change="onChange"
       />
     </van-cell-group>
-    <van-button type="default" bindtap='addPrice'>充值</van-button> -->
-    <view class='flexStart'>
+    <van-button type="default" bindtap='addPrice'>充值</van-button> 
+ <view class='flexStart'>
       <view class='user'>
         <open-data type="userAvatarUrl"></open-data>
       </view>
       <view>
         <view class='flexStart'>
-            <open-data type="userNickName"></open-data>
-            <!-- <image  class='sm' src='../../images/my/my_03.png'></image>
-            <text class='smbj'>已实名</text> -->
-        </view>
+            <open-data type="userNickName"></open-data> 
+            <image  class='sm' src='../../images/my/my_03.png'></image>
+            <text class='smbj'>已实名</text> 
+    </view>
         <view class='flexStart' style='margin-top:10rpx'>
           <text class='name1'>余额(元)
             <text wx:if='{{showPwd=="true"}}'>{{money}}</text>
@@ -31,8 +31,10 @@
         </view>
       </view>
     </view>
-  </view>
-  <view class='bottom'>
+  </view> 
+
+  
+ <view class='bottom'>
     <view class='bottomBox flexCenter'>
       <view wx:for='{{iconList}}' wx:key='{{icon}}' class='lilist {{item.icon}}' data-name='{{item.name}}' bindtap="myPop">
         <view class='image'>
@@ -41,7 +43,7 @@
         <text>{{item.name}}</text>
       </view>
     </view>
-  </view>
+  </view> 
 </view>
 <van-popup
   show="{{ show }}"
@@ -59,4 +61,4 @@
       <van-button color="linear-gradient(to right, #4bb0ff, #6149f6)" round size='large' bindtap='addPrice'>提交</van-button>
     </view>
   </view>
-</van-popup>
+</van-popup> 

@@ -8,7 +8,7 @@
   <view wx:for="{{enterpriseList}}" wx:for-item="item">
     <view class="top">
       <view class="left">
-        <image src="../../images/enterprise/biaozhi.png" class="logo"></image>
+        <image src="../../../images/enterprise/biaozhi.png" class="logo"></image>
       </view>
       <view class="middle">
         <view style="font-weight:bold; font-size:29rpx; color:#000000'">{{item.enterpriseName}}</view>
@@ -16,11 +16,11 @@
         <view style="margin-top:8rpx;">{{item.address}}</view>
         <view style="display:flex; margin-top:8rpx;">
           <view style="margin-right:20rpx;">
-            <image src="../../images/enterprise/see.png" class="see"></image>
+            <image src="../../../images/enterprise/see.png" class="see"></image>
             <text style="color:#6f6f6f; margin-left:7rpx;">{{item.see}}</text>
           </view>
           <view>
-           <image src="../../images/enterprise/follow.png" class="follow"></image>
+           <image src="../../../images/enterprise/follow.png" class="follow"></image>
            <text style="color:#6f6f6f; margin-left:7rpx;">{{item.follow}}</text>
           </view>
         </view>

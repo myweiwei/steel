@@ -122,6 +122,21 @@
 					"id": -1,
 					"name": "pages/mine/regEnterprise/regEnterprise",
 					"pathName": "pages/mine/regEnterprise/regEnterprise",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "pages/goods/goodsManager/goodsManager",
+					"pathName": "pages/goods/goodsManager/goodsManager",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goodsAdd/goodsAdd",
+					"pathName": "pages/goods/goodsAdd/goodsAdd",
+					"query": "",
 					"scene": null
 				}
 			]

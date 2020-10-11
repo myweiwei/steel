@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="container">
+<view>
+<van-search value="{{ keyword }}" placeholder="请输入搜索关键词" bind:change="onSearchChange"/>
+<van-button round type="info" size="small" bind:click="search">搜索</van-button>
+</view>
+
+  <view wx:for="{{enterpriseList}}" wx:for-item="item">
+    <view class="top">
+      <view class="left">
+        <image src="../../../images/enterprise/biaozhi.png" class="logo"></image>
+      </view>
+      <view class="middle">
+        <view style="font-weight:bold; font-size:29rpx; color:#000000'">{{item.enterpriseName}}</view>
+        <view style="margin-top:8rpx;">不锈钢材料厂.化工厂原料厂</view>
+        <view style="margin-top:8rpx;">{{item.address}}</view>
+        <view style="display:flex; margin-top:8rpx;">
+          <view style="margin-right:20rpx;">
+            <image src="../../../images/enterprise/see.png" class="see"></image>
+            <text style="color:#6f6f6f; margin-left:7rpx;">{{item.see}}</text>
+          </view>
+          <view>
+           <image src="../../../images/enterprise/follow.png" class="follow"></image>
+           <text style="color:#6f6f6f; margin-left:7rpx;">{{item.follow}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="right">{{item.distance}}</view>
+    </view>
+    <view class="bottom">
+      <scroll-view  scroll-x >
+      <view style="display:flex;">
+        <view style="margin-right:170rpx;">
+          <view></view>
+          <view></view>
+          <view></view>
+        </view>
+
+        <view wx:for="{{item.goodsList}}" wx:for-item="goodsItem">
+          <view style="margin-right:10rpx;" >
+            <image src="{{goodsItem.image}}" class="goods"></image>
+            <view class="goodsName">{{goodsItem.name}}</view>
+            <view class="price">￥{{goodsItem.price}}</view>
+          </view>
+        </view>
+      
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

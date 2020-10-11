@@ -1,0 +1,49 @@
+<view>
+  <van-cell-group>
+      <van-field
+            value="{{ enterpriseName }}"
+            clearable
+            label="商品名称"
+            placeholder="请输入商品名称"
+            title-width='150rpx'
+            bind:change="onGoodsNameChange"
+          />
+           <van-field
+            value="{{ enterpriseName }}"
+            clearable
+            label="商品描述"
+            placeholder="请输入商品描述"
+            title-width='150rpx'
+            bind:change="onDescriptionChange"
+          />
+           <van-field
+            value="{{ enterpriseName }}"
+            clearable
+            label="售价"
+            placeholder="请输入售价"
+            title-width='150rpx'
+            bind:change="onPriceChange"
+          />
+           <van-field
+            value="{{ enterpriseName }}"
+            clearable
+            label="单位"
+            placeholder="请输入商品单位"
+            title-width='150rpx'
+            bind:change="onUnitChange"
+          />
+          图片。。。。
+           <van-field
+            value="{{ enterpriseName }}"
+            clearable
+            label="状态："
+            placeholder="上架"
+            value="1"
+            title-width='150rpx'
+            bind:change="onStatusChange"
+          />
+
+     
+</van-cell-group>
+  <input type="button" bindtap="addGoods" bind:click="addGoods" value="添加商品">添加商品</input>
+</view>

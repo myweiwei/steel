@@ -298,7 +298,7 @@ Page({
   goEnterprise:function(){
     var me = this;
     wx.navigateTo({
-      url: '/pages/enterprise/enterprise?longtitude=' + me.data.longitude + "&latitude=" + me.data.latitude
+      url: '/pages/enterprise/searchEnterprise/searchEnterprise?longtitude=' + me.data.longitude + "&latitude=" + me.data.latitude
     })
   }
 

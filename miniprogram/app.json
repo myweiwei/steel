@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/enterprise/enterprise",
+    "pages/enterprise/searchEnterprise/searchEnterprise",
+    "pages/enterprise/enterpriseDetail/enterpriseDetail",
     "pages/consult/restroom/restroom",
     "pages/room/room",
     "pages/switchCity/switchCity",
@@ -17,7 +18,9 @@
     "pages/mine/mine",
     "pages/mine/regTeacher/regTeacher",
     "pages/mine/regEnterprise/regEnterprise",
-    "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess"
+    "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
+    "pages/goods/goodsManager/goodsManager",
+    "pages/goods/goodsAdd/goodsAdd"
   ],
   "subpackages": [
     {
