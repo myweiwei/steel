@@ -1,31 +1,29 @@
 <view class="bg">
-
-  <view class="goodsItem" wx:for="{{list}}" wx:for-item="item">
-    <view style="display:flex; margin-top:20rpx; justify-content:space-between">
-      <image src="../../../images/index/laba.png" class="image"></image>
-      <view>
-        <view>{{item.name}}</view>
-        <view>{{item.description}}</view>
-        <view>售价：<text style="color:red;">￥{{item.price}}</text>     单位：<text style="color:red;">{{item.unit}}</text></view>
+  <scroll-view scroll-y="true" style="height:100%;padding-bottom:90rpx;box-sizing:border-box">
+    <view class="goodsItem" wx:for="{{list}}" wx:for-item="item">
+      <view style="display:flex; margin-top:20rpx; justify-content:flex-start;position:relative;">
+        <view class="image">
+          <van-image width="100%" height="100%" fit='cover' src="{{item.image}}" />
+        </view>
+        <view style="flex:1">
+          <view class='name'>{{item.name}}</view>
+          <view class='desc'>{{item.description}}</view>
+          <view class='price'>售价：<text style="color:#e11a1a;">￥{{item.price}}</text>     单位：<text style="color:#e11a1a;">{{item.unit}}</text></view>
+        </view>
+        <view style="width:150rpx; height:130rpx;">
+          <image wx:if="{{item.status == 0}}" src="../../../images/goods/yixiajia.png" style="width:150rpx; height:130rpx;" />
+        </view>
       </view>
-      <view style="width:150rpx; height:130rpx;">
-        <image wx:if="{{item.status == 0}}" src="../../../images/goods/yixiajia.png" style="width:150rpx; height:130rpx;" />
-
+      <view class="line"></view>
+      <view style="display:flex; justify-content:flex-end; padding-bottom:25rpx;box-sizing:border-box">
+        <van-button round size='small' type="warning" color='#ececec' custom-style='color:#a2a2a2' bindtap="onDelete" data-id="{{item.id}}">删  除</van-button>
+        <van-button  round size='small' wx:if="{{item.status == 1}}" type="info" bindtap="onUpdownGoods" data-id="{{item.id}}">下  架</van-button>
+        <van-button  round size='small' wx:if="{{item.status == 0}}" type="info"  bindtap="onUpdownGoods" data-id="{{item.id}}">上  架</van-button>
+        <van-button type="info"  round size='small' color="#1d88f8">修  改</van-button>
       </view>
+    </view> 
+    <view class='footer'>
+      <van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='addGoods'>新增商品</van-button>
     </view>
-    <view class="line"></view>
-    <view style="display:flex; justify-content:flex-end; padding-bottom:25rpx;">
-      <van-button type="info" color="#ececec" bindtap="onDelete" data-id="{{item.id}}">删  除</van-button>
-      <van-button wx:if="{{item.status == 1}}" type="info" color="#1d88f8" bindtap="onUpdownGoods" data-id="{{item.id}}">下  架</van-button>
-      <van-button wx:if="{{item.status == 0}}" type="info" color="#1d88f8" bindtap="onUpdownGoods" data-id="{{item.id}}">上  架</van-button>
-      <van-button type="info" color="#1d88f8">修  改</van-button>
-    </view>
-  </view>
-
-
-
-
-  <view>
-    <van-button type="default" bind:click="addGoods">新增商品</van-button>
-  </view>
+  </scroll-view>
 </view>
