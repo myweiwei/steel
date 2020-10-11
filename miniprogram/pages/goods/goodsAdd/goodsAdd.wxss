@@ -1,1 +1,19 @@
 /* pages/goods/goodsAdd/goodsAdd.wxss */
+.goodAdd {
+  padding:0;margin:0;
+}
+.van-field__input--disabled {
+  color:#1d1d1d!important;
+}
+.footer {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:99%;
+  padding:0 1%;
+  box-sizing: border-box;
+}
+.van-button--large {
+  height:80rpx!important;
+  line-height: 80rpx!important;
+}

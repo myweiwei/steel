@@ -92,13 +92,6 @@
 				},
 				{
 					"id": -1,
-					"name": "packageA/pages/regVipEnterprise/regVipEnterprise",
-					"pathName": "packageA/pages/regVipEnterprise/regVipEnterprise",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
 					"pathName": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
 					"query": "",
@@ -106,27 +99,13 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/enterprise/enterprise",
-					"pathName": "pages/enterprise/enterprise",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 7,
-					"name": "pages/mine/regEnterprise/regEnterprise",
-					"pathName": "pages/mine/regEnterprise/regEnterprise",
+					"name": "pages/goods/goodsAdd/goodsAdd",
+					"pathName": "pages/goods/goodsAdd/goodsAdd",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/mine/regEnterprise/regEnterprise",
-					"pathName": "pages/mine/regEnterprise/regEnterprise",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 9,
 					"name": "pages/goods/goodsManager/goodsManager",
 					"pathName": "pages/goods/goodsManager/goodsManager",
 					"query": "",
