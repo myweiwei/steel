@@ -1,49 +1,70 @@
-<view>
-  <van-cell-group>
+<view class='goodAdd'>
+  <view style='width:98%;margin-right:1%;'>
+    <van-cell-group>
       <van-field
-            value="{{ enterpriseName }}"
-            clearable
-            label="商品名称"
-            placeholder="请输入商品名称"
-            title-width='150rpx'
-            bind:change="onGoodsNameChange"
-          />
-           <van-field
-            value="{{ enterpriseName }}"
-            clearable
-            label="商品描述"
-            placeholder="请输入商品描述"
-            title-width='150rpx'
-            bind:change="onDescriptionChange"
-          />
-           <van-field
-            value="{{ enterpriseName }}"
-            clearable
-            label="售价"
-            placeholder="请输入售价"
-            title-width='150rpx'
-            bind:change="onPriceChange"
-          />
-           <van-field
-            value="{{ enterpriseName }}"
-            clearable
-            label="单位"
-            placeholder="请输入商品单位"
-            title-width='150rpx'
-            bind:change="onUnitChange"
-          />
-          图片。。。。
-           <van-field
-            value="{{ enterpriseName }}"
-            clearable
-            label="状态："
-            placeholder="上架"
-            value="1"
-            title-width='150rpx'
-            bind:change="onStatusChange"
-          />
-
-     
-</van-cell-group>
-  <input type="button" bindtap="addGoods" bind:click="addGoods" value="添加商品">添加商品</input>
+        value="{{ goodsName }}"
+        clearable
+        label="商品名称"
+        placeholder="请输入商品名称"
+        bind:change="onGoodsNameChange"
+        title-width='150rpx'
+      />
+        <van-field
+        value="{{ description }}"
+        clearable
+        type="textarea"
+        label="商品描述"
+        placeholder="请输入商品描述"
+        title-width='150rpx'
+        bind:change="onDescriptionChange"
+        autosize
+      />
+        <van-field
+        value="{{ price }}"
+        clearable
+        label="售价"
+        placeholder="请输入售价"
+        title-width='150rpx'
+        bind:change="onPriceChange"
+      />
+        <van-field
+        value="{{ unit }}"
+        clearable
+        label="单位"
+        placeholder="请输入商品单位"
+        title-width='150rpx'
+        bind:change="onUnitChange"
+      />
+        <van-field
+        value="{{ status }}"
+        clearable
+        label="状态"
+        icon="arrow"
+        title-width='150rpx'
+        bindtap='chooseType'
+        disabled
+      />
+    </van-cell-group>
+    <view style='margin-top:20rpx;display:flex;align-items:center'>
+      <label style='width:150rpx;color:#1d1d1d;font-size:28rpx;margin:0  0 0 4%'>商品图片</label>
+    <van-uploader file-list="{{ fileList }}" data-type='headicon' deletable="{{ true }}" max-count="1" style='width:150rpx;height:150rpx;' bind:after-read="afterRead" bind:delete='delImg' />
+    </view>
+    <van-popup
+        show="{{ show }}"
+        position="bottom"
+        round
+        custom-style="height: 40%;"
+      >
+       <van-picker
+          show-toolbar
+          title="选择状态"
+          columns="{{ statusList }}"
+          bind:cancel="onCancel"
+          bind:confirm="onConfirm"
+        />
+      </van-popup>
+      <view class='footer'>
+        <van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='addGoods'>新增商品</van-button>
+      </view>
+  </view>
 </view>
