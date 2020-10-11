@@ -8,11 +8,11 @@
   <view wx:for="{{enterpriseList}}" wx:for-item="item">
     <view class="top">
       <view class="left">
-        <image src="../../../images/enterprise/biaozhi.png" class="logo"></image>
+        <image src="{{item.enterpriseLogo}}" class="logo"></image>
       </view>
       <view class="middle">
         <view style="font-weight:bold; font-size:29rpx; color:#000000'">{{item.enterpriseName}}</view>
-        <view style="margin-top:8rpx;">不锈钢材料厂.化工厂原料厂</view>
+        <view style="margin-top:8rpx;">{{item.enterpriseType}}</view>
         <view style="margin-top:8rpx;">{{item.address}}</view>
         <view style="display:flex; margin-top:8rpx;">
           <view style="margin-right:20rpx;">

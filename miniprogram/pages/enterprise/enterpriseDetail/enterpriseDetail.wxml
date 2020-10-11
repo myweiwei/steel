@@ -1,51 +1,23 @@
 <!--index.wxml-->
 <view class="container">
-<view>
-<van-search value="{{ keyword }}" placeholder="请输入搜索关键词" bind:change="onSearchChange"/>
-<van-button round type="info" size="small" bind:click="search">搜索</van-button>
-</view>
+  <image src="../../../images/enterprise/mendiantu.png" mode="scaleToFill" class="topPicture"/>
+  <view>基本信息</view>
+  <van-tabs active="a">
+  <van-tab title="标签 1" name="a">
+    <view>企业简介</view>
+    <view>致力于打造全球高端消费服务平台，主要经营不锈钢的加工设备
+制造厂商不锈钢表面处理厂商不锈钢金属加工厂商，锈钢装修工
+程厂商，店内有很多老师傅，可以上门服务，支持定制化。欢迎
+来店体验</view>
+    <scroll-view>图片横向滚动</scroll-view>
+    <view>企业员工</view>
+    <scroll-view>技师横向滚动</scroll-view>
+    <view>企业地址</view>
+    <view>地图</view>
+  </van-tab>
+  <van-tab title="标签 2" name="b">内容 2</van-tab>
+  <van-tab title="标签 3" name="c">内容 3</van-tab>
+</van-tabs>
 
-  <view wx:for="{{enterpriseList}}" wx:for-item="item">
-    <view class="top">
-      <view class="left">
-        <image src="../../../images/enterprise/biaozhi.png" class="logo"></image>
-      </view>
-      <view class="middle">
-        <view style="font-weight:bold; font-size:29rpx; color:#000000'">{{item.enterpriseName}}</view>
-        <view style="margin-top:8rpx;">不锈钢材料厂.化工厂原料厂</view>
-        <view style="margin-top:8rpx;">{{item.address}}</view>
-        <view style="display:flex; margin-top:8rpx;">
-          <view style="margin-right:20rpx;">
-            <image src="../../../images/enterprise/see.png" class="see"></image>
-            <text style="color:#6f6f6f; margin-left:7rpx;">{{item.see}}</text>
-          </view>
-          <view>
-           <image src="../../../images/enterprise/follow.png" class="follow"></image>
-           <text style="color:#6f6f6f; margin-left:7rpx;">{{item.follow}}</text>
-          </view>
-        </view>
-      </view>
-      <view class="right">{{item.distance}}</view>
-    </view>
-    <view class="bottom">
-      <scroll-view  scroll-x >
-      <view style="display:flex;">
-        <view style="margin-right:170rpx;">
-          <view></view>
-          <view></view>
-          <view></view>
-        </view>
-
-        <view wx:for="{{item.goodsList}}" wx:for-item="goodsItem">
-          <view style="margin-right:10rpx;" >
-            <image src="{{goodsItem.image}}" class="goods"></image>
-            <view class="goodsName">{{goodsItem.name}}</view>
-            <view class="price">￥{{goodsItem.price}}</view>
-          </view>
-        </view>
-      
-        </view>
-      </scroll-view>
-    </view>
-  </view>
+<view>两个按钮</view>
 </view>
