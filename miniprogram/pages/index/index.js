@@ -23,11 +23,9 @@ Page({
     statusBarHeight:0
   },
   getLocation: function () {
-    console.log("getLocation...");
     let vm = this;
     wx.getSetting({
       success: (res) => {
-        console.log(JSON.stringify(res))
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
           wx.showModal({
             title: '请求授权当前位置',
