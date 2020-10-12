@@ -122,6 +122,14 @@
 					"id": -1,
 					"name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
 					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"query": "",
 					"scene": null
 				}
 			]

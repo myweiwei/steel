@@ -62,4 +62,8 @@
 </van-tabs>
 
 <view>两个按钮</view>
+  <view style='width:96%;box-sizing:border-box;margin:2%;border-radius:20rpx;overflow:hidden'>
+    <map id="myMap"  scale="14" bindmarkertap="goMap" latitude="{{latitude}}" longitude="{{longitude}}" enable-scroll='{{false}}' bindtap='goMap' markers="{{markers}}"  show-location style="width: 100%; height:300rpx;" />
+
+  </view>
 </view>
