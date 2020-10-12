@@ -5,27 +5,31 @@
 <van-button round type="info" size="small" bind:click="search">搜索</van-button>
 </view>
 
-  <view wx:for="{{enterpriseList}}" wx:for-item="item">
+  <view wx:for="{{enterpriseList}}" wx:for-item="item" class="enterpriseList">
     <view class="top">
-      <view class="left">
-        <image src="{{item.enterpriseLogo}}" class="logo"></image>
-      </view>
-      <view class="middle">
-        <view style="font-weight:bold; font-size:29rpx; color:#000000'">{{item.enterpriseName}}</view>
-        <view style="margin-top:8rpx;">{{item.enterpriseType}}</view>
-        <view style="margin-top:8rpx;">{{item.address}}</view>
-        <view style="display:flex; margin-top:8rpx;">
-          <view style="margin-right:20rpx;">
-            <image src="../../../images/enterprise/see.png" class="see"></image>
-            <text style="color:#6f6f6f; margin-left:7rpx;">{{item.see}}</text>
+      <view class='flexBetween'>
+        <view class='flexStart'>
+          <view class="left">
+            <image src="{{item.enterpriseLogo}}" class="logo"></image>
           </view>
-          <view>
-           <image src="../../../images/enterprise/follow.png" class="follow"></image>
-           <text style="color:#6f6f6f; margin-left:7rpx;">{{item.follow}}</text>
+          <view class="middle">
+            <view style="font-weight:bold; font-size:29rpx; color:#000000;">{{item.enterpriseName}}</view>
+            <view class="fontSizeMiddle enterpriseType">{{item.enterpriseType}}</view>
+            <view style="margin-top:8rpx;" class="fontSizeMiddle">{{item.address}}</view>
+            <view style="display:flex; margin-top:8rpx;">
+              <view style="margin-right:20rpx;">
+                <image src="../../../images/enterprise/see.png" class="see"></image>
+                <text style="color:#6f6f6f; margin-left:7rpx;">{{item.see}}</text>
+              </view>
+              <view>
+              <image src="../../../images/enterprise/follow.png" class="follow"></image>
+              <text style="color:#6f6f6f; margin-left:7rpx;">{{item.follow}}</text>
+              </view>
+            </view>
           </view>
         </view>
+        <view class="right fontSizeMiddle">{{item.distance}}</view>
       </view>
-      <view class="right">{{item.distance}}</view>
     </view>
     <view class="bottom">
       <scroll-view  scroll-x >
@@ -38,9 +42,11 @@
 
         <view wx:for="{{item.goodsList}}" wx:for-item="goodsItem">
           <view style="margin-right:10rpx;" >
-            <image src="{{goodsItem.image}}" class="goods"></image>
+            <image src="{{goodsItem.image}}" class="goods" mode="aspectFit" ></image>
             <view class="goodsName">{{goodsItem.name}}</view>
-            <view class="price">￥{{goodsItem.price}}</view>
+            <view class="price" style="font-weight:bold; font-size:27rpx; margin-bottom:10rpx;">
+            <text style="font-size:22rpx;">￥</text>{{goodsItem.price}}
+            </view>
           </view>
         </view>
       

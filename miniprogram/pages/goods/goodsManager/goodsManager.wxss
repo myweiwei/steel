@@ -38,11 +38,15 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  margin:5rpx 0;
+  margin:10rpx 0;
   color:#474646;
 }
+.goodsImg{
+  border: 1rpx solid #f5f5f5;
+  border-radius: 5rpx;
+}
 .desc,.price {
-  font-size:28rpx;
+  font-size: 25rpx;
 }
 van-button {
   margin:0 10rpx;

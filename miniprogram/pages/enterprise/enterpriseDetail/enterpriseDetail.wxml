@@ -1,22 +1,64 @@
 <!--index.wxml-->
 <view class="container">
   <image src="../../../images/enterprise/mendiantu.png" mode="scaleToFill" class="topPicture"/>
-  <view>基本信息</view>
-  <van-tabs active="a">
-  <van-tab title="标签 1" name="a">
-    <view>企业简介</view>
-    <view>致力于打造全球高端消费服务平台，主要经营不锈钢的加工设备
+
+    <view class="top">
+          <view class="left">
+            <image src="../../../images/enterprise/biaozhi.png" class="logo"></image>
+          </view>
+          <view class="middle">
+            <view style="font-weight:bold; font-size:29rpx; color:#000000;">北京金源不锈钢有限公司</view>
+             <view class="fontSizeMiddle">6KM | 北京市苏州街工厂</view>
+            <view class="fontSizeMiddle enterpriseType">不锈钢材料厂商 . 化工原材料供应商</view>
+            <view>(010)8655266</view>
+          </view>
+    </view>
+
+<van-tabs active="enterprise">
+  <van-tab title="企业概况" name="enterprise">
+  <!--企业简介-->
+  <view style="margin-left:20rpx; margin:20rpx;">
+  <view style="display:flex;">
+    <view style="width:7rpx; height:35rpx; background:red; margin-right:10rpx;"></view>
+    <view style="font-size:28rpx; margin-bottom:20rpx;">企业简介</view>
+  </view>
+    <view style="font-size:26rpx; margin-bottom:20rpx;">致力于打造全球高端消费服务平台，主要经营不锈钢的加工设备
 制造厂商不锈钢表面处理厂商不锈钢金属加工厂商，锈钢装修工
 程厂商，店内有很多老师傅，可以上门服务，支持定制化。欢迎
 来店体验</view>
-    <scroll-view>图片横向滚动</scroll-view>
-    <view>企业员工</view>
-    <scroll-view>技师横向滚动</scroll-view>
-    <view>企业地址</view>
-    <view>地图</view>
+    <scroll-view>
+      <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
+      <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
+      <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx;  margin-right:20rpx;border-radius:5rpx;"/>
+    </scroll-view>
+  </view>
+
+<!--企业员工-->
+    <view style="margin-left:20rpx; margin:20rpx;">
+      <view style="display:flex;">
+        <view style="width:7rpx; height:35rpx; background:red; margin-right:10rpx;"></view>
+        <view style="font-size:28rpx; margin-bottom:20rpx;">企业成员</view>
+      </view>
+      <scroll-view>
+        <view style="width:40%; height:400rpx; border:1rpx solid #e9e9ea">
+         
+        </view>
+      </scroll-view>
+    </view>
+    
+<!--企业地址-->
+    <view style="margin-left:20rpx; margin:20rpx;">
+      <view style="display:flex;">
+        <view style="width:7rpx; height:35rpx; background:red; margin-right:10rpx;"></view>
+        <view style="font-size:28rpx; margin-bottom:20rpx;">企业地址</view>
+      </view>
+      <!--todo.. 待开发地图-->
+    </view>
   </van-tab>
-  <van-tab title="标签 2" name="b">内容 2</van-tab>
-  <van-tab title="标签 3" name="c">内容 3</van-tab>
+
+
+  <van-tab title="经营产品" name="product">内容 2</van-tab>
+  <van-tab title="公司动态" name="dynamic">内容 3</van-tab>
 </van-tabs>
 
 <view>两个按钮</view>

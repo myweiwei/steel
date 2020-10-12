@@ -3,12 +3,12 @@
     <view class="goodsItem" wx:for="{{list}}" wx:for-item="item">
       <view style="display:flex; margin-top:20rpx; justify-content:flex-start;position:relative;">
         <view class="image">
-          <van-image width="100%" height="100%" fit='cover' src="{{item.image}}" />
+          <image width="100%" height="100%" src="{{item.image}}" mode="aspectFit" class="goodsImg"/>
         </view>
         <view style="flex:1">
           <view class='name'>{{item.name}}</view>
           <view class='desc'>{{item.description}}</view>
-          <view class='price'>售价：<text style="color:#e11a1a;">￥{{item.price}}</text>     单位：<text style="color:#e11a1a;">{{item.unit}}</text></view>
+          <view class='price'>售价：<text style="color:#e11a1a; margin-right:25rpx;">￥{{item.price}}</text>单位：<text style="color:#e11a1a;">{{item.unit}}</text></view>
         </view>
         <view style="width:150rpx; height:130rpx;">
           <image wx:if="{{item.status == 0}}" src="../../../images/goods/yixiajia.png" style="width:150rpx; height:130rpx;" />

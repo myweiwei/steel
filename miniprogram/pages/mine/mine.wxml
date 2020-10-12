@@ -2,7 +2,7 @@
 <view class='my'>
 <!-- <button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">aaa</button> -->
  <view class='top'> 
- <van-cell-group>
+ <!-- <van-cell-group>
       <van-field
         value="{{ value }}"
         placeholder="请输入充值金额"
@@ -10,7 +10,7 @@
         bind:change="onChange"
       />
     </van-cell-group>
-    <van-button type="default" bindtap='addPrice'>充值</van-button> 
+    <van-button type="default" bindtap='addPrice'>充值</van-button>  -->
  <view class='flexStart'>
       <view class='user'>
         <open-data type="userAvatarUrl"></open-data>

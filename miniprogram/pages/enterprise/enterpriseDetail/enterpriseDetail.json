@@ -8,5 +8,6 @@
     "van-dropdown-item": "@vant/weapp/dropdown-item/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index"
-  }
+  },
+  "navigationStyle": "custom"
 }

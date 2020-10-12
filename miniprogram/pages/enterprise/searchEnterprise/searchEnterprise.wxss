@@ -1,8 +1,24 @@
+.container{
+  background-color: #f5f5f5;
+}
+.enterpriseList{
+  width: 95%;
+  margin: 0px auto;
+  background:#FFFFFF;
+  margin-bottom:20rpx;
+  border-radius: 20rpx;
+}
+.enterpriseType{
+  width:95%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
 .top{
   display: flex;
   flex-direction:row;
   flex-wrap: nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   padding-top: 20rpx;
   font-size: 26rpx;
@@ -10,15 +26,20 @@
 }
 .top .left{
   margin-left: 20rpx;
-  margin-right: 20rpx;
+  width: 150rpx;
+  box-sizing: border-box;
 }
 .top .middle{
+  width:410rpx;
+  margin-left: 15rpx;
 
 }
 .top .right{
-  padding-top:56rpx;
   color:#6f6f6f;
-  padding-left: 102rpx;
+  box-sizing: border-box;
+}
+.fontSizeMiddle{
+  font-size: 25rpx;
 }
 .top .see{
   width:30rpx; height:20rpx;
@@ -28,13 +49,19 @@
 }
 .top .logo{
   width: 140rpx;
-  height: 140rpx;
+  height: 130rpx;
+  border: 1rpx solid #f5f5f5;
+  border-radius: 20rpx;
 }
 .bottom{
   margin-top: 20rpx;
 }
 .bottom .goods{
-  width:170rpx; height:140rpx;
+  width:170rpx;
+  height:140rpx;
+  background-color: #f8f7f6;
+  border: 1rpx solid #f5f5f5;
+  border-radius: 20rpx;
 }
 .bottom .goodsName{
   color:#323232; 
