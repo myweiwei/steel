@@ -19,7 +19,8 @@ Page({
       { name: "意见反馈", icon: "my_33" },
       { name: "联系我们", icon: "my_36" },
       { name: "注册企业", icon: "my_28" },
-      { name: "商品管理", icon: "my_28" }
+      { name: "商品管理", icon: "my_28" },
+      { name: "展示面管理", icon: "my_28" }
     ],
     priceList: ['10','20','30','50','80','100'],
     activeIndex:0,
@@ -81,16 +82,26 @@ Page({
         phoneNumber: '16619962166',
       })
     }
-    else if (name == "注册企业") {
-      wx.navigateTo({
-        url: "/pages/mine/regEnterprise/regEnterprise",
-      })
-    }
-    else if(name == "商品管理"){
-      wx.navigateTo({
-        url: "/pages/goods/goodsManager/goodsManager",
-      })
-    }
+  },
+  onDynamicManager:function(){
+    wx.navigateTo({
+      url: "/pages/enterprise_dynamic/dynamicManager/dynamicManager"
+    })
+  },
+  onShowManager:function(){
+    wx.navigateTo({
+      url: "/pages/enterprise/enterpriseShow/enterpriseShow"
+    })
+  },
+  onRegister:function(){
+    wx.navigateTo({
+      url: "/pages/mine/regEnterprise/regEnterprise",
+    })
+  },
+  onGoodsManager:function(){
+    wx.navigateTo({
+      url: "/pages/goods/goodsManager/goodsManager",
+    })
   },
   onChange:function(val){
     this.setData({

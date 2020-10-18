@@ -1,0 +1,17 @@
+<!--index.wxml-->
+<view class="container">
+<view style="margin-top:50rpx;"></view>
+<view>门脸图</view>
+<van-uploader  max-count="1" deletable="true"  bind:delete="onDelete" bind:after-read="afterRead">
+    <image style='width:100px;height:100px' src='{{fileList[0].url}}'></image>
+</van-uploader>
+<view>企业介绍</view>
+<textarea color class="textarea-bg" placeholder="描述企业发展历程以及开展业务，还可以上传企业相关图片，荣誉证书等!" bindblur="getDataBindTap" />
+
+ <van-uploader file-list="{{ fileList2 }}" max-count="5" deletable="true"  bind:delete="onDelete2" bind:after-read="afterRead2"/>
+
+ <!---底部按钮--->
+    <view class='footer' style="display:flex;">
+        <van-button color="#1777ff" round size='normal' bindtap="save">保存</van-button>
+    </view>
+</view>

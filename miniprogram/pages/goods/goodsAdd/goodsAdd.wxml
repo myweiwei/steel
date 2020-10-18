@@ -64,7 +64,7 @@
         />
       </van-popup>
       <view class='footer'>
-        <van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='addGoods'>新增商品</van-button>
+        <van-button color="#1777ff" round size='large' bindtap='addGoods'>新增商品</van-button>
       </view>
   </view>
 </view>

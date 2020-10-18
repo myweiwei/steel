@@ -1,7 +1,86 @@
 /* pages/mine/mine.wxss */
+
 .my {
-  height:100%;
+  width: 100%;
+  height: 100%;
+  background: #f4f4f4;
 }
+.pure_top{
+  width:100%;
+  height:22%;
+  background: #1777ff;
+  display:flex;
+}
+.head{
+  color:#FFFFFF;
+  font-size: 30rpx;
+  width:120rpx;
+  height:120rpx;
+  margin-top: 100rpx;
+  margin-left: 50rpx;
+  border-radius: 50%;  
+  border: 1px solid #fff;  
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);  
+  overflow:hidden;  
+  display: block;  
+
+}
+.name{
+  margin-top: 130rpx;
+  margin-left: 50rpx;
+  color:#FFFFFF;
+  font-size: 35rpx;
+}
+.vip{
+  width:100%;
+  height:100rpx;
+  background-image: url(http://ea.lileiit.com/vip.png);
+  background-size:100% 100%;
+  display: flex;
+}
+.mainFun{
+  width:93%;
+  height:12%;
+  margin: 32rpx auto;
+  background: #FFFFFF;
+  border-radius: 15rpx;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);  
+}
+.jishizhongxin_square{
+  width:93%;
+  height:20%;
+  margin: 32rpx auto;
+  background: #FFFFFF;
+  border-radius: 15rpx;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);  
+}
+
+.jishizhongxin{
+  display: flex;
+  flex-direction: row; 
+  justify-content:space-around;
+  color: #484848;
+  padding-top:37rpx;
+  font-size: 26rpx;
+  align-items:center;
+}
+.jishizhongxin_item{
+  flex-direction:column; display:flex; align-items:center;
+}
+.jishizhongxin image{
+  width:60rpx;
+  height:60rpx;
+  margin-bottom: 12rpx;
+}
+
+
+
+
+
+
+
+
+
 .top {
   height:25%;
   padding:30rpx 100rpx;

@@ -1,16 +1,54 @@
+<view class="my">
+  <view class="pure_top">
+    <view class="head">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="name">
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+  <view class="vip">
+    <image src="../../images/my/enterprise_vip.png" mode="aspectFit" style="width:150rpx; height:32rpx; margin-left:75rpx; margin-top:27rpx;"></image>
+    <view style="margin-top:25rpx; color:#d9b588; margin-left:42rpx; font-size:30rpx;">立享6大超值特权</view>
+    <image src="../../images/my/vip_see.png" mode="aspectFit" style="width:170rpx; height:42rpx; margin-left:35rpx; margin-top:25rpx; "></image>
+  </view>
+
+  <view class="mainFun">
+    
+  </view>
+  <view class="jishizhongxin_square">
+    <view style="padding:20rpx;">企业中心</view>
+    <view style="width:100%; height:1rpx; border:1rpx solid #fafafa"></view>
+    <view class="jishizhongxin">
+       <view bindtap="onRegister" class="jishizhongxin_item">
+          <image src="../../images/my/enterprise_icon01.png"/>
+          <view>认证企业</view>
+        </view>
+        <view bindtap="onShowManager" class="jishizhongxin_item">
+           <image src="../../images/my/enterprise_icon02.png"/>
+           <view>展示面管理</view>
+        </view>
+        <view  bindtap="onGoodsManager" class="jishizhongxin_item">
+          <image src="../../images/my/enterprise_icon03.png"/>
+          <view>商品管理</view>
+        </view>
+        <view bindtap="onDynamicManager" class="jishizhongxin_item">
+           <image src="../../images/my/enterprise_icon04.png"/>
+           <view bindtap="">动态管理</view>
+        </view>
+         <view bindtap="goEnterprise" class="jishizhongxin_item">
+           <image src="../../images/my/enterprise_icon05.png"/>
+           <view>员工管理</view>
+        </view>
+    </view>
+  </view>
+</view>
+
+
 <!--pages/mine/mine.wxml-->
-<view class='my'>
-<!-- <button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">aaa</button> -->
+<!-- <view class='my'>
+<button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">aaa</button>
  <view class='top'> 
- <!-- <van-cell-group>
-      <van-field
-        value="{{ value }}"
-        placeholder="请输入充值金额"
-        border="{{ false }}"
-        bind:change="onChange"
-      />
-    </van-cell-group>
-    <van-button type="default" bindtap='addPrice'>充值</van-button>  -->
  <view class='flexStart'>
       <view class='user'>
         <open-data type="userAvatarUrl"></open-data>
@@ -61,4 +99,4 @@
       <van-button color="linear-gradient(to right, #4bb0ff, #6149f6)" round size='large' bindtap='addPrice'>提交</van-button>
     </view>
   </view>
-</van-popup> 
+</van-popup>  -->

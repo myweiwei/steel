@@ -63,12 +63,12 @@ Page({
   onPriceChange:function(e){
     var me = this;
     var money=''
-    if (/^(\d?)+(\.\d{0,2})?$/.test(e.detail)) { //正则验证，提现金额小数点后不能大于两位数字
-      money = e.detail;
-    } else {
-      money = e.detail.substring(0, e.detail.length - 1);
-    }
-    me.setData({ price: money});
+    // if (/^(\d?)+(\.\d{0,2})?$/.test(e.detail)) { //正则验证，提现金额小数点后不能大于两位数字
+    //   money = e.detail;
+    // } else {
+    //   money = e.detail.substring(0, e.detail.length - 1);
+    // }
+    me.setData({ price: event.detail});
   },
   onUnitChange:function(event){
     var me = this;

@@ -131,6 +131,13 @@
 					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/enterpriseShow/enterpriseShow",
+					"pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

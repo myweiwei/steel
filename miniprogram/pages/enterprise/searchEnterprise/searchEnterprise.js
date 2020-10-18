@@ -9,6 +9,13 @@ Page({
     enterpriseList:[],
     baseUrl:''
   },
+  onItemClick:function(event){
+    var distance = event.currentTarget.dataset.distance;
+    var enterpriseId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/enterprise/enterpriseDetail/enterpriseDetail?distance=' + distance  + "&enterpriseId=" + enterpriseId
+    });
+  },
   //监听搜索框
   onSearchChange:function(event){
     var me = this;

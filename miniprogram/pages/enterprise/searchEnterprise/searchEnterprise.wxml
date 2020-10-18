@@ -1,11 +1,14 @@
 <!--index.wxml-->
 <view class="container">
-<view>
-<van-search value="{{ keyword }}" placeholder="请输入搜索关键词" bind:change="onSearchChange"/>
-<van-button round type="info" size="small" bind:click="search">搜索</van-button>
-</view>
+  <view>
+  <van-search value="{{ keyword }}" placeholder="请输入搜索关键词" bind:change="onSearchChange"/>
+  <van-button round type="info" size="small" bind:click="search">搜索</van-button>
+  </view>
 
-  <view wx:for="{{enterpriseList}}" wx:for-item="item" class="enterpriseList">
+  <view wx:for="{{enterpriseList}}" wx:for-item="item" class="enterpriseList"
+   data-id="{{item.id}}"
+   data-distance="{{item.distance}}"
+   bindtap="onItemClick">
     <view class="top">
       <view class='flexBetween'>
         <view class='flexStart'>

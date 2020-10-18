@@ -4,23 +4,23 @@
 
     <view class="top">
           <view class="left">
-            <image src="../../../images/enterprise/biaozhi.png" class="logo"></image>
+            <image src="{{logo}}" class="logo"></image>
           </view>
           <view class="middle">
-            <view style="font-weight:bold; font-size:29rpx; color:#000000;">北京金源不锈钢有限公司</view>
-             <view class="fontSizeMiddle">6KM | 北京市苏州街工厂</view>
-            <view class="fontSizeMiddle enterpriseType">不锈钢材料厂商 . 化工原材料供应商</view>
-            <view>(010)8655266</view>
+            <view style="font-weight:bold; font-size:29rpx; color:#000000;">{{name}}</view>
+             <view class="fontSizeMiddle">{{distance}} | {{address}}</view>
+            <view class="fontSizeMiddle enterpriseType">{{enterpriseType}}</view>
+            <view>{{telephone}}</view>
           </view>
     </view>
 
-<van-tabs active="enterprise">
+<van-tabs active="enterprise" color="#1777ff" bind:change="onChange">
   <van-tab title="企业概况" name="enterprise">
   <!--企业简介-->
   <view style="margin-left:20rpx; margin:20rpx;">
   <view style="display:flex;">
-    <view style="width:7rpx; height:35rpx; background:red; margin-right:10rpx;"></view>
-    <view style="font-size:28rpx; margin-bottom:20rpx;">企业简介</view>
+    <view style="width:7rpx; height:35rpx; background:#1777ff; margin-right:10rpx;"></view>
+    <view style="font-size:27rpx; margin-bottom:20rpx;">企业简介</view>
   </view>
     <view style="font-size:26rpx; margin-bottom:20rpx;">致力于打造全球高端消费服务平台，主要经营不锈钢的加工设备
 制造厂商不锈钢表面处理厂商不锈钢金属加工厂商，锈钢装修工
@@ -34,7 +34,7 @@
   </view>
 
 <!--企业员工-->
-    <view style="margin-left:20rpx; margin:20rpx;">
+    <!-- <view style="margin-left:20rpx; margin:20rpx;">
       <view style="display:flex;">
         <view style="width:7rpx; height:35rpx; background:red; margin-right:10rpx;"></view>
         <view style="font-size:28rpx; margin-bottom:20rpx;">企业成员</view>
@@ -44,26 +44,43 @@
          
         </view>
       </scroll-view>
-    </view>
+    </view> -->
     
 <!--企业地址-->
     <view style="margin-left:20rpx; margin:20rpx;">
       <view style="display:flex;">
-        <view style="width:7rpx; height:35rpx; background:red; margin-right:10rpx;"></view>
-        <view style="font-size:28rpx; margin-bottom:20rpx;">企业地址</view>
+        <view style="width:7rpx; height:35rpx; background:#1777ff; margin-right:10rpx;"></view>
+        <view style="font-size:27rpx; margin-bottom:20rpx;">企业地址</view>
       </view>
-      <!--todo.. 待开发地图-->
+      <!--地图-->
+ <view style='width:96%;box-sizing:border-box;margin:2%;border-radius:20rpx;overflow:hidden; margin-bottom:150rpx;'>
+    <map id="myMap"  scale="14" bindmarkertap="goMap" latitude="{{latitude}}" longitude="{{longitude}}" enable-scroll='{{false}}' bindtap='goMap' markers="{{markers}}"  show-location style="width: 100%; height:300rpx;" />
+
+  </view>
+
+
     </view>
   </van-tab>
 
 
-  <van-tab title="经营产品" name="product">内容 2</van-tab>
+  <van-tab title="经营产品" name="product" background="#fafafa">
+  <view style="display:flex; flex-wrap:wrap; margin-bottom:50rpx;" >
+    <view class="goodsBox" wx:for="{{goods}}" wx:for-item="item">
+      <image src="{{item.image}}" mode="aspectFill"></image>
+      <view>{{item.name}}</view>
+      <view style="font-size:25rpx;">{{item.description}}</view>
+      <view style="color:red;">￥{{item.price}}</view>
+    </view>
+</view>
+  </van-tab>
   <van-tab title="公司动态" name="dynamic">内容 3</van-tab>
 </van-tabs>
 
-<view>两个按钮</view>
-  <view style='width:96%;box-sizing:border-box;margin:2%;border-radius:20rpx;overflow:hidden'>
-    <map id="myMap"  scale="14" bindmarkertap="goMap" latitude="{{latitude}}" longitude="{{longitude}}" enable-scroll='{{false}}' bindtap='goMap' markers="{{markers}}"  show-location style="width: 100%; height:300rpx;" />
 
-  </view>
+<!---底部按钮--->
+    <view class='footer' style="display:flex;">
+        <van-button color="#1777ff" round size='normal' bindtap='call'>联系商家</van-button>
+       <van-button color="#1777ff" round size='normal' bindtap='goMap'>到这去</van-button>
+    </view>
+ 
 </view>

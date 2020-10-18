@@ -3,6 +3,9 @@
     "pages/index/index",
     "pages/enterprise/searchEnterprise/searchEnterprise",
     "pages/enterprise/enterpriseDetail/enterpriseDetail",
+    "pages/enterprise/enterpriseShow/enterpriseShow",
+    "pages/enterprise_dynamic/dynamicManager/dynamicManager",
+    "pages/enterprise_dynamic/dynamicAdd/dynamicAdd",
     "pages/consult/restroom/restroom",
     "pages/room/room",
     "pages/switchCity/switchCity",
@@ -41,22 +44,23 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#b0afaf",
+    "color": "#57565b",
     "selectedColor": "#164dac",
-    "borderStyle": "white",
+    "borderStyle": "black",
     "backgroundColor": "#fff",
+    "font-size":"25rpx",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "images/pyq/shouye-weixuanzhong.png",
-        "selectedIconPath": "images/pyq/shouye-xuanzhong.png"
+        "iconPath": "images/pyq/home2.png",
+        "selectedIconPath": "images/pyq/home.png"
       },
       {
         "pagePath": "pages/near/near",
         "text": "附近",
-        "iconPath": "images/pyq/tongcheng.png",
-        "selectedIconPath": "images/pyq/tongcheng1.png"
+        "iconPath": "images/pyq/near2.png",
+        "selectedIconPath": "images/pyq/near.png"
       },
       {
         "pagePath": "pages/pyq/commit/commit",

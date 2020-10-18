@@ -6,6 +6,18 @@ page {
   justify-content: flex-start;
   height:100%;
 } 
+.footer {
+  position:fixed;
+  bottom:0;
+  left:0;
+  margin-bottom: 5rpx;
+  background-color: white;
+  width:100%;
+  padding:0 1%;
+  height: 112rpx;
+  box-sizing: border-box;
+  padding-top: 12rpx;
+}
 .flexStart,.flexBetween,.flexAround,.flexCenter{
   display: flex;
   align-items: center;
