@@ -138,6 +138,26 @@
 					"pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/searchEnterprise/searchEnterprise",
+					"pathName": "pages/enterprise/searchEnterprise/searchEnterprise",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/enterpriseShow/enterpriseShow",
+					"pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
+					"pathName": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
+					"scene": null
 				}
 			]
 		}

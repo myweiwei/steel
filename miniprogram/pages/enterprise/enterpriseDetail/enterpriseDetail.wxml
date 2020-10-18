@@ -1,86 +1,81 @@
 <!--index.wxml-->
 <view class="container">
+ <scroll-view scroll-y="true" style="height: calc(100% - 130rpx);margin-bottom:130rpx">
   <image src="../../../images/enterprise/mendiantu.png" mode="scaleToFill" class="topPicture"/>
-
-    <view class="top">
-          <view class="left">
-            <image src="{{logo}}" class="logo"></image>
-          </view>
-          <view class="middle">
-            <view style="font-weight:bold; font-size:29rpx; color:#000000;">{{name}}</view>
-             <view class="fontSizeMiddle">{{distance}} | {{address}}</view>
-            <view class="fontSizeMiddle enterpriseType">{{enterpriseType}}</view>
-            <view>{{telephone}}</view>
-          </view>
+  <view class="top">
+    <view class="left">
+      <image src="{{logo}}" class="logo"></image>
     </view>
-
-<van-tabs active="enterprise" color="#1777ff" bind:change="onChange">
-  <van-tab title="企业概况" name="enterprise">
-  <!--企业简介-->
-  <view style="margin-left:20rpx; margin:20rpx;">
-  <view style="display:flex;">
-    <view style="width:7rpx; height:35rpx; background:#1777ff; margin-right:10rpx;"></view>
-    <view style="font-size:27rpx; margin-bottom:20rpx;">企业简介</view>
+    <view class="middle">
+      <view style="font-weight:bold; font-size:29rpx; color:#000000;">{{name}}</view>
+        <view class="fontSizeMiddle">{{distance}} | {{address}}</view>
+      <view class="fontSizeMiddle enterpriseType">{{enterpriseType}}</view>
+      <view>{{telephone}}</view>
+    </view>
   </view>
-    <view style="font-size:26rpx; margin-bottom:20rpx;">致力于打造全球高端消费服务平台，主要经营不锈钢的加工设备
-制造厂商不锈钢表面处理厂商不锈钢金属加工厂商，锈钢装修工
-程厂商，店内有很多老师傅，可以上门服务，支持定制化。欢迎
-来店体验</view>
-    <scroll-view>
-      <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
-      <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
-      <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx;  margin-right:20rpx;border-radius:5rpx;"/>
-    </scroll-view>
-  </view>
-
-<!--企业员工-->
-    <!-- <view style="margin-left:20rpx; margin:20rpx;">
-      <view style="display:flex;">
-        <view style="width:7rpx; height:35rpx; background:red; margin-right:10rpx;"></view>
-        <view style="font-size:28rpx; margin-bottom:20rpx;">企业成员</view>
-      </view>
-      <scroll-view>
-        <view style="width:40%; height:400rpx; border:1rpx solid #e9e9ea">
-         
-        </view>
-      </scroll-view>
-    </view> -->
-    
-<!--企业地址-->
-    <view style="margin-left:20rpx; margin:20rpx;">
+  <van-tabs active="enterprise" color="#1777ff" bind:change="onChange">
+    <van-tab title="企业概况" name="enterprise">
+      <!--企业简介-->
+      <view style="margin-left:20rpx; margin:20rpx;">
       <view style="display:flex;">
         <view style="width:7rpx; height:35rpx; background:#1777ff; margin-right:10rpx;"></view>
-        <view style="font-size:27rpx; margin-bottom:20rpx;">企业地址</view>
+        <view style="font-size:27rpx; margin-bottom:20rpx;">企业简介</view>
       </view>
-      <!--地图-->
- <view style='width:96%;box-sizing:border-box;margin:2%;border-radius:20rpx;overflow:hidden; margin-bottom:150rpx;'>
-    <map id="myMap"  scale="14" bindmarkertap="goMap" latitude="{{latitude}}" longitude="{{longitude}}" enable-scroll='{{false}}' bindtap='goMap' markers="{{markers}}"  show-location style="width: 100%; height:300rpx;" />
-
-  </view>
-
-
+      <view style="font-size:26rpx; margin-bottom:20rpx;">
+      致力于打造全球高端消费服务平台，主要经营不锈钢的加工设备制造厂商不锈钢表面处理厂商不锈钢金属加工厂商，锈钢装修工程厂商，店内有很多老师傅，可以上门服务，支持定制化。欢迎
+    来店体验
+      </view>
+      <scroll-view>
+        <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
+        <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
+        <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx;  margin-right:20rpx;border-radius:5rpx;"/>
+      </scroll-view>
     </view>
-  </van-tab>
-
-
-  <van-tab title="经营产品" name="product" background="#fafafa">
-  <view style="display:flex; flex-wrap:wrap; margin-bottom:50rpx;" >
-    <view class="goodsBox" wx:for="{{goods}}" wx:for-item="item">
-      <image src="{{item.image}}" mode="aspectFill"></image>
-      <view>{{item.name}}</view>
-      <view style="font-size:25rpx;">{{item.description}}</view>
-      <view style="color:red;">￥{{item.price}}</view>
-    </view>
-</view>
-  </van-tab>
-  <van-tab title="公司动态" name="dynamic">内容 3</van-tab>
-</van-tabs>
-
+  <!--企业员工-->
+      <!-- <view style="margin-left:20rpx; margin:20rpx;">
+        <view style="display:flex;">
+          <view style="width:7rpx; height:35rpx; background:red; margin-right:10rpx;"></view>
+          <view style="font-size:28rpx; margin-bottom:20rpx;">企业成员</view>
+        </view>
+        <scroll-view>
+          <view style="width:40%; height:400rpx; border:1rpx solid #e9e9ea">
+          
+          </view>
+        </scroll-view>
+      </view> -->
+      
+  <!--企业地址-->
+      <view style="margin-left:20rpx; margin:20rpx;">
+        <view style="display:flex;">
+          <view style="width:7rpx; height:35rpx; background:#1777ff; margin-right:10rpx;"></view>
+          <view style="font-size:27rpx; margin-bottom:20rpx;">企业地址</view>
+        </view>
+        <!--地图-->
+        <view style='width:96%;box-sizing:border-box;margin:2%;border-radius:20rpx;overflow:hidden;'>
+          <map id="myMap"  scale="14" bindmarkertap="goMap" latitude="{{latitude}}" longitude="{{longitude}}" enable-scroll='{{false}}' bindtap='goMap' markers="{{markers}}"  show-location style="width: 100%; height:300rpx;" />
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="经营产品" name="product" background="#fafafa">
+      <view style="display:flex; flex-wrap:wrap;box-sizing:border-box;overflow:hidden;background:#fafafa;padding-bottom:20rpx" >
+        <view class="goodsBox" wx:for="{{goods}}" wx:for-item="item">
+          <image src="{{item.image}}" mode="aspectFill"></image>
+          <view style='padding:10rpx;box-sizing:border-box;'>
+            <view style='height:46rpx;line-height:46rpx;'>{{item.name}}</view>
+            <view style="font-size:25rpx;height:60rpx;line-height:30rpx" class='overEcli'>{{item.description}}</view>
+            <view style="color:red;height:30rpx;line-height:30rpx;">￥{{item.price}}</view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="公司动态" name="dynamic">内容 3</van-tab>
+  </van-tabs>
+</scroll-view>
 
 <!---底部按钮--->
     <view class='footer' style="display:flex;">
-        <van-button color="#1777ff" round size='normal' bindtap='call'>联系商家</van-button>
-       <van-button color="#1777ff" round size='normal' bindtap='goMap'>到这去</van-button>
+      <van-button icon="phone-o" color="#4fc9b0" size='normal' bindtap='call'>联系商家</van-button>
+      <van-button icon="location-o" color="#1777ff" size='normal' bindtap='goMap'>到这去</van-button>
     </view>
  
 </view>

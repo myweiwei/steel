@@ -1,10 +1,17 @@
 <!--index.wxml-->
-<view class="container">
-  <view>
-  <van-search value="{{ keyword }}" placeholder="请输入搜索关键词" bind:change="onSearchChange"/>
-  <van-button round type="info" size="small" bind:click="search">搜索</van-button>
+<view class="container" style='background:#1777ff'>
+  <view style='position:relative;'>
+    <view style='position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;margin-top:{{statusBarHeight+"px"}};padding-bottom:{{statusBarHeight+"px"}}'>
+      <van-search shape='round' bind:change="onSearchChange" value="{{ keyword }}"  style='width:380rpx;z-index:100;color:#fff' input-class='search_ipt' />
+    </view>
   </view>
-
+  <view  style='margin-top:80px'>
+   <van-dropdown-menu>
+    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+  </van-dropdown-menu>
+  </view>
+ <scroll-view scroll-y="true" style="height: calc(100% - 130px);background:#f5f6f6" >
   <view wx:for="{{enterpriseList}}" wx:for-item="item" class="enterpriseList"
    data-id="{{item.id}}"
    data-distance="{{item.distance}}"
@@ -57,4 +64,5 @@
       </scroll-view>
     </view>
   </view>
+ </scroll-view>
 </view>
