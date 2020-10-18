@@ -1,17 +1,44 @@
 .container{
-  background-color: #f5f5f5;
+  background-color: #fff;
   height: 100%;
 }
 textarea {
   width: 700rpx;
-  height: 500rpx;
-  margin-left: 10rpx;
+  height: 300rpx;
+  margin-left: 20rpx;
   margin-right: 10rpx;
   margin-top: 10rpx;
   color: #545454;
 }
 .textarea-bg {
   padding: 10rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
+  background: #fff;
+  border-radius: 15rpx;
+}
+.van-uploader,.noImg {
+  width: 700rpx;
+  height: 400rpx;
+  margin-left: 10rpx;
+}
+.noImg {
+  border:2rpx dashed #ccc;
+  border-radius: 15rpx;
+  text-align: center;
+  line-height: 550rpx;
+  margin-left:15rpx;
+}
+.upLoad image {
+  width: 700rpx!important;
+  height: 400rpx!important;
+  margin-left: 20rpx!important;
+
+}
+.title {
+  line-height: 70rpx;
+  margin-left:20rpx;
+}
+.footer {
+  background-color: transparent;
 }
 
