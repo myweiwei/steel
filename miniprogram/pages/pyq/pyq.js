@@ -305,6 +305,7 @@ Page({
         list: data.data.data.list,
         total: data.data.data.total
       })
+      console.log(data.data.data.list[0]);
       me.spHeight();
     })
   },
@@ -383,8 +384,11 @@ Page({
   },
   addSc: function (e) {
     let me = this;
+    console.log("123");
     let support = e.currentTarget.dataset.item.isSupport == 1 ? 0 : 1;
-    app.wxRequest('get', '/support/' + e.currentTarget.dataset.item.dynamicId + '/' + support, {}, function (data) {
+    var dynamicId = e.currentTarget.dataset.item.dynamicId;
+    var toId = e.currentTarget.dataset.item.userId;
+    app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
       me.getList();
     })
   },

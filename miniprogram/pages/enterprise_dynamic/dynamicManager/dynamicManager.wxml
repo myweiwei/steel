@@ -9,7 +9,7 @@
         </view>
         <view style="flex:1">
           <view class='name'>{{item.name}}</view>
-          <view class='desc'>{{item.description}}</view>
+          <view class='desc'>{{item.description}}</view>d
           <view class='price'>售价：<text style="color:#e11a1a; margin-right:25rpx;">￥{{item.price}}</text>单位：<text style="color:#e11a1a;">{{item.unit}}</text></view>
         </view>
         <view style="width:150rpx; height:130rpx;">
