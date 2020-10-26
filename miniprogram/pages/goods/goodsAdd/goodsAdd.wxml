@@ -8,6 +8,7 @@
         placeholder="请输入商品名称"
         bind:change="onGoodsNameChange"
         title-width='150rpx'
+        confirm-hold="true"
       />
         <van-field
         value="{{ description }}"
@@ -18,6 +19,7 @@
         title-width='150rpx'
         bind:change="onDescriptionChange"
         autosize
+        confirm-hold="true"
       />
         <van-field
         value="{{ price }}"
@@ -26,6 +28,7 @@
         placeholder="请输入售价"
         title-width='150rpx'
         bind:change="onPriceChange"
+        confirm-hold="true"
       />
         <van-field
         value="{{ unit }}"
@@ -34,6 +37,7 @@
         placeholder="请输入商品单位"
         title-width='150rpx'
         bind:change="onUnitChange"
+        confirm-hold="true"
       />
         <van-field
         value="{{ status }}"

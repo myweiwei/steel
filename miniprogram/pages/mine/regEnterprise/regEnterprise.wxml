@@ -20,6 +20,7 @@
             placeholder="请填写企业名称"
             title-width='150rpx'
             bind:change="onEnterpriseChange"
+            confirm-hold="true"
           />
           <van-field
             value="{{ address }}"
@@ -29,12 +30,14 @@
             bindtap='getLocation'
             title-width='150rpx'
             right-icon='location' 
+            confirm-hold="true"
           />
            <van-field
             value="{{addressDetail}}"
             label="详细地址"
             title-width='150rpx'
             placeholder="请填写详细地址"
+            confirm-hold="true"
           />
           <van-field
             value="{{ phone }}"
@@ -49,6 +52,7 @@
             placeholder="请选择企业规模"
             title-width='150rpx'
             bindtap='chooseNum'
+            confirm-hold="true"
             disabled
           />
           <van-field
@@ -57,6 +61,7 @@
             placeholder="请选择企业类型"
             title-width='150rpx'
             bindtap='chooseType'
+            confirm-hold="true"
             disabled
           />
           <view class='flexStart m-t-10'>

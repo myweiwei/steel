@@ -17,6 +17,10 @@
   padding:0px!important;
   margin:0 20rpx;
   border-radius: 40rpx;
+  color:#fff!important;
+}
+.left-icon {
+  color:#fff!important;
 }
 .van-search__content {
   border-radius: 40rpx;

@@ -8,7 +8,8 @@ Page({
       // Uploader 根据文件后缀来判断是否为图片文件
       // 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
     ],
-    fileList2:[]
+    fileList2:[],
+    moreImg:""
   },
   //删除图片
   onDelete:function(e){
@@ -36,7 +37,7 @@ Page({
     me.setData({
       fileList2: arr
     })
-},
+  },
   afterRead2: function (e) {
     let me = this;
     let arr = me.data.fileList2;
@@ -44,15 +45,15 @@ Page({
     me.setData({
       fileList2: arr
     })
-},
-save:function(option){
-  app.wxRequest('get', '/personal/teacherInfoByUserId/', {}, function (data) {
-    console.log(data.data)
-    wx.navigateTo({
-      url: '/pages/consult/restroom/restroom?teacherId=' + data.data.data.teacherId + '&restroomId=' + me.data.val+'&userId=' + data.data.data.teacherId
+  },
+  save:function(option){
+    app.wxRequest('get', '/personal/teacherInfoByUserId/', {}, function (data) {
+      console.log(data.data)
+      wx.navigateTo({
+        url: '/pages/consult/restroom/restroom?teacherId=' + data.data.data.teacherId + '&restroomId=' + me.data.val+'&userId=' + data.data.data.teacherId
+      })
     })
-  })
-},
+  },
   onLoad: function(option) {
     var that = this;
     if (app.globalData.token == '') {
@@ -68,18 +69,8 @@ save:function(option){
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
         var data = data.data.data;
-        console.log(data);
-        let arr = [];
-        // let arr2 = data.introductionImgs;
-        var arg={
-          url:data.face.resource,
-          status: 'success'
-        }
-        arr.push(arg);
-        console.log(arr);
         me.setData({
-          fileList: arr
-          // fileList2:arr2
+          moreImg: data.face.resource
         });
       }
     })
