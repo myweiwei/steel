@@ -27,6 +27,11 @@ Page({
     money:0,
     showPwd:'false'
   },
+  goMessage:function(){
+    wx.navigateTo({
+      url: '/pages/mine/message/message'
+    })
+  },
   showPwdFunc:function(e){
     console.log(e.currentTarget.dataset.flag)
     this.setData({

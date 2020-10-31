@@ -5,7 +5,8 @@ let distance = 0 //标记页面是向下还是向上滚动
 let indexKey = 0 //标记当前滚动到那个视频了
 Page({
   data: {
-    active: 1,
+    activeTab: 0,
+    active:0,
     avaShow: false,
     openFlag: false,
     commCount: 2,
@@ -39,7 +40,8 @@ Page({
     unGeo: '',
     info: "已经到底啦",
     infoShow: false,
-    _index:null
+    _index:null,
+    statusBarHeight:0
   },
   //获取每个视频的距离顶部的高度
   spHeight() {
@@ -424,6 +426,9 @@ Page({
    */
   onLoad: function (options) {
     let me=this;
+    me.setData({
+      statusBarHeight: app.globalData.statusBarHeight
+    })
   },
 
   /**
@@ -492,41 +497,42 @@ Page({
    */
   onReachBottom: function () {
     let me = this;
-    if (me.data.active == 1) {
-      me.getMore();
-    }
-    else if (me.data.active == 4) {
-      let list = "ownpageData.pageNum";
-      if (me.data.list.length < me.data.total) {
-        me.setData({
-          [list]: ++me.data.ownpageData.pageNum
-        })
-        me.getOwnList();
-      }
-    }
-    else if (me.data.active == 2) {
-      let list = "cityData.pageNum";
-      if (me.data.list.length < me.data.total) {
-        me.setData({
-          [list]: ++me.data.cityData.pageNum
-        })
-        me.getLoc();
-      }
-    }
-    else if (me.data.active == 3) {
-      let list = "likeData.pageNum";
-      if (me.data.list.length < me.data.total) {
-        me.setData({
-          [list]: ++me.data.likeData.pageNum
-        })
-        me.getLikeList();
-      }
-    }
-    else {
-      me.setData({
-        list: []
-      })
-    }
+    me.getMore();
+    // if (me.data.active == 1) {
+    //   me.getMore();
+    // }
+    // else if (me.data.active == 4) {
+    //   let list = "ownpageData.pageNum";
+    //   if (me.data.list.length < me.data.total) {
+    //     me.setData({
+    //       [list]: ++me.data.ownpageData.pageNum
+    //     })
+    //     me.getOwnList();
+    //   }
+    // }
+    // else if (me.data.active == 2) {
+    //   let list = "cityData.pageNum";
+    //   if (me.data.list.length < me.data.total) {
+    //     me.setData({
+    //       [list]: ++me.data.cityData.pageNum
+    //     })
+    //     me.getLoc();
+    //   }
+    // }
+    // else if (me.data.active == 3) {
+    //   let list = "likeData.pageNum";
+    //   if (me.data.list.length < me.data.total) {
+    //     me.setData({
+    //       [list]: ++me.data.likeData.pageNum
+    //     })
+    //     me.getLikeList();
+    //   }
+    // }
+    // else {
+    //   me.setData({
+    //     list: []
+    //   })
+    // }
 
   },
 

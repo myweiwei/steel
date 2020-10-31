@@ -225,7 +225,6 @@
   height: 80rpx!important;
   top: calc(50% - 40rpx);
   left: calc(50% - 40rpx);
-  z-index: 100;
 }
 .video-cover-box{
   height: 100%;
@@ -236,4 +235,14 @@
 .video-image {
   height: 100%;
   width: 100%;
+}
+/* 顶部导航 */
+.van-tabs__nav {
+  width:400rpx!important;
+}
+.van-hairline--top-bottom:after {
+  border:none!important;
+}
+.van-tab--active .van-ellipsis {
+  font-weight: 700;
 }

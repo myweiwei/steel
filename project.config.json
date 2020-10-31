@@ -70,9 +70,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
+					"id": 1,
+					"name": "pages/pyq/pyq",
+					"pathName": "pages/pyq/pyq",
 					"query": "",
 					"scene": null
 				},
@@ -157,6 +157,14 @@
 					"id": -1,
 					"name": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
 					"pathName": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/message/message",
+					"pathName": "pages/mine/message/message",
+					"query": "",
 					"scene": null
 				}
 			]

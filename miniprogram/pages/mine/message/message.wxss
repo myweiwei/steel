@@ -1,0 +1,36 @@
+/* pages/mine/message/message.wxss */
+.box image{
+  width:80rpx;
+  height:80rpx;
+}
+.box text {
+  color:#666;
+  margin-top:10rpx;
+  font-size: 28rpx;
+}
+.boxContainer {
+  width:93%;
+  padding:30rpx 0rpx;
+  margin:0 auto;
+  border-bottom:1rpx solid rgb(252, 249, 249);
+}
+.message {
+  width:93%;
+  margin:20rpx auto;
+}
+.message image{
+  width:100rpx;
+  height:100rpx;
+  border-radius: 15rpx;
+  margin-right:30rpx;
+}
+.message_content view:nth-child(1){
+  font-size:30rpx;
+  font-weight: bold;
+} 
+.message_content view:nth-child(2){
+  font-size:26rpx;
+  color:rgb(185, 181, 181);
+  line-height:60rpx;
+  height:60rpx;
+} 
