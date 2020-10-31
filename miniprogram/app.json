@@ -15,6 +15,7 @@
     "pages/index/teacherInfo/teacherInfo",
     "pages/product/product",
     "pages/pyq/pyq",
+    "pages/pyq/mine/mine",
     "pages/pyq/search/search",
     "pages/near/near",
     "pages/pyq/commit/commit",

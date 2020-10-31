@@ -3,7 +3,7 @@ App({
   globalData:{
     userId:'',
     baseUrl:  'https://eahost.lileiit.com/',
-    baseUrl: 'http://192.168.1.2:1118',
+    baseUrl: 'http://192.168.1.8:1118',
     socketIp: "wss://eahost.lileiit.com/websocket/",
     token:"",
     headerHeight: 0,
