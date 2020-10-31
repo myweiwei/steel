@@ -40,6 +40,10 @@
            <image src="../../images/my/enterprise_icon05.png"/>
            <view>员工管理</view>
         </view>
+        <view bindtap="goMessage" class="jishizhongxin_item">
+           <image src="../../images/my/enterprise_icon05.png"/>
+           <view>消息中心</view>
+        </view>
     </view>
   </view>
 </view>
