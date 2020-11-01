@@ -1,4 +1,7 @@
 /* pages/mine/message/message.wxss */
+.box {
+  flex-direction:column
+}
 .box image{
   width:80rpx;
   height:80rpx;

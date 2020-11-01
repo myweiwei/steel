@@ -1,0 +1,30 @@
+/* pages/mine/message/fan/fan.wxss */
+.fan {
+  margin:0rpx 20rpx;
+  border-bottom:1rpx solid rgb(252, 249, 249);
+  padding:30rpx 0;
+}
+.avaImg {
+  width:60rpx;
+  height:60rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right:10rpx;
+}
+.avaName {
+  font-size:30rpx;
+}
+.van-button--small .van-button__text,.van-button--small .van-button__icon{
+  color:#1d1d1d;
+}
+/* 顶部导航 */
+.van-tabs__nav {
+  width:400rpx!important;
+  margin-left:150rpx;
+}
+.van-hairline--top-bottom:after {
+  border:none!important;
+}
+.van-tab--active .van-ellipsis {
+  font-weight: 700;
+}

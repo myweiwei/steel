@@ -1,0 +1,13 @@
+<scroll-view scroll-y="true" style="height: 100%;" >
+  <view class='flexBetween fan'>
+    <view class='flexStart' style='align-items:flex-start;width:300rpx'>
+      <image class='avaImg' src='../../../../images/index/jinfang.png'></image>
+      <view>
+        <view class='avaName'>米英</view>
+        <view class='avaInfo'>赞了你的动态</view>
+        <view class='avaTime'>1小时前</view>
+      </view>
+    </view>
+   <image class='fm_img' src='../../../../images/index/jinfang.png'></image>
+  </view>
+</scroll-view>

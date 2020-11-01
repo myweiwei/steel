@@ -3,7 +3,7 @@ App({
   globalData:{
     userId:'',
     baseUrl:  'https://eahost.lileiit.com/',
-    //baseUrl: 'http://192.168.1.8:1118',
+    baseUrl: 'http://192.168.1.8:1118',
     socketIp: "wss://eahost.lileiit.com/websocket/",
     token:"",
     headerHeight: 0,
@@ -88,6 +88,7 @@ App({
       },
       fail: function (err) {
         //errFun(err);
+        console.log(err)
         wx.showToast({
           title: "服务器异常，请稍后再试",
           icon: 'none'

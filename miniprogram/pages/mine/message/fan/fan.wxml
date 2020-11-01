@@ -1,0 +1,22 @@
+<view class='fanContent'  style='margin-top:{{statusBarHeight+"px"}}' >
+  <van-tabs active="{{ activeTab }}" offset-top='{{statusBarHeight}}' swipeable sticky bind:change="onChange">
+    <van-tab title="关注">
+      <view class='flexBetween fan' wx:for='{{followList}}'>
+        <view class='flexStart' style='width:300rpx'>
+          <image class='avaImg' src='{{item.headIcon}}'></image>
+          <view class='avaName'>{{item.nickName}}</view>
+        </view>
+        <van-button data-index='{{index}}' type="primary" size="small"color='#ffb901' data-name='followList' round bindtap='addFavour' data-item='{{item}}'>{{item.btn}}</van-button>
+      </view>
+    </van-tab>
+    <van-tab title="粉丝">
+     <view class='flexBetween fan' wx:for='{{list}}'>
+        <view class='flexStart' style='width:300rpx'>
+          <image class='avaImg' src='{{item.headIcon}}'></image>
+          <view class='avaName'>{{item.nickName}}</view>
+        </view>
+        <van-button data-index='{{index}}' type="primary" size="small"color='#ffb901' round data-name='list' bindtap='addFavour' data-item='{{item}}'>{{item.btn}}</van-button>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>

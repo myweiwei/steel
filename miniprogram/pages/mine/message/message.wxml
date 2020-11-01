@@ -1,15 +1,15 @@
 <!--pages/mine/message/message.wxml-->
 <view>
   <view class='flexAround boxContainer'>
-    <view class='flexCenter box' style='flex-direction:column'>
+    <view class='flexCenter box' data-to='fan' bindtap='toInfo'>
       <image src='../../../images/index/jinfang.png'></image>
       <text>粉丝</text>
     </view>
-    <view class='flexCenter box' style='flex-direction:column'>
+    <view class='flexCenter box' data-to='favour' bindtap='toInfo'>
       <image src='../../../images/index/jinfang.png'></image>
       <text>赞</text>
     </view>
-    <view class='flexCenter box' style='flex-direction:column'>
+    <view class='flexCenter box' data-to='comment' bindtap='toInfo'>
       <image src='../../../images/index/jinfang.png'></image>
       <text>评论</text>
     </view>
