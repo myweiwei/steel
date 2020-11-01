@@ -23,6 +23,9 @@
     "pages/mine/regTeacher/regTeacher",
     "pages/mine/regEnterprise/regEnterprise",
     "pages/mine/message/message",
+    "pages/mine/message/fan/fan",
+    "pages/mine/message/comment/comment",
+    "pages/mine/message/favour/favour",
     "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
     "pages/goods/goodsManager/goodsManager",
     "pages/goods/goodsAdd/goodsAdd"

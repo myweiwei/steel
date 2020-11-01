@@ -119,9 +119,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"id": 8,
+					"name": "pages/mine/message/fan/fan",
+					"pathName": "pages/mine/message/fan/fan",
 					"query": "",
 					"scene": null
 				},
@@ -164,6 +164,20 @@
 					"id": -1,
 					"name": "pages/mine/message/message",
 					"pathName": "pages/mine/message/message",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/message/fan/fan",
+					"pathName": "pages/mine/message/fan/fan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/message/fan/fan",
+					"pathName": "pages/mine/message/fan/fan",
 					"query": "",
 					"scene": null
 				}

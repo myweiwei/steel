@@ -1,7 +1,9 @@
 <!--pages/pyq/pyq.wxml-->
  <view  style='position:fixed;top:0;transform:translate(0);height:{{statusBarHeight+2+"px"}};background:#fff;z-index:10000;width:100%'></view>
 <view class='pyq'  style='margin-top:{{statusBarHeight+"px"}}' >
-  <van-tabs active="{{ activeTab }}" offset-top='{{statusBarHeight}}' swipeable sticky bind:change="onChange">
+  <image class='myImg'  src='../../images/index/jinfang.png' bindtap='toMy'></image>
+  <van-tabs active="{{ activeTab }}" offset-top='{{statusBarHeight}}'
+  offset-left='100px' swipeable sticky bind:change="onChange">
     <van-tab title="关注">
       <view class='ava' wx:for='{{list}}' wx:key='id'>
       <view class='flexBetween'>
@@ -12,8 +14,9 @@
             <view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
           </view>
         </view>
-        <view class='del' wx:if='{{item.isOwn==1}}' data-item='{{item}}' bindtap='del'>
-        <image src='../../images/pyq/del.png'></image>
+        <view class='del' wx:if='{{item.isOwn==1}}' data-item='{{item}}' bindtap='del'></view>
+        <view class='del' wx:else data-item='{{item}}' bindtap='fan'>
+          <image src='../../images/pyq/follow.png'></image>
         </view>
       </view>
       <view class='avaText'>
@@ -58,7 +61,7 @@
     <van-tab title="热区">内容 2</van-tab>
     <van-tab title="最新">内容 3</van-tab>
   </van-tabs>
-  <van-popup show="{{ avaShow }}" position="bottom" custom-style="height: 70%;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
+  <van-popup show="{{ avaShow }}" catchtouchmove="preventTouchMove" position="bottom" custom-style="height:70vh;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
       <view class='totalComment'><text class='strong'>{{commentCount}}</text>条评论</view>
       <scroll-view scroll-y="true" style="height: 80%" >
         <view wx:for='{{commonList}}' wx:key='{{commentId}}'>

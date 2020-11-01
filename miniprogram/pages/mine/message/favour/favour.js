@@ -1,4 +1,4 @@
-// pages/mine/message/message.js
+// pages/mine/message/favour/favour.js
 Page({
 
   /**
@@ -7,15 +7,7 @@ Page({
   data: {
 
   },
-  toInfo:function(e){
-    console.log(e.currentTarget.dataset.to);
-    let arg = e.currentTarget.dataset.to + '/' + e.currentTarget.dataset.to;
-    let url = "/pages/mine/message/" + arg;
-    console.log(url)
-    wx.navigateTo({
-      url: url,
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
