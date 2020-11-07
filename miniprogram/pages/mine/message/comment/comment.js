@@ -1,20 +1,35 @@
 // pages/mine/message/comment/comment.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    datalist: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    that.setData({
+      baseUrl: app.globalData.baseUrl
+    })
+    if (app.globalData.token != '') {
+      that.getList();
+    }
+    else {
+      app.getUser(that.getList);
+    }
   },
-
+  getList: function () {
+    var that = this;
+    app.wxRequest('get', 'comment/commentToMe', {}, function (data) {
+      that.setData({ datalist: data.data.data })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

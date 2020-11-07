@@ -1,6 +1,17 @@
 /* pages/mine/message/message.wxss */
 .box {
-  flex-direction:column
+  flex-direction:column;
+  position: relative;
+}
+.box .count {
+  padding:3rpx 15rpx;
+  border-radius: 25rpx;
+  background: rgb(253, 10, 10);
+  color:#fff;
+  font-size:26rpx;
+  position: absolute;
+  top:0;
+  right:-24rpx;
 }
 .box image{
   width:80rpx;
