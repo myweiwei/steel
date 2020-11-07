@@ -25,11 +25,20 @@ Page({
     priceList: ['10','20','30','50','80','100'],
     activeIndex:0,
     money:0,
-    showPwd:'false'
+    showPwd:'false',
+    countList:{}
+  },
+  getCount:function(){
+    let me = this;
+    app.wxRequest('get', '/message/unreadCount', {}, function (res) {
+      me.setData({
+        countList:res.data.data
+      })
+    }) 
   },
   goMessage:function(){
     wx.navigateTo({
-      url: '/pages/mine/message/message'
+      url: '/pages/mine/message/message?followCount=' + this.data.countList.followCount + '&&supportCount=' + this.data.countList.supportCount + '&&commentCount=' + this.data.countList.commentCount
     })
   },
   showPwdFunc:function(e){
@@ -167,16 +176,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.setData({
-      baseUrl: app.globalData.baseUrl
-    })
-    if(app.globalData.token!=''){
-      that.getMoney();
-    }
-    else {
-      app.getUser(that.getMoney);
-    }
+    
   },
 
   /**
@@ -194,6 +194,16 @@ Page({
     this.setData({
       show:false
     })
+    var that = this;
+    that.setData({
+      baseUrl: app.globalData.baseUrl
+    })
+    if (app.globalData.token != '') {
+      that.getCount();
+    }
+    else {
+      app.getUser(that.getCount);
+    }
   },
 
   /**
