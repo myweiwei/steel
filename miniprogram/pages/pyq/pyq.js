@@ -51,11 +51,11 @@ Page({
     app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
       if (data.data.data == '已关注' || data.data.data == '互相关注') {
         wx.showToast({
-          title: data.data.data,
+          title: "已关注",
           icon: 'none'
         })
       }
-      else if (data.data.data == '关注') {
+      else if (data.data.data == '关注' || data.data.data == '回关') {
         wx.showToast({
           title: "已取消关注",
           icon: 'none'

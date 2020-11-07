@@ -52,7 +52,7 @@
     "color": "#57565b",
     "selectedColor": "#164dac",
     "borderStyle": "black",
-    "backgroundColor": "#fff",
+    "backgroundColor": "#f9fdff",
     "font-size":"25rpx",
     "list": [
       {
@@ -75,14 +75,14 @@
       },
       {
         "pagePath": "pages/pyq/pyq",
-        "iconPath": "images/pyq/pengyouquan.png",
-        "selectedIconPath": "images/pyq/pengyouquan1.png",
+        "iconPath": "images/pyq/pengyouquan2.png",
+        "selectedIconPath": "images/pyq/pengyouquan.png",
         "text": "朋友圈"
       },
       {
         "pagePath": "pages/mine/mine",
-        "iconPath": "images/pyq/my.png",
-        "selectedIconPath": "images/pyq/my1.png",
+        "iconPath": "images/pyq/my2.png",
+        "selectedIconPath": "images/pyq/my.png",
         "text": "我的"
       }
     ]
