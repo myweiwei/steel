@@ -12,5 +12,8 @@
    <view wx:if="dynamicImgVideo">
       <image class='fm_img' src='{{item.dynamicImgVideo}}'></image>
    </view>
+     <view wx:else="">
+      <view>123</view>
+   </view>
   </view>
 </scroll-view>
