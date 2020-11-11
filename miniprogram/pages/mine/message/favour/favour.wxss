@@ -3,6 +3,8 @@
 .fan {
   margin:10rpx 20rpx;
   border-bottom:1rpx solid rgb(252, 249, 249);
+  box-sizing: border-box;
+  padding: 20rpx 0;
 }
 .avaImg {
   width:60rpx;
@@ -12,8 +14,8 @@
   margin-right:10rpx;
 }
 .fm_img {
-  width:100rpx;
-  height:100rpx;
+  width:120rpx;
+  height:120rpx;
 }
 .avaName {
   font-size:30rpx;
@@ -28,4 +30,14 @@
   color:rgb(73, 72, 72);
   height:70rpx;
   line-height: 70rpx;
+}
+.title {
+  width:120rpx;
+  height:120rpx;
+  background: rgb(218, 216, 216);
+  color:#1d1d1d;
+  font-size: 23rpx;
+  vertical-align: middle;
+  overflow: hidden;
+
 }

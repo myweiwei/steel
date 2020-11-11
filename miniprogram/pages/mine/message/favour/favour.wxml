@@ -1,19 +1,19 @@
-<scroll-view scroll-y="true" style="height: 100%;" >
-  <view class='flexBetween fan' wx:for="{{datalist}}">
-    <view class='flexStart' style='align-items:flex-start;width:300rpx'>
-      <image class='avaImg' src='{{item.headIcon}}'></image>
-      <view>
-        <view class='avaName'>{{item.nickName}}</view>
-        <view class='avaInfo'>赞了你的动态</view>
-        <view class='avaTime'>{{item.timeDiff}}</view>
+<view>
+  <scroll-view scroll-y="true" style="height: 100%;" >
+    <view class='flexBetween fan' wx:for="{{datalist}}">
+      <view class='flexStart' style='align-items:flex-start;width:300rpx'>
+        <image class='avaImg' src='{{item.headIcon}}'></image>
+        <view>
+          <view class='avaName'>{{item.nickName}}</view>
+          <view class='avaInfo'>赞了你的动态</view>
+          <view class='avaTime'>{{item.timeDiff}}</view>
+        </view>
+      </view>
+      <image class='fm_img' wx:if='{{item.dynamicImgVideo}}' src='{{item.dynamicImgVideo}}'></image>
+      <view wx:else class='title'>
+        {{item.dynamicTitle}}
       </view>
     </view>
-  
-   <view wx:if="dynamicImgVideo">
-      <image class='fm_img' src='{{item.dynamicImgVideo}}'></image>
-   </view>
-     <view wx:else="">
-      <view>123</view>
-   </view>
-  </view>
-</scroll-view>
+
+  </scroll-view>
+</view>

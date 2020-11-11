@@ -67,6 +67,7 @@
 .jishizhongxin_item{
   flex-direction:column; display:flex; align-items:center;
   margin:0 10rpx;
+  position: relative;
 }
 .jishizhongxin image{
   width:60rpx;
@@ -193,4 +194,14 @@
 .active {
   color:#fff;
   background: #1c43aa;
+}
+.total_count {
+  padding:3rpx 15rpx;
+  border-radius: 25rpx;
+  background: rgb(253, 10, 10);
+  color:#fff;
+  font-size:26rpx;
+  position: absolute;
+  top:0;
+  right:-2rpx;
 }
