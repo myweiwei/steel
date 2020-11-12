@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-circle": "@vant/weapp/circle/index"
+  },
+  "navigationBarBackgroundColor": "#39454d",
+  "navigationBarTitleText": "",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#FFFFFF",
+  "backgroundTextStyle": "dark"
+}
