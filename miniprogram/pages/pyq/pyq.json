@@ -5,7 +5,9 @@
     "van-field": "@vant/weapp/field/index",
     "van-dialog": "@vant/weapp/dialog/index",
     "van-tab": "@vant/weapp/tab/index",
-    "van-tabs": "@vant/weapp/tabs/index"
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-picker": "@vant/weapp/picker/index"
   },
   "navigationBarBackgroundColor": "#FFFFFF",
   "navigationBarTitleText": "朋友圈",
