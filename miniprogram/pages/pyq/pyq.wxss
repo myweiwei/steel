@@ -242,13 +242,18 @@
 }
 .van-tabs__nav {
   width:400rpx!important;
-  margin-left:100rpx;
 }
 .van-hairline--top-bottom:after {
   border:none!important;
 }
 .van-tab--active .van-ellipsis {
   font-weight: 700;
+}
+.van-tabs__line {
+  background: #1777ff!important;
+}
+.van-tab--active {
+  color:#1777ff!important;
 }
 .myImg {
   position: fixed;
@@ -258,4 +263,47 @@
   color: #000;
   z-index: 100;
   margin-top:10rpx;
+}
+/* 朋友圈展开更多选项 */
+.van-icon-arrow-down {
+  margin:0 10rpx;
+}
+.van-popup--bottom button {
+  width: 100%;
+  height: 50rpx;
+  border: none;
+  outline: none;
+  background: transparent;
+  line-height: 50rpx;
+}
+button::after {
+  border:none;
+}
+.option {
+  border-bottom:1rpx solid #ccc;
+  padding:20rpx 10rpx;
+}
+/* 地址 */
+.loc {
+  background: #f5f4f9;
+  color:#1d1d1d;
+  border-radius: 30rpx;
+  width: 80%;
+  line-height:40rpx;
+  white-space: nowrap;
+  padding:10rpx 20rpx;
+  margin:10rpx;
+  box-sizing: border-box;
+  font-size: 25rpx;
+  display: flex;
+  align-items: center;
+}
+.loc image{
+  width:30rpx;
+  height:30rpx;
+}
+.loc view {
+  flex:1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

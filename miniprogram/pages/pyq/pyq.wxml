@@ -1,9 +1,11 @@
 <!--pages/pyq/pyq.wxml-->
  <view  style='position:fixed;top:0;transform:translate(0);height:{{statusBarHeight+2+"px"}};background:#fff;z-index:10000;width:100%'></view>
 <view class='pyq'  style='margin-top:{{statusBarHeight+"px"}}' >
-  <image class='myImg'  src='../../images/index/jinfang.png' bindtap='toMy'></image>
+  <!-- <image class='myImg'  src='../../images/index/jinfang.png' bindtap='toMy'></image> -->
   <van-tabs active="{{ activeTab }}" offset-top='{{statusBarHeight}}'
   offset-left='100px' swipeable sticky bind:change="onChange">
+    <van-tab title="最新">内容 1</van-tab>
+    <van-tab title="同城">内容 2</van-tab>
     <van-tab title="关注">
       <view class='ava' wx:for='{{list}}' wx:key='id'>
       <view class='flexBetween'>
@@ -14,10 +16,16 @@
             <view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
           </view>
         </view>
-        <view class='del' wx:if='{{item.isOwn==1}}' data-item='{{item}}' bindtap='del'></view>
-        <view class='del' wx:else data-item='{{item}}' bindtap='fan'>
-          <image src='../../images/pyq/follow.png'></image>
+        <view class='flexEnd'>
+          <!-- 关注 -->
+          <view class='del' data-item='{{item}}' bindtap='fan'>
+            <van-button color="{{item.isFollow==0?'#1777ff':'#cacaca'}}"type="primary" size="mini" icon="plus">关注</van-button>
+          </view>
+          <!-- 更多下拉框 -->
+          <van-icon name="arrow-down" data-item='{{item}}' wx:if='{{item.isOwn==1}}' bindtap="showOwnOther"/>
+          <van-icon name="arrow-down" data-item='{{item}}' wx:else bindtap="showOwnOther"/>
         </view>
+       
       </view>
       <view class='avaText'>
         {{item.dynamicTitle}}
@@ -39,7 +47,7 @@
         </view>
         <image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
       </view>
-      <view class='avaBtn flexAround'>
+      <!-- <view class='avaBtn flexAround'>
         <view class='flexCenter' >
           <image src='../../images/pyq/zhuanfa.png'></image>
           <button open-type="share" ></button>
@@ -55,11 +63,16 @@
           <image src='../../images/pyq/zan1.png' wx:else></image>
           赞<text  wx:if='{{item.supportCount&&item.supportCount>=0}}'>{{item.supportCount}}</text>
         </view>
+      </view> -->
+      <view class='loc' wx:if="{{item.dynamicArea}}">
+        <image src='../../images/pyq/near2.png'></image>
+        <view>{{item.dynamicArea}}</view>
       </view>
+      <view style='height:20rpx;'></view>
     </view>
     </van-tab>
-    <van-tab title="热区">内容 2</van-tab>
-    <van-tab title="最新">内容 3</van-tab>
+
+    <van-tab title="最热">内容 3</van-tab>
   </van-tabs>
   <van-popup show="{{ avaShow }}" catchtouchmove="preventTouchMove" position="bottom" custom-style="height:70vh;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
       <view class='totalComment'><text class='strong'>{{commentCount}}</text>条评论</view>
@@ -137,6 +150,7 @@
         </van-cell-group>
       </view>
   </van-popup>
+  
   <van-popup show="{{ avaShow1 }}" position="bottom" custom-style="height: 50%;padding:70rpx 20rpx;box-sizing:border-box;" bind:close="onClose1" round closeable>
     <van-cell-group>
       <van-field
@@ -154,5 +168,15 @@
         </van-button>
       </van-field>
     </van-cell-group>
+  </van-popup>
+  <!-- 自己发的朋友圈的更多弹框 -->
+  <van-popup show="{{ ownOther }}" position="bottom" custom-style="height: 50%;padding:70px 20rpx;box-sizing:border-box;"  round closeable bind:close="onClose2">
+    <view class='option'>
+      <button open-type="share" >转发</button>
+    </view>
+    <view class='option' >
+      <button wx:if='{{currentdynamic.isOwn==1}}' data-item="{{currentdynamic}}" bindtap='del'>删除</button>
+      <button wx:else data-item="{{currentdynamic}}">投诉</button>
+    </view>
   </van-popup>
 </view>
