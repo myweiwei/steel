@@ -1,0 +1,18 @@
+<view style='height:100%'>
+  <scroll-view scroll-y="true" style="height: 99%;" >
+    <view class='flexBetween fan' wx:for="{{datalist}}">
+      <view class='flexStart' style='align-items:flex-start;width:90%' >
+        <image class='avaImg' src='{{item.headIcon}}'></image>
+        <view>
+          <view class='avaName'>{{item.nickName}}</view>
+          <view class='avaInfo'>{{item.timeDiff}} 回复了你的动态</view>
+    <view class='avaContent overEcli' style='width:450rpx;word-break:break-all'>{{item.content}}</view>
+        </view>
+      </view>
+    <image class='fm_img' wx:if='{{item.dynamicImgVideo}}' src='{{item.dynamicImgVideo}}'></image>
+    <view wx:else class='title'>
+      {{item.dynamicTitle}}
+    </view>
+    </view>
+  </scroll-view>
+</view>

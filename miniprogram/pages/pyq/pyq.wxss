@@ -225,15 +225,37 @@
   height: 80rpx!important;
   top: calc(50% - 40rpx);
   left: calc(50% - 40rpx);
-  z-index: 100;
 }
 .video-cover-box{
   height: 100%;
   width: 100%;
-  background: #000; 
+  background: rgba(0,0,0,0.2)!important;
   text-align: center;
 }
 .video-image {
   height: 100%;
   width: 100%;
+}
+/* 顶部导航 */
+.van-tab__pane {
+  background:rgb(245, 242, 242);
+}
+.van-tabs__nav {
+  width:400rpx!important;
+  margin-left:100rpx;
+}
+.van-hairline--top-bottom:after {
+  border:none!important;
+}
+.van-tab--active .van-ellipsis {
+  font-weight: 700;
+}
+.myImg {
+  position: fixed;
+  width: 70rpx;
+  height: 70rpx;
+  left: 10px;
+  color: #000;
+  z-index: 100;
+  margin-top:10rpx;
 }

@@ -1,5 +1,43 @@
-<view>
-  <view>
+<view style="padding-left:20rpx; padding-top:20rpx;">
+  <view style="display:flex; justify-content:space-between; align-items:center;">
+
+      <image style="border:1rpx solid red; border-radius:100rpx; width:80rpx; height:80rpx;" src="../../images/enterprise/follow.png"></image>
     
+    <view style="margin-right:290rpx;">
+        <view>贫穷料理</view>
+        <view>11/08 5:22</view>
+      </view>
+  
+      <van-button round type="info" style="margin-right:20rpx;">+关注</van-button>
+  
   </view>
-</view>>
+  <view>
+    <view>正文</view>
+    <image style="width:100rpx; height:100rpx;" src="../../images/enterprise/follow.png"></image>
+  </view>
+
+  <view>
+    <van-tabs active="{{ active }}" bind:change="onChange">
+      <van-tab title="评论">
+        <view style="display:flex; align-items:center;">
+          <image style="border:1rpx solid red; border-radius:100rpx; width:80rpx; height:80rpx;" src="../../images/enterprise/follow.png"></image>
+          <view style="margin-left:20rpx;">
+            <view>评论人1</view>
+            <view>11/08 5:22</view>
+          </view>
+        </view>      
+        <view style="margin-left:98rpx;">
+          巴拉巴拉巴拉
+        </view>
+      </van-tab>
+      <van-tab title="点赞">
+        <view style="display:flex; justify-content:space-between; align-items:center;">
+          <image src="../../images/enterprise/follow.png" style="width:70rpx; height:70rpx;"></image>
+          <text style="margin-right:240rpx;">风清杨</text>
+          <text style="margin-right:30rpx;">2天前</text>
+        </view>
+
+      </van-tab>
+  </van-tabs>
+  </view>
+</view>

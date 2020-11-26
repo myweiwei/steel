@@ -6,26 +6,40 @@ Page({
    * 页面的初始数据
    */
   data: {
+    headIcon:'',
+    name:'',
+
     show:false,
     value:'10',
     userInfo:{},
-    iconList:[
-      { name: "完善信息", icon:'my_17'},
-      { name: "我的关注", icon:"my_14"},
-      { name: "咨询记录", icon: "my_11" },
-      { name: "技师专栏", icon: "my_23" },
-      { name: "充值中心", icon: "my_26" },
-      { name: "关联企业", icon: "my_28" },
-      { name: "意见反馈", icon: "my_33" },
-      { name: "联系我们", icon: "my_36" },
-      { name: "注册企业", icon: "my_28" },
-      { name: "商品管理", icon: "my_28" },
-      { name: "展示面管理", icon: "my_28" }
-    ],
     priceList: ['10','20','30','50','80','100'],
     activeIndex:0,
     money:0,
-    showPwd:'false'
+    showPwd:'false',
+    countList:{}
+  },
+  getCount:function(){
+    let me = this;
+    app.wxRequest('get', '/message/unreadCount', {}, function (res) {
+      me.setData({
+        countList:res.data.data
+      })
+    }) 
+  },
+  getHeadIconAndName:function(){
+    let me = this;
+    app.wxRequest('get', '/personal/user', {}, function (res) {
+      console.log(res.data.data)
+      me.setData({
+        headIcon:res.data.data.headIcon,
+        name:res.data.data.nickName
+      })
+    }) 
+  },
+  goMessage:function(){
+    wx.navigateTo({
+      url: '/pages/mine/message/message?followCount=' + this.data.countList.followCount + '&&supportCount=' + this.data.countList.supportCount + '&&commentCount=' + this.data.countList.commentCount
+    })
   },
   showPwdFunc:function(e){
     console.log(e.currentTarget.dataset.flag)
@@ -162,16 +176,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.setData({
-      baseUrl: app.globalData.baseUrl
-    })
-    if(app.globalData.token!=''){
-      that.getMoney();
-    }
-    else {
-      app.getUser(that.getMoney);
-    }
+    
   },
 
   /**
@@ -189,6 +194,18 @@ Page({
     this.setData({
       show:false
     })
+    var that = this;
+    that.setData({
+      baseUrl: app.globalData.baseUrl
+    })
+    if (app.globalData.token != '') {
+      that.getCount();
+      that.getHeadIconAndName();
+    }
+    else {
+      app.getUser(that.getCount);
+      app.getUser(that.getHeadIconAndName);
+    }
   },
 
   /**

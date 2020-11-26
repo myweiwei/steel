@@ -1,1 +1,5 @@
-Page({   })
+Page({
+  data:{
+    active: 1
+  }
+})

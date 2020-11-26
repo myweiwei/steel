@@ -3,12 +3,15 @@
     "van-icon": "@vant/weapp/icon/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-field": "@vant/weapp/field/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
   },
   "navigationBarBackgroundColor": "#FFFFFF",
   "navigationBarTitleText": "朋友圈",
   "navigationBarTextStyle": "black",
   "backgroundColor": "#FFFFFF",
   "backgroundTextStyle": "dark",
-  "enablePullDownRefresh":true
+  "enablePullDownRefresh":true,
+  "navigationStyle": "custom"
 }

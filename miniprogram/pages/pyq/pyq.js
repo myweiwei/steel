@@ -5,7 +5,8 @@ let distance = 0 //标记页面是向下还是向上滚动
 let indexKey = 0 //标记当前滚动到那个视频了
 Page({
   data: {
-    active: 1,
+    activeTab: 0,
+    active:0,
     avaShow: false,
     openFlag: false,
     commCount: 2,
@@ -39,7 +40,33 @@ Page({
     unGeo: '',
     info: "已经到底啦",
     infoShow: false,
-    _index:null
+    _index:null,
+    statusBarHeight:0,
+  },
+  preventTouchMove(){
+
+  },
+  fan(e){
+    let me=this;
+    app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
+      if (data.data.data == '已关注' || data.data.data == '互相关注') {
+        wx.showToast({
+          title: "已关注",
+          icon: 'none'
+        })
+      }
+      else if (data.data.data == '关注' || data.data.data == '回关') {
+        wx.showToast({
+          title: "已取消关注",
+          icon: 'none'
+        })
+      }
+    })
+  },
+  toMy(){
+    wx.navigateTo({
+      url: '/pages/pyq/mine/mine'
+    })
   },
   //获取每个视频的距离顶部的高度
   spHeight() {
@@ -301,12 +328,13 @@ Page({
           ++count;
         }
       }
-      me.setData({
-        list: data.data.data.list,
-        total: data.data.data.total
+      wx.nextTick(() => {
+        me.setData({
+          list: data.data.data.list,
+          total: data.data.data.total
+        })
+        me.spHeight();
       })
-      console.log(data.data.data.list[0]);
-      me.spHeight();
     })
   },
   getMore: function () {
@@ -395,35 +423,39 @@ Page({
   //页面滚动触发
   // onPageScroll(event) {
   //   let scrollTop = event.scrollTop //页面滚动
-  //   console.log(scrollTop)
-  //   if (scrollTop >= meigeSP[0] * 0.5) {
+  //   console.log(scrollTop);
+  //   if (scrollTop >= 1000) {
   //     indexKey = 0
-  //     this.setData({ _index: indexKey })
+  //     this.setData({ _index: null })
   //   }
-  //   if (scrollTop >= distance) { //页面向上滚动indexKey
-  //     // console.log(scrollTop);
-  //     console.log(meigeSP[indexKey] * 0.5)
-  //     if (indexKey + 1 < meigeSP.length && scrollTop >= meigeSP[indexKey] * 0.5) {
-  //       this.setData({ _index: indexKey + 1 })
-  //       indexKey += 1
-  //       console.log("indexKey", indexKey)
-  //     }
-  //   } else { //页面向下滚动
-  //     if (distance - scrollTop < 15) { //每次滚动的距离小于15时不改变  减少setData的次数
-  //       return
-  //     }
-  //     if (indexKey - 1 > 0 && scrollTop < meigeSP[indexKey - 1]) {
-  //       indexKey -= 1
-  //       this.setData({ _index: indexKey })
-  //     }
-  //   }
-  //   distance = scrollTop
+  //   // if (scrollTop >= distance) { //页面向上滚动indexKey
+  //   //   console.log(scrollTop);
+  //   //   if (indexKey + 1 < meigeSP.length && scrollTop >= meigeSP[indexKey]) {
+  //   //     this.setData({ _index: indexKey + 1 })
+  //   //     indexKey += 1
+  //   //     console.log("indexKey", indexKey)
+  //   //   }
+  //   // } else { //页面向下滚动
+  //   //   if (distance - scrollTop < 15) { //每次滚动的距离小于15时不改变  减少setData的次数
+  //   //     return
+  //   //   }
+  //   //   if (indexKey - 1 > 0 && scrollTop < meigeSP[indexKey - 1]) {
+  //   //     indexKey -= 1
+  //   //     this.setData({ _index: indexKey })
+  //   //     console.log("indexKey", indexKey)
+  //   //   }
+  //   // }
+  //   // console.log(indexKey)
+  //   // distance = scrollTop
   // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let me=this;
+    me.setData({
+      statusBarHeight: app.globalData.statusBarHeight
+    })
   },
 
   /**
@@ -492,41 +524,42 @@ Page({
    */
   onReachBottom: function () {
     let me = this;
-    if (me.data.active == 1) {
-      me.getMore();
-    }
-    else if (me.data.active == 4) {
-      let list = "ownpageData.pageNum";
-      if (me.data.list.length < me.data.total) {
-        me.setData({
-          [list]: ++me.data.ownpageData.pageNum
-        })
-        me.getOwnList();
-      }
-    }
-    else if (me.data.active == 2) {
-      let list = "cityData.pageNum";
-      if (me.data.list.length < me.data.total) {
-        me.setData({
-          [list]: ++me.data.cityData.pageNum
-        })
-        me.getLoc();
-      }
-    }
-    else if (me.data.active == 3) {
-      let list = "likeData.pageNum";
-      if (me.data.list.length < me.data.total) {
-        me.setData({
-          [list]: ++me.data.likeData.pageNum
-        })
-        me.getLikeList();
-      }
-    }
-    else {
-      me.setData({
-        list: []
-      })
-    }
+    me.getMore();
+    // if (me.data.active == 1) {
+    //   me.getMore();
+    // }
+    // else if (me.data.active == 4) {
+    //   let list = "ownpageData.pageNum";
+    //   if (me.data.list.length < me.data.total) {
+    //     me.setData({
+    //       [list]: ++me.data.ownpageData.pageNum
+    //     })
+    //     me.getOwnList();
+    //   }
+    // }
+    // else if (me.data.active == 2) {
+    //   let list = "cityData.pageNum";
+    //   if (me.data.list.length < me.data.total) {
+    //     me.setData({
+    //       [list]: ++me.data.cityData.pageNum
+    //     })
+    //     me.getLoc();
+    //   }
+    // }
+    // else if (me.data.active == 3) {
+    //   let list = "likeData.pageNum";
+    //   if (me.data.list.length < me.data.total) {
+    //     me.setData({
+    //       [list]: ++me.data.likeData.pageNum
+    //     })
+    //     me.getLikeList();
+    //   }
+    // }
+    // else {
+    //   me.setData({
+    //     list: []
+    //   })
+    // }
 
   },
 
