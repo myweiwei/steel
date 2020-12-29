@@ -28,7 +28,10 @@
     "pages/mine/message/favour/favour",
     "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
     "pages/goods/goodsManager/goodsManager",
-    "pages/goods/goodsAdd/goodsAdd"
+    "pages/goods/goodsAdd/goodsAdd",
+    "pages/technician/searchTechnician/searchTechnician",
+    "pages/technician/technicianDetail/technicianDetail",
+    "pages/technician/technicianVideoConsult/technicianVideoConsult"
   ],
   "subpackages": [
     {

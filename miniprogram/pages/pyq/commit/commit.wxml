@@ -1,83 +1,68 @@
 <!--pages/pyq/commit/commit.wxml-->
 <view class='commit'>
-  <van-cell-group >
-    <van-field  custom-style='width:100%;height:30%;box-sizing:border-box'            bindtap='btnClick'
-      value="{{ dynamicTitle }}"
-      label=""
-      bind:change="onChange"
-      type="textarea"
-      autosize
-      placeholder="分享新鲜事"
-      border="{{ false }}"
-      focus='{{focus}}'
-    />
-  </van-cell-group>
-  <van-uploader file-list="{{ fileList }}"  bind:delete='delImg' bind:after-read="afterRead" max-count="6" wx:if='{{count==0||!fileList1.length}}' accept='image' multiple='true'>
-    <view class='videoLoa'>
-      <van-icon name="photo-o"  size='50rpx' color='#ccc'/>
-      <view>上传图片</view>
-    </view>
-  </van-uploader>
-  <view bindtap='addVideo' style='width:200rpx;display:inline-block;position:absolute;top:30%' wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
-    <view class='videoLoa'>
-        <van-icon name="video-o" size='50rpx' color='#ccc'/>
-        <view>上传视频</view>
-      </view>
-  </view>
-  <view wx:for='{{fileList1}}' wx:if='{{fileList1.length}}' wx:key='{{path}}' class='imgList'>
-    <video  src="{{item.path}}" object-fit='cover' show-progress>
-    </video>
-    <view class='delBtn' >
-      <van-icon name="cross" size='50rpx' color='#fff' bindtap='delVideo'/>
-    </view>
-  </view>
-  <!-- <van-uploader bind:after-read="afterRead1" max-count="1" accept='video' multiple='false' wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
+	<van-cell-group>
+		<van-field custom-style='width:100%;height:30%;box-sizing:border-box' bindtap='btnClick' value="{{ dynamicTitle }}" label="" bind:change="onChange" type="textarea" autosize placeholder="记录这一刻..." border="{{ false }}" focus='{{focus}}' />
+	</van-cell-group>
+	<view class="vanUp">
+		<van-uploader preview-size="{{(windowWidth-56)/3}}" file-list="{{ fileList }}" bind:delete='delImg' bind:after-read="afterRead" max-count="6" wx:if='{{count==0||!fileList1.length}}' accept='image' multiple='true'>
+			<view class='videoLoa' style="width:{{(windowWidth-56)/3}}px;height:{{(windowWidth-56)/3}}px;">
+				<van-icon wx:if='{{count==0||!fileList.length}}' name="photo-o" size='50rpx' color='#ccc' />
+				<van-icon wx:else name="plus" size='70rpx' color='#ccc' />
+
+				<view wx:if='{{count==0||!fileList.length}}'>上传图片</view>
+			</view>
+		</van-uploader>
+		<!-- upload-icon="plus"  -->
+		<van-uploader bind:after-read="afterRead1" max-count="1" accept='video' multiple='false' wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
+			<view class='videoLoa' style="width:{{(windowWidth-56)/3}}px;height:{{(windowWidth-56)/3}}px;margin-left: 10px;">
+				<van-icon name="video-o" size='50rpx' color='#ccc' />
+				<view>上传视频</view>
+			</view>
+		</van-uploader>
+
+		<!-- <view bindtap='addVideo' class='videoLoa' style="width:{{(windowWidth-40)/3}}px;height:{{(windowWidth-40)/3}}px;margin-left: 10px;" wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
+			<van-icon name="video-o" size='50rpx' color='#ccc' />
+			<view>上传视频</view>
+		</view> -->
+
+	</view>
+
+	<!-- <view bindtap='addVideo' style='width:200rpx;display:inline-block;position:absolute;top:30%' wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
+		<view class='videoLoa'>
+			<van-icon name="video-o" size='50rpx' color='#ccc' />
+			<view>上传视频</view>
+		</view>
+	</view> -->
+	<view wx:for='{{fileList1}}' wx:if='{{fileList1.length}}' wx:key='{{path}}' class='imgList' style="margin-left: 10px;">
+		<video src="{{item.path}}" object-fit='cover' show-progress>
+		</video>
+		<view class='delBtn'>
+			<van-icon name="cross" size='50rpx' color='#fff' bindtap='delVideo' />
+		</view>
+	</view>
+	<!-- <van-uploader bind:after-read="afterRead1" max-count="1" accept='video' multiple='false' wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
     <view class='videoLoa'>
       <van-icon name="video-o" size='50rpx' color='#ccc'/>
       <view>上传视频</view>
     </view>
   </van-uploader> -->
-  <br />
-  <van-cell-group>
-      <van-field
-      value="{{ province }}"
-      placeholder="所在位置"
-      border="{{ false }}"
-      bindtap="getLocation"
-      right-icon='arrow'
-      readonly
-      >
-        <van-icon name="location" slot='left-icon' color='{{!address?"#ccc":"#07c160"}}' class='m-r-10 f-40'/>
-      </van-field>
-      <van-field
-      value="{{ dynamicType }}"
-      custom-style='{color:"red"}'
-      placeholder="类型"
-      border="{{ false }}"
-      right-icon='arrow'
-      readonly
-      bindtap='showPop'
-      >
-        <van-icon name="question" slot='left-icon' color='{{!dynamicType?"#ccc":"#07c160"}}' class='m-r-10 f-40'/>
-      </van-field>
-  </van-cell-group>
-  <van-popup
-    show="{{ show }}"
-    position="bottom"
-    custom-style="height: 40%;"
-  >
-  <view style='height:100%'>
-    <!-- <van-picker columns="{{ columns }}" bind:change="onTypeChange" /> -->
-    <van-picker
-      show-toolbar
-      title="选择类型"
-      columns="{{ columns }}"
-      bind:cancel="onClose"
-      bind:confirm="onConfirm1"
-    />
-  </view>
-  </van-popup>
-  <view class='footer'>
-    <van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='uploadFiles'>发送</van-button>
-  </view>
+	<br />
+	<van-cell-group>
+
+		<van-field value="{{ dynamicType }}" custom-style='{color:"red"}' placeholder="添加标签" border="{{ false }}" right-icon='arrow' readonly bindtap='showPop'>
+			<van-icon name="label" slot='left-icon' color='{{!dynamicType?"#ccc":"#07c160"}}' class='m-r-10 f-40' />
+		</van-field>
+		<van-field value="{{ province }}" placeholder="所在位置" border="{{ false }}" bindtap="getLocation" right-icon='arrow' readonly>
+			<van-icon name="location" slot='left-icon' color='{{!address?"#ccc":"#07c160"}}' class='m-r-10 f-40' />
+		</van-field>
+	</van-cell-group>
+	<van-popup show="{{ show }}" position="bottom" custom-style="height: 40%;">
+		<view style='height:100%'>
+			<!-- <van-picker columns="{{ columns }}" bind:change="onTypeChange" /> -->
+			<van-picker show-toolbar title="选择类型" columns="{{ columns }}" bind:cancel="onClose" bind:confirm="onConfirm1" />
+		</view>
+	</van-popup>
+	<view class='footer'>
+		<van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='uploadFiles'>发送</van-button>
+	</view>
 </view>

@@ -180,6 +180,47 @@
 					"pathName": "pages/mine/message/fan/fan",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "searchTechnician",
+					"pathName": "pages/technician/searchTechnician/searchTechnician",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "technicianVideoConsult",
+					"pathName": "pages/technician/technicianVideoConsult/technicianVideoConsult",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "technicianDetail",
+					"pathName": "pages/technician/technicianDetail/technicianDetail",
+					"query": "teacherId=7",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pyq/pyq",
+					"pathName": "pages/pyq/pyq",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pyq/commit/commit",
+					"pathName": "pages/pyq/commit/commit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pyq/mine/mine",
+					"pathName": "pages/pyq/mine/mine",
+					"scene": null
 				}
 			]
 		}

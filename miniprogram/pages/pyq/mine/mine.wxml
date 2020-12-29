@@ -1,2 +1,92 @@
-<!--pages/pyq/mine/mine.wxml-->
-<text>pages/pyq/mine/mine.wxml</text>
+<view class="head">
+	<view style="margin-top:{{statusBarHeight}}px ;height:{{titleBarHeight}}px;">
+		<van-icon bindtap="onBack" name="arrow-left" custom-style="align-items: center;display: flex;width:65rpx;height: 65rpx;font-size:40rpx;padding:10rpx" />
+	</view>
+
+	<view style="width:100%;height:80rpx;padding:15rpx 0;">
+		<view style="position: absolute;right: 20rpx;">
+			<van-button color="rgba(45, 45, 45, 0.372)" hairline round size="small">编辑资料</van-button>
+		</view>
+	</view>
+<view class="hRow">
+	<image class="headImg" mode="aspectFill" src="{{ headIcon==null?'../../../images/enterprise/mendiantu.png':headIcon}}"></image> 
+	<!-- <image class="headImg" mode="aspectFill" src="{{ headIcon==null?'../../images/enterprise/mendiantu.png':headIcon}}"></image>  -->
+  <text style="margin-left: 20rpx;">王师傅</text>
+  <image class="icon" src="{{ headIcon==null?'../../../images/my/enterprise_icon01.png':headIcon}}"></image>
+  <image class="icon" src="{{ headIcon==null?'../../../images/my/enterprise_icon01.png':headIcon}}"></image>
+</view>
+<view class="hRow">
+<text class="hRowText">2 获赞</text> <text class="hRowText">2 关注</text> <text class="hRowText">2 粉丝</text>
+</view>
+</view>
+
+			<!-- todo: 默认头像修改 -->
+			<view class='ava' wx:for='{{cityList}}' wx:key='id'  wx:for-index="index" data-bean="{{item}}" >
+				<view class='flexBetween'>
+					<view class='avaInfo flexStart'>
+						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}"  bindtap='toMy'></image>
+						<view>
+							<text>{{item.nickName?item.nickName:"无"}}</text>
+							<view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
+						</view>
+					</view>
+					<view class='flexEnd'>
+						<!-- 关注 -->
+						<view class='del' data-item='{{item}}' bindtap='fan' data-index='{{index}}'>
+							<!-- <van-button color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" type="primary" size="mini" icon="plus">关注</van-button> -->
+							<van-button style="margin-right: 10rpx;" color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" size="mini" round>
+								{{item.isFollow==0?'+ 关注':'已关注'}} </van-button>
+						</view>
+						<!-- 更多下拉框 -->
+						<van-icon name="arrow-down" data-item='{{item}}' wx:if='{{item.isOwn==1}}' bindtap="showOwnOther" />
+						<van-icon name="arrow-up" data-item='{{item}}' wx:else bindtap="showOwnOther" />
+					</view>
+
+				</view>
+				<!-- <view class='avaText'> -->
+					<view class='contnetText test'>
+					{{item.dynamicTitle}}
+				</view>
+
+				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
+					<!-- 视频图片层 -->
+					<view wx:if='{{item.videoType==1}}'>
+						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" bindtap="videoPlay">
+							<view class="video-cover-box">
+								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
+								</image>
+								<!-- <view class="video-image" style='width:100%;height:100%;background:transparent'></view> -->
+							</view>
+							<!-- 播放按钮 -->
+							<image class="video-image-play" src="../../images/pyq/bofang.png" mode="scaleToFill"></image>
+						</view>
+						<video wx:if="{{_index == item.videoindex}}" autoplay="true" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+					</view>
+					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
+				</view>
+ 
+				<view class='loc' wx:if="{{item.dynamicArea}}">
+					<image src='../../images/pyq/near2.png'></image>
+					<view>{{item.dynamicArea}}</view>
+				</view>
+				<view style='height:20rpx;'></view>
+				<view class="tc-cardBottom">
+					<view style=" width: {{30+(40*(item.supportUsersIcon.length+1))}}rpx;height:60rpx;">
+						<!-- <image  style=" position: absolute;left:80rpx" mode="aspectFill" src="../../images/enterprise/mendiantu.png" /> -->
+						<image wx:for="{{item.supportUsersIcon}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index+1)}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
+					</view>
+
+					<text  wx:if="{{item.supportUsersIcon.length}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportUsersIcon.length}}人点赞</text>
+					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
+						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
+							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
+							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="red" wx:else />
+							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportUsersIcon.length}}</text>
+							<text style="padding-right:10rpx;color:red"  wx:else>{{item.supportUsersIcon.length}}</text>
+							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}'  catchtap="comment" name="chat-o" />
+							<!-- <text style="padding:0 5rpx">评论</text> -->
+							<text  data-item='{{item}}'  catchtap="comment" wx:if='{{item.commentCount==0}}'>评论</text>
+							<text  data-item='{{item}}'  catchtap="comment" wx:else>{{item.commentCount}}</text></view>
+					</view>
+				</view>
+			</view>

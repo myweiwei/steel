@@ -1,0 +1,218 @@
+page {
+  background-color: #f4f4f4;
+}
+.intro {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  padding-bottom: 1rpx;
+  bottom: 140rpx;
+}
+.gradual {
+  background: #0c89f0;
+  width: 100%;
+  height: 180rpx;
+  align-items: center;
+  display: flex;
+}
+
+.headRow {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  margin-left: 30rpx;
+  flex-direction: row;
+  color: white;
+}
+
+.headImage {
+  margin-top: 5rpt;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.technicianCard {
+  /* box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(85, 85, 85, 0.10); */
+  padding-bottom: 10rpx;
+  background: #FFFFFF;
+  padding: 25rpx 20rpx;
+}
+
+text {
+  letter-spacing: 3rpx;
+}
+
+.fontBold {
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+}
+
+
+.fontBold text {
+  font-size: 25rpx;
+  color: #777;
+  margin-left: 3rpx;
+  font-weight: normal;
+}
+
+.smallFontBold {
+  font-size: 25rpx;
+  color: #777;
+}
+
+.detailDescribe {
+
+  line-height: 1.7em;
+  width: 100%;
+  margin: 10rpx auto;
+  padding: 30rpx 50rpx 20rpx 30rpx;
+  font-size: 26rpx;
+  background: white;
+  color: #5c5c5c;
+}
+
+.evaluateView {
+  /* line-height: 1.7em; */
+  width: 100%;
+  min-height: 50%;
+  margin: 0 auto;
+  /* margin-top: 10rpx; */
+  padding: 20rpx 50rpx 90rpx 30rpx;
+  font-size: 26rpx;
+  background: white;
+  color: #5c5c5c;
+  
+}
+
+.evaluateLay {
+  flex-direction: column;
+  width: 50%;
+  display: flex;
+  margin-left: 10rpx;
+  position: relative;
+}
+
+.evaluateView image {
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.evaluateRow {
+  width: 100%;
+  padding: 10rpx 0;
+  align-items: center;
+  display: flex;
+  margin-left: 10rpx;
+  flex-direction: row;
+  color: #5c5c5c;
+}
+
+.detailDescribe text text {
+  color: black;
+  font-size: 26rpx;
+}
+
+.ebt {
+  border-bottom: 1px;
+  border-bottom-color: rgb(229, 229, 229);
+  padding-bottom: 10rpx;
+  border-bottom-style: solid;
+}
+
+.p-r-5 {
+  padding: 0 5%;
+  width: 100%;
+}
+
+.sp {
+  background-color: rgb(114, 94, 114);
+}
+
+
+.technicianCardItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  color: #484848;
+  /* padding-top: 37rpx; */
+  font-size: 26rpx;
+  align-items: center;
+}
+
+.technicianCardItem {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  margin: 0 10rpx;
+  position: relative;
+}
+
+.nameLay {
+  flex-direction: column;
+  display: flex;
+  margin: 0 30rpx;
+  position: relative;
+}
+
+.imgItem {
+  /* border-radius: 5rpx; */
+  width: 100%;
+  height: 120rpx;
+  border-radius: 6rpx;
+  margin-top: 10rpx;
+}
+
+.showView {
+  color: black;
+  font-size: 27rpx;
+  line-height: 1.7em;
+}
+
+.exhibition {
+  height: 100rpx;
+}
+
+.evaluate {
+  height: 70rpx;
+}
+
+
+.bottomView {
+  margin-top: 1rpx;
+  background: white;
+  padding: 30rpx 0 20rpx 0;
+  width: 100%;
+  position: fixed;
+  bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.buttonV {
+  width: 41%;
+  /* height: 80rpx; */
+  margin-left: 6%;
+  /* display: flex;
+  flex-direction: row;
+  align-items: center; */
+  color: white;
+  font-size: 26rpx;
+  /* position: relative; */
+  
+}
+
+button {
+  height: 80rpx;
+  font-size: 26rpx;
+  padding: 4rpx 0;
+  color: white;
+}

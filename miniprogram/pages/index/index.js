@@ -12,6 +12,8 @@ Page({
     autoplay: true,
     interval: 2000,
     duration: 500,
+    jishiArr:[],
+    qiyeArr:[],
     msgList: [
       { url: "url", title: "恭喜xxx完成任务退回200进入领奖区" },
       { url: "url", title: "恭喜xxx获得XXX奖励" },
@@ -248,9 +250,11 @@ Page({
       statusBarHeight: app.globalData.statusBarHeight
     })
     me.getBanner();
-    me.getTeacher();
+   // me.getTeacher();
     console.log("invoke location");
     me.getLocation()
+    me.getJishi('')
+    me.getQiye()
   },
   handleChange: function (e) {
     this.setData({
@@ -258,18 +262,28 @@ Page({
     })
   },
   onShow:function(){
+    console.log('show-------')
     var that = this;
     that.setData({
       baseUrl: app.globalData.baseUrl
     })
     if (app.globalData.token == '') {
+      console.log('token==null')
+      //app.getUser(that.funcList);
       app.getUser(that.funcList);
+   
+      console.log('getUser-------')
     }
-    else {
-      that.funcList()
-      that.getLocation()
+    else { 
+    that.funcList()
+    that.getLocation()
+    that.getJishi('')
+    that.getQiye()
     }
     
+  },
+  getData:function(){
+  
   },
   getInfo:function(){
     wx.getUserInfo({
@@ -298,6 +312,32 @@ Page({
     wx.navigateTo({
       url: '/pages/enterprise/searchEnterprise/searchEnterprise?longtitude=' + me.data.longitude + "&latitude=" + me.data.latitude
     })
+  },
+  goTechnician:function(){
+    wx.navigateTo({
+      url: '/pages/technician/searchTechnician/searchTechnician'
+    })
+  },
+  getJishi:function(goodAtStr){
+    var me=this;
+    var url="getTeachersInfoByFavorableRate?goodAt="+goodAtStr;
+    app.wxRequest('get', url, {}, function (data) {
+      if (data.data.status == 200) {
+        console.log(data.data.data);
+        me.setData({jishiArr:data.data.data});
+      }
+    })
+  },
+  getQiye:function(){
+    var me=this;
+    var url='enterprise/enterpriseTop10';
+    app.wxRequest('get', url, {}, function (data) {
+      if (data.data.status == 200) {
+        console.log(data.data.data);
+        me.setData({qiyeArr:data.data.data});
+      }
+    })
   }
+
 
 })

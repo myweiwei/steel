@@ -1,0 +1,11 @@
+{
+  "usingComponents": {  
+     "van-icon": "@vant/weapp/icon/index",
+     "van-divider": "@vant/weapp/divider/index",
+     "van-button": "@vant/weapp/button/index"
+    },
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "light"
+}

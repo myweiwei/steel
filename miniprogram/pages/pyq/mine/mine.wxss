@@ -1,1 +1,197 @@
-/* pages/pyq/mine/mine.wxss */
+.head {
+  width: 100%;
+  background: rgb(17, 46, 151);
+  /* background:rgba(45, 45, 45, 0.772); */
+
+}
+
+.head .hRow {
+  display: flex;
+  flex-direction: row;
+  /*flex 布局*/
+  display: flex;
+  /*实现垂直居中*/
+  align-items: center;
+  color: white;
+  margin: 10rpx 0;
+  margin-left: 40rpx;
+}
+
+.headImg {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+}
+
+.icon{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-left: 25rpx;
+}
+.hRowText{
+  margin: 15rpx 0;
+  margin-left: 30rpx;
+  font-size: 26rpx;
+}
+
+
+
+.ava {
+  background: #fff;
+  margin-bottom: 15rpx;
+  box-sizing: border-box;
+}
+
+.avaInfo {
+  padding: 20rpx 0 0 20rpx;
+}
+
+.avaInfo image {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.avaInfo text {
+  font-weight: 700;
+  font-size: 30rpx;
+}
+
+.avaInfo .avaTime {
+  font-size: 23rpx;
+  color: #a3a3a3;
+}
+
+.del {
+  margin: 0 10rpx;
+}
+
+.del image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.avaCon {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.avaCon image {
+  width: 400rpx;
+  height: 420rpx;
+  border-radius: 15rpx;
+}
+
+.avaCon .moreImg {
+  width: 200rpx;
+  height: 220rpx;
+  margin-right: 10rpx;
+}
+
+.avaCon .twoImg {
+  width: 250rpx;
+  height: 260rpx;
+  margin-right: 10rpx;
+}
+
+.avaCon video {
+  border-radius: 15rpx;
+  width: 100%;
+}
+
+.avaText {
+  padding: 20rpx;
+  box-sizing: border-box;
+  color: #1d1d1d;
+  font-size: 28rpx;
+}
+
+.avaBtn {
+  height: 80rpx;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  border-top: 1rpx solid rgb(243, 241, 241);
+}
+
+.avaBtn image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.avaBtn .flexCenter {
+  color: #2c2c2c;
+  width: 30%;
+  position: relative;
+}
+
+.avaBtn button {
+  position: absolute;
+  top: -23rpx;
+  left: 47rpx;
+  width: 200rpx;
+  opacity: 0.1;
+  border: transparent;
+  background: transparent;
+  height: 80rpx;
+}
+
+/*视频布局*/
+.video-image-box {
+  height: 400rpx;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position-x: 30rpx;
+  position: relative;
+}
+
+.video-image-play {
+  position: absolute;
+  width: 80rpx !important;
+  height: 80rpx !important;
+  top: calc(50% - 40rpx);
+  left: calc(50% - 40rpx);
+}
+
+.video-cover-box {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2) !important;
+  text-align: center;
+}
+
+.video-image {
+  height: 100%;
+  width: 100%;
+}
+
+
+/* 地址 */
+.loc {
+  background: #f5f4f9;
+  color: #1d1d1d;
+  border-radius: 30rpx;
+  width: 80%;
+  line-height: 40rpx;
+  white-space: nowrap;
+  padding: 10rpx 20rpx;
+  margin: 10rpx;
+  box-sizing: border-box;
+  font-size: 25rpx;
+  display: flex;
+  align-items: center;
+}
+
+.loc image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.loc view {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

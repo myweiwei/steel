@@ -1,54 +1,124 @@
 <!--index.wxml-->
 <view class="container">
-  <scroll-view scroll-y="true" style="height: 100%;background:#f5f6f6" >
-    <view style='position:relative;'>
-      <view class='flexBetween' style='position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;margin-top:{{statusBarHeight+"px"}}'>
-        <view style='flex:1;max-width:160rpx;margin-right:10rpx;' class='city flexStart' data-curr='{{curCity}}' bindtap='chooseAddress'>
-          <text class='curcity'>{{curCity}}</text>
-          <van-icon name="arrow-down" color="#fff"/>
-        </view>
-        <van-search shape='round' style='width:380rpx;z-index:100;color:#fff'  input-class='search_ipt' />
-      </view>
-      <view class="page-section page-section-spacing swiper" >
-        <swiper indicator-dots="{{indicatorDots}}" style='height:100%;display:flex;align-items:center' indicator-color='#fff' indicator-active-color='#1c43aa'  bindchange="handleChange" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
-          <block wx:for="{{background}}" wx:key="*this">
-            <swiper-item class="item">
-              <view class="swiper-item" >
-                <image src="{{item.bannerImg}}" class="itemImg"> </image>
-              </view>
-            </swiper-item>
-          </block>
-        </swiper>
-      </view>
-    </view>
-    <view class='content'>
-     <view>
-      <view class="jingangqu">
-        <view>
-          <image src="../../images/index/qizhizhaopin.png"/>
-          <view>求职招聘</view>
-        </view>
-        <view>
-           <image src="../../images/index/zhaodingdan.png" />
-          <view>找订单</view>
-        </view>
-        <view>
-           <image src="../../images/index/zhaojishi.png" />
-          <view>找技师</view>
-        </view>
-        <view bindtap="goEnterprise">
-           <image src="../../images/index/zhaoqiye.png"/>
-           <view>找企业</view>
-        </view>
-        <view>
-           <image src="../../images/index/jinfang.png"/>
-          <view>技师进房</view>
-        </view>
-      </view>
-    </view>
-    </view>
-   
-     <!-- <view class='adsec m-20'>
+	<scroll-view scroll-y="true" style="height: 100%;background:#f5f6f6">
+		<view style='position:relative;'>
+			<view class='flexBetween' style='position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;margin-top:{{statusBarHeight+"px"}}'>
+				<view style='flex:1;max-width:160rpx;margin-right:10rpx;' class='city flexStart' data-curr='{{curCity}}' bindtap='chooseAddress'>
+					<text class='curcity'>{{curCity}}</text>
+					<van-icon name="arrow-down" color="#fff" />
+				</view>
+				<van-search shape='round' style='width:380rpx;z-index:100;color:#fff' input-class='search_ipt' />
+			</view>
+			<view class="page-section page-section-spacing swiper">
+				<swiper indicator-dots="{{indicatorDots}}" style='height:100%;display:flex;align-items:center' indicator-color='#fff' indicator-active-color='#1c43aa' bindchange="handleChange" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
+					<block wx:for="{{background}}" wx:key="*this">
+						<swiper-item class="item">
+							<view class="swiper-item">
+								<image src="{{item.bannerImg}}" class="itemImg"> </image>
+							</view>
+						</swiper-item>
+					</block>
+				</swiper>
+			</view>
+		</view>
+		<view class='content'>
+			<view>
+				<view class="jingangqu">
+					<view>
+						<image src="../../images/index/qizhizhaopin.png" />
+						<view>求职招聘</view>
+					</view>
+					<view>
+						<image src="../../images/index/zhaodingdan.png" />
+						<view>找订单</view>
+					</view>
+					<view bindtap="goTechnician">
+						<image src="../../images/index/zhaojishi.png" />
+						<view>找技师</view>
+					</view>
+					<view bindtap="goEnterprise">
+						<image src="../../images/index/zhaoqiye.png" />
+						<view>找企业</view>
+					</view>
+					<view bindtap="">
+						<image src="../../images/index/jinfang.png" />
+						<view>技师进房</view>
+					</view>
+				</view>
+				<view class='adsec m-20'>
+					<text class='title'>头条</text>
+					<image src='../../images/index/laba.png'></image>
+
+					<swiper class="swiper_container" autoplay="true" circular="true" interval="2000" vertical='true' current='2'>
+						<block wx:for="{{msgList}}" wx:key='item'>
+							<navigator url="/pages/index/index?title={{item.url}}" open-type="navigate">
+								<swiper-item>
+									<view class="swiper_item">{{item.title}}</view>
+								</swiper-item>
+							</navigator>
+						</block>
+					</swiper>
+				</view>
+				<view class='enterprise'>
+					<view class='normal_title flexBetween'>
+						<view class="title">热门企业</view>
+						<view class='flexStart' bindtap="moreProduct">
+							<text style="font-size:25rpx;color: #686868;">更多</text>
+							<!-- <van-icon name="arrow" /> -->
+						</view>
+					</view>
+					<view class='enterprise_list'>
+						<view class="list" wx:for="{{ qiyeArr }}" wx:for-item="item">
+							<view style="width: 100%; text-align: center;">
+								<image style="width: 100rpx; height: 100rpx;border-radius: 8rpx;" src="{{item.enterpriseLogo}}" />
+							</view>
+							<text style="margin-top:10rpx">{{item.enterpriseName}}</text>
+						</view>
+					</view>
+				</view>
+				<view class='product'>
+
+					<view class='normal_title flexBetween'>
+						<view class="title">热门技师</view>
+						<view class='flexStart'>
+							<text style="font-size:25rpx;color: #686868;">更多</text>
+						</view>
+					</view>
+					<view class='product_list'>
+						<view class="list" wx:for="{{ jishiArr }}" wx:for-item="item">
+							<view class="remenJishiCard">
+								<view class="gradual">
+									<view class="headRow">
+										<view>
+											<image class="headImage" mode="aspectFill" src="{{item.headIcon}}"></image>
+										</view>
+										<view bindtap="" class="nameLay">
+											<text class="fontBold">{{item.realName}}</text>
+											<text style="font-size: 23rpx;color: #484848;">{{item.teacherDescription}}</text>
+										</view>
+									</view>
+								</view>
+								<text class="jobText">{{item.teacherGoodAt}}</text>
+							<view class="line"></view>
+					
+									<view class="itemriceview">
+										<image mode="aspectFit" style="width:32rpx;height:32rpx;" src="../../images/technician/image-text.gif" />
+										<text  style="margin-left: 10rpx;">图文咨询 20元/次</text> </view>
+									<view  class="itemriceview">
+										<image mode="aspectFit" style="height:32rpx;width:32rpx;" src="../../images/technician/video.gif" />
+										<text  style="margin-left: 10rpx;">视频咨询 5元/分钟</text> </view>
+							
+							</view>
+						</view>
+					</view>
+				</view>
+
+
+
+			</view>
+		</view>
+
+		<!-- <view class='adsec m-20'>
       <text class='title'>头条</text>
       <image src='../../images/index/tt.png'></image>
 
@@ -62,7 +132,7 @@
         </block>
       </swiper>
     </view>  -->
-    <!-- <view class='product'>
+		<!-- <view class='product'>
       <view class='normal_title flexBetween'>
         <view>优秀产品</view>
         <view class='flexStart' bindtap="moreProduct">
@@ -93,7 +163,7 @@
         <view class='list flexCenter'>aaa</view>
       </view>
     </view> -->
-    <!-- <view class='product m-20'>
+		<!-- <view class='product m-20'>
       <view class='normal_title flexBetween'>
         <view>推荐技师</view>
         <view class='flexStart' bindtap='toTeacher'>
@@ -152,5 +222,5 @@
         </view>
       </scroll-view>
     </view> -->
-  </scroll-view>
+	</scroll-view>
 </view>

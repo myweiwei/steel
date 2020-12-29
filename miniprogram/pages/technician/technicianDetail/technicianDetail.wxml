@@ -1,0 +1,87 @@
+<view class="intro">
+<scroll-view scroll-y style="width: 100%; height: 100%;">
+	<view class="gradual">
+		<view class="headRow">
+			<view>
+				<image class="headImage" mode="aspectFill" src="{{technicianData.headIcon}}"></image>
+			</view>
+			<view bindtap="" class="nameLay">
+				<text class="fontBold">{{technicianData.realName}}</text>
+				<text style="font-size: 24rpx;">{{technicianData.teacherJobPosition}}</text>
+			</view>
+		</view>
+	</view>
+
+	<view class="technicianCard">
+		<view class="technicianCardItems" style='justify-content:space-around'>
+			<view bindtap="" class="technicianCardItem">
+				<view class="fontBold">{{technicianData.solveCount}}<text>人</text></view>
+				<view class="smallFontBold">已帮助人数</view>
+			</view>
+			<view bindtap="" class="technicianCardItem">
+				<view class="fontBold">{{technicianData.favorableRate}}<text>%</text> </view>
+				<view class="smallFontBold">好评率</view>
+			</view>
+			<view bindtap="" class="technicianCardItem">
+				<view class="fontBold">{{technicianData.imgtxtSolvePrice}}<text>元</text> </view>
+				<view class="smallFontBold">图文咨询每次</view>
+			</view>
+			<view class="technicianCardItem">
+				<view class="fontBold" bindtap="">{{technicianData.videoSolvePrice}}<text>元</text> </view>
+				<view class="smallFontBold" bindtap="">视频咨询每分钟</view>
+			</view>
+		</view>
+	</view>
+	<view class="detailDescribe">
+		<view style="padding-right: 70rpx;">
+			<text ><text>专业擅长：</text> {{technicianData.teacherGoodAt}}</text>
+
+		</view>
+		<view style="padding-right: 70rpx;">
+			<text><text >个人简介：</text> {{technicianData.teacherDescription}}</text>
+		</view>
+
+		<view class="showView" style="padding-top: 30rpx;">
+			<text>作品展示</text>
+			<van-row gutter="18">
+				<van-col wx:for="{{technicianData.teacherResourceList}}" wx:key="dataArr" wx:for-index="index" wx:for-item="item" data-bean="{{item}}" bindtap="" span="8">
+					<image class="imgItem" src="{{item.resource}}"></image>
+
+				</van-col>
+
+			</van-row>
+
+		</view>
+	</view>
+
+	<view class="evaluateView">
+		<view class="showView">
+			<text class="">用户评价</text>
+			<view wx:for="{{teacherComments}}" class="ebt" wx:key="dataArr" wx:for-index="index" wx:for-item="item" data-bean="{{item}}">
+				<view class="evaluateRow">
+					<view>
+						<image class="evaluateImage" mode="aspectFill" src="{{item.headIcon}}"></image>
+					</view>
+					<view bindtap="" class="evaluateLay">
+						<text class="fontBold" style="font-size: 30rpx;font-weight: normal;">{{item.nickName}}</text>
+						<van-rate value="{{ item.score }}" readonly="true" bind:change="onChange" size="15" gutter="1" />
+					</view>
+					<text  style="float:right; right:0px">2020-10-10</text>
+				</view>
+				<text>{{item.commentContent}}</text>
+			</view>
+		</view>
+	</view>
+	</scroll-view>
+</view>
+<view class="bottomView">
+	<view class="buttonV">
+		<button bindtap="onImageConsult" style="background-color: #0cd1a3;">图文咨询 {{technicianData.imgtxtSolvePrice}}元/次</button>
+		<!-- <van-button color="#3ca753" size="small" block>图文咨询 15元/次</van-button> -->
+	</view>
+	<view class="buttonV">
+		<button style="background-color:#3a83ea;" bindtap="onVideoConsult" block>在线视频咨询 {{technicianData.videoSolvePrice}}元/分</button>
+		<!-- <van-button bind:click="onVideoConsult" size="small" color="#1777ff"  block>在线视频咨询 5元/分</van-button> -->
+	</view>
+
+</view>
