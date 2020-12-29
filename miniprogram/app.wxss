@@ -18,7 +18,7 @@ page {
   box-sizing: border-box;
   padding-top: 12rpx;
 }
-.flexStart,.flexBetween,.flexAround,.flexCenter{
+.flexStart,.flexBetween,.flexAround,.flexCenter,.flexEnd{
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -31,6 +31,9 @@ page {
 }
 .flexCenter {
   justify-content: center;
+}
+.flexEnd {
+  justify-content: flex-end;
 }
 .footTab {
   width:100%;

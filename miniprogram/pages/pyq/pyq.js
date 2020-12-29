@@ -42,6 +42,25 @@ Page({
     infoShow: false,
     _index:null,
     statusBarHeight:0,
+    ownOther:false, //自己发的更多弹框
+    columns:['删除','转发'],
+    currentdynamic:{}
+  },
+  showOwnOther(e){
+    let item=e.currentTarget.dataset.item;
+    console.log(item)
+    this.setData({
+      ownOther:true,
+      currentdynamic:item
+    })
+  },
+  onClose2(){
+    this.setData({
+      ownOther: false
+    })
+  },
+  onConfirm(val){
+    console.log(val)
   },
   preventTouchMove(){
 
