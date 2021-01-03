@@ -24,6 +24,12 @@ Page({
     curCity:"",
     statusBarHeight:0
   },
+  onItemClick: function (e) {
+    var bean = e.currentTarget.dataset.bean
+    wx.navigateTo({
+      url: '/pages/technician/technicianDetail/technicianDetail?teacherId=' + bean.teacherId
+    })
+  },
   getLocation: function () {
     let vm = this;
     wx.getSetting({

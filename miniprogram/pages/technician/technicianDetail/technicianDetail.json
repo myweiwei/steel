@@ -5,7 +5,9 @@
     "van-button": "@vant/weapp/button/index",
     "van-image": "@vant/weapp/image/index",
     "van-search": "@vant/weapp/search/index",
-    "van-rate": "@vant/weapp/rate/index"
+    "van-rate": "@vant/weapp/rate/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index"
   },
     "navigationBarBackgroundColor": "#0c89f0",
     "backgroundColor": "#cccccc",
