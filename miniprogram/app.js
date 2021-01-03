@@ -2,9 +2,8 @@
 App({
   globalData:{
     userId:'',
-    // baseUrl: 'http://localhost:1118',
-    baseUrl: 'https://ea.lileiit.com',
-    socketIp: "wss://eahost.lileiit.com/websocket/",
+    //baseUrl: 'https://eahost.lileiit.com/',
+    baseUrl: 'http://localhost:1118/',
     token:"",
     headerHeight: 0,
     statusBarHeight: 0,
@@ -59,22 +58,36 @@ App({
       }
     });
   },
+  // wxRequestFrom( url,header, data, callback, callback1,errFun) {
+
+  // },
   wxRequest(method, url, data, callback, callback1,errFun) {
     let me = this;
+   var header={};
+    header.Authorization=me.globalData.token;
+   console.log(header)
+    me.wxRequestFrom(method, url,header, data, callback, callback1,errFun)
+  },
+  wxRequestFrom(method, url,header, data, callback, callback1,errFun) {
+    let me = this;
+    
+    console.log('url:'+me.globalData.baseUrl+url)
+    header.Authorization=me.globalData.token;
+    console.log('header:'+header)
     wx.request({
       url: me.globalData.baseUrl+url,
       method: method,
       data: data,
       processData: false, //因为data值是FormData对象，不需要对数据做处理。
-      header: {
-        'Authorization': me.globalData.token
-      },
+      header: header,
       dataType: 'json',
       success: function (res) {
         if(res.data.status==200){
+          console.log(res.data.data)
           callback(res);
         }
         else {
+          console.log(res.data)
           wx.showToast({
             title: res.data.msg,
             icon: 'none'

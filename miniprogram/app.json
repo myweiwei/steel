@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/pyq/pyq",
     "pages/index/index",
+    "pages/pyq/pyq",
+    
     "pages/enterprise/searchEnterprise/searchEnterprise",
     "pages/enterprise/enterpriseDetail/enterpriseDetail",
     "pages/enterprise/enterpriseShow/enterpriseShow",
@@ -30,7 +31,10 @@
     "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
     "pages/goods/goodsManager/goodsManager",
     "pages/goods/goodsAdd/goodsAdd",
-    "pages/c1/c1"
+    "pages/c1/c1",
+    "pages/technician/searchTechnician/searchTechnician",
+    "pages/technician/technicianDetail/technicianDetail",
+    "pages/technician/technicianVideoConsult/technicianVideoConsult"
   ],
   "subpackages": [
     {

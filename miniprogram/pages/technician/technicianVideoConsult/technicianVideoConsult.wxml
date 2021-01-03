@@ -1,0 +1,61 @@
+<view class="technicianCard">
+	<view class="headRow">
+
+		<image class="cardImage" mode="aspectFill" src="https://www.xuxianfen17.cn/upload/draw/img_7037407c-ff80-4216-88ac-6e25c1e41a711586439584.png"></image>
+		<view bindtap="" class="nameLay">
+			<view style="font-size: 25rpx;color:#999999">您当前正在预约</view>
+			<view class="fontBold">{{realName}}</view>
+		</view>
+
+	</view>
+	<van-divider />
+	<view class="mgt-40">
+		<text  style="font-size: 25rpx;color:#999999">选择咨询时间</text>
+	</view>
+	<view class="mgt-5">
+		<text  style="font-size: 25rpx;color:#000">12月07日 周一 19:10</text>
+	</view>
+	<view class="mgt-40">
+		<text  style="font-size: 25rpx;color:#999999">选择咨询方式</text>
+	</view>
+	<view class="mgt-5">
+		<text  style="font-size: 25rpx;color:#000">{{typeName}}</text>
+	</view>
+	<view class="mgt-40">
+		<text  style="font-size: 25rpx;color:#999999">咨询费用</text>
+	</view>
+	<view class="mgt-5">
+		<text  style="font-size: 25rpx;color:#000">{{solvePrice}}元</text>
+	</view>
+	<view>
+		<view class="itemRowPrice">
+			<van-icon size="32rpx" name="more" color="#1777ff" />
+			<text  style="margin-left: 20rpx;font-size:25rpx;">预约成功后技师会在咨询时间内联系您！</text> </view>
+	</view>
+</view>
+
+<view class="textHint">
+
+	<view>
+		<text class="textHintText">
+1.技师同意后，会以短信的方式通知您。如技师拒绝了您的咨询请求或2小时内未答复，将会全额退款！
+</text>
+	</view>
+
+	<view>
+		<text>
+2.如果在这过程中遇到问题，请联系客服<text style="color:#1777ff"> 1661996916</text>
+		</text>
+	</view>
+
+</view>
+<view class="bottonView2">
+	<van-divider />
+	<view class="bottonView1">
+		<view style="width:54%"></view>
+			<view style=" margin-right: 30rpx;font-size:30rpx;">
+		<text style=" margin-right: 30rpx;">合计:</text><text>{{solvePrice}}元</text></view>
+		<van-button bind:click="onPay" style="right: 30rpx;" color="#1777ff" size="small" block>支付</van-button>
+	
+	</view>
+</view>

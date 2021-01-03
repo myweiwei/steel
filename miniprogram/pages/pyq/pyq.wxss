@@ -1,127 +1,152 @@
 /* pages/pyq/pyq.wxss */
 .pyq {
-  height:100%;
-  background: rgb(245, 242, 242);
+  height: 100%;
+  background: #f5f2f2;
+  font-family: 'SimHei';
 }
+
 .van-tabbar {
-  width:100%;
-  height:100rpx;
+  width: 100%;
+  height: 100rpx;
 }
+
 .add {
-  width:110rpx;
+  width: 110rpx;
   height: 110rpx;
-  background:#fff;
+  background: #fff;
   text-align: center;
-  border-radius:50%;
-  top:-50rpx;
-  position:absolute;
+  border-radius: 50%;
+  top: -50rpx;
+  position: absolute;
   box-shadow: 0 0 2rpx 2rpx #e7e7e7;
-  padding:10rpx;
+  padding: 10rpx;
   box-sizing: border-box;
 }
+
 .addInner {
-  width:100%;
-  height:100%;
-  background-color:#fb8c3f;
+  width: 100%;
+  height: 100%;
+  background-color: #fb8c3f;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .addtext {
-  margin-top:50rpx;
+  margin-top: 50rpx;
 }
+
 .tabList {
-  height:100%;
-  width:100rpx;
+  height: 100%;
+  width: 100rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .tabList .van-icon {
-  font-size:50rpx;
+  font-size: 50rpx;
 }
+
 .tabList image {
-  width:45rpx;
+  width: 45rpx;
   height: 45rpx;
 
 }
-.tabList .text,.addtext {
+
+.tabList .text,
+.addtext {
   font-size: 20rpx;
 }
+
 .color-active {
-  color:#fb8c3f;
+  color: #fb8c3f;
 }
 
 .ava {
   background: #fff;
-  margin-bottom:15rpx;
+  margin-bottom: 15rpx;
   box-sizing: border-box;
 }
+
 .avaInfo {
-  padding:20rpx 0 0 20rpx;
+  padding: 20rpx 0 0 20rpx;
 }
-.avaInfo image{
-  width:70rpx;
-  height:70rpx;
+
+.avaInfo image {
+  width: 70rpx;
+  height: 70rpx;
   border-radius: 50%;
-  margin-right:10rpx;
+  margin-right: 10rpx;
 }
+
 .avaInfo text {
-  font-weight:700;
+  font-weight: 700;
   font-size: 30rpx;
 }
+
 .avaInfo .avaTime {
-  font-size:23rpx;
-  color:#a3a3a3;
+  font-size: 23rpx;
+  color: #a3a3a3;
 }
+
 .avaCon {
-  padding:20rpx;
+  padding: 20rpx;
   box-sizing: border-box;
 }
-.avaCon image{
-  width:400rpx;
+
+.avaCon image {
+  width: 400rpx;
   height: 420rpx;
   border-radius: 15rpx;
 }
+
 .avaCon .moreImg {
-  width:200rpx;
-  height:220rpx;
-  margin-right:10rpx;
+  width: 200rpx;
+  height: 220rpx;
+  margin-right: 10rpx;
 }
+
 .avaCon .twoImg {
-  width:250rpx;
-  height:260rpx;
-  margin-right:10rpx;
+  width: 250rpx;
+  height: 260rpx;
+  margin-right: 10rpx;
 }
+
 .avaCon video {
   border-radius: 15rpx;
-  width:100%;
+  width: 100%;
 }
+
 .avaText {
-  padding:20rpx;
+  padding: 20rpx;
   box-sizing: border-box;
-  color:#1d1d1d;
-  font-size:28rpx;
+  color: #1d1d1d;
+  font-size: 28rpx;
 }
+
 .avaBtn {
-  height:80rpx;
-  margin:0 auto;
+  height: 80rpx;
+  margin: 0 auto;
   box-sizing: border-box;
-  font-size:30rpx;
-  border-top:1rpx solid rgb(243, 241, 241);
+  font-size: 30rpx;
+  border-top: 1rpx solid rgb(243, 241, 241);
 }
+
 .avaBtn image {
-  width:30rpx;
-  height:30rpx;
-  margin-right:10rpx;
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
 }
+
 .avaBtn .flexCenter {
-  color:#2c2c2c;
-  width:30%;
+  color: #2c2c2c;
+  width: 30%;
   position: relative;
 }
+
 .avaBtn button {
   position: absolute;
   top: -23rpx;
@@ -132,83 +157,100 @@
   background: transparent;
   height: 80rpx;
 }
+
 .totalComment {
-  width:100%;
+  width: 100%;
   text-align: center;
-  font-weight:500;
-} 
-.commImg {
-  margin-right:10rpx;
+  font-weight: 500;
 }
+
+.commImg {
+  margin-right: 10rpx;
+}
+
 .commImg image {
-  width:30rpx;
-  height:30rpx;
+  width: 30rpx;
+  height: 30rpx;
   border-radius: 50%;
 }
+
 .commCon {
-  display:flex;
-  justify-content:flex-start;
-  align-items:top;
-  padding:20rpx;
-  word-break:break-all;
-  font-size:30rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: top;
+  padding: 20rpx;
+  word-break: break-all;
+  font-size: 30rpx;
 }
+
 .commTime {
-  color:#a3a3a3;
-  font-size:28rpx;
-  margin-left:10rpx;
+  color: #a3a3a3;
+  font-size: 28rpx;
+  margin-left: 10rpx;
 }
+
 .commName {
-  margin-bottom:10rpx;
-  color:#666;
+  margin-bottom: 10rpx;
+  color: #666;
   font-family: 'MicroSoft YaHei'
 }
+
 .commonInner {
   /* height:0;
   overflow: hidden; */
 }
-.commonInner .commCon{
-  margin-left:40rpx;
+
+.commonInner .commCon {
+  margin-left: 40rpx;
 }
+
 .commTog {
-  font-size:28rpx;
-  color:#a3a3a3;
-  margin-left:50rpx;
+  font-size: 28rpx;
+  color: #a3a3a3;
+  margin-left: 50rpx;
 }
+
 .commTog image {
-  width:25rpx;
-  height:25rpx;
+  width: 25rpx;
+  height: 25rpx;
 }
 
 .footTab image {
-  width:60rpx;
-  height:60rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
+
 ::-webkit-scrollbar {
-  width: 0!important;
-  height:0!important;
-  color:#fff!important;
+  width: 0 !important;
+  height: 0 !important;
+  color: #fff !important;
 }
+
 .huifu {
-  margin:0 8rpx;
-  color:#9e9d9d;
+  margin: 0 8rpx;
+  color: #9e9d9d;
 }
+
 .btn image {
-  width:50rpx;
-  height:50rpx;
-}
-.del {
-  margin:0 10rpx;
-}
-.del image{
   width: 50rpx;
-  height:50rpx;
+  height: 50rpx;
 }
+
+.del {
+  margin: 0 10rpx;
+}
+
+.del image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
 .info {
-  color:#666;
+  color: #666;
   text-align: center;
-  padding:10rpx;
+  padding: 10rpx;
 }
+
 /*视频布局*/
 .video-image-box {
   height: 400rpx;
@@ -221,40 +263,49 @@
 
 .video-image-play {
   position: absolute;
-  width: 80rpx!important;
-  height: 80rpx!important;
+  width: 80rpx !important;
+  height: 80rpx !important;
   top: calc(50% - 40rpx);
   left: calc(50% - 40rpx);
 }
-.video-cover-box{
+
+.video-cover-box {
   height: 100%;
   width: 100%;
-  background: rgba(0,0,0,0.2)!important;
+  background: rgba(0, 0, 0, 0.2) !important;
   text-align: center;
 }
+
 .video-image {
   height: 100%;
   width: 100%;
 }
+
 /* 顶部导航 */
 .van-tab__pane {
-  background:rgb(245, 242, 242);
+  background: rgb(245, 242, 242);
 }
+
 .van-tabs__nav {
-  width:400rpx!important;
+  width: 400rpx !important;
 }
+
 .van-hairline--top-bottom:after {
-  border:none!important;
+  border: none !important;
 }
+
 .van-tab--active .van-ellipsis {
   font-weight: 700;
 }
+
 .van-tabs__line {
-  background: #1777ff!important;
+  background: #1777ff !important;
 }
+
 .van-tab--active {
-  color:#1777ff!important;
+  color: #1777ff !important;
 }
+
 .myImg {
   position: fixed;
   width: 70rpx;
@@ -262,12 +313,14 @@
   left: 10px;
   color: #000;
   z-index: 100;
-  margin-top:10rpx;
+  margin-top: 10rpx;
 }
+
 /* 朋友圈展开更多选项 */
 .van-icon-arrow-down {
-  margin:0 10rpx;
+  margin: 0 10rpx;
 }
+
 .van-popup--bottom button {
   width: 100%;
   height: 50rpx;
@@ -276,34 +329,169 @@
   background: transparent;
   line-height: 50rpx;
 }
+
 button::after {
-  border:none;
+  border: none;
 }
+
 .option {
-  border-bottom:1rpx solid #ccc;
-  padding:20rpx 10rpx;
+  border-bottom: 1rpx solid #ccc;
+  padding: 20rpx 10rpx;
 }
+
 /* 地址 */
 .loc {
   background: #f5f4f9;
-  color:#1d1d1d;
+  color: #1d1d1d;
   border-radius: 30rpx;
   width: 80%;
-  line-height:40rpx;
+  line-height: 40rpx;
   white-space: nowrap;
-  padding:10rpx 20rpx;
-  margin:10rpx;
+  padding: 10rpx 20rpx;
+  margin: 10rpx;
   box-sizing: border-box;
   font-size: 25rpx;
   display: flex;
   align-items: center;
 }
-.loc image{
-  width:30rpx;
-  height:30rpx;
+
+.loc image {
+  width: 30rpx;
+  height: 30rpx;
 }
+
 .loc view {
-  flex:1;
+  flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.tc-card {
+  padding: 10rpx 40rpx;
+  background: #fff;
+  margin-bottom: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.tc-card .headRight {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 0px;
+
+}
+
+.contnetText {
+  margin: 20rpx 0;
+  padding: 0 20rpx;
+  line-height: 1.3em;
+  letter-spacing: 3rpx;
+  font-size: 28rpx;
+}
+
+.headRow {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+
+.headImage {
+  margin-top: 5rpt;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.nameLay {
+  flex-direction: column;
+  display: flex;
+  margin: 0 20rpx;
+  position: relative;
+}
+
+.nameLay text {
+  padding: 4rpx 0;
+}
+
+
+.test {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  -ms-transition: all .6s ease-in-out;
+  position: relative;
+}
+
+.test::after {
+  /* content: '∨'; */
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.test:hover {
+  -webkit-line-clamp: unset;
+}
+
+.tc-card-img {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  margin-bottom: 10rpx;
+  margin: auto;
+}
+
+.tc-card-img .list {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  text-align: center;
+  font-size: 20rpx;
+
+  /* justify-content: space-around;
+  margin: auto;  */
+}
+
+.tc-card-img .list text {
+  padding: 0 15rpx;
+}
+
+.tc-cardLocation {
+  height: 32rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: row;
+  font-size: 30rpx;
+}
+
+.tc-cardBottom {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 70rpx;
+
+}
+
+.tc-cardBottom image {
+  height: 50rpx;
+  width: 50rpx;
+  border-radius: 50%;
+  color: #ee4040;
 }

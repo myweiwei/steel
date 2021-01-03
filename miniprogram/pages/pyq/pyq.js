@@ -7,11 +7,14 @@ Page({
   data: {
     activeTab: 0,
     active:0,
+    // btmShow:false,
     avaShow: false,
     openFlag: false,
     commCount: 2,
     commentInfo: '',
+    tabTitle:'',
     baseUrl: '',
+    tabPage:0,
     pageData: {
       pageNum: 1,
       pageSize: 100
@@ -29,6 +32,7 @@ Page({
       pageSize: 3
     },
     list: [],
+    cityList:[],
     total: 0,
     commonList: [],
     avaShow1: false,
@@ -67,7 +71,13 @@ Page({
   },
   fan(e){
     let me=this;
+    var index =e.currentTarget.dataset.index;
+    let follow = e.currentTarget.dataset.item.isFollow == 1 ? 0 : 1;
     app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
+      me.data.list[index].isFollow=follow;
+      me.setData({
+        list:me.data.list
+        })
       if (data.data.data == '已关注' || data.data.data == '互相关注') {
         wx.showToast({
           title: "已关注",
@@ -80,9 +90,12 @@ Page({
           icon: 'none'
         })
       }
+      
     })
   },
-  toMy(){
+  toMy:function(e){
+    var bean=  e.currentTarget.dataset.bean
+    console.log('item: ', bean)
     wx.navigateTo({
       url: '/pages/pyq/mine/mine'
     })
@@ -194,8 +207,10 @@ Page({
   },
   onChange: function (val) {
     let me = this;
+    console.log(val)
     me.setData({
-      commentInfo: val.detail
+      commentInfo: val.detail,
+      tabTitle:val.detail.title
     })
   },
   onChange1: function (val) {
@@ -288,7 +303,10 @@ Page({
   },
   getComment: function (id) {
     let me = this;
-    app.wxRequest('get', '/comment/' + id, {}, function (data) {
+    
+    app.wxRequest('get', '/teacherComment?pageNum=1&pageSize=10&teacherId=' + id, {}, function (data) {
+
+      console.log(data.data)
       for (let i = 0; i < data.data.data.length; i++) {
         data.data.data[i].openFlag = false;
       }
@@ -339,7 +357,10 @@ Page({
   },
   getList: function () {
     let me = this;
-    app.wxRequest('get', '/dynamic/dynamicList' + '/' + me.data.pageData.pageNum + '/' + me.data.pageData.pageSize+"/all", {},function(data){
+    app.wxRequest('get', 
+    '/dynamic/dynamicList?pageNum='+me.data.pageData.pageNum+'&pageSize='+me.data.pageData.pageSize+'&hot=1',
+    {},
+    function(data){
       let count = 0;
       for(let i=0;i<data.data.data.list.length;i++){
         if (data.data.data.list[i].videoType=='1'){
@@ -421,10 +442,14 @@ Page({
   },
   getCityList: function (area) {
     let me = this;
-    app.wxRequest('get', '/dynamic/dynamicList/' + me.data.cityData.pageNum + '/' + me.data.cityData.pageSize + '/' + area, {}, function (data) {
-      let arr = [];
+    app.wxRequest('get', 
+    '/dynamic/dynamicList?pageNum='+me.data.cityData.pageNum+'&pageSize='+me.data.cityData.pageSize+'&area'+area,
+    {}, function(data){
+  
+      console.log("-----------------------")
+      console.log(data.data.data)
       me.setData({
-        list: me.data.list.concat(data.data.data.list),
+        cityList: me.data.cityList.concat(data.data.data.list),
         total: data.data.data.total
       })
     })
@@ -432,11 +457,26 @@ Page({
   addSc: function (e) {
     let me = this;
     console.log("123");
+    var index = e.currentTarget.dataset.index;
     let support = e.currentTarget.dataset.item.isSupport == 1 ? 0 : 1;
     var dynamicId = e.currentTarget.dataset.item.dynamicId;
     var toId = e.currentTarget.dataset.item.userId;
     app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
-      me.getList();
+      // me.getList();
+      console.log(me.data.list[index].isSupport); 
+       me.data.list[index].isSupport=support;
+       if(support==0){
+                me.data.list[index].supportUsersIcon.splice(me.data.list[index].supportUsersIcon.length-1,1)
+       }else{
+          me.data.list[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
+       }
+      
+
+       
+      me.setData({
+        list:me.data.list
+        })
+      // me.setData
     })
   },
   //页面滚动触发
@@ -498,12 +538,16 @@ Page({
     })
     if(app.globalData.token!=''){
       that.getList();
+      that.getCityList();
     }
     else {
-      app.getUser(that.getList);
+      app.getUser(that.initData);
     }
   },
-
+initData: function(){
+this.getList();
+this.getCityList();
+},
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -523,8 +567,10 @@ Page({
    */
   onPullDownRefresh: function () {
     let me = this;
-    let list = "pageData.pageNum";
-    if (me.data.pageData.pageNum > 1) {
+console.log(me.data.tabTitle)
+    if(me.data.title=="最热"){
+      let list = "pageData.pageNum";
+          if (me.data.pageData.pageNum > 1) {
       me.setData({
         [list]: --me.data.pageData.pageNum
       })
@@ -535,6 +581,24 @@ Page({
       })
     }
     me.getList();
+    }else if(me.data.tabTitle=="同城"){
+      let list = "cityData.pageNum";
+      if (me.data.cityData.pageNum > 1) {
+  me.setData({
+    [list]: --me.data.cityData.pageNum
+  })
+}
+else {
+  me.setData({
+    [list]: 1
+  })
+}
+      me.getCityList();
+    }
+
+
+
+
     wx.stopPullDownRefresh();
   },
 

@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    windowWidth:'',
     dynamicTitle:'',
     province:'',
     city:"",
@@ -89,6 +90,15 @@ Page({
     let arr=me.data.fileList.concat(file);
     me.setData({
       fileList:arr,
+      count:1
+    })
+  },
+  afterRead1(event) {
+    let me=this;
+    const { file } = event.detail;
+    let arr=me.data.fileList1.concat(file);
+    me.setData({
+      fileList1:arr,
       count:1
     })
   },
@@ -303,7 +313,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getsize();
+  },
+  getsize(){
+    let that=this;
+    wx.getSystemInfo({
+      success(res) {
+        console.log(res)
+        console.log("height="+ res.windowHeight)
+        console.log("width="+res.windowWidth)
+        that.setData({
+          windowWidth:res.windowWidth
+        })
+      },
+    })
   },
 
   /**
