@@ -1,169 +1,178 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "enhance": true,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": true,
-    "coverView": true,
-    "nodeModules": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "enableEngineNative": false,
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.9.5",
-  "appid": "wx04f582f240549dbb",
-  "projectname": "steel",
-  "miniprogramRoot": "miniprogram/",
-  "cloudfunctionRoot": "cloudfunctions/",
-  "cloudfunctionTemplateRoot": "",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {},
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/mine/mine",
-          "pathName": "pages/mine/mine",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/switchCity/switchCity",
-          "pathName": "pages/switchCity/switchCity",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
-          "pathName": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/goods/goodsAdd/goodsAdd",
-          "pathName": "pages/goods/goodsAdd/goodsAdd",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/goods/goodsManager/goodsManager",
-          "pathName": "pages/goods/goodsManager/goodsManager",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/goods/goodsAdd/goodsAdd",
-          "pathName": "pages/goods/goodsAdd/goodsAdd",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-          "pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-          "pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/enterprise/enterpriseShow/enterpriseShow",
-          "pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/enterprise/searchEnterprise/searchEnterprise",
-          "pathName": "pages/enterprise/searchEnterprise/searchEnterprise",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/enterprise/enterpriseShow/enterpriseShow",
-          "pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
-          "pathName": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/c1/c1",
-          "pathName": "pages/c1/c1",
-          "scene": null
-        }
-      ]
-    }
-  }
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"enableEngineNative": false,
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"packNpmManually": false,
+		"packNpmRelationList": [],
+		"minifyWXSS": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.5",
+	"appid": "wx04f582f240549dbb",
+	"projectname": "steel",
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"cloudfunctionTemplateRoot": "",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"list": []
+		},
+		"miniprogram": {
+			"list": [
+				{
+					"id": -1,
+					"name": "db guide",
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/mine",
+					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/switchCity/switchCity",
+					"pathName": "pages/switchCity/switchCity",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
+					"pathName": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goodsAdd/goodsAdd",
+					"pathName": "pages/goods/goodsAdd/goodsAdd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goodsManager/goodsManager",
+					"pathName": "pages/goods/goodsManager/goodsManager",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goodsAdd/goodsAdd",
+					"pathName": "pages/goods/goodsAdd/goodsAdd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/enterpriseShow/enterpriseShow",
+					"pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/searchEnterprise/searchEnterprise",
+					"pathName": "pages/enterprise/searchEnterprise/searchEnterprise",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise/enterpriseShow/enterpriseShow",
+					"pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
+					"pathName": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/technician/paySuccess/paySuccess",
+					"pathName": "pages/technician/paySuccess/paySuccess",
+					"scene": null
+				}
+			]
+		}
+	}
 }
