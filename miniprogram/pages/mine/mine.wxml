@@ -1,6 +1,6 @@
 <view class="my">
   <view class="pure_top">
-    <view class="head">
+    <view  bindtap="toMy" class="head">
       <image wx:if="{{headIcon}}" src="{{headIcon}}" style="width:120rpx; height:120rpx;"></image>
       <!-- <open-data type="userAvatarUrl"></open-data> -->
     </view>

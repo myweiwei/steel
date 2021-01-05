@@ -217,9 +217,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 22,
 					"name": "pages/pyq/mine/mine",
 					"pathName": "pages/pyq/mine/mine",
+					"query": "userId=138",
 					"scene": null
 				}
 			]

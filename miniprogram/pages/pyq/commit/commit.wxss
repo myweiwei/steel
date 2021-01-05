@@ -9,12 +9,18 @@
   position: relative;
   width: 300rpx;
 }
-
+.iconImg{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
 .imgList video {
   width: 100% !important;
   margin: 2%;
 }
-
+.van-cell-text{
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;  
+}
 .delBtn {
   position: absolute;
   right: 3%;
@@ -50,21 +56,40 @@
 }
 
 .vanUp {
-  padding:0 16px;
+  padding: 0 16px;
   /* padding: 0 calc((100% - (3 * 100px)) /2); */
   /* padding-left:  calc((100%-276px)/4); */
 }
 
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 98%;
-  padding-left: 1%;
-  box-sizing: border-box;
+.labelItem {
+  color: rgb(11, 119, 219);
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.van-button--large {
+.footer {
+  /* position: fixed; */
+  /* right: 0; */
+  width: 98%;
+  padding: 1%;
+  /* box-sizing: border-box; */
+}
+
+.footer van-button {
+  position: fixed;
+  right: 30rpx;
+}
+.sendBtn {
+  position: fixed;
+  margin-top: 40rpx;
+  right: 30rpx;
+}
+
+/* .van-button--large {
   height: 80rpx !important;
   line-height: 80rpx !important;
-}
+} */

@@ -69,6 +69,31 @@ Page({
   preventTouchMove(){
 
   },
+  
+  fanTongchen(e){
+    let me=this;
+    var index =e.currentTarget.dataset.index;
+    let follow = e.currentTarget.dataset.item.isFollow == 1 ? 0 : 1;
+    app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
+      me.data.cityList[index].isFollow=follow;
+      me.setData({
+        cityList:me.data.cityList
+        })
+      if (data.data.data == '已关注' || data.data.data == '互相关注') {
+        wx.showToast({
+          title: "已关注",
+          icon: 'none'
+        })
+      }
+      else if (data.data.data == '关注' || data.data.data == '回关') {
+        wx.showToast({
+          title: "已取消关注",
+          icon: 'none'
+        })
+      }
+      
+    })
+  },
   fan(e){
     let me=this;
     var index =e.currentTarget.dataset.index;
@@ -97,7 +122,7 @@ Page({
     var bean=  e.currentTarget.dataset.bean
     console.log('item: ', bean)
     wx.navigateTo({
-      url: '/pages/pyq/mine/mine'
+      url: '/pages/pyq/mine/mine?userId='+bean.userId
     })
   },
   //获取每个视频的距离顶部的高度
@@ -154,13 +179,20 @@ Page({
     let me = this;
     let sta = e.currentTarget.dataset.sta;
     let arg = {};
-    if (sta == 1) {
+console.log(me.data.userid)
+    if (sta == 1) {//二级评论
+      if(!me.data.commentInfo1){
+        return;
+      }
       arg.parentCommentId = me.data.avaShowList.commentId;
       arg.dynamicId = me.data.avaShowList.dynamicId;
       arg.toUid = me.data.avaShowList.fromUid;
       arg.content = me.data.commentInfo1;
     }
-    else if (sta == 0) {
+    else if (sta == 0) {//一级评论
+      if(!me.data.commentInfo){
+        return;
+      }
       arg.parentCommentId = 0;
       arg.dynamicId = me.data.commentId;
       arg.toUid = me.data.userid;
@@ -169,19 +201,31 @@ Page({
     me.saveComment(arg);
   },
   saveComment: function (arg) {
+    console.log("---------------------"+arg)
     let me = this;
     app.wxRequest('post', '/comment/dynamicComment', arg, function (data) {
       wx.showToast({
         title: '评论成功',
         icon: 'success'
       });
+    //  me.data.list[index].commentCount=me.data.list[index].commentCount+1;
+     me.data.commonList.push(arg);
+    //  if(me.data.tabTitle=="最热"){}
       me.setData({
+        // commonList:me.data.commonList,
+        // list:me.data.list,
         avaShow1: false,
         commentInfo: "",
         commentInfo1: ""
       })
       me.getComment(me.data.commentId)
-      me.getList();
+      console.log(me.data.tabTitle);
+      if(me.data.tabTitle=="最热"){
+           me.getList();
+      }else if(me.data.tabTitle=="同城"){
+        me.getCityList();
+      }
+   
     })
   },
   longPress: function (e) {
@@ -205,12 +249,18 @@ Page({
       })
     }
   },
+  onChangeTab: function (val) {
+    let me = this;
+    console.log(val)
+    me.setData({
+      tabTitle:val.detail.title
+    })
+  },
   onChange: function (val) {
     let me = this;
     console.log(val)
     me.setData({
-      commentInfo: val.detail,
-      tabTitle:val.detail.title
+      commentInfo: val.detail
     })
   },
   onChange1: function (val) {
@@ -292,6 +342,16 @@ Page({
       url: '/pages/pyq/commit/commit'
     })
   },
+  
+  commentTongchen: function (e) {
+    let me = this;
+    me.setData({
+      userid: e.currentTarget.dataset.item.userId,
+      commentId: e.currentTarget.dataset.item.dynamicId,
+      commentCount: e.currentTarget.dataset.item.commentCount
+    })
+    me.getComment(e.currentTarget.dataset.item.dynamicId);
+  },
   comment: function (e) {
     let me = this;
     me.setData({
@@ -303,8 +363,8 @@ Page({
   },
   getComment: function (id) {
     let me = this;
-    
-    app.wxRequest('get', '/teacherComment?pageNum=1&pageSize=10&teacherId=' + id, {}, function (data) {
+    // https://eahost.lileiit.com/comment/{dynamicId}
+    app.wxRequest('get', '/comment/' + id, {}, function (data) {
 
       console.log(data.data)
       for (let i = 0; i < data.data.data.length; i++) {
@@ -375,6 +435,10 @@ Page({
         })
         me.spHeight();
       })
+      // me.setData({
+      //   list: data.data.data.list,
+      //   total: data.data.data.total
+      // })
     })
   },
   getMore: function () {
@@ -448,10 +512,50 @@ Page({
   
       console.log("-----------------------")
       console.log(data.data.data)
+      // let count = 0;
+      // for(let i=0;i<data.data.data.list.length;i++){
+      //   if (data.data.data.list[i].videoType=='1'){
+      //     data.data.data.list[i].videoindex=count;
+      //     ++count;
+      //   }
+      // }
+      // wx.nextTick(() => {
+      //   me.setData({
+      //     cityList: data.data.data.list,
+      //     total: data.data.data.total
+      //   })
+      //   me.spHeight();
+      // })
       me.setData({
-        cityList: me.data.cityList.concat(data.data.data.list),
+        cityList: data.data.data.list,
         total: data.data.data.total
       })
+      // me.setData({
+      //   cityList: data.data.data.list,
+      //   total: data.data.data.total
+      // })
+    })
+  },
+  addScTongchen: function (e) {
+    let me = this;
+    console.log("123");
+    var index = e.currentTarget.dataset.index;
+    let support = e.currentTarget.dataset.item.isSupport == 1 ? 0 : 1;
+    var dynamicId = e.currentTarget.dataset.item.dynamicId;
+    var toId = e.currentTarget.dataset.item.userId;
+    app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
+      // me.getList();
+      console.log(me.data.cityList[index].isSupport); 
+       me.data.cityList[index].isSupport=support;
+       if(support==0){
+                me.data.cityList[index].supportUsersIcon.splice(me.data.cityList[index].supportUsersIcon.length-1,1)
+       }else{
+          me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
+       }
+      me.setData({
+        cityList:me.data.cityList
+        })
+      // me.setData
     })
   },
   addSc: function (e) {
@@ -470,9 +574,6 @@ Page({
        }else{
           me.data.list[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
        }
-      
-
-       
       me.setData({
         list:me.data.list
         })
@@ -511,12 +612,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let me=this;
-    me.setData({
+    let that = this;
+    that.setData({
       statusBarHeight: app.globalData.statusBarHeight
     })
+      
+        this.setData({
+         _index:null
+        })
+        that.setData({
+          baseUrl: app.globalData.baseUrl
+        })
+        if(app.globalData.token!=''){
+          that.getList();
+          that.getCityList();
+        }
+        else {
+          app.getUser(that.initData);
+        }
   },
-
+initData: function(){
+this.getList();
+this.getCityList();
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -528,26 +646,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //选择id
-    var that = this;
-    this.setData({
-     _index:null
-    })
-    that.setData({
-      baseUrl: app.globalData.baseUrl
-    })
-    if(app.globalData.token!=''){
-      that.getList();
-      that.getCityList();
-    }
-    else {
-      app.getUser(that.initData);
-    }
+console.log("--------------------------show")
   },
-initData: function(){
-this.getList();
-this.getCityList();
-},
+
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -568,7 +669,7 @@ this.getCityList();
   onPullDownRefresh: function () {
     let me = this;
 console.log(me.data.tabTitle)
-    if(me.data.title=="最热"){
+    if(me.data.tabTitle=="最热"){
       let list = "pageData.pageNum";
           if (me.data.pageData.pageNum > 1) {
       me.setData({

@@ -169,8 +169,8 @@
 }
 
 .commImg image {
-  width: 30rpx;
-  height: 30rpx;
+  width: 45rpx;
+  height: 45rpx;
   border-radius: 50%;
 }
 
@@ -192,13 +192,14 @@
 .commName {
   margin-bottom: 10rpx;
   color: #666;
+  /* color:rgb(167, 154, 45); */
   font-family: 'MicroSoft YaHei'
 }
 
-.commonInner {
-  /* height:0;
-  overflow: hidden; */
-}
+/* .commonInner {
+  height:0;
+  overflow: hidden;
+} */
 
 .commonInner .commCon {
   margin-left: 40rpx;

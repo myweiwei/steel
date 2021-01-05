@@ -20,7 +20,6 @@ Page({
     this.setData({teacherId:options.teacherId});
     this.getTeacherComment(this.data.teacherId,1,10);
     this.getTechDetail(this.data.teacherId);
-
   },
   getTechDetail:function(teacherId){
     var me=this;

@@ -47,14 +47,34 @@
     </view>
   </van-uploader> -->
 	<br />
-	<van-cell-group>
 
-		<van-field value="{{ dynamicType }}" custom-style='{color:"red"}' placeholder="添加标签" border="{{ false }}" right-icon='arrow' readonly bindtap='showPop'>
+	<van-cell-group>
+		<view wx:if="{{dynamicType}}" class="labelItem">
+			<image mode="aspectFit" class="iconImg" src="../../../images/pyq/tab01.png" />
+			<text>{{dynamicType}}</text>
+		</view>
+		<van-cell bindtap='showPop' value="用标签记录生活 >" >
+			<view slot="icon" style="display: flex;flex-direction: row;align-items: center;">
+				<image mode="aspectFit" class="iconImg" src="../../../images/pyq/tab02.png" />
+			</view>
+			<view slot="title">
+				<view class="van-cell-text">添加标签</view>
+			</view>
+		</van-cell>
+		<van-cell value=">">
+			<view slot="icon" style="display: flex;flex-direction: row;align-items: center;">
+				<image mode="aspectFit" class="iconImg" src="{{!province?'../../../images/pyq/pos02.png':'../../../images/pyq/pos01.png'}}" />
+			</view>
+			<view slot="title" bindtap="getLocation">
+				<view class="van-cell-text">{{ !province?"所在位置":province }}</view>
+			</view>
+		</van-cell>
+		<!-- <van-field value="{{ dynamicType }}" custom-style='{color:"red"}' placeholder="添加标签" border="{{ false }}" right-icon='arrow' readonly bindtap='showPop'>
 			<van-icon name="label" slot='left-icon' color='{{!dynamicType?"#ccc":"#07c160"}}' class='m-r-10 f-40' />
 		</van-field>
 		<van-field value="{{ province }}" placeholder="所在位置" border="{{ false }}" bindtap="getLocation" right-icon='arrow' readonly>
 			<van-icon name="location" slot='left-icon' color='{{!address?"#ccc":"#07c160"}}' class='m-r-10 f-40' />
-		</van-field>
+		</van-field> -->
 	</van-cell-group>
 	<van-popup show="{{ show }}" position="bottom" custom-style="height: 40%;">
 		<view style='height:100%'>
@@ -62,7 +82,7 @@
 			<van-picker show-toolbar title="选择类型" columns="{{ columns }}" bind:cancel="onClose" bind:confirm="onConfirm1" />
 		</view>
 	</van-popup>
-	<view class='footer'>
-		<van-button color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='uploadFiles'>发送</van-button>
+	<view style="height:80rpx">
+		<van-button class="sendBtn" color="linear-gradient(to right, #1c43aa,#0052b5)" size='small' bindtap='uploadFiles'>发送</van-button>
 	</view>
 </view>

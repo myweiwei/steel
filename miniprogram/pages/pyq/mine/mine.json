@@ -1,8 +1,13 @@
 {
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
-    "van-button": "@vant/weapp/button/index"
-
+    "van-button": "@vant/weapp/button/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-picker": "@vant/weapp/picker/index"
   },
   "navigationStyle": "custom"
 }

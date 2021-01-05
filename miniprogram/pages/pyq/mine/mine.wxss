@@ -1,3 +1,6 @@
+page{
+  background: #f5f2f2;
+}
 .head {
   width: 100%;
   background: rgb(17, 46, 151);
@@ -24,18 +27,21 @@
 }
 
 .icon{
-  width: 40rpx;
-  height: 40rpx;
+  width: 35rpx;
+  height: 35rpx;
   border-radius: 50%;
   margin-left: 25rpx;
+}
+.iconImg{
+  margin-left: 25rpx;
+  width: 130rpx;
+  height: 40rpx;
 }
 .hRowText{
   margin: 15rpx 0;
   margin-left: 30rpx;
   font-size: 26rpx;
 }
-
-
 
 .ava {
   background: #fff;
@@ -64,6 +70,13 @@
   color: #a3a3a3;
 }
 
+.contnetText {
+  margin: 20rpx 0;
+  padding: 0 20rpx;
+  line-height: 1.3em;
+  letter-spacing: 3rpx;
+  font-size: 28rpx;
+}
 .del {
   margin: 0 10rpx;
 }
@@ -94,7 +107,51 @@
   height: 260rpx;
   margin-right: 10rpx;
 }
+.totalComment {
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
 
+.commCon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: top;
+  padding: 20rpx;
+  word-break: break-all;
+  font-size: 30rpx;
+}
+.commonInner .commCon {
+  margin-left: 40rpx;
+}
+
+.commImg {
+  margin-right: 10rpx;
+}
+.footTab image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.commImg image {
+  width: 45rpx;
+  height: 45rpx;
+  border-radius: 50%;
+}
+.commName {
+  margin-bottom: 10rpx;
+  color: #666;
+  /* color:rgb(167, 154, 45); */
+  font-family: 'MicroSoft YaHei'
+}
+.btn image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.commTime {
+  color: #a3a3a3;
+  font-size: 28rpx;
+  margin-left: 10rpx;
+}
 .avaCon video {
   border-radius: 15rpx;
   width: 100%;
@@ -194,4 +251,44 @@
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.tc-cardBottom {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 70rpx;
+
+}
+
+.tc-cardBottom image {
+  height: 50rpx;
+  width: 50rpx;
+  border-radius: 50%;
+  color: #ee4040;
+}
+.test {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  -ms-transition: all .6s ease-in-out;
+  position: relative;
+}
+
+.test::after {
+  /* content: '∨'; */
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.test:hover {
+  -webkit-line-clamp: unset;
 }

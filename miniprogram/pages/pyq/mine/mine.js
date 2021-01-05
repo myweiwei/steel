@@ -1,10 +1,26 @@
-// pages/pyq/mine/mine.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userId:0,
+    list:[],
+    total:0,
+    baseUrl: '',
+    countData:{},
+    userid: "",
+    commentId: "",
+    commentCount: 0,
+    commonList: [],
+    avaShow: false,
+    avaShow1: false,
+    pages:1,
+    pageData: {
+      pageNum: 1,
+      pageSize: 100
+    },
     statusBarHeight:0,  //状态栏高度
     titleBarHeight:0  //标题栏高度
   },
@@ -13,6 +29,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.userId)
+    this.setData({userId:options.userId});
     let me=this;
   // 获取设备信息
   wx.getSystemInfo({
@@ -28,11 +46,228 @@ Page({
        console.log(me.data.titleBarHeight)
     }
   })  
+      me.setData({
+        baseUrl: app.globalData.baseUrl
+      })
+      if(app.globalData.token!=''){
+        me.grtCount();
+        me.getList();
+      }
+      else {
+        app.getUser(me.initData);
+      }
   },
-
+  initData:function(){
+    this.grtCount();
+    this.getList();
+  },
  onBack(){
   wx.navigateBack({
     complete: (res) => {},
+  })
+},
+grtCount:function(){
+  let me = this;
+  console.log("------------------------grtCount"+me.data.userId)
+  var url;
+  if(me.data.userId==0){
+    url='/dynamic/user/count';
+  }else{
+    url='/dynamic/user/count?otherId='+me.data.userId;
+  }
+  app.wxRequest('get', 
+  url,
+  {},
+  function(data){
+    console.log(data.data.data)
+    me.setData({countData:data.data.data})
+  })
+},
+getList: function () {
+  console.log("----------------getList")
+  let me = this;
+  var url;
+  if(me.data.userId==0){
+    url='/dynamic/dynamicList?pageNum='+me.data.pageData.pageNum+'&pageSize='+me.data.pageData.pageSize+'&own=1';
+  }else{
+    url= '/dynamic/dynamicList?pageNum='+me.data.pageData.pageNum+'&pageSize='+me.data.pageData.pageSize+'&otherId='+me.data.userId;
+  }
+
+  app.wxRequest('get', 
+  url,
+  {},
+  function(data){
+ 
+    console.log(data.data.data)
+    let count = 0;
+    for(let i=0;i<data.data.data.list.length;i++){
+      if (data.data.data.list[i].videoType=='1'){
+        data.data.data.list[i].videoindex=count;
+        ++count;
+      }
+    }
+    wx.nextTick(() => {
+      me.setData({
+        list: me.data.list.concat(data.data.data.list),
+        total: data.data.data.total,
+        pageData:{pageNum:data.data.data.pageNum+1}
+      })
+      me.spHeight();
+    })
+  })
+},
+
+fan(e){
+  let me=this;
+  var index =e.currentTarget.dataset.index;
+  let follow = e.currentTarget.dataset.item.isFollow == 1 ? 0 : 1;
+  app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
+    me.data.list[index].isFollow=follow;
+    me.setData({
+      list:me.data.list
+      })
+    if (data.data.data == '已关注' || data.data.data == '互相关注') {
+      wx.showToast({
+        title: "已关注",
+        icon: 'none'
+      })
+    }
+    else if (data.data.data == '关注' || data.data.data == '回关') {
+      wx.showToast({
+        title: "已取消关注",
+        icon: 'none'
+      })
+    }
+    
+  })
+},
+toMy:function(e){
+  var bean=  e.currentTarget.dataset.bean
+  console.log('item: ', bean)
+  wx.navigateTo({
+    url: '/pages/pyq/mine/mine?userId='+bean.userId
+  })
+},
+
+addSc: function (e) {
+  let me = this;
+  console.log("123");
+  var index = e.currentTarget.dataset.index;
+  let support = e.currentTarget.dataset.item.isSupport == 1 ? 0 : 1;
+  var dynamicId = e.currentTarget.dataset.item.dynamicId;
+  var toId = e.currentTarget.dataset.item.userId;
+  app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
+    // me.getList();
+    console.log(me.data.list[index].isSupport); 
+     me.data.list[index].isSupport=support;
+     if(support==0){
+              me.data.list[index].supportUsersIcon.splice(me.data.list[index].supportUsersIcon.length-1,1)
+     }else{
+        me.data.list[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
+     }
+    me.setData({
+      list:me.data.list
+      })
+    // me.setData
+  })
+},
+comment: function (e) {
+  let me = this;
+  me.setData({
+    userid: e.currentTarget.dataset.item.userId,
+    commentId: e.currentTarget.dataset.item.dynamicId,
+    commentCount: e.currentTarget.dataset.item.commentCount
+  })
+  me.getComment(e.currentTarget.dataset.item.dynamicId);
+},
+getComment: function (id) {
+  let me = this;
+  // https://eahost.lileiit.com/comment/{dynamicId}
+  app.wxRequest('get', '/comment/' + id, {}, function (data) {
+
+    console.log(data.data)
+    for (let i = 0; i < data.data.data.length; i++) {
+      data.data.data[i].openFlag = false;
+    }
+    me.setData({
+      commonList: data.data.data
+    })
+  })
+  me.setData({
+    avaShow: true
+  })
+},
+saveCommentBefore: function (e) {
+  let me = this;
+  let sta = e.currentTarget.dataset.sta;
+  let arg = {};
+console.log(me.data.userid)
+  if (sta == 1) {//二级评论
+    if(!me.data.commentInfo1){
+      return;
+    }
+    arg.parentCommentId = me.data.avaShowList.commentId;
+    arg.dynamicId = me.data.avaShowList.dynamicId;
+    arg.toUid = me.data.avaShowList.fromUid;
+    arg.content = me.data.commentInfo1;
+  }
+  else if (sta == 0) {//一级评论
+    if(!me.data.commentInfo){
+      return;
+    }
+    arg.parentCommentId = 0;
+    arg.dynamicId = me.data.commentId;
+    arg.toUid = me.data.userid;
+    arg.content = me.data.commentInfo;
+  }
+  me.saveComment(arg);
+},
+saveComment: function (arg) {
+  console.log("---------------------"+arg)
+  let me = this;
+  app.wxRequest('post', '/comment/dynamicComment', arg, function (data) {
+    wx.showToast({
+      title: '评论成功',
+      icon: 'success'
+    });
+  //  me.data.list[index].commentCount=me.data.list[index].commentCount+1;
+   me.data.commonList.push(arg);
+  //  if(me.data.tabTitle=="最热"){}
+    me.setData({
+      // commonList:me.data.commonList,
+      // list:me.data.list,
+      avaShow1: false,
+      commentInfo: "",
+      commentInfo1: ""
+    })
+    me.getComment(me.data.commentId)
+    console.log(me.data.tabTitle);
+         me.getList();
+  })
+},
+onClose: function () {
+  let me = this;
+  me.setData({
+    avaShow: false
+  })
+},
+onClose1: function () {
+  let me = this;
+  me.setData({
+    avaShow1: false
+  })
+},
+onChange: function (val) {
+  let me = this;
+  console.log(val)
+  me.setData({
+    commentInfo: val.detail
+  })
+},
+onChange1: function (val) {
+  let me = this;
+  me.setData({
+    commentInfo1: val.detail
   })
 },
   /**
@@ -74,7 +309,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.data.pages>=this.data.pageData.pageNum){
+      console.log("-------------------------获取下一页数据")
+    this.getList();
+    }
+      console.log("-------------------------到底了")
   },
 
   /**

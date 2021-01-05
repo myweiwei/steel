@@ -6,7 +6,8 @@
     "van-uploader": "@vant/weapp/uploader/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-picker": "@vant/weapp/picker/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "van-cell": "@vant/weapp/cell/index"
   },
   "navigationBarBackgroundColor": "#FFFFFF",
   "navigationBarTitleText": "发布朋友圈",
