@@ -30,6 +30,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.userId)
+    // this.setData({userName:options.userName});
     this.setData({userId:options.userId});
     let me=this;
   // 获取设备信息

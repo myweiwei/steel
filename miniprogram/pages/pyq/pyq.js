@@ -122,7 +122,7 @@ Page({
     var bean=  e.currentTarget.dataset.bean
     console.log('item: ', bean)
     wx.navigateTo({
-      url: '/pages/pyq/mine/mine?userId='+bean.userId
+      url: '/pages/pyq/mine/mine?userId='+bean.userId+"&userName="+bean.nickName
     })
   },
   //获取每个视频的距离顶部的高度

@@ -69,10 +69,9 @@ Page({
 
   },
   toMy:function(e){
-    var bean=  e.currentTarget.dataset.bean
-    console.log('item: ', bean)
+  
     wx.navigateTo({
-      url: '/pages/pyq/mine/mine?userId='+0
+      url: '/pages/pyq/mine/mine?userId='+0+"&userName="
     })
   },
   getMoney:function(){
