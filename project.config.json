@@ -16,16 +16,25 @@
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
+		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"enableEngineNative": false,
+		"useIsolateContext": true,
 		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"packNpmManually": false,
+		"packNpmRelationList": [],
+		"minifyWXSS": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.5",
@@ -50,18 +59,15 @@
 			"list": []
 		},
 		"plugin": {
-			"current": -1,
 			"list": []
 		},
 		"game": {
 			"list": []
 		},
 		"gamePlugin": {
-			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -70,9 +76,9 @@
 					"query": ""
 				},
 				{
-					"id": 1,
-					"name": "pages/pyq/pyq",
-					"pathName": "pages/pyq/pyq",
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				},
@@ -119,9 +125,9 @@
 					"scene": null
 				},
 				{
-					"id": 8,
-					"name": "pages/mine/message/fan/fan",
-					"pathName": "pages/mine/message/fan/fan",
+					"id": -1,
+					"name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
+					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
 					"query": "",
 					"scene": null
 				},
@@ -162,65 +168,8 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/mine/message/message",
-					"pathName": "pages/mine/message/message",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/message/fan/fan",
-					"pathName": "pages/mine/message/fan/fan",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/message/fan/fan",
-					"pathName": "pages/mine/message/fan/fan",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "searchTechnician",
-					"pathName": "pages/technician/searchTechnician/searchTechnician",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "technicianVideoConsult",
-					"pathName": "pages/technician/technicianVideoConsult/technicianVideoConsult",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "technicianDetail",
-					"pathName": "pages/technician/technicianDetail/technicianDetail",
-					"query": "teacherId=7",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/pyq/pyq",
-					"pathName": "pages/pyq/pyq",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/pyq/commit/commit",
-					"pathName": "pages/pyq/commit/commit",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 22,
-					"name": "pages/pyq/mine/mine",
-					"pathName": "pages/pyq/mine/mine",
-					"query": "userId=138",
+					"name": "pages/technician/paySuccess/paySuccess",
+					"pathName": "pages/technician/paySuccess/paySuccess",
 					"scene": null
 				}
 			]
