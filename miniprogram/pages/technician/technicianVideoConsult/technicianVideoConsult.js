@@ -27,7 +27,7 @@ Page({
   },
   onPay:function(){
     var me=this;
-    var url='consult/payment/videoPayment?teacherId='+this.data.teacherId+'&payMoney='+this.data.solvePrice;
+    var url = 'consult/payment/videoPayment?teacherId=' + this.data.teacherId + '&payMoney=' + this.data.technicianData.videoSolvePrice;
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
         var payData=data.data.data;

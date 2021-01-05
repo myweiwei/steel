@@ -85,7 +85,7 @@
 						</view>
 					</view>
 					<view class='product_list'>
-						<view class="list" wx:for="{{ jishiArr }}" wx:for-item="item">
+						<view class="list" wx:for="{{ jishiArr }}" wx:for-item="item"  data-bean="{{item}}" bindtap="onItemClick">
 							<view class="remenJishiCard">
 								<view class="gradual">
 									<view class="headRow">

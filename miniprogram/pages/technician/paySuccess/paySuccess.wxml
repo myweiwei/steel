@@ -1,0 +1,23 @@
+<view class='regSuc'>
+  <view class='regSuc_top'>
+    <image src='../../../images/qy/regSuccess.png'></image>
+    <view class='title'>支付成功</view>
+    <view class="title" style="color:#1d1d1d;margin-left:0px">￥{{price}}</view>
+  </view>
+  <view class='regSuc_cen'>
+    <view class='flexStart' style='align-items:flex-start'>
+      <van-icon name="warning-o" color='#1c8cfa' size='50rpx' style='margin:0 20rpx 0 40rpx '/>
+      <view>
+        <view class='info'>平台已通知技师，请耐心等待</view>
+      </view>
+    </view>
+  </view>
+  <view class='flexCenter footer'>
+    <view class="buttonV">
+      <van-button plain type="info" round size="normal">查看订单</van-button>
+    </view>
+    <view class="buttonV">
+      <van-button type="info" round bindtap="toIndex" size="normal">回到首页</van-button>
+    </view>
+  </view>
+</view>

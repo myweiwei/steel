@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/pyq/pyq",
+    
     "pages/enterprise/searchEnterprise/searchEnterprise",
     "pages/enterprise/enterpriseDetail/enterpriseDetail",
     "pages/enterprise/enterpriseShow/enterpriseShow",
@@ -14,7 +16,7 @@
     "pages/index/comment/comment",
     "pages/index/teacherInfo/teacherInfo",
     "pages/product/product",
-    "pages/pyq/pyq",
+    
     "pages/pyq/mine/mine",
     "pages/pyq/search/search",
     "pages/near/near",
@@ -29,9 +31,11 @@
     "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
     "pages/goods/goodsManager/goodsManager",
     "pages/goods/goodsAdd/goodsAdd",
+    "pages/c1/c1",
     "pages/technician/searchTechnician/searchTechnician",
     "pages/technician/technicianDetail/technicianDetail",
-    "pages/technician/technicianVideoConsult/technicianVideoConsult"
+    "pages/technician/technicianVideoConsult/technicianVideoConsult",
+    "pages/technician/paySuccess/paySuccess"
   ],
   "subpackages": [
     {
