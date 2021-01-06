@@ -117,7 +117,28 @@ getList: function () {
     })
   })
 },
+  //播放按钮点击时触发触发
+  videoPlay(e) {
+    let _index = e.currentTarget.dataset.id
+    this.setData({ //让video组件显示出来，不然点击时没有效果
+      _index
+    })
+    //停止正在播放的视频
+    let videoContextPrev = wx.createVideoContext(_index.toString())
+    videoContextPrev.stop();
 
+    setTimeout(() => {
+      //将点击视频进行播放
+      let videoContext = wx.createVideoContext(_index)
+      videoContext.play();
+    }, 500)
+  },
+  preview: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.dataset.current, // 当前显示图片的http链接
+      urls: e.currentTarget.dataset.urls // 需要预览的图片http链接列表
+    })
+  },
 fan(e){
   let me=this;
   var index =e.currentTarget.dataset.index;

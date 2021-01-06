@@ -63,7 +63,7 @@
 
 .labelItem {
   color: rgb(11, 119, 219);
-  font-size: 28rpx;
+  font-size: 26rpx;
   margin-left: 30rpx;
   margin-top: 10rpx;
   display: flex;
