@@ -68,6 +68,7 @@
 			"list": []
 		},
 		"miniprogram": {
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -84,92 +85,9 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/mine/mine",
-					"pathName": "pages/mine/mine",
+					"name": "pages/technician/order/order",
+					"pathName": "pages/technician/order/order",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/switchCity/switchCity",
-					"pathName": "pages/switchCity/switchCity",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
-					"pathName": "pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/goods/goodsAdd/goodsAdd",
-					"pathName": "pages/goods/goodsAdd/goodsAdd",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/goods/goodsManager/goodsManager",
-					"pathName": "pages/goods/goodsManager/goodsManager",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/goods/goodsAdd/goodsAdd",
-					"pathName": "pages/goods/goodsAdd/goodsAdd",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-					"pathName": "pages/enterprise/enterpriseDetail/enterpriseDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/enterprise/enterpriseShow/enterpriseShow",
-					"pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/enterprise/searchEnterprise/searchEnterprise",
-					"pathName": "pages/enterprise/searchEnterprise/searchEnterprise",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/enterprise/enterpriseShow/enterpriseShow",
-					"pathName": "pages/enterprise/enterpriseShow/enterpriseShow",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
-					"pathName": "pages/enterprise_dynamic/dynamicManager/dynamicManager",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/technician/paySuccess/paySuccess",
-					"pathName": "pages/technician/paySuccess/paySuccess",
 					"scene": null
 				}
 			]
