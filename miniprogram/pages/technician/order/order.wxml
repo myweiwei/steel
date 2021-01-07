@@ -1,0 +1,30 @@
+<!--pages/technician/order/order.wxml-->
+<scroll-view scroll-y="true" style="height:100%">
+  <view wx:for="{{list}}" class="listBox">
+    <view class="flexBetween flexTop">
+      <view class="time">
+        2021-01-07 22:38:56
+      </view>
+      <view class="status">
+        预约成功
+      </view>
+    </view>
+    <view class="flexStart" style="margin-top:20rpx;">
+      <image src="../../../images/enterprise/mendiantu.png"></image>
+      <view class="flexStart" style="flex:1">
+        <view class="flexLeft">
+          <view class="name">陈琪</view>
+          <view>订单编号：12345643</view>
+          <view>技师电话：123456789675</view>
+        </view>
+        <view>￥5</view>
+      </view>
+    </view>
+    <view class="flexBetween">
+      <view></view>
+      <view>
+        <van-button plain type="info" bindtap="toComment" size="small" round>评  价</van-button>
+      </view>
+    </view>
+  </view>
+</scroll-view>

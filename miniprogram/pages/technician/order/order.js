@@ -1,30 +1,22 @@
-// pages/mine/regEnterprise/regEnterpriseSuccess/regEnterpriseSuccess.js
+// pages/technician/order/order.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    price:'0'
+    list:[{time:'123'}]
   },
-  toOrder: function () {
-    let me = this;
-    wx.redirectTo({
-      url: '/pages/technician/order/order',
-    })
-  },
-  toIndex: function () {
-    wx.switchTab({
-      url: "/pages/index/index",
+  toComment:function(){
+    wx.navigateTo({
+      url: '/pages/index/comment/comment'
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      price: options.payMoney
-    })
+
   },
 
   /**

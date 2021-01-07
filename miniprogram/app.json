@@ -35,7 +35,8 @@
     "pages/technician/searchTechnician/searchTechnician",
     "pages/technician/technicianDetail/technicianDetail",
     "pages/technician/technicianVideoConsult/technicianVideoConsult",
-    "pages/technician/paySuccess/paySuccess"
+    "pages/technician/paySuccess/paySuccess",
+    "pages/technician/order/order"
   ],
   "subpackages": [
     {
