@@ -29,8 +29,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.userId)
-    // this.setData({userName:options.userName});
     this.setData({userId:options.userId});
     let me=this;
   // 获取设备信息
@@ -43,8 +41,6 @@ Page({
         statusBarHeight:e.statusBarHeight,
         titleBarHeight:CustomBar
        })
-       console.log(me.data.statusBarHeight)
-       console.log(me.data.titleBarHeight)
     }
   })  
       me.setData({
@@ -69,7 +65,6 @@ Page({
 },
 grtCount:function(){
   let me = this;
-  console.log("------------------------grtCount"+me.data.userId)
   var url;
   if(me.data.userId==0){
     url='/dynamic/user/count';
@@ -80,12 +75,10 @@ grtCount:function(){
   url,
   {},
   function(data){
-    console.log(data.data.data)
     me.setData({countData:data.data.data})
   })
 },
 getList: function () {
-  console.log("----------------getList")
   let me = this;
   var url;
   if(me.data.userId==0){
@@ -98,8 +91,6 @@ getList: function () {
   url,
   {},
   function(data){
- 
-    console.log(data.data.data)
     let count = 0;
     for(let i=0;i<data.data.data.list.length;i++){
       if (data.data.data.list[i].videoType=='1'){
@@ -165,7 +156,6 @@ fan(e){
 },
 toMy:function(e){
   var bean=  e.currentTarget.dataset.bean
-  console.log('item: ', bean)
   wx.navigateTo({
     url: '/pages/pyq/mine/mine?userId='+bean.userId
   })
@@ -173,14 +163,12 @@ toMy:function(e){
 
 addSc: function (e) {
   let me = this;
-  console.log("123");
   var index = e.currentTarget.dataset.index;
   let support = e.currentTarget.dataset.item.isSupport == 1 ? 0 : 1;
   var dynamicId = e.currentTarget.dataset.item.dynamicId;
   var toId = e.currentTarget.dataset.item.userId;
   app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
     // me.getList();
-    console.log(me.data.list[index].isSupport); 
      me.data.list[index].isSupport=support;
      if(support==0){
               me.data.list[index].supportUsersIcon.splice(me.data.list[index].supportUsersIcon.length-1,1)
@@ -207,7 +195,6 @@ getComment: function (id) {
   // https://eahost.lileiit.com/comment/{dynamicId}
   app.wxRequest('get', '/comment/' + id, {}, function (data) {
 
-    console.log(data.data)
     for (let i = 0; i < data.data.data.length; i++) {
       data.data.data[i].openFlag = false;
     }
@@ -223,7 +210,6 @@ saveCommentBefore: function (e) {
   let me = this;
   let sta = e.currentTarget.dataset.sta;
   let arg = {};
-console.log(me.data.userid)
   if (sta == 1) {//二级评论
     if(!me.data.commentInfo1){
       return;
@@ -245,7 +231,6 @@ console.log(me.data.userid)
   me.saveComment(arg);
 },
 saveComment: function (arg) {
-  console.log("---------------------"+arg)
   let me = this;
   app.wxRequest('post', '/comment/dynamicComment', arg, function (data) {
     wx.showToast({
@@ -263,7 +248,6 @@ saveComment: function (arg) {
       commentInfo1: ""
     })
     me.getComment(me.data.commentId)
-    console.log(me.data.tabTitle);
          me.getList();
   })
 },
@@ -281,7 +265,6 @@ onClose1: function () {
 },
 onChange: function (val) {
   let me = this;
-  console.log(val)
   me.setData({
     commentInfo: val.detail
   })
@@ -332,10 +315,8 @@ onChange1: function (val) {
    */
   onReachBottom: function () {
     if(this.data.pages>=this.data.pageData.pageNum){
-      console.log("-------------------------获取下一页数据")
     this.getList();
     }
-      console.log("-------------------------到底了")
   },
 
   /**

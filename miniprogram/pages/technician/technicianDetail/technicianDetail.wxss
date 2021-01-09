@@ -77,21 +77,20 @@ text {
 }
 
 .evaluateView {
-  /* line-height: 1.7em; */
-  width: 100%;
-  min-height: 50%;
-  margin: 0 auto;
-  /* margin-top: 10rpx; */
-  padding: 20rpx 50rpx 90rpx 30rpx;
-  font-size: 26rpx;
-  background: white;
-  color: #5c5c5c;
+min-height: 50%;
+margin: 0 auto;
+padding: 20rpx;
+font-size: 26rpx;
+background: white;
+color: #5c5c5c;
+box-sizing: norder-box;
+
   
 }
 
 .evaluateLay {
   flex-direction: column;
-  width: 50%;
+  width:435rpx;
   display: flex;
   margin-left: 10rpx;
   position: relative;
@@ -109,7 +108,7 @@ text {
 .evaluateRow {
   width: 100%;
   padding: 10rpx 0;
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   margin-left: 10rpx;
   flex-direction: row;

@@ -18,6 +18,11 @@ Page({
     showPwd:'false',
     countList:{}
   },
+  goOrder:function(){
+    wx.navigateTo({
+      url: '/pages/technician/order/order'
+    })
+  },
   getCount:function(){
     let me = this;
     app.wxRequest('get', '/message/unreadCount', {}, function (res) {
@@ -29,7 +34,6 @@ Page({
   getHeadIconAndName:function(){
     let me = this;
     app.wxRequest('get', '/personal/user', {}, function (res) {
-      console.log(res.data.data)
       me.setData({
         headIcon:res.data.data.headIcon,
         name:res.data.data.nickName
@@ -42,13 +46,11 @@ Page({
     })
   },
   showPwdFunc:function(e){
-    console.log(e.currentTarget.dataset.flag)
     this.setData({
       showPwd: e.currentTarget.dataset.flag
     })
   },
   onGotUserInfo: function (e) {
-    console.log(e.detail.userInfo);
   },
   getUser:function(){
     let me=this;
@@ -84,7 +86,6 @@ Page({
   },
   myPop:function(e){
     let me=this;
-    console.log(e.currentTarget.dataset.name)
     let name = e.currentTarget.dataset.name;
     if (name=="充值中心"){
       me.setData({
@@ -139,7 +140,6 @@ Page({
           signType: res.data.data.data.signType,
           paySign: res.data.data.data.paySign,
           success: function (res) {
-            console.log(res);
             wx.showToast({
               title: '充值成功',
               icon: 'success',
@@ -152,7 +152,6 @@ Page({
             })
           },
           fail: function (res) {
-            console.log(res);
           },
           complete: function (res) { }
         })
@@ -160,7 +159,6 @@ Page({
   },
   choosePrice:function(e){
     let me=this;
-    console.log(e.currentTarget.dataset.item);
     me.setData({
       value: e.currentTarget.dataset.item,
       activeIndex: e.currentTarget.dataset.index

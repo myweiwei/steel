@@ -24,6 +24,10 @@
         <view wx:if='{{countList.allCount>0&&countList.allCount<=99}}' class='total_count'>{{countList.allCount}}</view>
         <view wx:if='{{countList.allCount>=99}}' class='total_count'>99+</view>
       </view>
+      <view bindtap="goOrder" class="jishizhongxin_item">
+        <image src="../../images/my/enterprise_icon05.png"/>
+        <view>咨询记录</view>
+      </view>
     </view>
   </view>
   <view class="jishizhongxin_square">

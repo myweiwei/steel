@@ -17,9 +17,9 @@
 }
 .commentBox {
   padding:20rpx;
-  height: 80%;
+  height: 90%;
   background: #fff;
-  margin:0 10%;
+  margin:0 5%;
   margin-top:50rpx;
   box-sizing: border-box;
   border-radius: 15rpx;

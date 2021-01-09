@@ -41,7 +41,6 @@
 .buttonV {
   width: 41%;
   /* height: 80rpx; */
-  margin-left: 6%;
   /* display: flex;
   flex-direction: row;
   align-items: center; */

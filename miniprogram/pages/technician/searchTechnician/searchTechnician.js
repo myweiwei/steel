@@ -24,7 +24,6 @@ Page({
   },
   onItemClick:function(e){
     var bean=  e.currentTarget.dataset.bean
-    console.log('item: ', bean)
     wx.navigateTo({
       url: '/pages/technician/technicianDetail/technicianDetail?teacherId='+bean.teacherId
     })
@@ -34,7 +33,6 @@ Page({
     var url="getTeachersInfoByFavorableRate?goodAt="+goodAtStr;
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
-        console.log(data.data.data);
         me.setData({dataArr:data.data.data});
         me.setData({isLoading:false})
         if(data.data.data.length > 0){
@@ -69,7 +67,6 @@ Page({
     var me = this;
     me.setData({isLoading:true});
     if (app.globalData.token == '') {
-      console.log('token==null')
       app.getUser(me.onSearch);
     }
     else {

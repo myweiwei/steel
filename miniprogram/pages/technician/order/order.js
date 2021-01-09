@@ -1,4 +1,5 @@
 // pages/technician/order/order.js
+const app = getApp()
 Page({
 
   /**
@@ -7,16 +8,34 @@ Page({
   data: {
     list:[{time:'123'}]
   },
-  toComment:function(){
+  getList:function(){
+    let me = this;
+    app.wxRequest('get', '/consult/payment/consultRecord/', {}, function (data) {
+      me.setData({
+        list:data.data.data
+      })
+    })
+  },
+  toComment:function(e){
+    let item = e.currentTarget.dataset.item;
     wx.navigateTo({
-      url: '/pages/index/comment/comment'
+      url: '/pages/index/comment/comment?teacherId=' + item.teacherId + '&&icon=' + escape(item.teacherIcon) + '&&payMoney=' + item.payMoney + '&&recordId=' + item.id
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    that.setData({
+      baseUrl: app.globalData.baseUrl
+    })
+    if (app.globalData.token != '') {
+      that.getList();
+    }
+    else {
+      app.getUser(that.getList);
+    }
   },
 
   /**
