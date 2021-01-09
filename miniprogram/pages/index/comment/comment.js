@@ -9,6 +9,7 @@ Page({
     icon:'',
     time:'',
     price:"",
+    recordId:"",
     isAnonymous:false,
     isSolution:1,
     commentContent:"",
@@ -23,15 +24,16 @@ Page({
     let me=this;
     me.setData({
       icon: unescape(options.icon),
-      teacherId:options.userId,
-      time:options.time,
-      price:options.cost
+      teacherId: options.teacherId,
+      price: options.payMoney,
+      recordId: options.recordId
     })
   },
   addPj:function(val){
     let me=this;
+    console.log(val)
     me.setData({
-      commentContent:val.detail.value
+      commentContent:val.detail
     })
   },
   solute:function(e){
@@ -52,11 +54,13 @@ Page({
   },
   submit:function(){
     let me = this;
-    app.wxRequest('post', '/ea-service-consult/consult/comment/', {
-      teacherId:me.data.teacherId,
+    app.wxRequest('post', 'comment/', {
+      teacherId:parseInt(me.data.teacherId),
       isSolution:me.data.isSolution,
       isAnonymous:me.data.isAnonymous?1:0,
-      commentContent: me.data.commentContent
+      commentContent: me.data.commentContent,
+      score:me.data.score,
+      recordId: me.data.recordId
     }, function (data) {
       wx.showToast({
         title: "感谢您的评价",

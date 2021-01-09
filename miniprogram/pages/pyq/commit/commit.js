@@ -29,17 +29,13 @@ Page({
       maxDuration: 60,//可拍摄视频的长度。不能大于60秒
       camera: 'back',
       success: res => {
-        console.log(res.tempFiles);
-        console.log(res.tempFiles[0].tempFilePath);
         const tempFilePath = res.tempFiles[0].tempFilePath;
-        console.log(tempFilePath);
         //选中视频的长度
         var duration = res.tempFiles[0].duration;//秒
         var size = res.tempFiles[0].size;//字节
         var height = res.tempFiles[0].height;
         var width = res.tempFiles[0].width;
         var thumbTempFilePath = res.tempFiles[0].thumbTempFilePath;//封面图片
-        console.log(thumbTempFilePath);
         var arg={};
         arg.thumbTempFilePath = res.tempFiles[0].thumbTempFilePath;
         arg.path =tempFilePath;
@@ -212,7 +208,6 @@ Page({
     data.dynamicImgVideo = me.data.fileArr.join(';');
     data.dynamicArea = me.data.province;
     data.videoType = me.data.videoType;
-    console.log(data);
     app.wxRequest('post', '/dynamic/dynamic', data, function (data) {
       if (data.statusCode==200){
         wx.showToast({
@@ -279,7 +274,6 @@ Page({
   upFile:function(path,i){
     let me=this;
     let arr=[];
-    console.log(path)
     arr=me.data.fileArr;
     return new Promise((resolve,reject)=>{
       wx.uploadFile({
@@ -293,9 +287,7 @@ Page({
           'Authorization': app.globalData.token
         },
         success: function (res) {
-          console.log(JSON.parse(res.data).data);
           arr.push(JSON.parse(res.data).data);
-          console.log(arr);
           if (i == 1 &&res.statusCode == 200){
             me.setData({
               fileArr:arr
@@ -319,9 +311,6 @@ Page({
     let that=this;
     wx.getSystemInfo({
       success(res) {
-        console.log(res)
-        console.log("height="+ res.windowHeight)
-        console.log("width="+res.windowWidth)
         that.setData({
           windowWidth:res.windowWidth
         })

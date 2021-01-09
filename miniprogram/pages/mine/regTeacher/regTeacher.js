@@ -67,7 +67,6 @@ Page({
   addPrice: function () {
     let me = this;
     app.wxRequest('post', '/recharge/recharge/59', {}, function (res) {
-      console.log(res);
       wx.requestPayment(
         {
           timeStamp: res.data.data.data.timeStamp,
@@ -88,7 +87,6 @@ Page({
             })
           },
           fail: function (res) {
-            console.log(res);
           },
           complete: function (res) { }
         })
@@ -96,8 +94,6 @@ Page({
   },
   onChange:function(val){
     let me=this;
-    console.log(val)
-    console.log(val.currentTarget.dataset.name)
     let label = val.target.dataset.name;
     me.setData({
       [label]: val.detail
@@ -179,7 +175,6 @@ Page({
       teacherResourceList:me.data.teacherResourceList
     }
     app.wxRequest('post', '/personal/registerTeacher', arg, function (data) {
-      console.log(data);
       if (data.data.status != 200) {
         wx.showToast({
           title: data.data.msg,
@@ -303,12 +298,10 @@ Page({
 
   },
   onGotUserInfo: function (e) {
-    console.log(e.detail.userInfo);
   },
   delImg:function(e){
     let me = this;
     let arr = [];
-    console.log(e.target.dataset.type);
     let type = e.target.dataset.type;
     if(type=='zp'){
       me.setData({
@@ -337,10 +330,7 @@ Page({
     }
   },
   afterRead:function(e){
-    console.log(e.detail.file);
-    console.log(e.target.dataset);
     let type=e.target.dataset.type;
-    console.log(type)
     let me=this;
     let arr=[];
     arr.push(e.detail.file);
@@ -380,14 +370,11 @@ Page({
       maxDuration: 30,
       camera: 'back',
       success(res) {
-        console.log(res);
-        console.log(res.tempFiles)
         let arr=[];
         if (res.tempFiles[0].thumbTempFilePath) {
           var arg = {};
           arg.type = 'video';
           arg.path = res.tempFiles[0].tempFilePath
-          console.log(arg);
           arr.push(arg);
         }
         else {
@@ -421,7 +408,6 @@ Page({
   },
   delVideo:function(e){
     let me=this;
-    console.log(e.target.dataset.type)
     let type = e.target.dataset.type;
     wx.showModal({
       title: '提示',

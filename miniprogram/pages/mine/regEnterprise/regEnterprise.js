@@ -71,7 +71,6 @@ Page({
   upFile: function (path, i) {
     let me = this;
     let arr = [];
-    console.log(path)
     arr = me.data.fileArr1;
     return new Promise((resolve, reject) => {
       wx.uploadFile({
@@ -115,7 +114,6 @@ Page({
         await me.upFile(me.data.fileList1[i].path, flag)
       }
     } else {
-      console.log("没有上传图片")
     }
 
   },
@@ -203,10 +201,8 @@ Page({
     })
   },
   onChange:function(val){
-    console.log(val);
   },
   onConfirm:function(val){
-    console.log(val)
     this.setData({
       number:val.detail.value,
       show:false
@@ -247,7 +243,6 @@ Page({
     let me = this;
     let arr =me.data.fileList1;
     arr.splice(e.detail.index,1);
-    console.log(e.detail.index);
     me.setData({
       fileList1: arr
     })
@@ -256,7 +251,6 @@ Page({
     let vm = this;
     wx.getSetting({
       success: (res) => {
-        console.log(JSON.stringify(res))
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
           wx.showModal({
             title: '请求授权当前位置',
@@ -307,7 +301,6 @@ Page({
     let me = this;
      wx.chooseLocation({
       success(res) {
-        console.log(res);
         me.setData({
           province: res.address+';'+res.name,
           addressDetail: res.name, //详细地址
@@ -317,7 +310,6 @@ Page({
         })
       },
       fail(err){
-        console.log(err);
       }
     })
   },
@@ -332,7 +324,6 @@ Page({
     var me = this;
     app.wxRequest('get', '/enterprise/enterpriseType', {}, function (data) {
       if (data.data.status == 200) {
-        console.log(data.data.data);
        var arr = [];
        for(let i = 0; i < data.data.data.length; i++){
          var arg = {};
@@ -349,12 +340,10 @@ Page({
 
   confirmShow:function(){
     let me=this;
-    console.log(me.activeIndex)
     let arr=[];
     for(let i=0;i<me.data.activeIndex.length;i++){
       arr.push(me.data.liList[me.data.activeIndex[i]].name);
     }
-    console.log(arr);
     me.setData({
       type:arr.join(','),
       show1:false

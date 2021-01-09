@@ -23,7 +23,6 @@ Page({
     let me = this;
     app.wxRequest('get', '/ea-service-consult/consult/teachers', { goodAt: me.data.goodAt}, function (data) {
       if (data.statusCode == 200) {
-        console.log(data);
         me.setData({
           teacherList: data.data.data
         })
