@@ -1,16 +1,15 @@
 <!--pages/index/comment/comment.wxml-->
 <view class='comment'>
-  <view class='info'>
-    <view class='time'>通话{{time}}</view>
-    <view class='price'>共计{{price}}</view>
-  </view>
+  <!-- <view class='info'>
+    <view class='price'>共计￥{{price}}</view>
+  </view> -->
   <view class='commentBox'>
     <image src='{{icon}}' class='icon'></image>
     <view class='rate'>
       <van-rate value="{{ score }}" bind:change="onScoreChange" />
     </view>
     <view class='btn'>
-        本次通话是否解决了您的问题？
+        是否解决了您的问题？
         <view class='flexCenter'>
           <van-button round type="default" size='small' wx:if='{{isSolution==1}}' bindtap='solute' data-id='0'>未解决</van-button>
           <van-button round type="info" size='small'   wx:if='{{isSolution==0}}'>未解决</van-button>
@@ -18,7 +17,15 @@
           <van-button round type="default" size='small' class='yjj' bindtap='solute' data-id='1'  wx:if='{{isSolution==0}}'>已解决</van-button>
         </view>
         <view style="height: 40%;">
-          <textarea placeholder="给技师点评价吧" value='{{commentContent}}' bindblur='addPj'/>
+          <!-- <textarea placeholder="给技师点评价吧" value='{{commentContent}}' bindblur='addPj'/> -->
+          <van-field
+            value="{{ commentContent }}"
+            type="textarea"
+            placeholder="给技师点评价吧"
+            bind:change='addPj'
+            border="{{ false }}"
+            autosize
+          />
         </view>
         <view class='flexBetween'>
           <view>

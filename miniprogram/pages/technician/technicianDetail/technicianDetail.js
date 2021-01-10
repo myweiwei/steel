@@ -11,7 +11,8 @@ Page({
     videoSolvePrice:0,
     teacherComments:[],
     show:false,
-    phone:''
+    phone:'',
+    focus:false
   },
 
   /**
@@ -32,7 +33,7 @@ Page({
       })
       return ;
     }
-    var url = 'consult/payment/videoPayment?teacherId=' + this.data.teacherId + '&payMoney=' + this.data.technicianData.videoSolvePrice;
+    var url = 'consult/payment/videoPayment?teacherId=' + this.data.teacherId + '&payMoney=' + this.data.technicianData.videoSolvePrice + '&phone=' + this.data.phone;
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
         var payData = data.data.data;
@@ -45,11 +46,16 @@ Page({
           paySign: payData.paySign,
           success(res) {
             wx.navigateTo({
-              url: '/pages/technician/paySuccess/paySuccess?payMoney=' + this.data.technicianData.videoSolvePrice
+              url: '/pages/technician/paySuccess/paySuccess?payMoney=' + me.data.technicianData.videoSolvePrice
             })
           },
           fail(res) {
-            url: '/pages/technician/paySuccess/paySuccess?payMoney=' + this.data.technicianData.videoSolvePrice
+            console.warn(res)
+            wx.showToast({
+              title: '支付失败',
+              icon: 'none'
+            })
+            return;
           }
         })
       }
@@ -63,7 +69,8 @@ Page({
   },
   pay:function(){
     this.setData({
-      show:true
+      show:true,
+      focus:true
     })
   },
   onClose:function(){
@@ -92,7 +99,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({ show: false });
   },
 
   /**

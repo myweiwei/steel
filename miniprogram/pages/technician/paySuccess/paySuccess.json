@@ -3,7 +3,7 @@
     "van-icon": "@vant/weapp/icon/index",
     "van-button": "@vant/weapp/button/index"
   },
-  "navigationBarTitleText": "注册成功",
+  "navigationBarTitleText": "支付成功",
   "navigationBarTextStyle": "white",
   "backgroundColor": "#f5f5f5",
   "backgroundTextStyle": "light"
