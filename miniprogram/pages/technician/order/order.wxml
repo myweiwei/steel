@@ -23,8 +23,8 @@
     <view class="flexBetween">
       <view></view>
       <view>
-        <!-- <van-button plain type="info" bindtap="toComment" data-item='{{item}}' size="small" round wx-if="{{item.isComment!=1&&item.status!=0}}">评  价</van-button> -->
-        <van-button plain type="info" bindtap="toComment" data-item='{{item}}' size="small" round >评  价</van-button>
+        <van-button plain type="info" bindtap="toComment" data-item='{{item}}' size="small" round wx-if="{{item.isComment!=1&&item.status!=0}}">评  价</van-button>
+        <!-- <van-button plain type="info" bindtap="toComment" data-item='{{item}}' size="small" round >评  价</van-button> -->
       </view>
     </view>
   </view>
