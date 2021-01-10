@@ -1,0 +1,39 @@
+/* pages/technician/order/order.wxss */
+.listBox {
+  margin:20rpx;
+  border:1px solid #ededed;
+  padding:20rpx;
+  padding-top:0px;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+}
+.flexTop {
+  height: 70rpx;
+  border-bottom:1px solid #ededed;
+}
+.listBox .time {
+  color:#1d1d1d;
+  font-size:28rpx;
+}
+.status {
+  color:#3771b7;
+  font-size:28rpx;
+}
+.flexStart image {
+  width:100rpx;
+  height:100rpx;
+  border-radius: 10rpx;
+}
+.flexLeft {
+  margin-left:20rpx;
+  font-size:26rpx;
+  color:#1d1d1d;
+  width:95%;
+}
+.flexLeft view {
+  line-height:40rpx;
+}
+.flexStart .name {
+  font-weight: bold;
+  font-size: 32rpx;
+}

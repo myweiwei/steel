@@ -55,10 +55,11 @@
 		</view>
 		<van-cell bindtap='showPop' value="用标签记录生活 >" >
 			<view slot="icon" style="display: flex;flex-direction: row;align-items: center;">
-				<image mode="aspectFit" class="iconImg" src="../../../images/pyq/tab02.png" />
+				<image wx:if="{{dynamicType}}" mode="aspectFit" class="iconImg" src="../../../images/pyq/tab01.png" />
+				<image wx:else mode="aspectFit" class="iconImg" src="../../../images/pyq/tab02.png" />
 			</view>
 			<view slot="title">
-				<view class="van-cell-text">添加标签</view>
+				<view class="van-cell-text" style="color: {{!dynamicType?'':'rgb(11, 119, 219)'}};">{{!dynamicType?'添加标签':dynamicType}}</view>
 			</view>
 		</van-cell>
 		<van-cell value=">">
@@ -66,7 +67,7 @@
 				<image mode="aspectFit" class="iconImg" src="{{!province?'../../../images/pyq/pos02.png':'../../../images/pyq/pos01.png'}}" />
 			</view>
 			<view slot="title" bindtap="getLocation">
-				<view class="van-cell-text">{{ !province?"所在位置":province }}</view>
+				<view  style="color: {{!province?'':'rgb(11, 119, 219)'}};" class="van-cell-text">{{ !province?"所在位置":province }}</view>
 			</view>
 		</van-cell>
 		<!-- <van-field value="{{ dynamicType }}" custom-style='{color:"red"}' placeholder="添加标签" border="{{ false }}" right-icon='arrow' readonly bindtap='showPop'>

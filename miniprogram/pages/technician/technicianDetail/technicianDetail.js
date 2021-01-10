@@ -49,7 +49,7 @@ Page({
             })
           },
           fail(res) {
-            console.warn(res)
+            url: '/pages/technician/paySuccess/paySuccess?payMoney=' + this.data.technicianData.videoSolvePrice
           }
         })
       }
