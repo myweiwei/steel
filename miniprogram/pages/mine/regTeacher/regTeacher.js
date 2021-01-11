@@ -137,16 +137,7 @@ Page({
     // wx.showLoading({
     //   title: '正在提交',
     // })
-    let solveStatus=0;
-    if (me.data.twFlag==true&&me.data.spFlag==true){
-      solveStatus=3;
-    }
-    else if (me.data.twFlag == true && me.data.spFlag == false){
-      solveStatus = 1;
-    }
-    else if (me.data.twFlag == false && me.data.spFlag == true) {
-      solveStatus = 2;
-    }
+    let solveStatus=2;
     await me.upFile(me.data.fileList,0);
     if(me.data.fileListZp1.length){
       await me.upFile(me.data.fileListZp1, 1);
@@ -200,6 +191,7 @@ Page({
     let me = this;
     let arr = [];
     arr = file;
+    console.log(file)
     return new Promise((resolve, reject) => {
       if (!arr[0]) {
         wx.showToast({
@@ -387,6 +379,7 @@ Page({
           me.setData({
             fileListZp1: arr
           })
+          console.log(me.data.fileListZp1)
         }
         if (type == 'zp1') {
           me.setData({

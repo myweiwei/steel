@@ -110,6 +110,12 @@
 					"pathName": "pages/index/comment/comment",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/message/message",
+					"pathName": "pages/mine/message/message",
+					"scene": null
 				}
 			]
 		}

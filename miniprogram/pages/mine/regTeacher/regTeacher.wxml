@@ -58,7 +58,7 @@
         bind:change="onChange"
         autosize='{{true}}'
       />
-      <view class='flexStart'>
+      <!-- <view class='flexStart'>
         <van-field
           value="{{ imgtxtSolvePrice }}"
           required
@@ -73,22 +73,22 @@
           style='width:80%'
         />
         <van-switch checked="{{ twFlag }}" data-type='tw' size="24px" bind:change="onCheckChange"  size="24px"/>
-      </view>
+      </view> -->
       <view class='flexStart'>
         <van-field
           value="{{ videoSolvePrice }}"
           required
-          label='视频咨询价格'
+          label='电话咨询价格'
           type='number'
           clearable
           data-name='videoSolvePrice'
-          placeholder="单位：元/分钟"
+          placeholder="单位：元/次"
           border="{{ false }}"
           bind:change="onChange"
           use-button-slot
           style='width:80%'
         />
-        <van-switch checked="{{ spFlag }}" data-type='sp' size="24px" bind:change="onCheckChange" />
+        <!-- <van-switch checked="{{ spFlag }}" data-type='sp' size="24px" bind:change="onCheckChange" /> -->
       </view>
       <van-field
         value="{{ phoneNumber }}"
