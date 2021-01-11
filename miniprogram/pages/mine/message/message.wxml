@@ -2,19 +2,19 @@
 <view>
   <view class='flexAround boxContainer'>
     <view class='flexCenter box' data-to='fan' bindtap='toInfo'>
-      <image src='../../../images/index/jinfang.png'></image>
+      <image src='../../../images/message/fensi.png'></image>
       <text>粉丝</text>
       <view wx:if='{{followCount>0&&followCount<=99}}' class='count'>{{followCount}}</view>
         <view wx:if='{{followCount>=99}}' class='count'>99+</view>
     </view>
     <view class='flexCenter box' data-to='favour' bindtap='toInfo'>
-      <image src='../../../images/index/jinfang.png'></image>
+      <image src='../../../images/message/dianzan.png'></image>
       <text>赞</text>
       <view wx:if='{{supportCount>0&&supportCount<=99}}' class='count'>{{supportCount}}</view>
         <view wx:if='{{supportCount>=99}}' class='count'>99+</view>
     </view>
     <view class='flexCenter box' data-to='comment' bindtap='toInfo'>
-      <image src='../../../images/index/jinfang.png'></image>
+      <image src='../../../images/message/pinglun.png'></image>
       <text>评论</text>
       <view wx:if='{{commentCount>0&&commentCount<=99}}' class='count'>{{commentCount}}</view>
         <view wx:if='{{commentCount>=99}}' class='count'>99+</view>
@@ -22,7 +22,7 @@
   </view>
   <view class='message'>
     <view class='flexStart'>
-      <image src='../../../images/index/jinfang.png'></image>
+      <image src='../../../images/message/xitongxiaoxi.png'></image>
       <view class='message_content'>
         <view>系统消息</view>
         <view>暂无系统消息</view>

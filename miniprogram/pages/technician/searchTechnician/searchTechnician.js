@@ -15,12 +15,12 @@ Page({
   /**
    * 点击搜索
    */
-  onSearchClick:function(){
+  onSearchClick:function(e){
     wx.setBackgroundColor({
       backgroundColor: '#e1e1e1', // 窗口的背景色为灰色
     })
     var me=this;
-    me.onSearch( me.data.searchValue);
+    me.onSearch(e.detail);
   },
   onItemClick:function(e){
     var bean=  e.currentTarget.dataset.bean

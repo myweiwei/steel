@@ -23,13 +23,13 @@
           <view class="smallFontBold">好评率</view>
         </view>
         <view bindtap="" class="technicianCardItem">
-          <view class="fontBold">{{technicianData.imgtxtSolvePrice}}<text>元</text> </view>
-          <view class="smallFontBold">图文咨询每次</view>
+          <view class="fontBold">{{technicianData.videoSolvePrice}}<text>元</text> </view>
+          <view class="smallFontBold">电话咨询每次</view>
         </view>
-        <view class="technicianCardItem">
+        <!-- <view class="technicianCardItem">
           <view class="fontBold" bindtap="">{{technicianData.videoSolvePrice}}<text>元</text> </view>
           <view class="smallFontBold" bindtap="">视频咨询每分钟</view>
-        </view>
+        </view> -->
       </view>
     </view>
     <view class="detailDescribe">

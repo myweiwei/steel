@@ -2,16 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/pyq/pyq",
-    
     "pages/enterprise/searchEnterprise/searchEnterprise",
     "pages/enterprise/enterpriseDetail/enterpriseDetail",
     "pages/enterprise/enterpriseShow/enterpriseShow",
     "pages/enterprise_dynamic/dynamicManager/dynamicManager",
     "pages/enterprise_dynamic/dynamicAdd/dynamicAdd",
-    "pages/consult/restroom/restroom",
-    "pages/room/room",
     "pages/switchCity/switchCity",
-    "pages/videocall/videocall",
     "pages/index/teacher/teacher",
     "pages/index/comment/comment",
     "pages/index/teacherInfo/teacherInfo",

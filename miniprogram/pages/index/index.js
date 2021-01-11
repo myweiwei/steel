@@ -24,6 +24,11 @@ Page({
     curCity:"",
     statusBarHeight:0
   },
+  moreTeacher:function(){
+    wx.navigateTo({
+      url: '/pages/technician/searchTechnician/searchTechnician'
+    })
+  },
   onItemClick: function (e) {
     var bean = e.currentTarget.dataset.bean
     wx.navigateTo({
@@ -85,20 +90,14 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
-        console.log("进来了");
-        console.log(JSON.stringify(res))
         var latitude = res.latitude
         var longitude = res.longitude
-
-        console.log("wei:" + latitude);
-        console.log(longitude);
         vm.setData({longitude:res.longitude,latitude:res.latitude});
         var speed = res.speed
         var accuracy = res.accuracy;
         vm.getLocal(latitude, longitude)
       },
       fail: function (res) {
-        console.log('fail' + JSON.stringify(res))
       }
     })
   },
@@ -118,7 +117,6 @@ Page({
         data: {},
         success: function (res) {
           if (res.data.status == "0") {
-            console.log(res.data)
             res.data.result.addressComponent.city = res.data.result.addressComponent.city.replace('市', '')
             that.setData({
               curCity: res.data.result.addressComponent.city
@@ -136,7 +134,6 @@ Page({
   },
   toInfo:function(e){
     let me=this;
-    console.log(e.currentTarget.dataset.id)
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/index/teacherInfo/teacherInfo?id='+id
@@ -157,7 +154,6 @@ Page({
   submit:function(){
     let me=this;
     app.wxRequest('get', '/personal/teacherInfoByUserId/', {}, function (data) {
-      console.log(data.data)
       wx.navigateTo({
         url: '/pages/consult/restroom/restroom?teacherId=' + data.data.data.teacherId + '&restroomId=' + me.data.val+'&userId=' + data.data.data.teacherId
       })
@@ -196,7 +192,6 @@ Page({
     })
   },
   onLoad: function(option) {
-    console.log(app.globalData.currCity);
     if (app.globalData.currCity){
       this.setData({
         curCity:app.globalData.currCity
@@ -251,13 +246,11 @@ Page({
   },
   funcList:function(){
     let me=this;
-    console.log(app.globalData);
     me.setData({
       statusBarHeight: app.globalData.statusBarHeight
     })
     me.getBanner();
    // me.getTeacher();
-    console.log("invoke location");
     me.getLocation()
     me.getJishi('')
     me.getQiye()
@@ -268,17 +261,14 @@ Page({
     })
   },
   onShow:function(){
-    console.log('show-------')
     var that = this;
     that.setData({
       baseUrl: app.globalData.baseUrl
     })
     if (app.globalData.token == '') {
-      console.log('token==null')
       //app.getUser(that.funcList);
       app.getUser(that.funcList);
    
-      console.log('getUser-------')
     }
     else { 
     that.funcList()
@@ -329,7 +319,6 @@ Page({
     var url="getTeachersInfoByFavorableRate?goodAt="+goodAtStr;
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
-        console.log(data.data.data);
         me.setData({jishiArr:data.data.data});
       }
     })
@@ -339,7 +328,6 @@ Page({
     var url='enterprise/enterpriseTop10';
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
-        console.log(data.data.data);
         me.setData({qiyeArr:data.data.data});
       }
     })
