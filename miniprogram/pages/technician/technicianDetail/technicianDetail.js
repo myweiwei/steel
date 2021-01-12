@@ -12,9 +12,23 @@ Page({
     teacherComments:[],
     show:false,
     phone:'',
-    focus:false
+    focus:false,
+    imgList:[]
   },
-
+  preview(event) {
+    let currentUrl = event.currentTarget.dataset.src
+    let arr=[];
+    this.data.technicianData.teacherResourceList.forEach((t)=>{
+      arr.push(t.resource)
+    })
+    this.setData({
+      imgList:arr
+    })
+    wx.previewImage({
+      current: currentUrl, // 当前显示图片的http链接
+      urls: this.data.imgList // 需要预览的图片http链接列表
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -25,7 +39,7 @@ Page({
   },
   onPay: function () {
     var me = this;
-    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1})|(16[0-9]{1}))+\d{8})$/;;
     if (!myreg.test(this.data.phone)){
       wx.showToast({
         title: '手机号格式不正确',
@@ -37,7 +51,6 @@ Page({
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
         var payData = data.data.data;
-        console.log();
         wx.requestPayment({
           timeStamp: payData.timeStamp,
           nonceStr: payData.nonceStr,
@@ -50,7 +63,6 @@ Page({
             })
           },
           fail(res) {
-            console.warn(res)
             wx.showToast({
               title: '支付失败',
               icon: 'none'
@@ -83,7 +95,6 @@ Page({
     var url="teacherInfo?teacherId="+teacherId;
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
-        console.log(data.data.data);
         me.setData({technicianData:data.data.data[0]});
       }
     })
@@ -125,7 +136,6 @@ Page({
    */
   onVideoConsult:function(){
     var technicianData=this.data.technicianData;
-    console.log(technicianData);
     wx.navigateTo({
       url: '/pages/technician/technicianVideoConsult/technicianVideoConsult?type='+1+'&teacherId='+technicianData.teacherId+
       '&realName='+technicianData.realName+'&solvePrice='+technicianData.videoSolvePrice
@@ -139,7 +149,6 @@ getTeacherComment:function(teacherId,pageNum,pageSize){
   app.wxRequest('get', url, {}, function (data) {
    
     if (data.data.status == 200) {
-      console.log(data.data.data);
       me.setData({teacherComments:data.data.data.list});
     }
   })

@@ -60,6 +60,73 @@ Page({
   },
   next:function(e){
     let me=this;
+    //一代身份证
+    var reg = /^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$/
+    var reg1 = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
+    var phonereg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1})|(16[0-9]{1}))+\d{8})$/;
+    if (!me.data.fileList.length){
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!me.data.realName) {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!me.data.idCardNumber || (!reg.test(me.data.idCardNumber) && !reg1.test(me.data.idCardNumber))) {
+      wx.showToast({
+        title: '请输入正确格式身份证号',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!me.data.teacherJobPosition) {
+      wx.showToast({
+        title: '请输入职位',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!me.data.teacherGoodAt) {
+      wx.showToast({
+        title: '请输入擅长领域',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!me.data.teacherDescription) {
+      wx.showToast({
+        title: '请输入描述',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!me.data.videoSolvePrice) {
+      wx.showToast({
+        title: '请输入电话咨询价格',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!me.data.phoneNumber || !phonereg.test(me.data.phoneNumber)) {
+      wx.showToast({
+        title: '请输入正确格式的手机号',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!me.data.smsCode) {
+      wx.showToast({
+        title: '请输入验证码',
+        icon: 'none'
+      })
+      return;
+    }
     me.setData({
       active: e.currentTarget.dataset.index
     })
@@ -108,7 +175,7 @@ Page({
       })
       return ;
     }
-    app.wxRequest('get', '/personal/getRegisterCode/'+me.data.phoneNumber, {}, function (data) {
+    app.wxRequest('get', '/getRegisterCode/'+me.data.phoneNumber, {}, function (data) {
       me.getTime();
     })
   },
@@ -165,7 +232,7 @@ Page({
       solveStatus:solveStatus,
       teacherResourceList:me.data.teacherResourceList
     }
-    app.wxRequest('post', '/personal/registerTeacher', arg, function (data) {
+    app.wxRequest('post', '/registerTeacher', arg, function (data) {
       if (data.data.status != 200) {
         wx.showToast({
           title: data.data.msg,
@@ -177,11 +244,9 @@ Page({
           title: '已提交',
           icon: "success",
           success: function (res) {
-            setTimeout(function () {
-              wx.navigateBack({
-                delta: 1,
-              })
-            }, 2000)
+            me.setData({
+              active:2
+            })
           }
         });
       }
