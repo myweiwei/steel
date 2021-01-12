@@ -94,11 +94,11 @@
 										</view>
 										<view bindtap="" class="nameLay">
 											<text class="fontBold">{{item.realName}}</text>
-											<text style="font-size: 23rpx;color: #484848;">{{item.teacherDescription}}</text>
+                      <text class="jobText">{{item.teacherGoodAt}}</text>
 										</view>
 									</view>
 								</view>
-								<text class="jobText">{{item.teacherGoodAt}}</text>
+                <view class="teaDes">{{item.teacherDescription}}</view>
 							<view class="line"></view>
 					
 									<view class="itemriceview">

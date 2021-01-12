@@ -7,6 +7,7 @@ page {
   top: 0;
   padding-bottom: 1rpx;
   bottom: 110rpx;
+  font-size: 28rpx;
 }
 .gradual {
   background: #0c89f0;
@@ -49,7 +50,7 @@ text {
 .fontBold {
   font-weight: bold;
   margin-bottom: 10rpx;
-  font-size: 32rpx;
+  font-size: 38rpx;
 }
 
 
@@ -61,8 +62,9 @@ text {
 }
 
 .smallFontBold {
-  font-size: 25rpx;
+  font-size: 26rpx;
   color: #777;
+  
 }
 
 .detailDescribe {
@@ -71,7 +73,7 @@ text {
   width: 100%;
   margin: 10rpx auto;
   padding: 30rpx 50rpx 20rpx 30rpx;
-  font-size: 26rpx;
+  font-size: 27rpx;
   background: white;
   color: #5c5c5c;
 }
@@ -100,8 +102,8 @@ box-sizing: norder-box;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  width: 90rpx;
-  height: 90rpx;
+  width: 85rpx;
+ height: 85rpx;
   border-radius: 50%;
 }
 
@@ -121,10 +123,8 @@ box-sizing: norder-box;
 }
 
 .ebt {
-  border-bottom: 1px;
-  border-bottom-color: rgb(229, 229, 229);
   padding-bottom: 10rpx;
-  border-bottom-style: solid;
+  margin: 30rpx 0;
 }
 
 .p-r-5 {
@@ -206,6 +206,7 @@ box-sizing: norder-box;
   color: white;
   font-size: 26rpx;
   /* position: relative; */
+  display: inline-block;
   
 }
 
@@ -232,4 +233,9 @@ button {
   line-height:1.7em;
   letter-spacing:3rpx;
   padding-bottom: 10rpx;
+}
+.commentcontent {
+  margin-left: 15rpx;
+  /* max-height: 100rpx;
+  overflow-y: auto; */
 }
