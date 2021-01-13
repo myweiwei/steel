@@ -2,7 +2,8 @@
 App({
   globalData:{
     userId:'',
-   baseUrl: 'https://eahost.lileiit.com/',
+   //baseUrl: 'https://eahost.lileiit.com/',
+    baseUrl: 'http://localhost:8080/',
     token:"",
     headerHeight: 0,
     statusBarHeight: 0,

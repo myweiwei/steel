@@ -68,7 +68,7 @@ Page({
     // } else {
     //   money = e.detail.substring(0, e.detail.length - 1);
     // }
-    me.setData({ price: event.detail});
+    me.setData({ price: e.detail});
   },
   onUnitChange:function(event){
     var me = this;
