@@ -65,15 +65,11 @@ App({
     let me = this;
    var header={};
     header.Authorization=me.globalData.token;
-   console.log(header)
     me.wxRequestFrom(method, url,header, data, callback, callback1,errFun)
   },
   wxRequestFrom(method, url,header, data, callback, callback1,errFun) {
     let me = this;
-    
-    console.log('url:'+me.globalData.baseUrl+url)
     header.Authorization=me.globalData.token;
-    console.log('header:'+header)
     wx.request({
       url: me.globalData.baseUrl+url,
       method: method,
@@ -83,11 +79,9 @@ App({
       dataType: 'json',
       success: function (res) {
         if(res.data.status==200){
-          console.log(res.data.data)
           callback(res);
         }
         else {
-          console.log(res.data)
           wx.showToast({
             title: res.data.msg,
             icon: 'none'
@@ -101,7 +95,6 @@ App({
       },
       fail: function (err) {
         //errFun(err);
-        console.log(err)
         wx.showToast({
           title: "服务器异常，请稍后再试",
           icon: 'none'
@@ -110,7 +103,6 @@ App({
     })
   },
   onShareAppMessage: function (e) {
-    console.log(e);
     // return {
     //   title: '分享标题',
     //   path: "pages/pyq/pyq",

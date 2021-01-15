@@ -399,12 +399,18 @@
 
     .jobText {
       border-radius: 5rpx;
-      font-size: 25rpx;
-      padding: 5rpx 6rpx;
-      margin-left: 10rpx;
+      font-size: 22rpx;
+      padding: 5rpx;
       background-color: rgb(0, 149, 255, 0.1);
       color: rgb(16, 96, 224);
       margin-top: 10rpx;
+      box-sizing: border-box;
+      width: 228rpx;
+       overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
 
@@ -422,4 +428,15 @@
       height: 0.5rpx;
       background: #e0e0e0;
       margin: 15rpx 0;
+    }
+    .teaDes {
+      font-size: 24rpx;
+      color: #484848;
+      margin: 0 1%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      width: 98%;
     }

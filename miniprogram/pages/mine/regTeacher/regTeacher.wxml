@@ -58,7 +58,7 @@
         bind:change="onChange"
         autosize='{{true}}'
       />
-      <view class='flexStart'>
+      <!-- <view class='flexStart'>
         <van-field
           value="{{ imgtxtSolvePrice }}"
           required
@@ -73,22 +73,22 @@
           style='width:80%'
         />
         <van-switch checked="{{ twFlag }}" data-type='tw' size="24px" bind:change="onCheckChange"  size="24px"/>
-      </view>
+      </view> -->
       <view class='flexStart'>
         <van-field
           value="{{ videoSolvePrice }}"
           required
-          label='视频咨询价格'
+          label='电话咨询价格'
           type='number'
           clearable
           data-name='videoSolvePrice'
-          placeholder="单位：元/分钟"
+          placeholder="单位：元/次"
           border="{{ false }}"
           bind:change="onChange"
           use-button-slot
           style='width:80%'
         />
-        <van-switch checked="{{ spFlag }}" data-type='sp' size="24px" bind:change="onCheckChange" />
+        <!-- <van-switch checked="{{ spFlag }}" data-type='sp' size="24px" bind:change="onCheckChange" /> -->
       </view>
       <van-field
         value="{{ phoneNumber }}"
@@ -122,7 +122,7 @@
       </van-field>
     </van-cell-group>
     <view class='footer'>
-      <van-button data-index='1' color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='next'>下一步</van-button>
+      <van-button data-index='1' color="#3a83ea" round size='large' bindtap='next'>下一步</van-button>
     </view>
   </view>
   <view wx:if='{{active== 1}}'>
@@ -193,8 +193,8 @@
       </view>
     </view>
     <view class='footer flexAround fy' style='text-align:center'>
-    <van-button data-index='0' style='width:50%' color="linear-gradient(to right, #1c43aa,#0052b5)" round  bindtap='next'>上一步</van-button>
-      <van-button data-index='2' style='width:50%' color="linear-gradient(to right, #1c43aa,#0052b5)" round  bindtap='submit'>下一步</van-button>
+    <van-button data-index='0' style='width:50%' color="#3a83ea" round  bindtap='next'>上一步</van-button>
+      <van-button data-index='2' style='width:50%' color="#3a83ea" round  bindtap='submit'>下一步</van-button>
     </view>
   </view>
   <view wx:if='{{active== 2}}'>
@@ -215,7 +215,7 @@
       </view>
     </view>
     <view class='footer flexAround fy' style='text-align:center'>
-    <van-button data-index='1' style='width:50%' color="linear-gradient(to right, #1c43aa,#0052b5)" round  bindtap='next'>上一步</van-button>
+    <van-button data-index='1' style='width:50%' color="#3a83ea" round  bindtap='next'>上一步</van-button>
       <van-button data-index='3' style='width:50%' type='warning' round  bindtap='addPrice'>押金充值</van-button>
     </view>
   </view>
@@ -225,7 +225,7 @@
       <view>恭喜您！已完成注册</view>
       <view>客户咨询将通过短信方式通知您</view>
       <view class='footer'>
-         <van-button data-index='1' color="linear-gradient(to right, #1c43aa,#0052b5)" round size='large' bindtap='toIndex'>完成</van-button>
+         <van-button data-index='1' color="#3a83ea" round size='large' bindtap='toIndex'>完成</van-button>
       </view>
      
     </view>

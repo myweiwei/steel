@@ -196,12 +196,13 @@
   background: #1c43aa;
 }
 .total_count {
-  padding:3rpx 15rpx;
+  padding:3rpx 18rpx;
+  border:1px solid #fff;
   border-radius: 25rpx;
   background: rgb(253, 10, 10);
   color:#fff;
   font-size:26rpx;
   position: absolute;
-  top:0;
+  top:-5rpx;
   right:-2rpx;
 }

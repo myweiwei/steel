@@ -18,6 +18,11 @@ Page({
     showPwd:'false',
     countList:{}
   },
+  onTeacherRegister:function(){
+    wx.navigateTo({
+      url: '/pages/mine/regTeacher/regTeacher'
+    })
+  },
   goOrder:function(){
     wx.navigateTo({
       url: '/pages/technician/order/order'
