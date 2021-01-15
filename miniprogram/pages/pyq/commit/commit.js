@@ -8,6 +8,7 @@ Page({
     windowWidth:'',
     dynamicTitle:'',
     province:'',
+    addressName:'',
     city:"",
     fileList:[],
     fileList1:[],
@@ -183,8 +184,10 @@ Page({
     let me = this;
     wx.chooseLocation({
       success(res) {
+        
         me.setData({
           province: res.address+';'+res.name,
+          addressName:res.name,
           address: true
         })
       },
@@ -215,6 +218,17 @@ Page({
           icon: 'success',
           duration: 1000,
           success: function () {
+            me.setData({
+              province:'',
+              dynamicType:'',
+              fileList:[],
+              fileList1:[],
+              fileArr:[],
+              address:false,
+              videoType:0,
+              dynamicTitle:''
+            })
+           
             wx.hideLoading()
             wx.switchTab({
               url: "/pages/pyq/pyq",

@@ -2,11 +2,17 @@
 <view style='position:fixed;top:0;transform:translate(0);height:{{statusBarHeight+2+"px"}};background:#fff;z-index:10000;width:100%'></view>
 <view class='pyq' style='margin-top:{{statusBarHeight+"px"}}'>
 	<!-- <image class='myImg'  src='../../images/index/jinfang.png' bindtap='toMy'></image> -->
-	<van-tabs active="{{ activeTab }}" offset-top='{{statusBarHeight}}' offset-left='100px' swipeable sticky bind:change="onChangeTab">
-		<van-tab title="关注">
+	<van-tabs active="{{tabTitle}}" offset-top='{{statusBarHeight}}' offset-left='100px' swipeable sticky bind:change="onChangeTab">
+		<view slot="nav-left" style="width:70rpx;height:100%;padding:10rpx 20rpx;background:#fff;">
+		<view  style="width:70rpx;height:70rpx;margin:0 10rpx;border-radius: 50%;overflow: hidden;" bindtap='toMe'>
+	<open-data type="userAvatarUrl"></open-data>
+		</view>
+		
+		</view>
+		<van-tab name="关注"  title-style="{{tabTitle=='关注'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="关注">
 			内容 1
 		</van-tab>
-		<van-tab title="同城">
+		<van-tab name="同城" title-style="{{tabTitle=='同城'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="同城">
 			<!-- todo: 默认头像修改 -->
 			<view class='ava' wx:for='{{cityList}}' wx:key='id' wx:for-index="index">
 				<view class='flexBetween'>
@@ -29,7 +35,6 @@
 						<!-- <van-icon name="arrow-down" data-item='{{item}}' wx:if='{{item.isOwn==1}}' bindtap="showOwnOther" />
 						<van-icon name="arrow-up" data-item='{{item}}' wx:else bindtap="showOwnOther" /> -->
 					</view>
-
 				</view>
 				<!-- <view class='avaText'> -->
 				<view class='contnetText test'>
@@ -80,24 +85,25 @@
 						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{(index<5)}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index+1)}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
 					</view>
 
-					<text  wx:if="{{item.supportUsersIcon.length}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportUsersIcon.length}}人点赞</text>
+					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
 					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
 						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
 							<van-icon bindtap='addScTongchen' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
-							<van-icon bindtap='addScTongchen' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="red" wx:else />
-							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportUsersIcon.length}}</text>
-							<text style="padding-right:10rpx;color:red"  wx:else>{{item.supportUsersIcon.length}}</text>
+							<van-icon bindtap='addScTongchen' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="rgb(255, 120, 120)" wx:else />
+							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportCount}}</text>
+							<text style="padding-right:10rpx;color:red"  wx:else>{{item.supportCount}}</text>
 							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' catchtap="comment" name="chat-o" />
 							<!-- <text style="padding:0 5rpx">评论</text> -->
-							<text  data-item='{{item}}' data-index='{{index}}' catchtap="comment" wx:if='{{item.commentCount==0}}'>评论</text>
+							<text  data-item='{{item}}' data-index='{{index}}' catchtap="comment" wx:if='{{item.commentCount==0}}'>评论
+							</text>
 							<text  data-item='{{item}}' data-index='{{index}}' catchtap="comment" wx:else>{{item.commentCount}}</text></view>
 					</view>
 				</view>
 			</view>
 		</van-tab>
-		<van-tab title="最热">
+		<van-tab name="最热"  title-style="{{tabTitle=='最热'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="最热">
 			<!-- todo: 默认头像替换 -->
-			<view class='ava' wx:for='{{list}}' wx:key='id' data-bean="{{item}}">
+			<view class='ava' wx:for='{{popularList}}' wx:key='id' data-bean="{{item}}">
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
 						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
@@ -120,7 +126,7 @@
 					</view>
 
 				</view>
-				<view class='avaText'>
+						<view class='contnetText test'>
 					{{item.dynamicTitle}}
 				</view>
 
@@ -172,7 +178,7 @@
 					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
 						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
 							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="red" wx:else />
+							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="rgb(255, 120, 120)" wx:else />
 							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportUsersIcon.length}}</text>
 							<text style="padding-right:10rpx;color:red"  wx:else>{{item.supportUsersIcon.length}}</text>
 							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' catchtap="comment" name="chat-o" />
@@ -184,11 +190,11 @@
 			</view>
 		</van-tab>
 
-		<van-tab title="推荐">内容 3</van-tab>
+		<van-tab name="推荐" title-style="{{tabTitle=='推荐'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}"  title="推荐">内容 3</van-tab>
 	</van-tabs>
 
 	<!-- 评论弹框 -->
-	<van-popup show="{{ avaShow }}" catchtouchmove="preventTouchMove" position="bottom" custom-style="height:70vh;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
+	<van-popup show="{{ avaShow }}" catchtouchmove="preventTouchMove" position="bottom" custom-style="height:60vh;padding:25rpx;box-sizing:border-box;" bind:close="onClose" round closeable>
 		<view class='totalComment'><text class='strong'>{{commentCount}}</text>条评论</view>
 		<scroll-view scroll-y="true" style="height: 80%">
 			<view wx:for='{{commonList}}' wx:key='{{commentId}}'>
@@ -214,7 +220,7 @@
 						<scroll-view scroll-y="true">
 							<view class='commCon' data-item='{{item}}' data-item1='{{itemName}}' catchtap='toComment' bindlongpress='longPress'>
 								<view class='commImg'>
-									<image src='{{itemName.headIcon}}'></image>
+									<image class="small" src='{{itemName.headIcon}}'></image>
 								</view>
 								<view>
 									<view class='commName'>
@@ -236,11 +242,13 @@
 				<view class='commTog'>
 					<view class='flexStart' data-id='{{item.commentId}}' bindtap="open" wx:if='{{item.openFlag==false&&item.eaDynamicCommentExtendList.length}}'>
 						<text style="color:rgb(167, 154, 45)">展开回复({{item.eaDynamicCommentExtendList.length}})</text>
-						<image src='../../images/pyq/zhankai.png'></image>
+						<!-- <image src='../../images/pyq/zhankai.png'></image> -->
+										<van-icon  color="rgb(167, 154, 45)"  name="arrow-down" />
 					</view>
 					<view class='flexStart' data-id='{{item.commentId}}' bindtap="close" wx:if='{{item.openFlag==true&&item.eaDynamicCommentExtendList.length}}'>
 						<text style="color:rgb(167, 154, 45)">收起回复</text>
-						<image src='../../images/pyq/shouqi.png'></image>
+						<!-- <image src='../../images/pyq/shouqi.png'></image> -->
+						<van-icon color="rgb(167, 154, 45)" name="arrow-up" />
 					</view>
 				</view>
 			</view>
@@ -248,10 +256,13 @@
 		<view class='footTab'>
 			<van-cell-group>
 				<van-field value="{{ commentInfo }}" center clearable placeholder="留下你的精彩评论吧" border="{{ false }}" use-button-slot bind:change="onChange">
-					<van-button slot="button" size="small" type="primary" data-sta='0' bindtap='saveCommentBefore'>
+				<text  wx:if='{{commentInfo}}'  data-sta='0'  bindtap='saveCommentBefore' style="color:#0077ff" slot="button">发送</text>
+						<text  wx:else   slot="button" style="color:#7a7a7a">发送</text>
+					<!-- <van-button slot="button" size="small" type="primary" data-sta='0' bindtap='saveCommentBefore'>
+					
 						<image wx:if='{{!commentInfo}}' src='../../images/pyq/fasong.png'></image>
 						<image wx:else src='../../images/pyq/fasong1.png'></image>
-					</van-button>
+					</van-button> -->
 				</van-field>
 			</van-cell-group>
 		</view>
@@ -260,10 +271,12 @@
 	<van-popup show="{{ avaShow1 }}" position="bottom" custom-style="height: 50%;padding:70rpx 20rpx;box-sizing:border-box;" bind:close="onClose1" round closeable>
 		<van-cell-group>
 			<van-field value="{{ commentInfo1 }}" center clearable placeholder="{{avaShowList.send1}}" border="{{ false }}" use-button-slot bind:change="onChange1">
-				<van-button slot="button" size="small" class='btn' type="primary" data-sta='1' bindtap="saveCommentBefore">
+				<text  wx:if='{{commentInfo1}}'  data-sta='1'  bindtap='saveCommentBefore' style="color:#0077ff" slot="button">发送</text>
+						<text  wx:else   slot="button" style="color:#7a7a7a">发送</text>
+				<!-- <van-button slot="button" size="small" class='btn' type="primary" data-sta='1' bindtap="saveCommentBefore">
 					<image wx:if='{{!commentInfo1}}' src='../../images/pyq/fasong.png'></image>
 					<image wx:else src='../../images/pyq/fasong1.png'></image>
-				</van-button>
+				</van-button> -->
 			</van-field>
 		</van-cell-group>
 	</van-popup>

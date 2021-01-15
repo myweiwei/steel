@@ -5,14 +5,14 @@ let distance = 0 //标记页面是向下还是向上滚动
 let indexKey = 0 //标记当前滚动到那个视频了
 Page({
   data: {
-    activeTab: 0,
+
     active:0,
     // btmShow:false,
     avaShow: false,
     openFlag: false,
     commCount: 2,
     commentInfo: '',
-    tabTitle:'',
+    tabTitle:'同城',
     baseUrl: '',
     tabPage:0,
     pageData: {
@@ -31,7 +31,7 @@ Page({
       pageNum: 1,
       pageSize: 3
     },
-    list: [],
+    popularList: [],//最热
     cityList:[],
     total: 0,
     commonList: [],
@@ -99,9 +99,9 @@ Page({
     var index =e.currentTarget.dataset.index;
     let follow = e.currentTarget.dataset.item.isFollow == 1 ? 0 : 1;
     app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
-      me.data.list[index].isFollow=follow;
+      me.data.popularList[index].isFollow=follow;
       me.setData({
-        list:me.data.list
+        popularList:me.data.popularList
         })
       if (data.data.data == '已关注' || data.data.data == '互相关注') {
         wx.showToast({
@@ -118,11 +118,16 @@ Page({
       
     })
   },
+  toMe:function(e){
+    wx.navigateTo({
+      url: '/pages/pyq/mine/mine?userId='+0+"&userName="
+    })
+  },
   toMy:function(e){
     var bean=  e.currentTarget.dataset.bean
     console.log('item: ', bean)
     wx.navigateTo({
-      url: '/pages/pyq/mine/mine?userId='+bean.userId+"&userName="+bean.nickName
+      url: '/pages/pyq/mine/mine?userId='+bean.userId+"&userName="+bean.nickName+'&headIcon='+escape(bean.headIcon)
     })
   },
   //获取每个视频的距离顶部的高度
@@ -220,11 +225,8 @@ console.log(me.data.userid)
       })
       me.getComment(me.data.commentId)
       console.log(me.data.tabTitle);
-      if(me.data.tabTitle=="最热"){
-           me.getList();
-      }else if(me.data.tabTitle=="同城"){
-        me.getCityList();
-      }
+      me.initData();
+
    
     })
   },
@@ -253,8 +255,10 @@ console.log(me.data.userid)
     let me = this;
     console.log(val)
     me.setData({
-      tabTitle:val.detail.title
+      tabTitle:val.detail.title,
+      tabActive:val.detail.index
     })
+    me.initData();
   },
   onChange: function (val) {
     let me = this;
@@ -284,28 +288,28 @@ console.log(me.data.userid)
     let num3 = 'cityData.pageNum'
     if (me.data.active == 4) {
       me.setData({
-        list: [],
+        popularList: [],
         [num]: 1
       })
       me.getOwnList();
     }
     else if (me.data.active == 1) {
       me.setData({
-        list: [],
+        popularList: [],
         [num1]: 1
       })
       me.getList()
     }
     else if (me.data.active == 3) {
       me.setData({
-        list: [],
+        popularList: [],
         [num2]: 1
       })
       me.getLikeList()
     }
     else if (me.data.active == 2) {
       me.setData({
-        list: [],
+        popularList: [],
         [num3]: 1
       })
       me.getLoc()
@@ -313,7 +317,7 @@ console.log(me.data.userid)
     }
     else {
       me.setData({
-        list: []
+        popularList: []
       })
     }
   },
@@ -430,7 +434,7 @@ console.log(me.data.userid)
       }
       wx.nextTick(() => {
         me.setData({
-          list: data.data.data.list,
+          popularList: data.data.data.list,
           total: data.data.data.total
         })
         me.spHeight();
@@ -444,7 +448,7 @@ console.log(me.data.userid)
   getMore: function () {
     let me = this;
     let list = "pageData.pageNum";
-    if (me.data.list.length >= me.data.pageData.pageSize) {
+    if (me.data.popularList.length >= me.data.pageData.pageSize) {
       me.setData({
         [list]: ++me.data.pageData.pageNum
       })
@@ -461,7 +465,7 @@ console.log(me.data.userid)
     app.wxRequest('get', '/dynamic/user/dynamicList' + '/' + me.data.ownpageData.pageNum + '/' + me.data.ownpageData.pageSize, {}, function (data) {
       let arr = [];
       me.setData({
-        list: me.data.list.concat(data.data.data.list),
+        popularList: me.data.popularList.concat(data.data.data.list),
         total: data.data.data.total
       })
     })
@@ -471,7 +475,7 @@ console.log(me.data.userid)
     app.wxRequest('get', '/support/dynamicList/' + me.data.likeData.pageNum + '/' + me.data.likeData.pageSize, {}, function (data) {
       let arr = [];
       me.setData({
-        list: me.data.list.concat(data.data.data.list),
+        popularList: me.data.popularList.concat(data.data.data.list),
         total: data.data.data.total
       })
     })
@@ -548,9 +552,13 @@ console.log(me.data.userid)
       console.log(me.data.cityList[index].isSupport); 
        me.data.cityList[index].isSupport=support;
        if(support==0){
-                me.data.cityList[index].supportUsersIcon.splice(me.data.cityList[index].supportUsersIcon.length-1,1)
+        me.data.cityList[index].supportCount=me.data.cityList[index].supportCount-1;
+        me.removeListItem(me.data.cityList[index].supportUsersIcon,"");//todo ""改成自己的id
+                // me.data.cityList[index].supportUsersIcon.splice(me.data.cityList[index].supportUsersIcon.length-1,1)
        }else{
-          me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
+        me.data.cityList[index].supportCount=me.data.cityList[index].supportCount+1;
+         //todo ""改成自己的id
+          me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:'http://ea.lileiit.com/a9f6f2ad5b5f46278689687b5bf5515b',sid:""})
        }
       me.setData({
         cityList:me.data.cityList
@@ -558,6 +566,14 @@ console.log(me.data.userid)
       // me.setData
     })
   },
+   removeListItem: function(array,val){
+      for (var i = 0; i < array.length; i++) {
+        if (array[i].sid == val){
+          array.splice(i, 1);
+        }
+      }
+      return -1; 
+    },
   addSc: function (e) {
     let me = this;
     console.log("123");
@@ -567,15 +583,15 @@ console.log(me.data.userid)
     var toId = e.currentTarget.dataset.item.userId;
     app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
       // me.getList();
-      console.log(me.data.list[index].isSupport); 
-       me.data.list[index].isSupport=support;
+      console.log(me.data.popularList[index].isSupport); 
+       me.data.popularList[index].isSupport=support;
        if(support==0){
-                me.data.list[index].supportUsersIcon.splice(me.data.list[index].supportUsersIcon.length-1,1)
+                me.data.popularList[index].supportUsersIcon.splice(me.data.popularList[index].supportUsersIcon.length-1,1)
        }else{
-          me.data.list[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
+          me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
        }
       me.setData({
-        list:me.data.list
+        popularList:me.data.popularList
         })
       // me.setData
     })
@@ -624,16 +640,19 @@ console.log(me.data.userid)
           baseUrl: app.globalData.baseUrl
         })
         if(app.globalData.token!=''){
-          that.getList();
-          that.getCityList();
+          that.initData();
         }
         else {
           app.getUser(that.initData);
         }
   },
 initData: function(){
-this.getList();
-this.getCityList();
+  var me=this;
+  if(me.data.tabTitle=="最热"){
+    me.getList();
+}else if(me.data.tabTitle=="同城"){
+ me.getCityList();
+}
 },
   /**
    * 生命周期函数--监听页面初次渲染完成
