@@ -1,7 +1,7 @@
 /* pages/index/comment/comment.wxss */
 .comment {
   height: 100%;
-  background: linear-gradient(to bottom, #1c43aa 0%,#0052b5 100%);
+  /* background: linear-gradient(to bottom, #1c43aa 0%,#0052b5 100%); */
 }
 .comment .info {
   font-size:30rpx;

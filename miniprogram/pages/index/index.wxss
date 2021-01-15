@@ -141,6 +141,7 @@
       text-align: center;
       font-size: 20rpx;
       margin-bottom: 20rpx;
+      
       /* justify-content: space-around;
       margin: auto;  */
     }
@@ -152,6 +153,7 @@
     .product_list .list {
       width: 50%;
       margin-bottom: 30rpx;
+      height:260rpx;
       /* margin: 0 10rpx; */
       /* background: #f7f7f7; */
       /* padding: 20rpx 0; */
@@ -346,6 +348,7 @@
       margin: 0 8rpx;
       padding-top: 20rpx;
       padding-bottom: 10rpx;
+      height: 99%;
       /* width: 100%; */
       box-shadow: 3rpx 3rpx 10rpx rgba(37, 37, 37, 0.1);
       border-radius: 10rpx;
@@ -399,12 +402,18 @@
 
     .jobText {
       border-radius: 5rpx;
-      font-size: 25rpx;
-      padding: 5rpx 6rpx;
-      margin-left: 10rpx;
+      font-size: 22rpx;
+      padding: 5rpx;
       background-color: rgb(0, 149, 255, 0.1);
       color: rgb(16, 96, 224);
       margin-top: 10rpx;
+      box-sizing: border-box;
+      width: 228rpx;
+       overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
 
@@ -422,4 +431,16 @@
       height: 0.5rpx;
       background: #e0e0e0;
       margin: 15rpx 0;
+    }
+    .teaDes {
+      font-size: 24rpx;
+      color: #484848;
+      margin: 0 1%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      width: 98%;
+      height:104rpx;
     }

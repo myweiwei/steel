@@ -85,36 +85,9 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/technician/order/order",
-					"pathName": "pages/technician/order/order",
+					"name": "pages/mine/regTeacher/regTeacher",
+					"pathName": "pages/mine/regTeacher/regTeacher",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/technician/paySuccess/paySuccess",
-					"pathName": "pages/technician/paySuccess/paySuccess",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/technician/order/order",
-					"pathName": "pages/technician/order/order",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/comment/comment",
-					"pathName": "pages/index/comment/comment",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/message/message",
-					"pathName": "pages/mine/message/message",
 					"scene": null
 				}
 			]

@@ -21,10 +21,11 @@
           <van-field
             value="{{ commentContent }}"
             type="textarea"
-            placeholder="给技师点评价吧"
+            placeholder="给技师点评价吧,最多100字"
             bind:change='addPj'
             border="{{ false }}"
             autosize
+            maxlength="100"
           />
         </view>
         <view class='flexBetween'>
@@ -33,7 +34,7 @@
           </view>
         </view>
         <view class='submit'>
-            <van-button round size='large'  color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap='submit'>
+            <van-button round size='large'  color="#3a83ea" bindtap='submit'>
   提交
 </van-button>
           </view>
