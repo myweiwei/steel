@@ -133,13 +133,29 @@ page{
   height: 60rpx;
 }
 .commImg image {
-  width: 45rpx;
-  height: 45rpx;
+  width: 65rpx;
+  height: 65rpx;
+  border-radius: 50%;
+}
+
+.commTog {
+  font-size: 28rpx;
+  color: #a3a3a3;
+  margin-left: 50rpx;
+}
+
+.commTog image {
+  width: 25rpx;
+  height: 25rpx;
+}
+.commImg .small{
+  width: 55rpx;
+  height: 55rpx;
   border-radius: 50%;
 }
 .commName {
   margin-bottom: 10rpx;
-  color: #666;
+  color: black;
   /* color:rgb(167, 154, 45); */
   font-family: 'MicroSoft YaHei'
 }
@@ -225,13 +241,19 @@ page{
   width: 100%;
 }
 
+.huifu {
+  margin: 0 8rpx;
+  color: #818080;
+  font-size: 27rpx;
+}
 
 /* 地址 */
 .loc {
   background: #f5f4f9;
   color: #1d1d1d;
   border-radius: 30rpx;
-  width: 80%;
+  /* width: 80%; */
+  width: fit-content;
   line-height: 40rpx;
   white-space: nowrap;
   padding: 10rpx 20rpx;

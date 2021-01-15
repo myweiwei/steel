@@ -20,6 +20,7 @@
 }
 .van-cell-text{
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;  
+  margin-right: 50rpx;
 }
 .delBtn {
   position: absolute;
@@ -87,6 +88,7 @@
   position: fixed;
   margin-top: 40rpx;
   right: 30rpx;
+  /* color: #246dfe; */
 }
 
 /* .van-button--large {

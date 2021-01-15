@@ -5,6 +5,10 @@
   font-family: 'SimHei';
 }
 
+/* .tabActive{
+  font-size: 36rpx;
+  color: #1777ff;
+} */
 .van-tabbar {
   width: 100%;
   height: 100rpx;
@@ -169,8 +173,14 @@
 }
 
 .commImg image {
-  width: 45rpx;
-  height: 45rpx;
+  width: 65rpx;
+  height: 65rpx;
+  border-radius: 50%;
+}
+
+.commImg .small {
+  width: 55rpx;
+  height: 55rpx;
   border-radius: 50%;
 }
 
@@ -191,7 +201,7 @@
 
 .commName {
   margin-bottom: 10rpx;
-  color: #666;
+  color: black;
   /* color:rgb(167, 154, 45); */
   font-family: 'MicroSoft YaHei'
 }
@@ -229,12 +239,14 @@
 
 .huifu {
   margin: 0 8rpx;
-  color: #9e9d9d;
+  color: #818080;
+  font-size: 27rpx;
 }
 
 .btn image {
   width: 50rpx;
   height: 50rpx;
+  /* color: #7a7a7a; */
 }
 
 .del {
@@ -345,12 +357,14 @@ button::after {
   background: #f5f4f9;
   color: #1d1d1d;
   border-radius: 30rpx;
-  width: 80%;
+  /* width: 80%; */
+  /* margin: 0 auto; */
+  width: fit-content;
   line-height: 40rpx;
   white-space: nowrap;
   padding: 10rpx 20rpx;
   margin: 10rpx;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   font-size: 25rpx;
   display: flex;
   align-items: center;
@@ -387,7 +401,7 @@ button::after {
   padding: 0 20rpx;
   line-height: 1.3em;
   letter-spacing: 3rpx;
-  font-size: 28rpx;
+  font-size: 31rpx;
 }
 
 .headRow {
@@ -419,7 +433,7 @@ button::after {
   padding: 4rpx 0;
 }
 
-
+/* 
 .test {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -434,7 +448,6 @@ button::after {
 }
 
 .test::after {
-  /* content: '∨'; */
   display: block;
   position: absolute;
   top: 0;
@@ -444,7 +457,7 @@ button::after {
 
 .test:hover {
   -webkit-line-clamp: unset;
-}
+} */
 
 .tc-card-img {
   width: 100%;
@@ -487,7 +500,7 @@ button::after {
   flex-direction: row;
   align-items: center;
   height: 70rpx;
-
+  /* color: rgb(255, 120, 120); */
 }
 
 .tc-cardBottom image {

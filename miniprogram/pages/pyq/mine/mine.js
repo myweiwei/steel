@@ -13,9 +13,13 @@ Page({
     userid: "",
     commentId: "",
     commentCount: 0,
+    headIcon:'',
+    userName:'',
     commonList: [],
     avaShow: false,
     avaShow1: false,
+    ownOther:false, //自己发的更多弹框
+    columns:['删除','转发'],
     pages:1,
     pageData: {
       pageNum: 1,
@@ -24,12 +28,30 @@ Page({
     statusBarHeight:0,  //状态栏高度
     titleBarHeight:0  //标题栏高度
   },
-
+  showOwnOther(e){
+    let item=e.currentTarget.dataset.item;
+    console.log(item)
+    this.setData({
+      ownOther:true,
+      currentdynamic:item
+    })
+  },
+  onClose2(){
+    this.setData({
+      ownOther: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({userId:options.userId});
+    console.log(options);
+    var headIcon=unescape(options.headIcon)
+    this.setData({
+      userId:options.userId,
+      headIcon:headIcon,
+      userName:options.userName
+    });
     let me=this;
   // 获取设备信息
   wx.getSystemInfo({
@@ -106,6 +128,44 @@ getList: function () {
       })
       me.spHeight();
     })
+  })
+},
+open: function (e) {
+  let me = this;
+  let arr = me.data.commonList;
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].openFlag = false;
+    if (arr[i].commentId == e.currentTarget.dataset.id) {
+      arr[i].openFlag = true;
+    }
+  }
+  me.setData({
+    commonList: arr
+  })
+},
+close: function (e) {
+  let me = this;
+  let arr = me.data.commonList;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].commentId == e.currentTarget.dataset.id) {
+      arr[i].openFlag = false;
+    }
+  }
+  me.setData({
+    commonList: arr
+  })
+},
+toComment: function (e) {
+  let me = this;
+  if (e.currentTarget.dataset.item.fromUid == me.data.userid) {
+    e.currentTarget.dataset.item.send1 = '回复@我:'
+  }
+  else {
+    e.currentTarget.dataset.item.send1 = '回复@' + e.currentTarget.dataset.item.send + ':'
+  }
+  me.setData({
+    avaShowList: e.currentTarget.dataset.item,
+    avaShow1: true
   })
 },
   //播放按钮点击时触发触发
