@@ -5,7 +5,8 @@ let distance = 0 //标记页面是向下还是向上滚动
 let indexKey = 0 //标记当前滚动到那个视频了
 Page({
   data: {
-
+    meId:'',
+    meIcon:'',
     active:0,
     // btmShow:false,
     avaShow: false,
@@ -553,12 +554,12 @@ console.log(me.data.userid)
        me.data.cityList[index].isSupport=support;
        if(support==0){
         me.data.cityList[index].supportCount=me.data.cityList[index].supportCount-1;
-        me.removeListItem(me.data.cityList[index].supportUsersIcon,"");//todo ""改成自己的id
+        me.removeListItem(me.data.cityList[index].supportUsersIcon,me.data.meId);
                 // me.data.cityList[index].supportUsersIcon.splice(me.data.cityList[index].supportUsersIcon.length-1,1)
        }else{
         me.data.cityList[index].supportCount=me.data.cityList[index].supportCount+1;
-         //todo ""改成自己的id
-          me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:'http://ea.lileiit.com/a9f6f2ad5b5f46278689687b5bf5515b',sid:""})
+       
+          me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
        }
       me.setData({
         cityList:me.data.cityList
@@ -586,9 +587,10 @@ console.log(me.data.userid)
       console.log(me.data.popularList[index].isSupport); 
        me.data.popularList[index].isSupport=support;
        if(support==0){
-                me.data.popularList[index].supportUsersIcon.splice(me.data.popularList[index].supportUsersIcon.length-1,1)
+        me.removeListItem(me.data.popularList[index].supportUsersIcon,me.data.meId);
+                // me.data.popularList[index].supportUsersIcon.splice(me.data.popularList[index].supportUsersIcon.length-1,1)
        }else{
-          me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
+          me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
        }
       me.setData({
         popularList:me.data.popularList
@@ -640,11 +642,30 @@ console.log(me.data.userid)
           baseUrl: app.globalData.baseUrl
         })
         if(app.globalData.token!=''){
-          that.initData();
+          that.initView();
         }
         else {
-          app.getUser(that.initData);
+          app.getUser(that.initView);
         }
+  },
+  getUserInfo: function () {
+    let me = this;
+    app.wxRequest('get', 
+    '/personal/user',
+    {},
+    function(data){
+      me.setData({
+        meId:data.data.data.userId,
+        meIcon:data.data.data.headIcon,
+      })
+      console.log(data.data.data.userId)
+      console.log(data.data.data.headIcon)
+    })
+  },
+  initView:function(){
+    var me=this;
+    me.getUserInfo();
+    me.initData();
   },
 initData: function(){
   var me=this;
