@@ -75,23 +75,23 @@
 					</view>
 				</view> -->
 				<view class='loc' wx:if="{{item.dynamicArea}}">
-					<image src='../../images/pyq/near2.png'></image>
+					<image  mode="aspectFit"  src='../../images/pyq/near3.png'></image>
 					<view>{{item.dynamicArea}}</view>
 				</view>
 				<view style='height:20rpx;'></view>
 				<view class="tc-cardBottom">
-					<view style=" width: {{30+(40*(item.supportUsersIcon.length+1))}}rpx;height:60rpx;">
+					<view style=" width: {{(40*((item.supportUsersIcon.length<5?item.supportUsersIcon.length:5))+20)}}rpx;height:60rpx;">
 						<!-- <image  style=" position: absolute;left:80rpx" mode="aspectFill" src="../../images/enterprise/mendiantu.png" /> -->
-						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{(index<5)}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index+1)}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
+						<image wx:for="{{item.supportUsersIcon}}" wx:key wx:if="{{index<5}}" wx:for-item="itemIcon"  style=" position: absolute;left: {{40*(index)+20}}rpx" mode="aspectFill" src="{{itemIcon.supportUsersIcon}}" />
 					</view>
 
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
 					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
 						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
 							<van-icon bindtap='addScTongchen' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
-							<van-icon bindtap='addScTongchen' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="rgb(255, 120, 120)" wx:else />
+							<van-icon bindtap='addScTongchen' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
 							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportCount}}</text>
-							<text style="padding-right:10rpx;color:red"  wx:else>{{item.supportCount}}</text>
+							<text style="padding-right:10rpx;color:#fd5d81"  wx:else>{{item.supportCount}}</text>
 							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' catchtap="comment" name="chat-o" />
 							<!-- <text style="padding:0 5rpx">评论</text> -->
 							<text  data-item='{{item}}' data-index='{{index}}' catchtap="comment" wx:if='{{item.commentCount==0}}'>评论
@@ -164,23 +164,23 @@
 					</view>
 				</view> -->
 				<view class='loc' wx:if="{{item.dynamicArea}}">
-					<image src='../../images/pyq/near2.png'></image>
+					<image src='../../images/pyq/near3.png'></image>
 					<view>{{item.dynamicArea}}</view>
 				</view>
 				<view style='height:20rpx;'></view>
 				<view class="tc-cardBottom">
-					<view style=" width: {{30+(40*(item.supportUsersIcon.length+1))}}rpx;height:60rpx;">
+					<view style=" width: {{(40*((item.supportUsersIcon.length<5?item.supportUsersIcon.length:5))+20)}}rpx;height:60rpx;">
 						<!-- <image  style=" position: absolute;left:80rpx" mode="aspectFill" src="../../images/enterprise/mendiantu.png" /> -->
-						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{(index<5)}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index+1)}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
+						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{index<5}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index)+20}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
 					</view>
 
 					<text  wx:if="{{item.supportUsersIcon.length}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportUsersIcon.length}}人点赞</text>
 					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
 						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
 							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="rgb(255, 120, 120)" wx:else />
+							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
 							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportUsersIcon.length}}</text>
-							<text style="padding-right:10rpx;color:red"  wx:else>{{item.supportUsersIcon.length}}</text>
+							<text style="padding-right:10rpx;color:#fd5d81"  wx:else>{{item.supportUsersIcon.length}}</text>
 							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' catchtap="comment" name="chat-o" />
 							<!-- <text style="padding:0 5rpx">评论</text> -->
 							<text  data-item='{{item}}' data-index='{{index}}' catchtap="comment" wx:if='{{item.commentCount==0}}'>评论</text>

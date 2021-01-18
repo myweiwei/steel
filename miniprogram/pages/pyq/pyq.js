@@ -558,8 +558,9 @@ console.log(me.data.userid)
                 // me.data.cityList[index].supportUsersIcon.splice(me.data.cityList[index].supportUsersIcon.length-1,1)
        }else{
         me.data.cityList[index].supportCount=me.data.cityList[index].supportCount+1;
-       
-          me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+        
+          // me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+          me.data.cityList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:me.data.meIcon,sid:me.data.meId})
        }
       me.setData({
         cityList:me.data.cityList
@@ -590,7 +591,8 @@ console.log(me.data.userid)
         me.removeListItem(me.data.popularList[index].supportUsersIcon,me.data.meId);
                 // me.data.popularList[index].supportUsersIcon.splice(me.data.popularList[index].supportUsersIcon.length-1,1)
        }else{
-          me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+         // me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+          me.data.popularList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:me.data.meIcon,sid:me.data.meId})
        }
       me.setData({
         popularList:me.data.popularList
