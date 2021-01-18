@@ -80,9 +80,9 @@
 				</view>
 				<view style='height:20rpx;'></view>
 				<view class="tc-cardBottom">
-					<view style=" width: {{30+(40*(item.supportUsersIcon.length+1))}}rpx;height:60rpx;">
+					<view style=" width: {{30+(40*((item.supportUsersIcon.length<5?item.supportUsersIcon.length:5)+1))}}rpx;height:60rpx;">
 						<!-- <image  style=" position: absolute;left:80rpx" mode="aspectFill" src="../../images/enterprise/mendiantu.png" /> -->
-						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{(index<5)}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index+1)}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
+						<image wx:for="{{item.supportUsersIcon}}" wx:key wx:if="{{index<5}}" wx:for-item="itemIcon"  style=" position: absolute;left: {{40*(index+1)}}rpx" mode="aspectFill" src="{{itemIcon.supportUsersIcon}}" />
 					</view>
 
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
@@ -169,9 +169,9 @@
 				</view>
 				<view style='height:20rpx;'></view>
 				<view class="tc-cardBottom">
-					<view style=" width: {{30+(40*(item.supportUsersIcon.length+1))}}rpx;height:60rpx;">
+					<view style=" width: {{30+(40*((item.supportUsersIcon.length<5?item.supportUsersIcon.length:5)+1))}}rpx;height:60rpx;">
 						<!-- <image  style=" position: absolute;left:80rpx" mode="aspectFill" src="../../images/enterprise/mendiantu.png" /> -->
-						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{(index<5)}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index+1)}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
+						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{index<5}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index+1)}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
 					</view>
 
 					<text  wx:if="{{item.supportUsersIcon.length}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportUsersIcon.length}}人点赞</text>
