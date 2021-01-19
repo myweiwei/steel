@@ -78,7 +78,7 @@ Page({
   toMy:function(e){
   
     wx.navigateTo({
-      url: '/pages/pyq/mine/mine?userId='+0+"&userName="
+      url: '/pages/pyq/mine/mine?userId='+0+"&userName="+"&headIcon="+ escape(this.data.headIcon)
     })
   },
   getMoney:function(){

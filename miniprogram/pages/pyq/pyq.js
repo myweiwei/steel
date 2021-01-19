@@ -16,7 +16,19 @@ Page({
     tabTitle:'同城',
     baseUrl: '',
     tabPage:0,
-    pageData: {
+    pageDataFollow: {//关注 分页
+      pageNum: 1,
+      pageSize: 100
+    },
+    cityData: {//同城 分页
+      pageNum: 1,
+      pageSize: 100
+    },
+    pageDataPopular: {//最热 分页
+      pageNum: 1,
+      pageSize: 100
+    },
+    pageDataRecommend: {//推荐 分页
       pageNum: 1,
       pageSize: 100
     },
@@ -28,12 +40,10 @@ Page({
       pageNum: 1,
       pageSize: 3
     },
-    cityData: {
-      pageNum: 1,
-      pageSize: 3
-    },
-    popularList: [],//最热
-    cityList:[],
+    followList:[], //关注
+    popularList:[], //最热
+    cityList:[], //同城
+    recommendList:[], //推荐
     total: 0,
     commonList: [],
     avaShow1: false,
@@ -71,11 +81,30 @@ Page({
 
   },
   
-  fanTongchen(e){
+  fan(e){
     let me=this;
     var index =e.currentTarget.dataset.index;
     let follow = e.currentTarget.dataset.item.isFollow == 1 ? 0 : 1;
     app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
+
+      if(me.data.tabTitle=="最热"){
+        me.data.popularList[index].isFollow=follow;
+        me.setData({
+          popularList:me.data.popularList
+          })
+        if (data.data.data == '已关注' || data.data.data == '互相关注') {
+          wx.showToast({
+            title: "已关注",
+            icon: 'none'
+          })
+        }
+        else if (data.data.data == '关注' || data.data.data == '回关') {
+          wx.showToast({
+            title: "已取消关注",
+            icon: 'none'
+          })
+        }
+    }else if(me.data.tabTitle=="同城"){
       me.data.cityList[index].isFollow=follow;
       me.setData({
         cityList:me.data.cityList
@@ -92,17 +121,10 @@ Page({
           icon: 'none'
         })
       }
-      
-    })
-  },
-  fan(e){
-    let me=this;
-    var index =e.currentTarget.dataset.index;
-    let follow = e.currentTarget.dataset.item.isFollow == 1 ? 0 : 1;
-    app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
-      me.data.popularList[index].isFollow=follow;
+    }else if(me.data.tabTitle=="关注"){
+      me.data.followList[index].isFollow=follow;
       me.setData({
-        popularList:me.data.popularList
+        followList:me.data.followList
         })
       if (data.data.data == '已关注' || data.data.data == '互相关注') {
         wx.showToast({
@@ -116,12 +138,30 @@ Page({
           icon: 'none'
         })
       }
-      
+    }else if(me.data.tabTitle=="推荐"){
+      me.data.recommendList[index].isFollow=follow;
+      me.setData({
+        recommendList:me.data.recommendList
+        })
+      if (data.data.data == '已关注' || data.data.data == '互相关注') {
+        wx.showToast({
+          title: "已关注",
+          icon: 'none'
+        })
+      }
+      else if (data.data.data == '关注' || data.data.data == '回关') {
+        wx.showToast({
+          title: "已取消关注",
+          icon: 'none'
+        })
+      }
+
+    }
     })
   },
   toMe:function(e){
     wx.navigateTo({
-      url: '/pages/pyq/mine/mine?userId='+0+"&userName="
+      url: '/pages/pyq/mine/mine?userId='+0+"&userName="+"&headIcon="+escape(this.data.meIcon)
     })
   },
   toMy:function(e){
@@ -274,54 +314,7 @@ console.log(me.data.userid)
       commentInfo1: val.detail
     })
   },
-  changeAcitve: function (e) {
-    let me = this;
-    me.setData({
-      active: e.currentTarget.dataset.id
-    })
-    me.getActiveList(me.data.active);
-  },
-  getActiveList: function (active) {
-    let me = this;
-    let num = 'ownpageData.pageNum';
-    let num1 = 'pageData.pageNum';
-    let num2 = 'pageData.pageNum';
-    let num3 = 'cityData.pageNum'
-    if (me.data.active == 4) {
-      me.setData({
-        popularList: [],
-        [num]: 1
-      })
-      me.getOwnList();
-    }
-    else if (me.data.active == 1) {
-      me.setData({
-        popularList: [],
-        [num1]: 1
-      })
-      me.getList()
-    }
-    else if (me.data.active == 3) {
-      me.setData({
-        popularList: [],
-        [num2]: 1
-      })
-      me.getLikeList()
-    }
-    else if (me.data.active == 2) {
-      me.setData({
-        popularList: [],
-        [num3]: 1
-      })
-      me.getLoc()
 
-    }
-    else {
-      me.setData({
-        popularList: []
-      })
-    }
-  },
   del: function (e) {
     let id = e.currentTarget.dataset.item.dynamicId;
     let me = this;
@@ -335,7 +328,7 @@ console.log(me.data.userid)
               title: '删除成功',
               icon: 'success'
             });
-            me.getActiveList(me.data.active);
+            me.initData();
           })
         } else {
         }
@@ -420,10 +413,13 @@ console.log(me.data.userid)
       commonList: arr
     })
   },
-  getList: function () {
+  /**
+   * 最热
+   */
+  getPopularList: function () {
     let me = this;
     app.wxRequest('get', 
-    '/dynamic/dynamicList?pageNum='+me.data.pageData.pageNum+'&pageSize='+me.data.pageData.pageSize+'&hot=1',
+    '/dynamic/dynamicList?pageNum='+me.data.pageDataPopular.pageNum+'&pageSize='+me.data.pageDataPopular.pageSize+'&hot=1',
     {},
     function(data){
       let count = 0;
@@ -434,10 +430,18 @@ console.log(me.data.userid)
         }
       }
       wx.nextTick(() => {
-        me.setData({
+        if(me.data.pageDataPopular.pageSize>1){
+          me.setData({
+            popularList: me.data.popularList.concat(data.data.data.list),
+            total: data.data.data.total
+          })
+        }else{
+            me.setData({
           popularList: data.data.data.list,
           total: data.data.data.total
         })
+        }
+      
         me.spHeight();
       })
       // me.setData({
@@ -447,19 +451,64 @@ console.log(me.data.userid)
     })
   },
   getMore: function () {
-    let me = this;
-    let list = "pageData.pageNum";
-    if (me.data.popularList.length >= me.data.pageData.pageSize) {
-      me.setData({
-        [list]: ++me.data.pageData.pageNum
-      })
-      me.getList();
-    }
-    else {
-      me.setData({
-        infoShow: true
-      })
-    }
+    var me=this;
+    if(me.data.tabTitle=="最热"){
+      let list = "pageDataPopular.pageNum";
+      if (me.data.popularList.length >= me.data.pageDataPopular.pageSize) {
+        me.setData({
+          [list]: ++me.data.pageDataPopular.pageNum
+        })
+        me.getPopularList();
+      }
+      else {
+        me.setData({
+          infoShow: true
+        })
+      }
+     }else if(me.data.tabTitle=="同城"){//
+      let list = "cityData.pageNum";
+      if (me.data.cityList.length >= me.data.cityData.pageSize) {
+        me.setData({
+          [list]: ++me.data.cityData.pageNum
+        })
+        me.getCityList();
+      }
+      else {
+        me.setData({
+          infoShow: true
+        })
+      }
+     }else if(me.data.tabTitle=="关注"){
+      let list = "pageDataFollow.pageNum";
+      if (me.data.followList.length >= me.data.pageDataFollow.pageSize) {
+        me.setData({
+          [list]: ++me.data.pageDataFollow.pageNum
+        })
+        me.getfollowList();
+      }
+      else {
+        me.setData({
+          infoShow: true
+        })
+      }
+
+     }else if(me.data.tabTitle=="推荐"){//
+      let list = "pageDataRecommend.pageNum";
+      if (me.data.recommendList.length >= me.data.pageDataRecommend.pageSize) {
+        me.setData({
+          [list]: ++me.data.pageDataRecommend.pageNum
+        })
+        me.getRecommendList();
+      }
+      else {
+        me.setData({
+          infoShow: true
+        })
+      }
+    
+     }
+
+
   },
   getOwnList: function () {
     let me = this;
@@ -481,6 +530,7 @@ console.log(me.data.userid)
       })
     })
   },
+
   getLoc: function () {
     let that = this;
     wx.getLocation({
@@ -509,6 +559,48 @@ console.log(me.data.userid)
       }
     })
   },
+  /**
+   * 关注
+   */
+  getfollowList: function (area) {
+    let me = this;
+    app.wxRequest('get', 
+    '/dynamic/dynamicList?pageNum='+me.data.pageDataFollow.pageNum+'&pageSize='+me.data.pageDataFollow.pageSize+'&follow='+1,
+    {}, function(data){
+  
+      console.log("-----------------------")
+      console.log(data.data.data)
+      let count = 0;
+      for(let i=0;i<data.data.data.list.length;i++){
+        if (data.data.data.list[i].videoType=='1'){
+          data.data.data.list[i].videoindex=count;
+          ++count;
+        }
+      }
+      wx.nextTick(() => {
+        if(me.data.pageDataFollow.pageSize>1){//判断是否分页
+          me.setData({
+            followList: me.data.followList.concat(data.data.data.list),
+            total: data.data.data.total
+          })
+        }else{
+          me.setData({
+            followList: data.data.data.list,
+            total: data.data.data.total
+          })
+        }
+        me.spHeight();
+      })
+
+      // me.setData({
+      //   cityList: data.data.data.list,
+      //   total: data.data.data.total
+      // })
+    })
+  },
+  /**
+   * 同城数据
+   */
   getCityList: function (area) {
     let me = this;
     app.wxRequest('get', 
@@ -517,57 +609,72 @@ console.log(me.data.userid)
   
       console.log("-----------------------")
       console.log(data.data.data)
-      // let count = 0;
-      // for(let i=0;i<data.data.data.list.length;i++){
-      //   if (data.data.data.list[i].videoType=='1'){
-      //     data.data.data.list[i].videoindex=count;
-      //     ++count;
-      //   }
-      // }
-      // wx.nextTick(() => {
-      //   me.setData({
-      //     cityList: data.data.data.list,
-      //     total: data.data.data.total
-      //   })
-      //   me.spHeight();
-      // })
-      me.setData({
-        cityList: data.data.data.list,
-        total: data.data.data.total
+      let count = 0;
+      for(let i=0;i<data.data.data.list.length;i++){
+        if (data.data.data.list[i].videoType=='1'){
+          data.data.data.list[i].videoindex=count;
+          ++count;
+        }
+      }
+      wx.nextTick(() => {
+        if(me.data.cityData.pageSize>1){//判断是否分页
+          me.setData({
+            cityList: me.data.cityList.concat(data.data.data.list),
+            total: data.data.data.total
+          })
+        }else{
+            me.setData({
+              cityList: data.data.data.list,
+          total: data.data.data.total
+        })
+        }
+        me.spHeight();
       })
+
+
+
+    })
+  },
+    /**
+   * 推荐
+   */
+  getRecommendList: function (area) {
+    let me = this;
+    app.wxRequest('get', 
+    '/dynamic/dynamicList?pageNum='+me.data.pageDataRecommend.pageNum+'&pageSize='+me.data.pageDataRecommend.pageSize,
+    {}, function(data){//
+  
+      console.log("-----------------------")
+      console.log(data.data.data)
+      let count = 0;
+      for(let i=0;i<data.data.data.list.length;i++){
+        if (data.data.data.list[i].videoType=='1'){
+          data.data.data.list[i].videoindex=count;
+          ++count;
+        }
+      }
+      wx.nextTick(() => {
+        if(me.data.pageDataRecommend.pageSize>1){//判断是否分页
+        me.setData({
+          recommendList: me.data.recommendList.concat(data.data.data.list),
+          total: data.data.data.total
+        })
+      }else{
+        me.setData({
+          recommendList: data.data.data.list,
+          total: data.data.data.total
+        })
+      }
+        me.spHeight();
+      })
+ 
       // me.setData({
       //   cityList: data.data.data.list,
       //   total: data.data.data.total
       // })
     })
   },
-  addScTongchen: function (e) {
-    let me = this;
-    console.log("123");
-    var index = e.currentTarget.dataset.index;
-    let support = e.currentTarget.dataset.item.isSupport == 1 ? 0 : 1;
-    var dynamicId = e.currentTarget.dataset.item.dynamicId;
-    var toId = e.currentTarget.dataset.item.userId;
-    app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
-      // me.getList();
-      console.log(me.data.cityList[index].isSupport); 
-       me.data.cityList[index].isSupport=support;
-       if(support==0){
-        me.data.cityList[index].supportCount=me.data.cityList[index].supportCount-1;
-        me.removeListItem(me.data.cityList[index].supportUsersIcon,me.data.meId);
-                // me.data.cityList[index].supportUsersIcon.splice(me.data.cityList[index].supportUsersIcon.length-1,1)
-       }else{
-        me.data.cityList[index].supportCount=me.data.cityList[index].supportCount+1;
-        
-          me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
-          // me.data.cityList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:me.data.meIcon,sid:me.data.meId})
-       }
-      me.setData({
-        cityList:me.data.cityList
-        })
-      // me.setData
-    })
-  },
+
    removeListItem: function(array,val){
       for (var i = 0; i < array.length; i++) {
         if (array[i].sid == val){
@@ -584,20 +691,63 @@ console.log(me.data.userid)
     var dynamicId = e.currentTarget.dataset.item.dynamicId;
     var toId = e.currentTarget.dataset.item.userId;
     app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
-      // me.getList();
-      console.log(me.data.popularList[index].isSupport); 
-       me.data.popularList[index].isSupport=support;
-       if(support==0){
-        me.removeListItem(me.data.popularList[index].supportUsersIcon,me.data.meId);
-                // me.data.popularList[index].supportUsersIcon.splice(me.data.popularList[index].supportUsersIcon.length-1,1)
-       }else{
-         me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
-          // me.data.popularList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:me.data.meIcon,sid:me.data.meId})
-       }
-      me.setData({
-        popularList:me.data.popularList
-        })
-      // me.setData
+        if(me.data.tabTitle=="最热"){
+          me.data.popularList[index].isSupport=support;
+          if(support==0){
+            me.data.popularList[index].supportCount=me.data.popularList[index].supportCount-1;
+           me.removeListItem(me.data.popularList[index].supportUsersIcon,me.data.meId);
+                   // me.data.popularList[index].supportUsersIcon.splice(me.data.popularList[index].supportUsersIcon.length-1,1)
+          }else{
+            me.data.popularList[index].supportCount=me.data.popularList[index].supportCount+1;
+            me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+             // me.data.popularList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+          }
+         me.setData({
+           popularList:me.data.popularList
+           })
+      }else if(me.data.tabTitle=="同城"){
+        me.data.cityList[index].isSupport=support;
+        if(support==0){
+         me.data.cityList[index].supportCount=me.data.cityList[index].supportCount-1;
+         me.removeListItem(me.data.cityList[index].supportUsersIcon,me.data.meId);
+                 // me.data.cityList[index].supportUsersIcon.splice(me.data.cityList[index].supportUsersIcon.length-1,1)
+        }else{
+         me.data.cityList[index].supportCount=me.data.cityList[index].supportCount+1;
+           me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+           // me.data.cityList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+        }
+       me.setData({
+         cityList:me.data.cityList
+         })
+      }else if(me.data.tabTitle=="关注"){
+        me.data.followList[index].isSupport=support;
+        if(support==0){
+         me.data.followList[index].supportCount=me.data.followList[index].supportCount-1;
+         me.removeListItem(me.data.followList[index].supportUsersIcon,me.data.meId);
+               
+        }else{
+         me.data.followList[index].supportCount=me.data.followList[index].supportCount+1;
+           me.data.followList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+        }
+       me.setData({
+        followList:me.data.followList
+         })
+        
+      }else if(me.data.tabTitle=="推荐"){
+        me.data.recommendList[index].isSupport=support;
+        if(support==0){
+         me.data.recommendList[index].supportCount=me.data.recommendList[index].supportCount-1;
+         me.removeListItem(me.data.recommendList[index].supportUsersIcon,me.data.meId);
+               
+        }else{
+         me.data.recommendList[index].supportCount=me.data.recommendList[index].supportCount+1;
+           me.data.recommendList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+        }
+       me.setData({
+        recommendList:me.data.recommendList
+         })
+      
+      }
     })
   },
   //页面滚动触发
@@ -672,10 +822,14 @@ console.log(me.data.userid)
 initData: function(){
   var me=this;
   if(me.data.tabTitle=="最热"){
-    me.getList();
-}else if(me.data.tabTitle=="同城"){
- me.getCityList();
-}
+    me.getPopularList();
+   }else if(me.data.tabTitle=="同城"){
+       me.getCityList();
+   }else if(me.data.tabTitle=="关注"){
+       me.getfollowList();
+   }else if(me.data.tabTitle=="推荐"){
+       me.getRecommendList();
+   }
 },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -688,7 +842,7 @@ initData: function(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-console.log("--------------------------show")
+    console.log("--------------------------show")
   },
 
   /**
@@ -710,7 +864,7 @@ console.log("--------------------------show")
    */
   onPullDownRefresh: function () {
     let me = this;
-console.log(me.data.tabTitle)
+    console.log(me.data.tabTitle)
     if(me.data.tabTitle=="最热"){
       let list = "pageData.pageNum";
           if (me.data.pageData.pageNum > 1) {
@@ -723,19 +877,19 @@ console.log(me.data.tabTitle)
         [list]: 1
       })
     }
-    me.getList();
+    me.getPopularList();
     }else if(me.data.tabTitle=="同城"){
       let list = "cityData.pageNum";
       if (me.data.cityData.pageNum > 1) {
-  me.setData({
-    [list]: --me.data.cityData.pageNum
-  })
-}
-else {
-  me.setData({
-    [list]: 1
-  })
-}
+       me.setData({
+         [list]: --me.data.cityData.pageNum
+       })
+      }
+      else {
+        me.setData({
+          [list]: 1
+        })
+    } 
       me.getCityList();
     }
 
