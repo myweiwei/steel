@@ -92,8 +92,7 @@ Page({
         baseUrl: app.globalData.baseUrl
       })
       if(app.globalData.token!=''){
-        me.grtCount();
-        me.getList();
+        me.initData();
       }
       else {
         app.getUser(me.initData);
@@ -146,12 +145,20 @@ getList: function () {
       }
     }
     wx.nextTick(() => {
-      me.setData({
-        list: me.data.list.concat(data.data.data.list),
-        total: data.data.data.total,
-        pageData:{pageNum:data.data.data.pageNum+1}
+
+      if(me.data.pageData.pageNum>1){//判断是否分页
+        me.setData({
+          list: me.data.list.concat(data.data.data.list),
+          total: data.data.data.total
+        })
+      }else{
+          me.setData({
+            list: data.data.data.list,
+        total: data.data.data.total
       })
+      }
       me.spHeight();
+
     })
   })
 },
