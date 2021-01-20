@@ -70,21 +70,6 @@ page{
   color: #a3a3a3;
 }
 
-.contnetText {
-  margin: 20rpx 0;
-  padding: 0 20rpx;
-  line-height: 1.3em;
-  letter-spacing: 3rpx;
-  font-size: 28rpx;
-}
-.del {
-  margin: 0 10rpx;
-}
-
-.del image {
-  width: 50rpx;
-  height: 50rpx;
-}
 .avaCon {
   padding: 20rpx;
   box-sizing: border-box;
@@ -107,67 +92,7 @@ page{
   height: 260rpx;
   margin-right: 10rpx;
 }
-.totalComment {
-  width: 100%;
-  text-align: center;
-  font-weight: 500;
-}
 
-.commCon {
-  display: flex;
-  justify-content: flex-start;
-  align-items: top;
-  padding: 20rpx;
-  word-break: break-all;
-  font-size: 30rpx;
-}
-.commonInner .commCon {
-  margin-left: 40rpx;
-}
-
-.commImg {
-  margin-right: 10rpx;
-}
-.footTab image {
-  width: 60rpx;
-  height: 60rpx;
-}
-.commImg image {
-  width: 65rpx;
-  height: 65rpx;
-  border-radius: 50%;
-}
-
-.commTog {
-  font-size: 28rpx;
-  color: #a3a3a3;
-  margin-left: 50rpx;
-}
-
-.commTog image {
-  width: 25rpx;
-  height: 25rpx;
-}
-.commImg .small{
-  width: 55rpx;
-  height: 55rpx;
-  border-radius: 50%;
-}
-.commName {
-  margin-bottom: 10rpx;
-  color: black;
-  /* color:rgb(167, 154, 45); */
-  font-family: 'MicroSoft YaHei'
-}
-.btn image {
-  width: 50rpx;
-  height: 50rpx;
-}
-.commTime {
-  color: #a3a3a3;
-  font-size: 28rpx;
-  margin-left: 10rpx;
-}
 .avaCon video {
   border-radius: 15rpx;
   width: 100%;
@@ -211,6 +136,108 @@ page{
   height: 80rpx;
 }
 
+.totalComment {
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.commImg {
+  margin-right: 10rpx;
+}
+
+.commImg image {
+  width: 65rpx;
+  height: 65rpx;
+  border-radius: 50%;
+}
+
+.commImg .small {
+  width: 55rpx;
+  height: 55rpx;
+  border-radius: 50%;
+}
+
+.commCon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: top;
+  padding: 20rpx;
+  word-break: break-all;
+  font-size: 30rpx;
+}
+
+.commTime {
+  color: #a3a3a3;
+  font-size: 28rpx;
+  margin-left: 10rpx;
+}
+
+.commName {
+  margin-bottom: 10rpx;
+  color: black;
+  /* color:rgb(167, 154, 45); */
+  font-family: 'MicroSoft YaHei'
+}
+
+/* .commonInner {
+  height:0;
+  overflow: hidden;
+} */
+
+.commonInner .commCon {
+  margin-left: 40rpx;
+}
+
+.commTog {
+  font-size: 28rpx;
+  color: #a3a3a3;
+  margin-left: 50rpx;
+}
+
+.commTog image {
+  width: 25rpx;
+  height: 25rpx;
+}
+
+.footTab image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  color: #fff !important;
+}
+
+.huifu {
+  margin: 0 8rpx;
+  color: #818080;
+  font-size: 27rpx;
+}
+
+.btn image {
+  width: 50rpx;
+  height: 50rpx;
+  /* color: #7a7a7a; */
+}
+
+.del {
+  margin: 0 10rpx;
+}
+
+.del image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.info {
+  color: #666;
+  text-align: center;
+  padding: 10rpx;
+}
+
 /*视频布局*/
 .video-image-box {
   height: 400rpx;
@@ -241,10 +268,62 @@ page{
   width: 100%;
 }
 
-.huifu {
-  margin: 0 8rpx;
-  color: #818080;
-  font-size: 27rpx;
+/* 顶部导航 */
+.van-tab__pane {
+  background: rgb(245, 242, 242);
+}
+
+.van-tabs__nav {
+  width: 400rpx !important;
+}
+
+.van-hairline--top-bottom:after {
+  border: none !important;
+}
+
+.van-tab--active .van-ellipsis {
+  font-weight: 700;
+}
+
+.van-tabs__line {
+  background: #1777ff !important;
+}
+
+.van-tab--active {
+  color: #1777ff !important;
+}
+
+.myImg {
+  position: fixed;
+  width: 70rpx;
+  height: 70rpx;
+  left: 10px;
+  color: #000;
+  z-index: 100;
+  margin-top: 10rpx;
+}
+
+/* 朋友圈展开更多选项 */
+.van-icon-arrow-down {
+  margin: 0 10rpx;
+}
+
+.van-popup--bottom button {
+  width: 100%;
+  height: 50rpx;
+  border: none;
+  outline: none;
+  background: transparent;
+  line-height: 50rpx;
+}
+
+button::after {
+  border: none;
+}
+
+.option {
+  border-bottom: 1rpx solid #ccc;
+  padding: 20rpx 10rpx;
 }
 
 /* 地址 */
@@ -253,12 +332,14 @@ page{
   color: #1d1d1d;
   border-radius: 30rpx;
   /* width: 80%; */
+  /* margin: 0 auto; */
   width: fit-content;
   line-height: 40rpx;
   white-space: nowrap;
   padding: 10rpx 20rpx;
-  margin: 10rpx;
-  box-sizing: border-box;
+  margin:10rpx;
+  margin-left: 20rpx;
+  /* box-sizing: border-box; */
   font-size: 25rpx;
   display: flex;
   align-items: center;
@@ -274,21 +355,60 @@ page{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.tc-cardBottom {
-  margin-top: 20rpx;
+
+.tc-card {
+  padding: 10rpx 40rpx;
+  background: #fff;
+  margin-bottom: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.tc-card .headRight {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  right: 0px;
+
+}
+
+.contnetText {
+  margin: 20rpx 0;
+  padding: 0 20rpx;
+  line-height: 1.3em;
+  letter-spacing: 3rpx;
+  font-size: 32rpx;
+}
+
+.headRow {
+  width: 100%;
   align-items: center;
-  height: 70rpx;
-
+  display: flex;
+  flex-direction: row;
+  color: white;
 }
 
-.tc-cardBottom image {
-  height: 50rpx;
-  width: 50rpx;
+.headImage {
+  margin-top: 5rpt;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 90rpx;
+  height: 90rpx;
   border-radius: 50%;
-  color: #ee4040;
 }
+
+.nameLay {
+  flex-direction: column;
+  display: flex;
+  margin: 0 20rpx;
+  position: relative;
+}
+
+.nameLay text {
+  padding: 4rpx 0;
+}
+
+/* 
 .test {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -303,7 +423,6 @@ page{
 }
 
 .test::after {
-  /* content: '∨'; */
   display: block;
   position: absolute;
   top: 0;
@@ -313,4 +432,56 @@ page{
 
 .test:hover {
   -webkit-line-clamp: unset;
+} */
+
+.tc-card-img {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  margin-bottom: 10rpx;
+  margin: auto;
+}
+
+.tc-card-img .list {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  text-align: center;
+  font-size: 20rpx;
+
+  /* justify-content: space-around;
+  margin: auto;  */
+}
+
+.tc-card-img .list text {
+  padding: 0 15rpx;
+}
+
+.tc-cardLocation {
+  height: 32rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: row;
+  font-size: 30rpx;
+}
+
+.tc-cardBottom {
+  margin-top: 5rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 70rpx;
+  padding-left: 20rpx;
+  /* color: rgb(255, 120, 120); */
+}
+
+.tc-cardBottom image {
+  height: 50rpx;
+  width: 50rpx;
+  border-radius: 50%;
+  color: #ee4040;
 }

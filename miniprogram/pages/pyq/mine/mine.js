@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    meId:'',
+    meIcon:'',
     userId:0,
     list:[],
     total:0,
@@ -35,6 +37,27 @@ Page({
       ownOther:true,
       currentdynamic:item
     })
+  },
+  longPress: function (e) {
+    let me = this;
+    if (me.data.userid == e.currentTarget.dataset.item1.fromUid) {
+      wx.showModal({
+        title: '提示',
+        content: '确认删除该条评论吗',
+        success: function (res) {
+          if (res.confirm) {
+            app.wxRequest('DELETE', '/comment/' + e.currentTarget.dataset.item1.commentId, {}, function (data) {
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success'
+              });
+              me.getComment(me.data.commentId)
+            })
+          } else {
+          }
+        }
+      })
+    }
   },
   onClose2(){
     this.setData({
@@ -69,16 +92,17 @@ Page({
         baseUrl: app.globalData.baseUrl
       })
       if(app.globalData.token!=''){
-        me.grtCount();
-        me.getList();
+        me.initData();
       }
       else {
         app.getUser(me.initData);
       }
   },
   initData:function(){
-    this.grtCount();
-    this.getList();
+    var me=this;
+    me.getUserInfo();
+    me.grtCount();
+    me.getList();
   },
  onBack(){
   wx.navigateBack({
@@ -121,12 +145,20 @@ getList: function () {
       }
     }
     wx.nextTick(() => {
-      me.setData({
-        list: me.data.list.concat(data.data.data.list),
-        total: data.data.data.total,
-        pageData:{pageNum:data.data.data.pageNum+1}
+
+      if(me.data.pageData.pageNum>1){//判断是否分页
+        me.setData({
+          list: me.data.list.concat(data.data.data.list),
+          total: data.data.data.total
+        })
+      }else{
+          me.setData({
+            list: data.data.data.list,
+        total: data.data.data.total
       })
+      }
       me.spHeight();
+
     })
   })
 },
@@ -230,16 +262,41 @@ addSc: function (e) {
   app.wxRequest('get', '/support/' + toId + '/' + dynamicId + '/' + support, {}, function (data) {
     // me.getList();
      me.data.list[index].isSupport=support;
+
      if(support==0){
-              me.data.list[index].supportUsersIcon.splice(me.data.list[index].supportUsersIcon.length-1,1)
+      me.data.list[index].supportCount=me.data.list[index].supportCount-1;
+      me.removeListItem(me.data.list[index].supportUsersIcon,me.data.meId);
      }else{
-        me.data.list[index].supportUsersIcon.push({supportUsersIcon:null,sid:""})
+      me.data.list[index].supportCount=me.data.list[index].supportCount+1;
+      me.data.list[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
      }
     me.setData({
       list:me.data.list
       })
     // me.setData
   })
+},
+getUserInfo: function () {
+  let me = this;
+  app.wxRequest('get', 
+  '/personal/user',
+  {},
+  function(data){
+    me.setData({
+      meId:data.data.data.userId,
+      meIcon:data.data.data.headIcon,
+    })
+    console.log(data.data.data.userId)
+    console.log(data.data.data.headIcon)
+  })
+},
+removeListItem: function(array,val){
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].sid == val){
+      array.splice(i, 1);
+    }
+  }
+  return -1; 
 },
 comment: function (e) {
   let me = this;

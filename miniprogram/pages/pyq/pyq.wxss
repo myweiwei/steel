@@ -496,7 +496,7 @@ button::after {
 }
 
 .tc-cardBottom {
-  margin-top: 20rpx;
+  margin-top: 5rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
