@@ -430,7 +430,7 @@ console.log(me.data.userid)
         }
       }
       wx.nextTick(() => {
-        if(me.data.pageDataPopular.pageSize>1){
+        if(me.data.pageDataPopular.pageNum>1){
           me.setData({
             popularList: me.data.popularList.concat(data.data.data.list),
             total: data.data.data.total
@@ -578,7 +578,7 @@ console.log(me.data.userid)
         }
       }
       wx.nextTick(() => {
-        if(me.data.pageDataFollow.pageSize>1){//判断是否分页
+        if(me.data.pageDataFollow.pageNum>1){//判断是否分页
           me.setData({
             followList: me.data.followList.concat(data.data.data.list),
             total: data.data.data.total
@@ -604,7 +604,7 @@ console.log(me.data.userid)
   getCityList: function (area) {
     let me = this;
     app.wxRequest('get', 
-    '/dynamic/dynamicList?pageNum='+me.data.cityData.pageNum+'&pageSize='+me.data.cityData.pageSize+'&area'+area,
+    '/dynamic/dynamicList?pageNum='+me.data.cityData.pageNum+'&pageSize='+me.data.cityData.pageSize+'&area='+area,
     {}, function(data){
   
       console.log("-----------------------")
@@ -617,7 +617,7 @@ console.log(me.data.userid)
         }
       }
       wx.nextTick(() => {
-        if(me.data.cityData.pageSize>1){//判断是否分页
+        if(me.data.cityData.pageNum>1){//判断是否分页
           me.setData({
             cityList: me.data.cityList.concat(data.data.data.list),
             total: data.data.data.total
@@ -654,7 +654,7 @@ console.log(me.data.userid)
         }
       }
       wx.nextTick(() => {
-        if(me.data.pageDataRecommend.pageSize>1){//判断是否分页
+        if(me.data.pageDataRecommend.pageNum>1){//判断是否分页
         me.setData({
           recommendList: me.data.recommendList.concat(data.data.data.list),
           total: data.data.data.total
@@ -866,35 +866,37 @@ initData: function(){
     let me = this;
     console.log(me.data.tabTitle)
     if(me.data.tabTitle=="最热"){
-      let list = "pageData.pageNum";
-          if (me.data.pageData.pageNum > 1) {
-      me.setData({
-        [list]: --me.data.pageData.pageNum
-      })
-    }
-    else {
+      let list = "pageDataPopular.pageNum";
       me.setData({
         [list]: 1
       })
-    }
     me.getPopularList();
     }else if(me.data.tabTitle=="同城"){
       let list = "cityData.pageNum";
-      if (me.data.cityData.pageNum > 1) {
-       me.setData({
-         [list]: --me.data.cityData.pageNum
-       })
-      }
-      else {
+      // if (me.data.cityData.pageNum > 1) {
+      //  me.setData({
+      //    [list]: --me.data.cityData.pageNum
+      //  })
+      // }
+      // else {
         me.setData({
           [list]: 1
         })
-    } 
+    // } 
       me.getCityList();
-    }
-
-
-
+    }else if(me.data.tabTitle=="关注"){
+      let list = "pageDataFollow.pageNum";
+      me.setData({
+        [list]: 1
+      })
+    me.getfollowList();
+  }else if(me.data.tabTitle=="推荐"){
+    let list = "pageDataRecommend.pageNum";
+    me.setData({
+      [list]: 1
+    })
+  me.getRecommendList();
+  }
 
     wx.stopPullDownRefresh();
   },
