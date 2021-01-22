@@ -471,7 +471,7 @@ console.log(me.data.userid)
         me.setData({
           [list]: ++me.data.cityData.pageNum
         })
-        me.getCityList();
+        me.getCityList(me.data.unGeo);
       }
       else {
         me.setData({
@@ -546,7 +546,9 @@ console.log(me.data.userid)
               that.setData({
                 unGeo: res.data.result.addressComponent.city
               });
-              that.getCityList(res.data.result.addressComponent.city);
+          
+              console.log(res.data.result.addressComponent.city)
+             that.getCityList(res.data.result.addressComponent.city);
               wx.hideLoading()
             } else {
               that.setData({
@@ -603,6 +605,7 @@ console.log(me.data.userid)
    */
   getCityList: function (area) {
     let me = this;
+    console.log(area)
     app.wxRequest('get', 
     '/dynamic/dynamicList?pageNum='+me.data.cityData.pageNum+'&pageSize='+me.data.cityData.pageSize+'&area='+area,
     {}, function(data){
@@ -817,14 +820,23 @@ console.log(me.data.userid)
   initView:function(){
     var me=this;
     me.getUserInfo();
-    me.initData();
+    me.getLoc();
+    if(me.data.tabTitle=="最热"){
+      me.getPopularList();
+     }else if(me.data.tabTitle=="同城"){
+       //  me.getCityList(me.unGeo);
+     }else if(me.data.tabTitle=="关注"){
+         me.getfollowList();
+     }else if(me.data.tabTitle=="推荐"){
+         me.getRecommendList();
+     }
   },
 initData: function(){
   var me=this;
   if(me.data.tabTitle=="最热"){
     me.getPopularList();
    }else if(me.data.tabTitle=="同城"){
-       me.getCityList();
+       me.getCityList(me.data.unGeo);
    }else if(me.data.tabTitle=="关注"){
        me.getfollowList();
    }else if(me.data.tabTitle=="推荐"){
@@ -865,6 +877,7 @@ initData: function(){
   onPullDownRefresh: function () {
     let me = this;
     console.log(me.data.tabTitle)
+    console.log(me.data.unGeo)
     if(me.data.tabTitle=="最热"){
       let list = "pageDataPopular.pageNum";
       me.setData({
@@ -883,7 +896,7 @@ initData: function(){
           [list]: 1
         })
     // } 
-      me.getCityList();
+      me.getCityList(me.data.unGeo);
     }else if(me.data.tabTitle=="关注"){
       let list = "pageDataFollow.pageNum";
       me.setData({
