@@ -98,7 +98,7 @@
         </text>
       </view>
     </view>
-    <view class="footer" style="height:108rpx;line-height:108rpx;text-align:right">
+    <view class="footer" style="bottom:20rpx;height:108rpx;line-height:108rpx;text-align:right">
       合计：<text style="color:#1777ff;margin-right:40rpx;">{{technicianData.videoSolvePrice}}元</text>
 		<van-button bind:click="onPay" style="margin-right:20rpx;" color="#1777ff" size="normal">支付</van-button>
     </view>

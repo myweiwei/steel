@@ -1,16 +1,11 @@
 /* pages/mine/regTeacher/regTeacher.wxss */
+.regTeacher {
+  height:100%;
+}
 .img {
   font-size:26rpx;
   color:rgb(129, 123, 123);
   margin-left:-20rpx;
-}
-.footer {
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:98%;
-  padding-left:1%;
-  box-sizing: border-box;
 }
 .van-button--large {
   height:80rpx!important;
@@ -20,9 +15,10 @@
   width:100%;
 }
 .add {
-  width:49%;
+  width:48.7%;
   height:300rpx;
   position: relative;
+  margin:0.5%;
 }
 .add .close {
   position: absolute;
@@ -61,4 +57,11 @@
 .yajin .yj_info view{
   height:50rpx;
   line-height: 50rpx;
+}
+.smallBtn {
+  width:49%;
+  display: inline-block;
+}
+.smallBtn van-button,.smallBtn van-button button {
+  width:100%;
 }

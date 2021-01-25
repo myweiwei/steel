@@ -89,6 +89,12 @@
 					"pathName": "pages/mine/regTeacher/regTeacher",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/regTeacher/regTeacher",
+					"pathName": "pages/mine/regTeacher/regTeacher",
+					"scene": null
 				}
 			]
 		}

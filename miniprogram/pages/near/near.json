@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#0c89f0",
+  "backgroundColor": "#cccccc",
+  "backgroundTextStyle": "light",
+  "navigationBarTitleText": "附近"
 }
