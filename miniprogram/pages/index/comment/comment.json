@@ -7,5 +7,6 @@
   },
   "navigationBarBackgroundColor": "#0c89f0",
   "backgroundColor": "#cccccc",
-  "backgroundTextStyle": "light"
+  "backgroundTextStyle": "light",
+  "navigationBarTitleText": "评价技师"
 }

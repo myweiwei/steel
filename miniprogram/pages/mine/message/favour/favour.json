@@ -1,8 +1,7 @@
 {
   "usingComponents": {},
-  "navigationBarBackgroundColor": "#fff",
   "navigationBarTitleText": "点赞",
-  "navigationBarTextStyle": "black",
-  "backgroundColor": "#fff",
+  "navigationBarBackgroundColor": "#0c89f0",
+  "backgroundColor": "#cccccc",
   "backgroundTextStyle": "light"
 }

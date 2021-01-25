@@ -4,6 +4,9 @@
   border-bottom:1rpx solid rgb(252, 249, 249);
   padding:30rpx 0;
 }
+.van-tabs__line {
+  background: #3a83ea!important;
+}
 .avaImg {
   width:60rpx;
   height:60rpx;
