@@ -10,7 +10,7 @@
 
 		</view>
 		<van-tab name="关注" title-style="{{tabTitle=='关注'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="关注">
-			<view class='ava' wx:for='{{followList}}' wx:key='id' data-bean="{{item}}">
+			<view class='ava' wx:for='{{followList}}' wx:key='id' data-bean="{{item}}" bindtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
 						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
@@ -97,8 +97,8 @@
 			</view>
 		</van-tab>
 		<van-tab name="同城" title-style="{{tabTitle=='同城'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="同城">
-			<view class='ava' wx:for='{{cityList}}' wx:key='id' wx:for-index="index">
-				<view class='flexBetween'>
+			<view class='ava' wx:for='{{cityList}}' wx:key='id' wx:for-index="index"  bindtap='toPycItemInfo'>
+				<view class='flexBetween' >
 					<view class='avaInfo flexStart'>
 						<image src="{{item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
 						<view>
@@ -186,7 +186,7 @@
 		</van-tab>
 		<van-tab name="最热" title-style="{{tabTitle=='最热'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="最热">
 
-			<view class='ava' wx:for='{{popularList}}' wx:key='id' data-bean="{{item}}">
+			<view class='ava' wx:for='{{popularList}}' wx:key='id' data-bean="{{item}}" bindtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
 						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
@@ -274,7 +274,7 @@
 		</van-tab>
 
 		<van-tab name="推荐" title-style="{{tabTitle=='推荐'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="推荐">
-			<view class='ava' wx:for='{{recommendList}}' wx:key='id' data-bean="{{item}}">
+			<view class='ava' wx:for='{{recommendList}}' wx:key='id' data-bean="{{item}}" bindtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
 						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>

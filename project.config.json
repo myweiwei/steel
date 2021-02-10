@@ -92,8 +92,17 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/mine/regTeacher/regTeacher",
-					"pathName": "pages/mine/regTeacher/regTeacher",
+
+					"name": "pages/index/commodity/commodity",
+					"pathName": "pages/index/commodity/commodity",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pyq/pyqItemInfo/pyqItemInfo",
+					"pathName": "pages/pyq/pyqItemInfo/pyqItemInfo",
+
 					"scene": null
 				}
 			]

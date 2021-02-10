@@ -1,0 +1,20 @@
+<!--pages/index/commodity/commodity.wxml-->
+<view class="commodityList">
+<view class="commodityItem" wx:for="{{5}}">
+<view class="card">
+<image class="cardImg"  mode="widthFix" src="https://xuxianfen17.cn/upload/draw/img_7037407c-ff80-4216-88ac-6e25c1e41a711586439584.png">
+</image>
+<text class="contentText">
+商品信息描述商品信息商品信息商品信息商品信息商品信息商品信息商品信息
+</text>
+<view class="row">
+<view style="color:rgb(255, 115, 0)">¥</view>
+<view style="color:rgb(255, 115, 0);font-size:32rpx">60</view>
+<view> / 件</view>
+</view> 
+<view class="row">
+<text style="color:rgb(147, 147, 147)">xxxxxxxxxxx</text> <text style="margin-left: 30rpx;">进店 ></text>
+</view>
+</view>
+</view>
+</view>

@@ -252,6 +252,11 @@ toMy:function(e){
     url: '/pages/pyq/mine/mine?userId='+bean.userId
   })
 },
+toPycItemInfo:function(e){
+  wx.navigateTo({
+    url: '/pages/pyq/pyqItemInfo/pyqItemInfo'
+  })
+},
 
 addSc: function (e) {
   let me = this;

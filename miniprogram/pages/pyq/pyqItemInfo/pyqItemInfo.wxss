@@ -1,0 +1,173 @@
+.avaInfo {
+  padding: 20rpx 0 0 20rpx;
+}
+
+.avaInfo image {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.avaInfo text {
+  font-weight: 700;
+  font-size: 30rpx;
+}
+
+.avaInfo .avaTime {
+  font-size: 23rpx;
+  color: #a3a3a3;
+}
+
+.del {
+  margin: 0 10rpx;
+}
+
+.del image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+
+.contnetText {
+  margin: 20rpx 0;
+  padding: 0 20rpx;
+  line-height: 1.3em;
+  letter-spacing: 3rpx;
+  font-size: 32rpx;
+}
+
+
+.avaCon {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.avaCon image {
+  width: 400rpx;
+  height: 420rpx;
+  border-radius: 15rpx;
+}
+
+.avaCon .moreImg {
+  width: 200rpx;
+  height: 220rpx;
+  margin-right: 10rpx;
+}
+
+.avaCon .twoImg {
+  width: 250rpx;
+  height: 260rpx;
+  margin-right: 10rpx;
+}
+
+.avaCon video {
+  border-radius: 15rpx;
+  width: 100%;
+}
+
+.video-image {
+  height: 100%;
+  width: 100%;
+}
+
+/*视频布局*/
+.video-image-box {
+  height: 400rpx;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position-x: 30rpx;
+  position: relative;
+}
+
+.video-image-play {
+  position: absolute;
+  width: 80rpx !important;
+  height: 80rpx !important;
+  top: calc(50% - 40rpx);
+  left: calc(50% - 40rpx);
+}
+
+
+/* 地址 */
+.loc {
+  background: #f5f4f9;
+  color: #1d1d1d;
+  border-radius: 30rpx;
+  /* width: 80%; */
+  /* margin: 0 auto; */
+  width: fit-content;
+  line-height: 40rpx;
+  white-space: nowrap;
+  padding: 10rpx 20rpx;
+  margin:10rpx;
+  margin-left: 20rpx;
+  /* box-sizing: border-box; */
+  font-size: 25rpx;
+  display: flex;
+  align-items: center;
+}
+
+.loc image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.loc view {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.commCon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: top;
+  padding: 20rpx;
+  word-break: break-all;
+  font-size: 30rpx;
+}
+
+.commImg {
+  margin-right: 10rpx;
+}
+
+.commImg image {
+  width: 65rpx;
+  height: 65rpx;
+  border-radius: 50%;
+}
+
+.commImg .small {
+  width: 55rpx;
+  height: 55rpx;
+  border-radius: 50%;
+}
+
+.commName {
+  margin-bottom: 10rpx;
+  color: black;
+  /* color:rgb(167, 154, 45); */
+  font-family: 'MicroSoft YaHei'
+}
+
+.commonInner .commCon {
+  margin-left: 40rpx;
+}
+
+.commTime {
+  color: #a3a3a3;
+  font-size: 28rpx;
+  margin-left: 10rpx;
+}
+.commTog {
+  font-size: 28rpx;
+  color: #a3a3a3;
+  margin-left: 50rpx;
+}
+
+.commTog image {
+  width: 25rpx;
+  height: 25rpx;
+}

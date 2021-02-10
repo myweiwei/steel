@@ -9,10 +9,12 @@
     "pages/enterprise_dynamic/dynamicAdd/dynamicAdd",
     "pages/switchCity/switchCity",
     "pages/index/teacher/teacher",
+    "pages/index/commodity/commodity",
     "pages/index/comment/comment",
     "pages/index/teacherInfo/teacherInfo",
     "pages/product/product",
     
+    "pages/pyq/pyqItemInfo/pyqItemInfo",
     "pages/pyq/mine/mine",
     "pages/pyq/search/search",
     "pages/near/near",
