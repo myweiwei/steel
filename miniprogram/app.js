@@ -2,8 +2,8 @@
 App({
   globalData:{
     userId:'',
-    baseUrl: 'https://eahost.lileiit.com/',
-    //baseUrl: 'http://192.168.3.20:8080/',
+    //baseUrl: 'https://eahost.lileiit.com/',
+    baseUrl: 'http://192.168.3.20:8080/',
     token:"",
     headerHeight: 0,
     statusBarHeight: 0,

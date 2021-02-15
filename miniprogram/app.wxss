@@ -81,8 +81,14 @@ page {
   margin: 20rpx 20rpx 0 20rpx;
   box-sizing: border-box;
 }
+.m-l-10 {
+  margin-left:10rpx;
+}
 .m-l-20 {
   margin-left:20rpx;
+}
+.m-l-30 {
+  margin-left:30rpx;
 }
 .m-l-40 {
   margin-left:40rpx;
