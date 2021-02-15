@@ -9,10 +9,7 @@ Page({
     headIcon:'',
     name:'',
 
-    show:false,
-    value:'10',
     userInfo:{},
-    priceList: ['10','20','30','50','80','100'],
     activeIndex:0,
     money:0,
     showPwd:'false',
@@ -21,6 +18,11 @@ Page({
   onTeacherRegister:function(){
     wx.navigateTo({
       url: '/pages/mine/regTeacher/regTeacher'
+    })
+  },
+  goMoney:function(){
+    wx.navigateTo({
+      url: '/pages/mine/moneyManage/moneyManage'
     })
   },
   goOrder:function(){
@@ -134,47 +136,8 @@ Page({
       value:val.detail
     })
   },
-  addPrice:function(){
-    let me=this;
-    app.wxRequest('post', '/recharge/recharge/'+me.data.value, {}, function (res) {
-      wx.requestPayment(
-        {
-          timeStamp: res.data.data.data.timeStamp,
-          nonceStr: res.data.data.data.nonceStr,
-          package: res.data.data.data.package,
-          signType: res.data.data.data.signType,
-          paySign: res.data.data.data.paySign,
-          success: function (res) {
-            wx.showToast({
-              title: '充值成功',
-              icon: 'success',
-              duration: 1000,
-              success: function () {
-                me.setData({
-                  show:false
-                })
-              }
-            })
-          },
-          fail: function (res) {
-          },
-          complete: function (res) { }
-        })
-    })
-  },
-  choosePrice:function(e){
-    let me=this;
-    me.setData({
-      value: e.currentTarget.dataset.item,
-      activeIndex: e.currentTarget.dataset.index
-    })
-  },
-  onClose:function(){
-    let me=this;
-    me.setData({
-      show:false
-    })
-  },
+ 
+
   addNew:function(){
     let me = this;
     me.setData({

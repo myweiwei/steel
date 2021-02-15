@@ -22,6 +22,7 @@
     "pages/mine/mine",
     "pages/mine/regTeacher/regTeacher",
     "pages/mine/regEnterprise/regEnterprise",
+    "pages/mine/moneyManage/moneyManage",
     "pages/mine/message/message",
     "pages/mine/message/fan/fan",
     "pages/mine/message/comment/comment",

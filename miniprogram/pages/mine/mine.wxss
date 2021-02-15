@@ -160,23 +160,6 @@
 }
 
 
-.price {
-  width:100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin:70rpx auto;
-}
-.price view {
-  width:26%;
-  margin:1%;
-  height:120rpx;
-  line-height: 120rpx;
-  text-align: center;
-  border:1rpx solid #1c43aa;
-  border-radius: 10rpx;
-}
 .label {
   height:50rpx;
   line-height: 50rpx;
@@ -190,10 +173,6 @@
   width:98%;
   padding-left:1%;
   box-sizing: border-box;
-}
-.active {
-  color:#fff;
-  background: #1c43aa;
 }
 .total_count {
   padding:3rpx 18rpx;

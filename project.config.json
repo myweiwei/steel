@@ -92,7 +92,6 @@
 				},
 				{
 					"id": -1,
-
 					"name": "pages/index/commodity/commodity",
 					"pathName": "pages/index/commodity/commodity",
 					"query": "",
@@ -102,7 +101,13 @@
 					"id": -1,
 					"name": "pages/pyq/pyqItemInfo/pyqItemInfo",
 					"pathName": "pages/pyq/pyqItemInfo/pyqItemInfo",
-
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/moneyManage/moneyManage",
+					"pathName": "pages/mine/moneyManage/moneyManage",
 					"scene": null
 				}
 			]
