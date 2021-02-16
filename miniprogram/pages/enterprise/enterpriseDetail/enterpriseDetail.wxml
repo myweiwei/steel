@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
  <scroll-view scroll-y="true" style="height: calc(100% - 130rpx);margin-bottom:130rpx">
-  <image src="../../../images/enterprise/mendiantu.png" mode="scaleToFill" class="topPicture"/>
+  <image wx:for="{{enterpriseImgs}}" wx:if="{{item.resourceType==1}}" src="{{item.resource}}" mode="scaleToFill" class="topPicture"/>
   <view class="top">
     <view class="left">
       <image src="{{logo}}" class="logo"></image>
