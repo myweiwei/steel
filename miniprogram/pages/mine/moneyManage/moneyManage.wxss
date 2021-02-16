@@ -76,7 +76,7 @@
   border-width:0px!important;
 }
 .recordList {
-  border-bottom: 1rpx solid #ccc;
+  border-bottom: 1rpx solid rgb(230, 229, 229);
   padding:30rpx;
   margin:20rpx;
   box-sizing: border-box;

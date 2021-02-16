@@ -9,14 +9,16 @@ Page({
     showPwd: 'true',
     money:0,
     show:false,
-    priceList: ['10', '20', '30', '50', '80', '100'],
-    value: '10',
+    priceList: ['1','10', '20', '30', '50', '80', '100'],
+    value: '1',
     show1:false,
     txPrice:'',
-    ktxmoney: 10,
+    ktxmoney: 0,
     message:"",
     active:0,
-    czRecordList:[]
+    czRecordList:[],
+    txRecordList:[],
+    activeIndex:0
   },
   onClose: function () {
     let me = this;
@@ -87,12 +89,32 @@ Page({
   },
   //提现
   showGetPrice:function(){
-    this.setData({
-      show1:true
-    })
+    this.getKtxMoney()
   },
   getPrice:function(){
-
+    let me = this;
+    app.wxRequest('post', '/withdraw/withdraw/' + this.data.txPrice, {}, function (res) {
+      me.setData({
+        show1: false
+      })
+      wx.showToast({
+        title: '提现成功',
+        icon: 'success'
+      });
+      me.onTabChange();
+      me.getMoney();
+    })
+  },
+  //查询可提现金额
+  getKtxMoney:function(){
+    let me = this;
+    app.wxRequest('get', '/withdraw/withdrawal', {}, function (res) {
+      me.setData({
+        show1: true,
+        ktxmoney:res.data.data,
+        txPrice:""
+      })
+    })
   },
   onPriceChange: function (event){
     let data = event.detail
@@ -120,14 +142,22 @@ Page({
   },
   //记录模块
   onTabChange:function(){
-
+    this.getCzRecord();
+    this.getTxRecord();
   },
   getCzRecord:function(){
     let me = this;
     app.wxRequest('get', '/recharge/record', {}, function (res) {
-      console.log(res)
       me.setData({
         czRecordList: res.data.data
+      })
+    })
+  },
+  getTxRecord:function(){
+    let me = this;
+    app.wxRequest('get', '/withdraw/record', {}, function (res) {
+      me.setData({
+        txRecordList: res.data.data
       })
     })
   },

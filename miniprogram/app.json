@@ -21,6 +21,7 @@
     "pages/pyq/commit/commit",
     "pages/mine/mine",
     "pages/mine/regTeacher/regTeacher",
+    "pages/mine/editTeacher/editTeacher",
     "pages/mine/regEnterprise/regEnterprise",
     "pages/mine/moneyManage/moneyManage",
     "pages/mine/message/message",

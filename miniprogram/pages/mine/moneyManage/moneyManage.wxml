@@ -27,7 +27,7 @@
   </view>
   <van-tabs active="{{ active }}" bind:change="onTabChange" color="#3a83ea">
     <van-tab title="充值记录">
-      <scroll-view scroll-y style="height:700rpx;">
+      <scroll-view scroll-y style="height:730rpx;">
         <view wx:for="{{czRecordList}}">
           <view class="flexBetween recordList">
             <view>￥{{item.price}}</view>
@@ -36,7 +36,16 @@
         </view>
       </scroll-view>
     </van-tab>
-    <van-tab title="提现记录">提现记录</van-tab>
+    <van-tab title="提现记录">
+      <scroll-view scroll-y style="height:730rpx;">
+        <view wx:for="{{txRecordList}}">
+          <view class="flexBetween recordList">
+            <view>￥{{item.price}}</view>
+            <view style="color:#666">{{item.orderCreateTime}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </van-tab>
   </van-tabs>
 </view>
 <van-popup
@@ -53,7 +62,7 @@
       <view wx:for='{{priceList}}' class='{{activeIndex==index?"active":""}}' data-index='{{index}}' data-item='{{item}}' bindtap="choosePrice">{{item}}元</view>
     </view>
     <view class='footer'>
-      <van-button color="#3a83ea" round size='large' bindtap='addPrice'>提交</van-button>
+      <van-button color="#3a83ea" round size='large' bindtap='addPrice'>提  交</van-button>
     </view>
   </view>
 </van-popup>
