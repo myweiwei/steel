@@ -22,7 +22,8 @@ Page({
     teacherList:[],
     val:'',
     curCity:"",
-    statusBarHeight:0
+    statusBarHeight:0,
+    newsList: [{ title: '招聘', text: "招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘" }, { title: '招聘', text: "招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘" },{ title: '求职', text: "招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘招聘" }]
   },
   moreTeacher:function(){
     wx.navigateTo({
@@ -325,6 +326,9 @@ Page({
     var url="getTeachersInfoByFavorableRate?goodAt="+goodAtStr;
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
+        if (data.data.data.length>=4){
+          data.data.data = data.data.data.splice(0,4)
+        }
         me.setData({jishiArr:data.data.data});
       }
     })

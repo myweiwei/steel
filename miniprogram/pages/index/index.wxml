@@ -80,8 +80,16 @@
 						</view>
 					</view>
 				</view>
+        <view class="news">
+          <view class="news_content">
+            <view class="title bottom">全国曝光率，让急事变得不急</view>
+            <view wx:for='{{newsList}}' class="flexStart news_list">
+              <text class="{{item.title=='招聘'?'zp':item.title=='求职'?'qz':''}}">{{item.title}}</text>
+              <view>{{item.text}}</view>
+            </view>
+          </view>
+        </view>
 				<view class='product'>
-
 					<view class='normal_title flexBetween'>
 						<view class="title">热门技师</view>
 						<view class='flexStart'>

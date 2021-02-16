@@ -13,11 +13,17 @@ Page({
     activeIndex:0,
     money:0,
     showPwd:'false',
-    countList:{}
+    countList:{},
+    isTeacher:0
   },
   onTeacherRegister:function(){
     wx.navigateTo({
       url: '/pages/mine/regTeacher/regTeacher'
+    })
+  },
+  onTeacherEdit:function(){
+    wx.navigateTo({
+      url: '/pages/mine/editTeacher/editTeacher'
     })
   },
   goMoney:function(){
@@ -41,9 +47,11 @@ Page({
   getHeadIconAndName:function(){
     let me = this;
     app.wxRequest('get', '/personal/user', {}, function (res) {
+      console.log(res.data)
       me.setData({
         headIcon:res.data.data.headIcon,
-        name:res.data.data.nickName
+        name:res.data.data.nickName,
+        isTeacher: res.data.data.isTeacher
       })
     }) 
   },
@@ -78,7 +86,6 @@ Page({
 
   },
   toMy:function(e){
-  
     wx.navigateTo({
       url: '/pages/pyq/mine/mine?userId='+0+"&userName="+"&headIcon="+ escape(this.data.headIcon)
     })

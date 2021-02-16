@@ -2,7 +2,8 @@
   "usingComponents": {
     "van-popup": "@vant/weapp/popup/index",
     "van-field": "@vant/weapp/field/index",
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-icon": "@vant/weapp/icon/index"
   },
   "navigationBarBackgroundColor": "#1c43aa",
   "navigationBarTitleText": "",
