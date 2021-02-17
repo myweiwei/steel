@@ -164,6 +164,12 @@ Page({
       url: '/pages/pyq/mine/mine?userId='+0+"&userName="+"&headIcon="+escape(this.data.meIcon)
     })
   },
+  toPycItemInfo:function(e){
+    // let id = e.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '/pages/pyq/pyqItemInfo/pyqItemInfo'
+    })
+  },
   toMy:function(e){
     var bean=  e.currentTarget.dataset.bean
     console.log('item: ', bean)

@@ -29,9 +29,6 @@ Page({
         desc: '上传作品',
       },
       {
-        desc: '缴纳押金',
-      },
-      {
         desc: '完成注册',
       },
     ],
@@ -39,6 +36,11 @@ Page({
     twFlag:true,
     spFlag:true,
     teacherResourceList:[]
+  },
+  prev(){
+    this.setData({
+      active: 0
+    })
   },
   onCheckChange(val){
     let type = val.currentTarget.dataset.type;
@@ -205,15 +207,24 @@ Page({
     //   title: '正在提交',
     // })
     let solveStatus=2;
-    await me.upFile(me.data.fileList,0);
+    if (!me.data.fileList.length){
+      wx.showToast({
+        title: '请上传头像',
+        icon: "none"
+      });
+      return;
+    }
+    else {
+      await me.upFile(me.data.fileList, 0);
+    }
     if(me.data.fileListZp1.length){
       await me.upFile(me.data.fileListZp1, 1);
     }
     if (me.data.fileListZp2.length) {
-      await me.upFile(me.data.fileListZp1, 2);
+      await me.upFile(me.data.fileListZp2, 2);
     }
     if (me.data.fileListZp3.length) {
-      await me.upFile(me.data.fileListZp1,3);
+      await me.upFile(me.data.fileListZp3,3);
     }
     if (me.data.fileListZp4.length) {
       await me.upFile(me.data.fileListZp4, 4);
@@ -256,7 +267,6 @@ Page({
     let me = this;
     let arr = [];
     arr = file;
-    console.log(file)
     return new Promise((resolve, reject) => {
       if (!arr[0]) {
         wx.showToast({
@@ -444,7 +454,6 @@ Page({
           me.setData({
             fileListZp1: arr
           })
-          console.log(me.data.fileListZp1)
         }
         if (type == 'zp1') {
           me.setData({

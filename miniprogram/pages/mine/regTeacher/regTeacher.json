@@ -7,9 +7,8 @@
     "van-steps": "@vant/weapp/steps/index",
     "van-icon": "@vant/weapp/icon/index"
   },
-  "navigationBarBackgroundColor": "#FFFFFF",
   "navigationBarTitleText": "注册技师",
-  "navigationBarTextStyle": "black",
-  "backgroundColor": "#FFFFFF",
-  "backgroundTextStyle": "dark"
+  "navigationBarBackgroundColor": "#0c89f0",
+  "backgroundColor": "#cccccc",
+  "backgroundTextStyle": "light"
 }

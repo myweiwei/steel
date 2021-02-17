@@ -25,7 +25,7 @@
 		<text class="hRowText">{{countData.supportCount}} 获赞</text> <text class="hRowText">{{countData.follow}} 关注</text> <text class="hRowText">{{countData.fans}} 粉丝</text>
 	</view>
 </view>
-	<view class='ava' wx:for='{{list}}' wx:key='id' data-bean="{{item}}">
+	<view class='ava' wx:for='{{list}}' wx:key='id' data-bean="{{item}}" bindtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
 						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>

@@ -8,7 +8,7 @@ page {
 } 
 .footer {
   position:fixed;
-  bottom:20rpx;
+  bottom:0rpx;
   left:0;
   margin-bottom: 5rpx;
   background-color: white;
@@ -17,6 +17,8 @@ page {
   height: 112rpx;
   box-sizing: border-box;
   padding-top: 12rpx;
+  z-index: 2;
+
 }
 .flexStart,.flexBetween,.flexAround,.flexCenter,.flexEnd{
   display: flex;

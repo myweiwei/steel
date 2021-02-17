@@ -1,233 +1,250 @@
 <view class='regTeacher'>
   <van-steps steps="{{ steps }}" active-color="#38f" active="{{ active }}" />
-  <view wx:if='{{active==0}}'>
-    <view  style='margin:30rpx auto;width:100%;text-align:center'>
-      <view class='img'>选择头像</view>
-      <van-uploader file-list="{{ fileList }}" data-type='headicon' deletable="{{ true }}" max-count="1" bind:after-read="afterRead" bind:delete='delImg'/>
-    </view>
-    <van-cell-group>
-      <van-field
-        value="{{ realName }}"
-        required
-        label="姓名"
-        clearable
-        placeholder="请输入姓名"
-        border="{{ false }}"
-        data-name='realName'
-        bind:change="onChange"
-      />
-      <van-field
-        value="{{ idCardNumber }}"
-        required
-        label='身份证号'
-        data-name='idCardNumber'
-        placeholder="请输入身份证号"
-        border="{{ false }}"
-        clearable
-        bind:change="onChange"
-      />
-      <van-field
-        value="{{ teacherJobPosition }}"
-        required
-        label='职位'
-        data-name='teacherJobPosition'
-        placeholder="如：中土田信高级技师"
-        border="{{ false }}"
-        clearable
-        bind:change="onChange"
-      />
-      <van-field
-        value="{{ teacherGoodAt }}"
-        required
-        label='擅长'
-        data-name='teacherGoodAt'
-        placeholder="如：真空离子镀溅射镀膜"
-        border="{{ false }}"
-        clearable
-        bind:change="onChange"
-      />
-      <van-field
-        value="{{ teacherDescription }}"
-        required
-        label='描述'
-        type="textarea"
-        clearable
-        data-name='teacherDescription'
-        placeholder="如：从业10余年，对不锈钢行业有丰富的经验"
-        border="{{ false }}"
-        bind:change="onChange"
-        autosize='{{true}}'
-      />
-      <!-- <view class='flexStart'>
-        <van-field
-          value="{{ imgtxtSolvePrice }}"
-          required
-          label='图文咨询价格'
-          type='number'
-          clearable
-          data-name='imgtxtSolvePrice'
-          placeholder="单位：元/分钟"
-          border="{{ false }}"
-          bind:change="onChange"
-          use-button-slot
-          style='width:80%'
-        />
-        <van-switch checked="{{ twFlag }}" data-type='tw' size="24px" bind:change="onCheckChange"  size="24px"/>
-      </view> -->
-      <view class='flexStart'>
-        <van-field
-          value="{{ videoSolvePrice }}"
-          required
-          label='电话咨询价格'
-          type='number'
-          clearable
-          data-name='videoSolvePrice'
-          placeholder="单位：元/次"
-          border="{{ false }}"
-          bind:change="onChange"
-          use-button-slot
-          style='width:80%'
-        />
-        <!-- <van-switch checked="{{ spFlag }}" data-type='sp' size="24px" bind:change="onCheckChange" /> -->
-      </view>
-      <van-field
-        value="{{ phoneNumber }}"
-        label='手机号'
-        clearable
-        required
-        placeholder="请输入手机号"
-        border="{{ false }}"
-        bind:change="onChange"
-        data-name='phoneNumber'
-      >
-      </van-field>
-      <van-field
-        value="{{ smsCode }}"
-        label='验证码'
-        clearable
-        required 
-        data-name='smsCode'
-        placeholder="请输入验证码"
-        border="{{ false }}"
-        bind:change="onChange"
-        use-button-slot
-      >
-        <van-button slot="button" size="small" type="info" bindtap='send'  wx:if='{{time!=0&&flag==true}}'>
-          <view>获取验证码</view>
-        </van-button>
-        <van-button slot="button" size="small" type="info" wx:if='{{time==0||flag==false}}' disabled="{{!flag}}"
+  <scroll-view scroll-y="true" style="height:calc(100% - 112rpx);padding-bottom:98rpx;box-sizing:border-box">
+    <view wx:if='{{active==0}}'>
+        <view  style='margin:30rpx auto;width:100%;text-align:center'>
+          <view class='img'>选择头像</view>
+          <van-uploader file-list="{{ fileList }}" data-type='headicon' deletable="{{ true }}" max-count="1" bind:after-read="afterRead" bind:delete='delImg'/>
+        </view>
+        <van-cell-group>
+          <van-field
+            value="{{ realName }}"
+            required
+            label="姓名"
+            clearable
+            placeholder="请输入姓名"
+            border="{{ false }}"
+            data-name='realName'
+            bind:change="onChange"
+            hold-keyboard
+          />
+          <van-field
+            value="{{ idCardNumber }}"
+            required
+            label='身份证号'
+            data-name='idCardNumber'
+            placeholder="请输入身份证号"
+            border="{{ false }}"
+            clearable
+            bind:change="onChange"
+            hold-keyboard
+          />
+          <van-field
+            value="{{ teacherJobPosition }}"
+            required
+            label='职位'
+            data-name='teacherJobPosition'
+            placeholder="如：中土田信高级技师"
+            border="{{ false }}"
+            clearable
+            bind:change="onChange"
+            hold-keyboard
+          />
+          <van-field
+            value="{{ teacherGoodAt }}"
+            required
+            label='擅长'
+            data-name='teacherGoodAt'
+            placeholder="如：真空离子镀溅射镀膜"
+            border="{{ false }}"
+            clearable
+            bind:change="onChange"
+            hold-keyboard
+          />
+          <van-field
+            value="{{ teacherDescription }}"
+            required
+            label='描述'
+            type="textarea"
+            clearable
+            data-name='teacherDescription'
+            placeholder="如：从业10余年"
+            border="{{ false }}"
+            autosize
+            bind:change="onChange"
+            bind:confirm="onChange"
+            hold-keyboard
+          />
+          <!-- <view class='flexStart'>
+            <van-field
+              value="{{ imgtxtSolvePrice }}"
+              required
+              label='图文咨询价格'
+              type='number'
+              clearable
+              data-name='imgtxtSolvePrice'
+              placeholder="单位：元/分钟"
+              border="{{ false }}"
+              bind:change="onChange"
+              use-button-slot
+              style='width:80%'
+            />
+            <van-switch checked="{{ twFlag }}" data-type='tw' size="24px" bind:change="onCheckChange"  size="24px"/>
+          </view> -->
+          <view class='flexStart'>
+            <van-field
+              value="{{ videoSolvePrice }}"
+              required
+              label='电话咨询价格'
+              type='number'
+              clearable
+              data-name='videoSolvePrice'
+              placeholder="单位：元/次"
+              border="{{ false }}"
+              bind:change="onChange"
+              use-button-slot
+              style='width:80%'
+              hold-keyboard
+            />
+            <!-- <van-switch checked="{{ spFlag }}" data-type='sp' size="24px" bind:change="onCheckChange" /> -->
+          </view>
+          <van-field
+            value="{{ phoneNumber }}"
+            label='手机号'
+            type="number"
+            clearable
+            required
+            placeholder="请输入手机号"
+            border="{{ false }}"
+            bind:change="onChange"
+            data-name='phoneNumber'
+            hold-keyboard
           >
-          <view>{{time}}后重新获取</view>
-        </van-button>
-      </van-field>
-    </van-cell-group>
-    <view class='footer'>
-      <van-button data-index='1' color="#3a83ea" round size='large' bindtap='next'>下一步</van-button>
-    </view>
-  </view>
-  <view wx:if='{{active== 1}}'>
-    <view>
-      <view class='flexAround m-t-20'>
-        <view class='add'>
-          <view catchtap='addFile' class='btn' data-type='zp' wx:if='{{!fileListZp1.length}}'>
-            <view class='flexCenter' data-type='zp' style='flex-direction:column;height:100%;'>
-              <van-icon name="plus" size='50' data-type='zp'/>
-              <text data-type='zp'>图片/视频</text>
-            </view>
-          </view>
-          <view wx:else>
-            <image wx:if='{{fileListZp1[0].type=="img"}}'  object-fit='cover'  src='{{fileListZp1[0].path}}'></image>
-            <video wx:if='{{fileListZp1[0].type=="video"}}' src="{{fileListZp1[0].path}}" object-fit='cover' show-progress></video>
-            <view class='close'>
-              <van-icon name="cross" size='50rpx' data-type='zp' color='#fff' bindtap='delVideo'/>
-            </view>
-          </view>
-        </view>
-        <view class='add'>
-          <view catchtap='addFile' class='btn' data-type='zp1' wx:if='{{!fileListZp2.length}}'>
-          <view class='flexCenter'  data-type='zp1' style='flex-direction:column;height:100%;'>
-            <van-icon name="plus" size='50'  data-type='zp1'/>
-            <text  data-type='zp1'>图片/视频</text>
-          </view>
-          </view>
-          <view wx:else>
-            <image wx:if='{{fileListZp2[0].type=="img"}}'  object-fit='cover'  src='{{fileListZp2[0].path}}'></image>
-            <video wx:if='{{fileListZp2[0].type=="video"}}' src="{{fileListZp2[0].path}}" object-fit='cover' show-progress></video>
-            <view class='close'>
-              <van-icon name="cross" size='50rpx' data-type='zp1' color='#fff' bindtap='delVideo'/>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='flexAround m-t-10'>
-        <view class='add'>
-          <view catchtap='addFile' class='btn' data-type='zp2' wx:if='{{!fileListZp3.length}}'>
-            <view class='flexCenter' data-type='zp2' style='flex-direction:column;height:100%;'>
-              <van-icon name="plus" size='50' data-type='zp2'/>
-              <text data-type='zp2'>图片/视频</text>
-            </view>
-          </view>
-          <view wx:else>
-            <image wx:if='{{fileListZp3[0].type=="img"}}'  object-fit='cover'  src='{{fileListZp3[0].path}}'></image>
-            <video wx:if='{{fileListZp3[0].type=="video"}}' src="{{fileListZp3[0].path}}" object-fit='cover' show-progress></video>
-            <view class='close'>
-              <van-icon name="cross" size='50rpx' data-type='zp2' color='#fff' bindtap='delVideo'/>
-            </view>
-          </view>
-        </view>
-        <view class='add'>
-          <view catchtap='addFile' class='btn' data-type='zp3' wx:if='{{!fileListZp4.length}}'>
-            <view class='flexCenter' data-type='zp3' style='flex-direction:column;height:100%;'>
-              <van-icon name="plus" data-type='zp3' size='50'/>
-              <text data-type='zp3'>图片/视频</text>
-            </view>
-          </view>
-          <view wx:else>
-            <image wx:if='{{fileListZp4[0].type=="img"}}'  object-fit='cover'  src='{{fileListZp4[0].path}}'></image>
-            <video wx:if='{{fileListZp4[0].type=="video"}}' src="{{fileListZp4[0].path}}" object-fit='cover' show-progress></video>
-            <view class='close'>
-              <van-icon name="cross" size='50rpx' data-type='zp3' color='#fff' bindtap='delVideo'/>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class='footer flexAround fy' style='text-align:center'>
-    <van-button data-index='0' style='width:50%' color="#3a83ea" round  bindtap='next'>上一步</van-button>
-      <van-button data-index='2' style='width:50%' color="#3a83ea" round  bindtap='submit'>下一步</van-button>
-    </view>
-  </view>
-  <view wx:if='{{active== 2}}'>
-    <view class='yajin'>
-      <view class='flexBetween'>
-        <view>
-          <text class='yj_title'>押金</text>
-          <text>(随时可退)</text>
-        </view>
-        <view>
-          ￥59元
-        </view>
-      </view>
-      <view class='m-t-20 yj_info'>
-        <view>为保障用户权益，认证技师需缴纳押金</view>
-        <view>24小时内急速退款</view>
-        <view>按原路径退回到您的支付账户</view>
-      </view>
-    </view>
-    <view class='footer flexAround fy' style='text-align:center'>
-    <van-button data-index='1' style='width:50%' color="#3a83ea" round  bindtap='next'>上一步</van-button>
-      <van-button data-index='3' style='width:50%' type='warning' round  bindtap='addPrice'>押金充值</van-button>
-    </view>
-  </view>
-  <view wx:if='{{active== 3}}'>
-    <view class='flexCenter m-t-50' style='flex-direction:column;margin-top:30%'>
-      <van-icon name="checked" size='80' color="#0078fe"/>
-      <view>恭喜您！已完成注册</view>
-      <view>客户咨询将通过短信方式通知您</view>
+          </van-field>
+          <van-field
+            value="{{ smsCode }}"
+            label='验证码'
+             type="number"
+            clearable
+            required 
+            data-name='smsCode'
+            placeholder="请输入验证码"
+            border="{{ false }}"
+            bind:change="onChange"
+            use-button-slot
+            hold-keyboard
+          >
+            <van-button slot="button" size="small" type="info" bindtap='send'  wx:if='{{time!=0&&flag==true}}'>
+              <view>获取验证码</view>
+            </van-button>
+            <van-button slot="button" size="small" type="info" wx:if='{{time==0||flag==false}}' disabled="{{!flag}}"
+              >
+              <view>{{time}}s后重新获取</view>
+            </van-button>
+          </van-field>
+        </van-cell-group>
       <view class='footer'>
-         <van-button data-index='1' color="#3a83ea" round size='large' bindtap='toIndex'>完成</van-button>
+        <van-button data-index='1' color="#3a83ea" round size='large' bindtap='next'>下一步</van-button>
       </view>
-     
     </view>
-  </view>
+    <view wx:if='{{active== 1}}'>
+      <view>
+        <view class='flexAround'>
+          <view class='add'>
+            <view catchtap='addFile' class='btn' data-type='zp' wx:if='{{!fileListZp1.length}}'>
+              <view class='flexCenter' data-type='zp' style='flex-direction:column;height:100%;'>
+                <van-icon name="plus" size='50' data-type='zp'/>
+                <text data-type='zp'>图片/视频</text>
+              </view>
+            </view>
+            <view wx:else>
+              <image wx:if='{{fileListZp1[0].type=="img"}}'  object-fit='cover'  src='{{fileListZp1[0].path}}'></image>
+              <video wx:if='{{fileListZp1[0].type=="video"}}' src="{{fileListZp1[0].path}}" object-fit='cover' show-progress></video>
+              <view class='close'>
+                <van-icon name="cross" size='50rpx' data-type='zp' color='#fff' bindtap='delVideo'/>
+              </view>
+            </view>
+          </view>
+          <view class='add'>
+            <view catchtap='addFile' class='btn' data-type='zp1' wx:if='{{!fileListZp2.length}}'>
+            <view class='flexCenter'  data-type='zp1' style='flex-direction:column;height:100%;'>
+              <van-icon name="plus" size='50'  data-type='zp1'/>
+              <text  data-type='zp1'>图片/视频</text>
+            </view>
+            </view>
+            <view wx:else>
+              <image wx:if='{{fileListZp2[0].type=="img"}}'  object-fit='cover'  src='{{fileListZp2[0].path}}'></image>
+              <video wx:if='{{fileListZp2[0].type=="video"}}' src="{{fileListZp2[0].path}}" object-fit='cover' show-progress></video>
+              <view class='close'>
+                <van-icon name="cross" size='50rpx' data-type='zp1' color='#fff' bindtap='delVideo'/>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='flexAround'>
+          <view class='add'>
+            <view catchtap='addFile' class='btn' data-type='zp2' wx:if='{{!fileListZp3.length}}'>
+              <view class='flexCenter' data-type='zp2' style='flex-direction:column;height:100%;'>
+                <van-icon name="plus" size='50' data-type='zp2'/>
+                <text data-type='zp2'>图片/视频</text>
+              </view>
+            </view>
+            <view wx:else>
+              <image wx:if='{{fileListZp3[0].type=="img"}}'  object-fit='cover'  src='{{fileListZp3[0].path}}'></image>
+              <video wx:if='{{fileListZp3[0].type=="video"}}' src="{{fileListZp3[0].path}}" object-fit='cover' show-progress></video>
+              <view class='close'>
+                <van-icon name="cross" size='50rpx' data-type='zp2' color='#fff' bindtap='delVideo'/>
+              </view>
+            </view>
+          </view>
+          <view class='add'>
+            <view catchtap='addFile' class='btn' data-type='zp3' wx:if='{{!fileListZp4.length}}'>
+              <view class='flexCenter' data-type='zp3' style='flex-direction:column;height:100%;'>
+                <van-icon name="plus" data-type='zp3' size='50'/>
+                <text data-type='zp3'>图片/视频</text>
+              </view>
+            </view>
+            <view wx:else>
+              <image wx:if='{{fileListZp4[0].type=="img"}}'  object-fit='cover'  src='{{fileListZp4[0].path}}'></image>
+              <video wx:if='{{fileListZp4[0].type=="video"}}' src="{{fileListZp4[0].path}}" object-fit='cover' show-progress></video>
+              <view class='close'>
+                <van-icon name="cross" size='50rpx' data-type='zp3' color='#fff' bindtap='delVideo'/>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='footer'>
+        <view  class="smallBtn">
+          <van-button data-index='1' size="normal" class="smallBtn" color="#3a83ea" round  bindtap='prev'>上一步</van-button>
+        </view>
+        <view  class="smallBtn" style="margin-left:1%">
+          <van-button data-index='1' size="normal" class="smallBtn"  color="#3a83ea" round  bindtap='submit'>注  册</van-button>
+        </view>
+      </view>
+    </view>
+    <!-- <view wx:if='{{active== 2}}'>
+      <view class='yajin'>
+        <view class='flexBetween'>
+          <view>
+            <text class='yj_title'>押金</text>
+            <text>(随时可退)</text>
+          </view>
+          <view>
+            ￥59元
+          </view>
+        </view>
+        <view class='m-t-20 yj_info'>
+          <view>为保障用户权益，认证技师需缴纳押金</view>
+          <view>24小时内急速退款</view>
+          <view>按原路径退回到您的支付账户</view>
+        </view>
+      </view>
+      <view class='footer flexAround fy' style='text-align:center'>
+      <van-button data-index='1' style='width:50%' color="#3a83ea" round  bindtap='next'>上一步</van-button>
+        <van-button data-index='3' style='width:50%' type='warning' round  bindtap='addPrice'>押金充值</van-button>
+      </view>
+    </view> -->
+    <view wx:if='{{active== 2}}'>
+      <view class='flexCenter m-t-50' style='flex-direction:column;margin-top:30%'>
+        <van-icon name="checked" size='80' color="#0078fe"/>
+        <view>恭喜您！已完成注册</view>
+        <view>客户咨询将通过短信方式通知您</view>
+        <view class='footer'>
+          <van-button data-index='1' color="#3a83ea" round size='large' bindtap='toIndex'>完成</van-button>
+        </view>
+      
+      </view>
+    </view>
+  </scroll-view>
 </view>

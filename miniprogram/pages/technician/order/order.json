@@ -1,5 +1,9 @@
 {
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"
-  }
+  },
+  "navigationBarBackgroundColor": "#0c89f0",
+  "backgroundColor": "#cccccc",
+  "backgroundTextStyle": "light",
+  "navigationBarTitleText": "咨询记录"
 }

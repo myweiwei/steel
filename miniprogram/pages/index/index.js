@@ -309,6 +309,12 @@ Page({
       url: '/pages/enterprise/searchEnterprise/searchEnterprise?longtitude=' + me.data.longitude + "&latitude=" + me.data.latitude
     })
   },
+  goCommodity:function(){//跳转到找商品页
+    var me = this;
+    wx.navigateTo({
+      url: '/pages/index/commodity/commodity?longtitude=' + me.data.longitude + "&latitude=" + me.data.latitude
+    })
+  },
   goTechnician:function(){
     wx.navigateTo({
       url: '/pages/technician/searchTechnician/searchTechnician'

@@ -40,6 +40,10 @@
 						<image src="../../images/index/zhaoqiye.png" />
 						<view>找企业</view>
 					</view>
+					<view bindtap="goCommodity">
+						<image src="../../images/index/zhaoqiye.png" />
+						<view>找商品</view>
+					</view>
 					<!-- <view bindtap="">
 						<image src="../../images/index/jinfang.png" />
 						<view>技师进房</view>
@@ -85,7 +89,7 @@
 						</view>
 					</view>
 					<view class='product_list'>
-						<view class="list" wx:for="{{ jishiArr }}" wx:for-item="item"  data-bean="{{item}}" bindtap="onItemClick" wx:key='{{item.teacherId}}' >
+						<view class="list" wx:for="{{ jishiArr }}" wx:for-item="item" data-bean="{{item}}" bindtap="onItemClick" wx:key='{{item.teacherId}}'>
 							<view class="remenJishiCard">
 								<view class="gradual">
 									<view class="headRow">
@@ -94,21 +98,21 @@
 										</view>
 										<view bindtap="" class="nameLay">
 											<text class="fontBold">{{item.realName}}</text>
-                      <text class="jobText">{{item.teacherGoodAt}}</text>
+											<text class="jobText">{{item.teacherGoodAt}}</text>
 										</view>
 									</view>
 								</view>
-                <view class="teaDes">{{item.teacherDescription}}</view>
-							<view class="line"></view>
-					
-									<view class="itemriceview">
-										<image mode="aspectFit" style="width:32rpx;height:32rpx;" src="../../images/my/my_36.png" />
-										<text  style="margin-left: 10rpx;">电话咨询 {{item.videoSolvePrice}}元/次</text> </view>
-									<view  class="itemriceview">
-										<!-- <image mode="aspectFit" style="height:32rpx;width:32rpx;" src="../../images/technician/video.gif" />
+								<view class="teaDes">{{item.teacherDescription}}</view>
+								<view class="line"></view>
+
+								<view class="itemriceview">
+									<image mode="aspectFit" style="width:32rpx;height:32rpx;" src="../../images/my/my_36.png" />
+									<text  style="margin-left: 10rpx;">电话咨询 {{item.videoSolvePrice}}元/次</text> </view>
+								<view class="itemriceview">
+									<!-- <image mode="aspectFit" style="height:32rpx;width:32rpx;" src="../../images/technician/video.gif" />
 										<text  style="margin-left: 10rpx;">视频咨询 5元/分钟</text>  -->
-                    </view>
-							
+								</view>
+
 							</view>
 						</view>
 					</view>
