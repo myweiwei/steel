@@ -25,7 +25,7 @@
           <view class="middle">
             <view style="font-weight:bold; font-size:29rpx; color:#000000;">{{item.enterpriseName}}</view>
             <view class="fontSizeMiddle enterpriseType">{{item.enterpriseType}}</view>
-            <view style="margin-top:8rpx;" class="fontSizeMiddle">{{item.address}}</view>
+            <view style="margin-top:8rpx;" class="fontSizeMiddle enterpriseAddress">{{item.enterpriseAddress}}</view>
             <view style="display:flex; margin-top:8rpx;">
               <view style="margin-right:20rpx;">
                 <image src="../../../images/enterprise/see.png" class="see"></image>
