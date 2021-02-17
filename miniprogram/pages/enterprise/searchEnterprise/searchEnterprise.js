@@ -107,6 +107,8 @@ Page({
     var url = "";
     let tag = this.data.value2!=0 ? this.data.value2:""
     let area = this.data.value1!= 0 ? this.data.value1 : ""
+    var longtitude = longtitude ? longtitude : 116.405285
+    var latitude = latitude ? latitude : 39.904989
     if(keyword == "" || keyword == null){
       url = "/enterprise/selectByKeyword?lon=" + longtitude + "&lat=" + latitude + "&pageNum=1&pageSize=10" + "&tag=" + tag + "&area=" + area;
     }
