@@ -1,19 +1,19 @@
 <!--index.wxml-->
 <view class="container" style='background:#1777ff'>
   <view style='position:relative;'>
-    <view style='position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;margin-top:{{statusBarHeight+"px"}};padding-bottom:{{statusBarHeight+"px"}}'>
+    <view style='position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;margin-top:{{statusBarHeight+"px"}};'>
       <van-search shape='round' bind:change="onSearchChange" value="{{ keyword }}"  style='width:380rpx;z-index:100;color:#fff' input-class='search_ipt' />
     </view>
   </view>
-  <view  style='margin-top:80px'>
-   <van-dropdown-menu>
-    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+  <view  style='margin-top:180rpx'>
+  <van-dropdown-menu>
+    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" bindchange="changeArea"/>
+    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}"  bindchange="changeTag" />
   </van-dropdown-menu>
   </view>
  <scroll-view scroll-y="true" style="height: calc(100% - 130px);background:#f5f6f6" >
   <view wx:for="{{enterpriseList}}" wx:for-item="item" class="enterpriseList"
-   data-id="{{item.id}}"
+   data-id="{{item.enterpriseId}}"
    data-distance="{{item.distance}}"
    bindtap="onItemClick">
     <view class="top">
@@ -25,7 +25,7 @@
           <view class="middle">
             <view style="font-weight:bold; font-size:29rpx; color:#000000;">{{item.enterpriseName}}</view>
             <view class="fontSizeMiddle enterpriseType">{{item.enterpriseType}}</view>
-            <view style="margin-top:8rpx;" class="fontSizeMiddle">{{item.address}}</view>
+            <view style="margin-top:8rpx;" class="fontSizeMiddle enterpriseAddress">{{item.enterpriseAddress}}</view>
             <view style="display:flex; margin-top:8rpx;">
               <view style="margin-right:20rpx;">
                 <image src="../../../images/enterprise/see.png" class="see"></image>

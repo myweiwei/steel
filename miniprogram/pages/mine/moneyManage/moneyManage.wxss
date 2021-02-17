@@ -1,0 +1,85 @@
+/* pages/mine/moneyManage/moneyManage.wxss */
+.moneyManage {
+  height:100%;
+}
+.top_box {
+  height:300rpx;
+  background-image: linear-gradient(to right, #4e87ee , #6a97fe);
+  margin:20rpx;
+  border-radius: 20rpx;
+  padding:20rpx;
+  color:#fff;
+  box-sizing: border-box;
+}
+.sm1{
+  width:40rpx;
+  height:40rpx;
+  margin-left:20rpx;
+}
+.money {
+  font-size:60rpx;
+  font-family: 'Microsoft YaHei,STXihei,MingLiu'
+}
+.addMoney {
+  height:70rpx;
+  line-height: 70rpx;
+  border-top:1rpx solid #98c5f0;
+}
+.addMoney {
+  color:#b4d9ff;
+  font-size: 28rpx;
+}
+.price {
+  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin:70rpx auto;
+}
+.price view {
+  width:26%;
+  margin:1%;
+  height:120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  border:1rpx solid #0c89f0;
+  border-radius: 10rpx;
+}
+.active {
+  color:#fff;
+  background: #0c89f0;
+}
+.getMoney {
+  margin:30rpx;
+  color:#1d1d1d;
+  font-size:28rpx;
+}
+.van-cell__title {
+  width:55rpx!important;
+  min-width: 55rpx!important;
+  max-width: 55rpx!important;
+  font-size:50rpx!important;
+  font-weight:bold!important;
+}
+.van-field__input {
+  font-size: 50rpx!important;
+  font-weight:bold!important;
+}
+.allTx {
+  color:#3a83ea;
+}
+.tooltip {
+  color:darkgray;
+}
+.van-hairline--top-bottom:after {
+  border-width:0px!important;
+}
+.recordList {
+  border-bottom: 1rpx solid rgb(230, 229, 229);
+  padding:30rpx;
+  margin:20rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  color:#1d1d1d;
+}

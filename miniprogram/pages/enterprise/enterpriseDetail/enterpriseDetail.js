@@ -24,7 +24,7 @@ Page({
     enterpriseType:"",
     telephone:"",
     images:[],
-
+    enterpriseImgs:[],
     //经营商品
     goods:[],
   },
@@ -42,7 +42,6 @@ Page({
     })
   },
   goMap:function(e){
-    console.log(e)
     let me=this;
     wx.openLocation({
       latitude: parseFloat(me.data.latitude),
@@ -74,10 +73,8 @@ Page({
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
         var data = data.data.data;
-        console.log(data);
         var arr = 'markers[0].longitude';
         var arr2 = 'markers[0].latitude';
-        console.log(arr)
         me.setData({
           longitude:data.longitude,
           latitude:data.latitude,
@@ -87,7 +84,8 @@ Page({
           telephone:data.enterpriseTelephone,
           [arr]:data.longitude,
           [arr2]:data.latitude,
-          logo:data.enterpriseLogo
+          logo:data.enterpriseLogo,
+          enterpriseImgs: data.enterpriseImgs
         });
       }
     })
@@ -100,7 +98,6 @@ Page({
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
         me.setData({goods:data.data.data});
-        console.log(data.data.data);
       }
     })
 

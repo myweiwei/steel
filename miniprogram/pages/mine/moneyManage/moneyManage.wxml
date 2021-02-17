@@ -1,0 +1,100 @@
+<!--pages/mine/moneyManage/moneyManage.wxml-->
+<view class="moneyManage">
+  <view class="top_box">
+    <view class="flexBetween" style="height:200rpx">
+      <view class="m-t-20">
+        <view class='flexStart' style='margin-top:10rpx;color:#b4d9ff'>
+          <text class='name1'>总资产(元)</text>
+          <image class='sm1' src='../../../images/my/my_07.png' data-flag='true' bindtap='showPwdFunc' wx:if='{{showPwd=="false"}}'></image>
+          <image class='sm1' src='../../../images/my/zhengyan.png' data-flag='false' bindtap='showPwdFunc' wx:if='{{showPwd=="true"}}'></image>
+        </view>
+        <view class="money m-t-20">
+          <text wx:if='{{showPwd=="true"}}'>{{money}}</text>
+          <text wx:if='{{showPwd=="false"}}'>****</text>
+        </view>
+      </view>
+      <view>
+        <van-button hairline type="primary" size="small" bindtap="showGetPrice" round color="#b4d9ff">提现</van-button>
+      </view>
+    </view>
+    <view class="addMoney flexBetween" bindtap="addMoney">
+      <view class="flexStart">
+        <van-icon name="point-gift-o" />
+        <text class="m-l-10">特惠充值</text>
+      </view>
+      <van-icon name="arrow" />
+    </view>
+  </view>
+  <van-tabs active="{{ active }}" bind:change="onTabChange" color="#3a83ea">
+    <van-tab title="充值记录">
+      <scroll-view scroll-y style="height:730rpx;">
+        <view wx:for="{{czRecordList}}">
+          <view class="flexBetween recordList">
+            <view>￥{{item.price}}</view>
+            <view style="color:#666">{{item.orderCreateTime}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </van-tab>
+    <van-tab title="提现记录">
+      <scroll-view scroll-y style="height:730rpx;">
+        <view wx:for="{{txRecordList}}">
+          <view class="flexBetween recordList">
+            <view>￥{{item.price}}</view>
+            <view style="color:#666">{{item.orderCreateTime}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </van-tab>
+  </van-tabs>
+</view>
+<van-popup
+  show="{{ show }}"
+  closeable
+  close-icon="close"
+  position="bottom"
+  custom-style="height: 70%"
+  bind:close="onClose"
+  round
+>
+  <view>
+    <view class='price'>
+      <view wx:for='{{priceList}}' class='{{activeIndex==index?"active":""}}' data-index='{{index}}' data-item='{{item}}' bindtap="choosePrice">{{item}}元</view>
+    </view>
+    <view class='footer'>
+      <van-button color="#3a83ea" round size='large' bindtap='addPrice'>提  交</van-button>
+    </view>
+  </view>
+</van-popup>
+<van-popup
+  show="{{ show1 }}"
+  closeable
+  close-icon="close"
+  position="bottom"
+  custom-style="height: 70%"
+  bind:close="onClose1"
+  round
+>
+  <view>
+    <view class="getMoney">
+      <view>提现金额</view>
+      <van-field
+        value="{{ txPrice }}"
+        clearable
+        label="￥"
+        size="large"
+        placeholder=""
+        type="number"
+        bind:change="onPriceChange"
+        error-message="{{message}}"
+      />
+      <view class="tooltip m-t-20 m-l-30">
+        当前可提现资产为{{ktxmoney}}，
+        <text class="allTx" bindtap="allTx">全部提现</text>
+      </view>
+    </view>
+    <view class='footer'>
+      <van-button color="#3a83ea" round size='large' bindtap='getPrice' disabled="{{message==''&&txPrice&&txPrice>0?false:true}}">提  现</van-button>
+    </view>
+  </view>
+</van-popup>

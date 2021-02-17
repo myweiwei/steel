@@ -28,16 +28,25 @@
         <image src="../../images/message/zixunjilu.png"/>
         <view>咨询记录</view>
       </view>
+ <view bindtap="goMoney" class="jishizhongxin_item">
+        <image src="../../images/message/qianbao.png"/>
+        <view>钱包</view>
+      </view>
+      
     </view>
   </view>
   <view class="jishizhongxin_square">
     <view style="padding:20rpx;">技师中心</view>
     <view style="width:100%; height:1rpx; border:1rpx solid #fafafa"></view>
-    <view class="jishizhongxin" style='justify-content:space-around'>
-       <view bindtap="onTeacherRegister" class="jishizhongxin_item">
-          <image src="../../images/my/enterprise_icon05.png"/>
-          <view>技师注册</view>
-        </view>
+    <view class="jishizhongxin" style='justify-content:flex-start'>
+      <view bindtap="onTeacherRegister" class="jishizhongxin_item" wx:if='{{isTeacher==0}}'>
+        <image src="../../images/my/enterprise_icon05.png"/>
+        <view>技师注册</view>
+      </view>
+      <view bindtap="onTeacherEdit" class="jishizhongxin_item" wx:if='{{isTeacher==1}}'>
+        <van-icon name="edit" color="#1c43aa" size="60rpx"/>
+        <view>修改信息</view>
+      </view>
     </view>
   </view>
   <view class="jishizhongxin_square">
@@ -67,60 +76,3 @@
     </view>
   </view>
 </view>
-
-
-<!--pages/mine/mine.wxml-->
-<!-- <view class='my'>
-<button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">aaa</button>
- <view class='top'> 
- <view class='flexStart'>
-      <view class='user'>
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <view>
-        <view class='flexStart'>
-            <open-data type="userNickName"></open-data> 
-            <image  class='sm' src='../../images/my/my_03.png'></image>
-            <text class='smbj'>已实名</text> 
-    </view>
-        <view class='flexStart' style='margin-top:10rpx'>
-          <text class='name1'>余额(元)
-            <text wx:if='{{showPwd=="true"}}'>{{money}}</text>
-            <text wx:if='{{showPwd=="false"}}'>****</text>
-          </text>
-            <image class='sm1' src='../../images/my/my_07.png' data-flag='true' bindtap='showPwdFunc' wx:if='{{showPwd=="false"}}'></image>
-            <image class='sm1' src='../../images/my/zhengyan.png' data-flag='false' bindtap='showPwdFunc' wx:if='{{showPwd=="true"}}'></image>
-        </view>
-      </view>
-    </view>
-  </view> 
-
-  
- <view class='bottom'>
-    <view class='bottomBox flexCenter'>
-      <view wx:for='{{iconList}}' wx:key='{{icon}}' class='lilist {{item.icon}}' data-name='{{item.name}}' bindtap="myPop">
-        <view class='image'>
-          <image src='../../images/my/{{item.icon}}.png'></image>
-        </view>
-        <text>{{item.name}}</text>
-      </view>
-    </view>
-  </view> 
-</view>
-<van-popup
-  show="{{ show }}"
-  closeable
-  close-icon="close"
-  position="bottom"
-  custom-style="height: 70%"
-  bind:close="onClose"
->
-  <view>
-    <view class='price'>
-      <view wx:for='{{priceList}}' class='{{activeIndex==index?"active":""}}' data-index='{{index}}' data-item='{{item}}' bindtap="choosePrice">{{item}}元</view>
-    </view>
-    <view class='footer'>
-      <van-button color="linear-gradient(to right, #4bb0ff, #6149f6)" round size='large' bindtap='addPrice'>提交</van-button>
-    </view>
-  </view>
-</van-popup>  -->
