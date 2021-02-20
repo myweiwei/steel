@@ -41,4 +41,7 @@ textarea {
 .footer {
   background-color: transparent;
 }
+.van-uploader__upload {
+  margin-left:40rpx!important;
+}
 
