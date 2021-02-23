@@ -30,6 +30,13 @@ Page({
       that.setData({ datalist: data.data.data })
     })
   },
+  toPycItemInfo:function(e){
+    let item = e.currentTarget.dataset.bean;
+    console.log(item)
+    wx.navigateTo({
+      url: '/pages/pyq/pyqItemInfo/pyqItemInfo?dynamicId='+item.dynamicId
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

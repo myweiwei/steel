@@ -1,6 +1,6 @@
 <view>
   <scroll-view scroll-y="true" style="height: 100%;" >
-    <view class='flexBetween fan' wx:for="{{datalist}}">
+    <view class='flexBetween fan' wx:for="{{datalist}}"  data-bean="{{item}}" bindtap='toPycItemInfo'>
       <view class='flexStart' style='align-items:flex-start;width:300rpx'>
         <image class='avaImg' src='{{item.headIcon}}'></image>
         <view>

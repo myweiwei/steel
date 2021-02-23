@@ -32,6 +32,14 @@ Page({
     })
   },
 
+  toPycItemInfo:function(e){
+    let item = e.currentTarget.dataset.bean;
+    console.log(item)
+    wx.navigateTo({
+      url: '/pages/pyq/pyqItemInfo/pyqItemInfo?dynamicId='+item.dynamicId
+    })
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */

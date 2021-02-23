@@ -1,20 +1,31 @@
-<!--pages/index/commodity/commodity.wxml-->
-<view class="commodityList">
-<view class="commodityItem" wx:for="{{5}}">
-<view class="card">
-<image class="cardImg"  mode="widthFix" src="https://xuxianfen17.cn/upload/draw/img_7037407c-ff80-4216-88ac-6e25c1e41a711586439584.png">
-</image>
-<text class="contentText">
-商品信息描述商品信息商品信息商品信息商品信息商品信息商品信息商品信息
-</text>
-<view class="row">
-<view style="color:rgb(255, 115, 0)">¥</view>
-<view style="color:rgb(255, 115, 0);font-size:32rpx">60</view>
-<view> / 件</view>
-</view> 
-<view class="row">
-<text style="color:rgb(147, 147, 147)">xxxxxxxxxxx</text> <text style="margin-left: 30rpx;">进店 ></text>
+<view class='search'>
+	<van-search value="{{ searchValue }}" bind:search="onSearchClick" placeholder="搜索商品" />
 </view>
-</view>
-</view>
+<view class="intro">
+	<van-loading color="#a8a8a8" wx:if="{{isLoading}}" vertical class="loading">加载中...</van-loading>
+	<view wx:if="{{noDataShow}}" style="width:80%; margin:200rpx auto;  text-align:center;">
+		<image src="../../../images/common/wushuju01.png" mode="aspectFit"></image>
+		<view style="color:#a8a8a8">没有查询到商品</view>
+	</view>
+	<scroll-view wx:if="{{dataShow}}" scroll-y style="width: 100%; height: 100%;">
+		<view class="commodityList">
+			<view class="commodityItem" wx:for="{{list}}" data-item='{{item}}'>
+				<view class="card">
+					<image class="cardImg" mode="aspectFit" src="{{item.image}}">
+					</image>
+					<text class="contentText">
+					{{item.description}}
+					</text>
+					<view class="row">
+						<view style="color:rgb(255, 115, 0)">¥</view>
+						<view style="color:rgb(255, 115, 0);font-size:32rpx">{{item.price}}</view>
+						<view> / 件</view>
+					</view>
+					<view class="row">
+						<text style="color:rgb(147, 147, 147);  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{item.name}}</text> <text style="margin-left: 30rpx;min-width: 90rpx;">进店 ></text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
 </view>
