@@ -9,13 +9,13 @@
           </view>
       </van-uploader>
       <view class='title'>企业介绍</view>
-      <textarea color class="textarea-bg" placeholder="描述企业发展历程以及开展业务，还可以上传企业相关图片，荣誉证书等..." bindblur="getDataBindTap" />
-      <view class='upList' style='margin:15rpx;'>
+      <textarea color class="textarea-bg" placeholder="描述企业发展历程以及开展业务，还可以上传企业相关图片，荣誉证书等..." bindblur="getDataBindTap" value="{{desc}}"/>
+      <view class='upList' style='margin:15rpx;margin-top:30rpx'>
         <van-uploader file-list="{{ fileList2 }}" max-count="5" deletable="true"  bind:delete="onDelete2" bind:after-read="afterRead2"/>
       </view>
   <!---底部按钮--->
     <view class='footer'>
-      <van-button color="#1777ff" round size='large' bindtap='save'>新增商品</van-button>
+      <van-button color="#1777ff" round size='large' bindtap='save'>保  存</van-button>
   </view>
   </scroll-view>
 </view>

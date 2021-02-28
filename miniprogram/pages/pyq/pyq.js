@@ -165,9 +165,10 @@ Page({
     })
   },
   toPycItemInfo:function(e){
-    // let id = e.currentTarget.dataset.item;
+    let item = e.currentTarget.dataset.bean;
+    console.log(item)
     wx.navigateTo({
-      url: '/pages/pyq/pyqItemInfo/pyqItemInfo'
+      url: '/pages/pyq/pyqItemInfo/pyqItemInfo?dynamicId='+item.dynamicId
     })
   },
   toMy:function(e){
@@ -231,7 +232,7 @@ Page({
     let me = this;
     let sta = e.currentTarget.dataset.sta;
     let arg = {};
-console.log(me.data.userid)
+    console.log(me.data.userid)
     if (sta == 1) {//二级评论
       if(!me.data.commentInfo1){
         return;

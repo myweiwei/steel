@@ -21,13 +21,13 @@
 					</view>
 					<view class='flexEnd'>
 						<!-- 关注 -->
-						<view class='del' data-item='{{item}}' bindtap='fan' data-index='{{index}}'>
+						<view class='del' data-item='{{item}}' catchtap='fan' hover-stop-propagation="true" data-index='{{index}}'>
 							<!-- <van-button color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" type="primary" size="mini" icon="plus">关注</van-button> -->
 							<van-button wx:if='{{item.isOwn!=1}}' style="margin-right: 10rpx;" color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" size="mini" round>
 								{{item.isFollow==0?'+ 关注':'已关注'}} </van-button>
 						</view>
 						<!-- 更多下拉框 -->
-						<van-icon name="arrow-down" data-item='{{item}}' bindtap="showOwnOther" />
+						<van-icon name="arrow-down" data-item='{{item}}' catchtap="showOwnOther" hover-stop-propagation="true"/>
 						<!-- <van-icon name="arrow-down" data-item='{{item}}' wx:if='{{item.isOwn==1}}' bindtap="showOwnOther" />
 						<van-icon name="arrow-up" data-item='{{item}}' wx:else bindtap="showOwnOther" /> -->
 					</view>
@@ -40,7 +40,7 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" bindtap="videoPlay">
+						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
 							<view class="video-cover-box">
 								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
 								</image>
@@ -51,7 +51,7 @@
 						</view>
 						<video wx:if="{{_index == item.videoindex}}" autoplay="false" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
-					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
+					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
 				<!-- <view class='avaBtn flexAround'>
 					<view class='flexCenter'>
@@ -84,8 +84,8 @@
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
 					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
 						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
+							<van-icon hover-stop-propagation="true"  catchtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
+							<van-icon hover-stop-propagation="true"  catchtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
 							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportCount}}</text>
 							<text style="padding-right:10rpx;color:#fd5d81"  wx:else>{{item.supportCount}}</text>
 							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' catchtap="comment" name="chat-o" />
@@ -97,10 +97,10 @@
 			</view>
 		</van-tab>
 		<van-tab name="同城" title-style="{{tabTitle=='同城'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="同城">
-			<view class='ava' wx:for='{{cityList}}' wx:key='id' wx:for-index="index"  bindtap='toPycItemInfo'>
+			<view class='ava' wx:for='{{cityList}}' wx:key='id' wx:for-index="index"  data-bean="{{item}}"  bindtap='toPycItemInfo'>
 				<view class='flexBetween' >
 					<view class='avaInfo flexStart'>
-						<image src="{{item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
+						<image src="{{item.headIcon}}" data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toMy'></image>
 						<view>
 							<text>{{item.nickName?item.nickName:"无"}}</text>
 							<view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
@@ -108,13 +108,13 @@
 					</view>
 					<view class='flexEnd'>
 						<!-- 关注 -->
-						<view class='del' data-item='{{item}}' bindtap='fan' data-index='{{index}}'>
+						<view class='del' data-item='{{item}}' hover-stop-propagation="true"  catchtap='fan' data-index='{{index}}'>
 							<!-- <van-button color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" type="primary" size="mini" icon="plus">关注</van-button> -->
 							<van-button wx:if='{{item.isOwn!=1}}' style="margin-right: 10rpx;" color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" size="mini" round>
 								{{item.isFollow==0?'+ 关注':'已关注'}} </van-button>
 						</view>
 						<!-- 更多下拉框 -->
-						<van-icon name="arrow-down" data-item='{{item}}' bindtap="showOwnOther" />
+						<van-icon name="arrow-down" data-item='{{item}}' hover-stop-propagation="true"  catchtap="showOwnOther" />
 						<!-- <van-icon name="arrow-down" data-item='{{item}}' wx:if='{{item.isOwn==1}}' bindtap="showOwnOther" />
 						<van-icon name="arrow-up" data-item='{{item}}' wx:else bindtap="showOwnOther" /> -->
 					</view>
@@ -127,7 +127,7 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" bindtap="videoPlay">
+						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
 							<view class="video-cover-box">
 								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
 								</image>
@@ -138,7 +138,7 @@
 						</view>
 						<video wx:if="{{_index == item.videoindex}}" poster="../../images/pyq/bofang.png" autoplay="false" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
-					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
+					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
 				<!-- <view class='avaBtn flexAround'>
 					<view class='flexCenter'>
@@ -171,8 +171,8 @@
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
 					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
 						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
+							<van-icon hover-stop-propagation="true"  catchtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
+							<van-icon hover-stop-propagation="true"  catchtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
 							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportCount}}</text>
 							<text style="padding-right:10rpx;color:#fd5d81"  wx:else>{{item.supportCount}}</text>
 							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' catchtap="comment" name="chat-o" />
@@ -186,10 +186,10 @@
 		</van-tab>
 		<van-tab name="最热" title-style="{{tabTitle=='最热'?'color:#1777ff;font-size: 32rpx;':'color:#222;font-size: 29rpx;'}}" title="最热">
 
-			<view class='ava' wx:for='{{popularList}}' wx:key='id' data-bean="{{item}}" bindtap='toPycItemInfo'>
+			<view class='ava' wx:for='{{popularList}}' wx:key='id' data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
-						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
+						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toMy'></image>
 						<view>
 							<text>{{item.nickName?item.nickName:"无"}}</text>
 							<view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
@@ -197,13 +197,13 @@
 					</view>
 					<view class='flexEnd'>
 						<!-- 关注 -->
-						<view class='del' data-item='{{item}}' bindtap='fan' data-index='{{index}}'>
+						<view class='del' data-item='{{item}}' hover-stop-propagation="true"  catchtap='fan' data-index='{{index}}'>
 							<!-- <van-button color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" type="primary" size="mini" icon="plus">关注</van-button> -->
 							<van-button wx:if='{{item.isOwn!=1}}' style="margin-right: 10rpx;" color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" size="mini" round>
 								{{item.isFollow==0?'+ 关注':'已关注'}} </van-button>
 						</view>
 						<!-- 更多下拉框 -->
-						<van-icon name="arrow-down" data-item='{{item}}' bindtap="showOwnOther" />
+						<van-icon name="arrow-down" data-item='{{item}}' hover-stop-propagation="true"  catchtap="showOwnOther" />
 						<!-- <van-icon name="arrow-down" data-item='{{item}}' wx:if='{{item.isOwn==1}}' bindtap="showOwnOther" />
 						<van-icon name="arrow-up" data-item='{{item}}' wx:else bindtap="showOwnOther" /> -->
 					</view>
@@ -216,7 +216,7 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" bindtap="videoPlay">
+						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
 							<view class="video-cover-box">
 								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
 								</image>
@@ -227,7 +227,7 @@
 						</view>
 						<video wx:if="{{_index == item.videoindex}}" autoplay="false" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
-					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
+					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
 				<!-- <view class='avaBtn flexAround'>
 					<view class='flexCenter'>
@@ -260,8 +260,8 @@
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
 					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
 						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
+							<van-icon hover-stop-propagation="true"  catchtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
+							<van-icon hover-stop-propagation="true"  catchtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
 							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportCount}}</text>
 							<text style="padding-right:10rpx;color:#fd5d81"  wx:else>{{item.supportCount}}</text>
 							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' catchtap="comment" name="chat-o" />
@@ -277,7 +277,7 @@
 			<view class='ava' wx:for='{{recommendList}}' wx:key='id' data-bean="{{item}}" bindtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
-						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
+						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toMy'></image>
 						<view>
 							<text>{{item.nickName?item.nickName:"无"}}</text>
 							<view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
@@ -285,13 +285,13 @@
 					</view>
 					<view class='flexEnd'>
 						<!-- 关注 -->
-						<view class='del' data-item='{{item}}' bindtap='fan' data-index='{{index}}'>
+						<view class='del' data-item='{{item}}' hover-stop-propagation="true"  catchtap='fan' data-index='{{index}}'>
 							<!-- <van-button color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" type="primary" size="mini" icon="plus">关注</van-button> -->
 							<van-button wx:if='{{item.isOwn!=1}}' style="margin-right: 10rpx;" color="{{item.isFollow==0?'#1777ff':'#cacaca'}}" size="mini" round>
 								{{item.isFollow==0?'+ 关注':'已关注'}} </van-button>
 						</view>
 						<!-- 更多下拉框 -->
-						<van-icon name="arrow-down" data-item='{{item}}' bindtap="showOwnOther" />
+						<van-icon name="arrow-down" data-item='{{item}}' hover-stop-propagation="true"  catchtap="showOwnOther" />
 						<!-- <van-icon name="arrow-down" data-item='{{item}}' wx:if='{{item.isOwn==1}}' bindtap="showOwnOther" />
 						<van-icon name="arrow-up" data-item='{{item}}' wx:else bindtap="showOwnOther" /> -->
 					</view>
@@ -304,7 +304,7 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" bindtap="videoPlay">
+						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
 							<view class="video-cover-box">
 								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
 								</image>
@@ -315,7 +315,7 @@
 						</view>
 						<video wx:if="{{_index == item.videoindex}}" autoplay="false" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
-					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
+					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
 				<!-- <view class='avaBtn flexAround'>
 					<view class='flexCenter'>
@@ -348,8 +348,8 @@
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
 					<view style="font-size:32rpx;text-align: left; text-align: center;  position: absolute;right: 40rpx;">
 						<view style="display: flex;flex-direction: row;align-items: center;color:#aaa">
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
-							<van-icon bindtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
+							<van-icon hover-stop-propagation="true"  catchtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like-o" wx:if='{{item.isSupport!=1}}' />
+							<van-icon hover-stop-propagation="true"  catchtap='addSc' custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' data-index="{{index}}" name="like" color="#fd5d81" wx:else />
 							<text style="padding-right:10rpx;"  wx:if='{{item.isSupport!=1}}' >{{item.supportCount}}</text>
 							<text style="padding-right:10rpx;color:#fd5d81"  wx:else>{{item.supportCount}}</text>
 							<van-icon custom-style="font-size:40rpx; margin: 0 10rpx;" data-item='{{item}}' catchtap="comment" name="chat-o" />

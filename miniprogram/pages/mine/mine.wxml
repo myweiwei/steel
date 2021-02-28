@@ -52,13 +52,17 @@
   <view class="jishizhongxin_square">
     <view style="padding:20rpx;">企业中心</view>
     <view style="width:100%; height:1rpx; border:1rpx solid #fafafa"></view>
-    <view class="jishizhongxin" style='justify-content:space-around'>
-       <view bindtap="onRegister" class="jishizhongxin_item">
+    <view class="jishizhongxin" style='justify-content:flex-start'>
+       <view bindtap="onRegister" class="jishizhongxin_item" wx:if='{{isEnterprise==0}}'>
           <image src="../../images/my/enterprise_icon01.png"/>
           <view>认证企业</view>
         </view>
+        <view bindtap="onEnterpriseEdit" class="jishizhongxin_item" wx:if='{{isEnterprise==1}}'>
+          <van-icon name="edit" color="#1c43aa" size="60rpx"/>
+          <view>修改信息</view>
+        </view>
         <view bindtap="onShowManager" class="jishizhongxin_item">
-           <image src="../../images/my/enterprise_icon02.png"/>
+           <van-icon name="label-o" color="orange" size="60rpx"/>
            <view>展示面管理</view>
         </view>
         <view  bindtap="onGoodsManager" class="jishizhongxin_item">
@@ -69,10 +73,10 @@
            <image src="../../images/my/enterprise_icon04.png"/>
            <view bindtap="">动态管理</view>
         </view>
-         <view bindtap="goEnterprise" class="jishizhongxin_item">
+         <!-- <view bindtap="goEnterprise" class="jishizhongxin_item">
            <image src="../../images/my/enterprise_icon05.png"/>
            <view>员工管理</view>
-        </view>
+        </view> -->
     </view>
   </view>
 </view>

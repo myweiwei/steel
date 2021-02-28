@@ -1,20 +1,72 @@
-// pages/index/commodity/commodity.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    searchValue:'',
+    dataShow:false,
+    noDataShow:false,
+    isLoading:false,
+    list:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    
+        this.setData({
+         _index:null
+        })
+        that.setData({
+          baseUrl: app.globalData.baseUrl,
+          dynamicId:options.dynamicId
+        })
+        if(app.globalData.token!=''){
+          that.initView();
+        }
+        else {
+          app.getUser(that.initView);
+        }
   },
+  initView:function(){
+    var me=this;
+    me.getList(me.data.searchValue)
+  },
+  getList:function(goodAtStr){
+    let me = this;
+    
+    app.wxRequest('get', '/enterprise/vipGoods?pageNum=1&pageSize=10&goodsName='+goodAtStr, {}, function (data) {
 
+      console.log(data.data.data)
+      if (data.data.data.status == 200) {
+        me.setData({list: data.data.data.data.list});
+        me.setData({isLoading:false})
+        if(data.data.data.data.list.length > 0){
+          me.setData({dataShow:true});
+          me.setData({noDataShow:false});
+        }
+        else{
+          me.setData({noDataShow:true});
+          me.setData({dataShow:false})
+        }
+      }
+
+    })
+  },
+  /**
+   * 点击搜索
+   */
+  onSearchClick:function(e){
+    wx.setBackgroundColor({
+      backgroundColor: '#e1e1e1', // 窗口的背景色为灰色
+    })
+    var me=this;
+    me.getList(e.detail);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -14,7 +14,8 @@ Page({
     money:0,
     showPwd:'false',
     countList:{},
-    isTeacher:0
+    isTeacher:0,
+    isEnterprise:0
   },
   onTeacherRegister:function(){
     wx.navigateTo({
@@ -24,6 +25,11 @@ Page({
   onTeacherEdit:function(){
     wx.navigateTo({
       url: '/pages/mine/editTeacher/editTeacher'
+    })
+  },
+  onEnterpriseEdit:function(){
+    wx.navigateTo({
+      url: '/pages/mine/editEnterprise/editEnterprise'
     })
   },
   goMoney:function(){
@@ -51,7 +57,8 @@ Page({
       me.setData({
         headIcon:res.data.data.headIcon,
         name:res.data.data.nickName,
-        isTeacher: res.data.data.isTeacher
+        isTeacher: res.data.data.isTeacher,
+        isEnterprise: res.data.data.isEnterprise
       })
     }) 
   },
