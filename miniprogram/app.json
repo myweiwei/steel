@@ -13,11 +13,8 @@
     "pages/index/comment/comment",
     "pages/index/teacherInfo/teacherInfo",
     "pages/product/product",
-<<<<<<< HEAD
-=======
     
     "pages/pyq/pyqItemInfo/pyqItemInfo",
->>>>>>> 45f7cd6a4bf465f90eab2c991ea15edf239b6913
     "pages/pyq/mine/mine",
     "pages/pyq/search/search",
     "pages/near/near",

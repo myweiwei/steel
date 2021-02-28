@@ -76,7 +76,7 @@
 							<view style="width: 100%; text-align: center;">
 								<image style="width: 100rpx; height: 100rpx;border-radius: 8rpx;" src="{{item.enterpriseLogo}}" />
 							</view>
-							<text style="margin-top:10rpx">{{item.enterpriseName}}</text>
+							<text style="margin-top:10rpx; font-size:26rpx;">{{item.enterpriseName}}</text>
 						</view>
 					</view>
 				</view>
