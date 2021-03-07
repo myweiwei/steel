@@ -162,17 +162,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getUserInfo({
-      success:function(res){
-        console.log(res);
-        var avatarUrl = 'userInfo.avatarUrl';
-        var nickName = 'userInfo.nickName';
-        that.setData({
-          [avatarUrl]: res.userInfo.avatarUrl,
-          [nickName]:res.userInfo.nickName,
-        })
-      }
-    })
+   
   },
 
   /**
