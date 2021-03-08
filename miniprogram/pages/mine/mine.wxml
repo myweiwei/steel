@@ -2,7 +2,7 @@
   <view class="pure_top">
     <view  bindtap="toMy" class="head">
       <image wx:if="{{headIcon}}" src="{{headIcon}}" style="width:120rpx; height:120rpx;"></image>
-      <!-- <open-data type="userAvatarUrl"></open-data> -->
+      <open-data type="userAvatarUrl" wx:else></open-data>
     </view>
     <view class="name">
       <open-data type="userNickName"></open-data>
