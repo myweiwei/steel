@@ -22,7 +22,7 @@
 						<view> / 件</view>
 					</view>
 					<view class="row">
-						<text style="color:rgb(147, 147, 147);  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{item.name}}</text> <text style="margin-left: 30rpx;min-width: 90rpx;">进店 ></text>
+						<text style="color:rgb(147, 147, 147);  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{item.name}}</text> <text  data-distance="{{item.distance}}" bindtap='goEnterprise'  style="margin-left: 30rpx;min-width: 90rpx;">进店 ></text>
 					</view>
 				</view>
 			</view>

@@ -67,7 +67,7 @@
 						</view>
 						<view>
 							<view class='commName'>
-								<text wx:if='{{item.fromUid!=userid}}'>{{item.send}}</text>
+								<text wx:if='{{item.fromUid!=meId}}'>{{item.send}}</text>
 								<text wx:else>我</text>
 							</view>
 							<view>

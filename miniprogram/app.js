@@ -48,6 +48,7 @@ App({
             },
             success: function (data) {
               me.globalData.token= data.data.data;
+              me. getUserInfo();
               callback(me.globalData.token);
             },
             error: function (err) {
@@ -57,6 +58,18 @@ App({
         }
       }
     });
+  },
+  getUserInfo: function () {
+    let me = this;
+    me.wxRequest('get', 
+    '/personal/user',
+    {},
+    function(data){
+      me.globalData.userId=data.data.data.userId;
+      me.globalData.userIcon=data.data.data.headIcon;
+      console.log(data.data.data.userId)
+      console.log(data.data.data.headIcon)
+    })
   },
   // wxRequestFrom( url,header, data, callback, callback1,errFun) {
 

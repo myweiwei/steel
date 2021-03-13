@@ -28,7 +28,7 @@ Page({
   },
   onItemClick:function(event){
     var distance = event.currentTarget.dataset.distance;
-    var enterpriseId = event.currentTarget.dataset.id;
+    var enterpriseId = event.currentTarget.dataset.enterpriseId;
     wx.navigateTo({
       url: '/pages/enterprise/enterpriseDetail/enterpriseDetail?distance=' + distance  + "&enterpriseId=" + enterpriseId
     });
