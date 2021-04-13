@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    meId:"",
     itemData:{},
     inputType:"1",// 1 表示一级评论
     userid: "",
@@ -77,9 +78,10 @@ Page({
     console.log(me.data.inputType == "1")
     if (me.data.inputType == "1") {//一级评论
       arg.parentCommentId = 0;
-      arg.dynamicId = me.data.commentId;
-      arg.toUid = me.data.userid;
+      arg.dynamicId = me.data.itemData.dynamicId;
+      arg.toUid = me.data.itemData.userId;
       arg.content = me.data.commentInfo;
+      console.log(arg.dynamicId+"  "+arg.toUid+"   "+arg.content)
     } else  {
       arg.parentCommentId = me.data.commentItem.commentId;
       arg.dynamicId = me.data.commentItem.dynamicId;
@@ -106,7 +108,7 @@ Page({
         avaShow1: false,
         commentInfo: ""
       })
-      me.getComment(me.data.commentId)
+      me.getComment(me.data.itemData.dynamicId)
       // console.log(me.data.tabTitle);
       // me.initData();
     })
@@ -168,6 +170,7 @@ Page({
          _index:null
         })
         that.setData({
+          meId:app.globalData.userId,
           baseUrl: app.globalData.baseUrl,
           dynamicId:options.dynamicId
         })
@@ -211,7 +214,7 @@ Page({
 // 评论一下吧
     let me = this;
     console.log(e.currentTarget.dataset)
-    if (e.currentTarget.dataset.item.fromUid == me.data.userid) {
+    if (e.currentTarget.dataset.item.fromUid ==  app.globalData.userid) {
       me.data.huifu = '回复@我:'
     }
     else {

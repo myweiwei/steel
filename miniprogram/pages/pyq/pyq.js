@@ -217,7 +217,7 @@ Page({
   },
   toComment: function (e) {
     let me = this;
-    if (e.currentTarget.dataset.item.fromUid == me.data.userid) {
+    if (e.currentTarget.dataset.item.fromUid == app.globalData.userid) {
       e.currentTarget.dataset.item.send1 = '回复@我:'
     }
     else {
@@ -250,6 +250,7 @@ Page({
       arg.dynamicId = me.data.commentId;
       arg.toUid = me.data.userid;
       arg.content = me.data.commentInfo;
+      console.log(arg.dynamicId+"  "+arg.toUid+"   "+arg.content)
     }
     me.saveComment(arg);
   },
@@ -794,7 +795,8 @@ Page({
   onLoad: function (options) {
     let that = this;
     that.setData({
-      statusBarHeight: app.globalData.statusBarHeight
+      statusBarHeight: app.globalData.statusBarHeight,
+      meId: app.globalData.userId
     })
       
         this.setData({

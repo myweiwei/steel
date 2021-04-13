@@ -67,6 +67,13 @@ Page({
     var me=this;
     me.getList(e.detail);
   },
+  goEnterprise:function(event){
+    var distance = event.currentTarget.dataset.distance;
+    var enterpriseId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/enterprise/enterpriseDetail/enterpriseDetail?distance=' + distance  + "&enterpriseId=" + enterpriseId
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

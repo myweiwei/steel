@@ -14,7 +14,7 @@
  <scroll-view scroll-y="true" style="height: calc(100% - 130px);background:#f5f6f6" >
   <view wx:for="{{enterpriseList}}" wx:for-item="item" class="enterpriseList"
    data-id="{{item.enterpriseId}}"
-   data-distance="{{item.distance}}"
+   data-distance="{{item}}"
    bindtap="onItemClick">
     <view class="top">
       <view class='flexBetween'>

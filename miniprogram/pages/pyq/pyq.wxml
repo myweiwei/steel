@@ -373,7 +373,7 @@
 					</view>
 					<view>
 						<view class='commName'>
-							<text wx:if='{{item.fromUid!=userid}}'>{{item.send}}</text>
+							<text wx:if='{{item.fromUid!=meId}}'>{{item.send}}</text>
 							<text wx:else>我</text>
 						</view>
 						<view>
@@ -393,10 +393,10 @@
 								</view>
 								<view>
 									<view class='commName'>
-										<text wx:if='{{itemName.fromUid!=userid}}'>{{itemName.send}}</text>
-										<text wx:if='{{itemName.fromUid==userid}}'>我</text>
+										<text wx:if='{{itemName.fromUid!=meId}}'>{{itemName.send}}</text>
+										<text wx:if='{{itemName.fromUid==meId}}'>我</text>
 										<text class='huifu'>回复</text>
-										<text wx:if='{{itemName.toUid!=userid}}'>{{itemName.receive}}</text>
+										<text wx:if='{{itemName.toUid!=meId}}'>{{itemName.receive}}</text>
 										<text wx:else>我</text>
 									</view>
 									<view>
