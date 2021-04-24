@@ -40,16 +40,16 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
+						<!-- <view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
 							<view class="video-cover-box">
 								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
 								</image>
-								<!-- <view class="video-image" style='width:100%;height:100%;background:transparent'></view> -->
+						
 							</view>
-							<!-- 播放按钮 -->
+					
 							<image class="video-image-play" src="../../images/pyq/bofang.png" mode="scaleToFill"></image>
-						</view>
-						<video wx:if="{{_index == item.videoindex}}" autoplay="false" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+						</view> -->
+						<video  id="{{'gz'+_index}}" play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true"  src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
@@ -127,16 +127,7 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
-							<view class="video-cover-box">
-								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
-								</image>
-								<!-- <view class="video-image" style='width:100%;height:100%;background:transparent'></view> -->
-							</view>
-							<!-- 播放按钮 -->
-							<image class="video-image-play" src="../../images/pyq/bofang.png" mode="scaleToFill"></image>
-						</view>
-						<video wx:if="{{_index == item.videoindex}}" poster="../../images/pyq/bofang.png" autoplay="false" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+						<video  id="{{'tc'+_index}}" play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true" wx:if="{{_index == item.videoindex}}"   src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
@@ -216,16 +207,7 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
-							<view class="video-cover-box">
-								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
-								</image>
-								<!-- <view class="video-image" style='width:100%;height:100%;background:transparent'></view> -->
-							</view>
-							<!-- 播放按钮 -->
-							<image class="video-image-play" src="../../images/pyq/bofang.png" mode="scaleToFill"></image>
-						</view>
-						<video wx:if="{{_index == item.videoindex}}" autoplay="false" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+						<video  id="{{'zr'+_index}}" play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true" wx:if="{{_index == item.videoindex}}"  src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
@@ -304,16 +286,8 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<view data-id="{{item.videoindex}}" class="video-image-box shipin-list" style="display: {{_index == item.videoindex ? 'none' : 'block' }};" hover-stop-propagation="true"  catchtap="videoPlay">
-							<view class="video-cover-box">
-								<image class="video-image" src="../../images/index/ban.png" mode="aspectFit">
-								</image>
-								<!-- <view class="video-image" style='width:100%;height:100%;background:transparent'></view> -->
-							</view>
-							<!-- 播放按钮 -->
-							<image class="video-image-play" src="../../images/pyq/bofang.png" mode="scaleToFill"></image>
-						</view>
-						<video wx:if="{{_index == item.videoindex}}" autoplay="false" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+					
+						<video id="{{'tj'+_index}}" play-btn-position="center"  enable-play-gesture="true"   catchtap="son"   custom-cache="{{false}}"   src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
