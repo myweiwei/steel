@@ -722,12 +722,12 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
           me.data.popularList[index].isSupport=support;
           if(support==0){
             me.data.popularList[index].supportCount=me.data.popularList[index].supportCount-1;
-           me.removeListItem(me.data.popularList[index].supportUsersIcon,me.data.meId);
+           me.removeListItem(me.data.popularList[index].supportUsersIcon,app.globalData.userId);
                    // me.data.popularList[index].supportUsersIcon.splice(me.data.popularList[index].supportUsersIcon.length-1,1)
           }else{
             me.data.popularList[index].supportCount=me.data.popularList[index].supportCount+1;
-            me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
-             // me.data.popularList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+            me.data.popularList[index].supportUsersIcon.push({supportUsersIcon:app.globalData.userIcon,sid:app.globalData.userId})
+             // me.data.popularList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:app.globalData.userIcon,sid:app.globalData.userId})
           }
          me.setData({
            popularList:me.data.popularList
@@ -736,12 +736,12 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
         me.data.cityList[index].isSupport=support;
         if(support==0){
          me.data.cityList[index].supportCount=me.data.cityList[index].supportCount-1;
-         me.removeListItem(me.data.cityList[index].supportUsersIcon,me.data.meId);
+         me.removeListItem(me.data.cityList[index].supportUsersIcon,app.globalData.userId);
                  // me.data.cityList[index].supportUsersIcon.splice(me.data.cityList[index].supportUsersIcon.length-1,1)
         }else{
          me.data.cityList[index].supportCount=me.data.cityList[index].supportCount+1;
-           me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
-           // me.data.cityList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+           me.data.cityList[index].supportUsersIcon.push({supportUsersIcon:app.globalData.userIcon,sid:app.globalData.userId})
+           // me.data.cityList[index].supportUsersIcon.splice(0,0,{supportUsersIcon:app.globalData.userIcon,sid:app.globalData.userId})
         }
        me.setData({
          cityList:me.data.cityList
@@ -750,11 +750,11 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
         me.data.followList[index].isSupport=support;
         if(support==0){
          me.data.followList[index].supportCount=me.data.followList[index].supportCount-1;
-         me.removeListItem(me.data.followList[index].supportUsersIcon,me.data.meId);
+         me.removeListItem(me.data.followList[index].supportUsersIcon,app.globalData.userId);
                
         }else{
          me.data.followList[index].supportCount=me.data.followList[index].supportCount+1;
-           me.data.followList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+           me.data.followList[index].supportUsersIcon.push({supportUsersIcon:app.globalData.userIcon,sid:app.globalData.userId})
         }
        me.setData({
         followList:me.data.followList
@@ -764,11 +764,11 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
         me.data.recommendList[index].isSupport=support;
         if(support==0){
          me.data.recommendList[index].supportCount=me.data.recommendList[index].supportCount-1;
-         me.removeListItem(me.data.recommendList[index].supportUsersIcon,me.data.meId);
+         me.removeListItem(me.data.recommendList[index].supportUsersIcon,app.globalData.userId);
                
         }else{
          me.data.recommendList[index].supportCount=me.data.recommendList[index].supportCount+1;
-           me.data.recommendList[index].supportUsersIcon.push({supportUsersIcon:me.data.meIcon,sid:me.data.meId})
+           me.data.recommendList[index].supportUsersIcon.push({supportUsersIcon:app.globalData.userIcon,sid:app.globalData.userId})
         }
        me.setData({
         recommendList:me.data.recommendList
@@ -844,7 +844,7 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
   },
   initView:function(){
     var me=this;
-    me.getUserInfo();
+    // me.getUserInfo();
     me.getLoc();
     if(me.data.tabTitle=="最热"){
       me.getPopularList();

@@ -270,6 +270,7 @@ Page({
       },
       success: function (res) {
      var headIcon=   JSON.parse(res.data).data
+     app.globalData.userIcon=headIcon;
         me.setData({
           headIcon: headIcon
         });
