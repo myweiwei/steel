@@ -195,18 +195,31 @@ Page({
   },
   //播放按钮点击时触发触发
   videoPlay(e) {
-    let _index = e.currentTarget.dataset.id
-    this.setData({ //让video组件显示出来，不然点击时没有效果
-      _index
-    })
+    let me=this;
+    // let indexId = e.currentTarget.dataset.id
+    // if(me.data.tabTitle=="最热"){
+    //   me._index="zr-"+ indexId
+    //  }else if(me.data.tabTitle=="同城"){
+    //    //  me.getCityList(me.unGeo);
+    //    me._index="tc-"+ indexId
+    //  }else if(me.data.tabTitle=="关注"){
+    //   me._index="gz-"+ indexId
+    //  }else if(me.data.tabTitle=="推荐"){
+    //   me._index="tj-"+ indexId
+    //  }
+    //  console.log(me._index)
+console.log(indexId)
+this.setData({ //让video组件显示出来，不然点击时没有效果
+  _index:me._index
+})
     //停止正在播放的视频
-    let videoContextPrev = wx.createVideoContext(_index.toString())
+    let videoContextPrev = wx.createVideoContext(me._index)
     videoContextPrev.stop();
 
     setTimeout(() => {
       //将点击视频进行播放
-      let videoContext = wx.createVideoContext(_index)
-      videoContext.play();
+      // let videoContext = wx.createVideoContext(_index)
+      videoContextPrev.play();
     }, 500)
   },
   preview: function (e) {
@@ -300,6 +313,9 @@ Page({
       })
     }
   },
+  /**
+   * tab切换监听
+   */
   onChangeTab: function (val) {
     let me = this;
     console.log(val)

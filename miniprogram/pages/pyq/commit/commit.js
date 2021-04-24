@@ -99,6 +99,13 @@ Page({
       count:1
     })
   },
+  onOverSize(e){
+    wx.showToast({
+      title: '视频超出大小限制',
+      icon: 'none',
+      duration: 1000
+    })
+  },
   delVideo:function(){
     let me=this;
     wx.showModal({
