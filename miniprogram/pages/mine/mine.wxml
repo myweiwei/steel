@@ -1,11 +1,19 @@
 <view class="my">
   <view class="pure_top">
-    <view  bindtap="toMy" class="head">
+    <view  bindtap="selectImg" class="head">
       <image wx:if="{{headIcon}}" src="{{headIcon}}" style="width:120rpx; height:120rpx;"></image>
       <open-data type="userAvatarUrl" wx:else></open-data>
     </view>
     <view class="name">
-      <open-data type="userNickName"></open-data>
+      <!-- <open-data type="userNickName"></open-data> -->
+      <!-- <text>{{name}}</text> -->
+      <input focus="{{inputFocus}}" type="text" style="width:{{nameLen*16.5}}rpx" confirm-type="done" disabled="{{disabled}}" bindinput="onChangeInput" bindfocus="" bindblur="onInputFocusLose" value="{{name}}" maxlength="10"></input>
+       <image bindtap="setEdit" wx:if="{{disabled}}" src="{{headIcon}}" style="width:40rpx; height:40rpx;padding:1rpx"></image>
+    </view>
+        <view class="nameEdit">
+      <!-- <open-data type="userNickName"></open-data> -->
+      <!-- <text>{{name}}</text> -->
+  
     </view>
   </view>
   <view class="vip">

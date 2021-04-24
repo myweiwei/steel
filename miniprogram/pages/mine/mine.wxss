@@ -10,26 +10,48 @@
   height:22%;
   background: #1777ff;
   display:flex;
+
+  flex-direction: row;
+  /*flex 布局*/
+  display: flex;
+  /*实现垂直居中*/
+  align-items: center;
 }
 .head{
   color:#FFFFFF;
   font-size: 30rpx;
   width:120rpx;
   height:120rpx;
-  margin-top: 100rpx;
+  margin-top: 10rpx;
   margin-left: 50rpx;
   border-radius: 50%;  
   border: 1px solid #fff;  
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);  
   overflow:hidden;  
-  display: block;  
+  /* display: block;   */
 
 }
+
+
 .name{
-  margin-top: 130rpx;
+  margin-top: 10rpx;
   margin-left: 50rpx;
   color:#FFFFFF;
   font-size: 35rpx;
+    /*实现垂直居中*/
+    /* height: 100rpx;
+    align-items: center;
+    display: flex;
+    flex-direction: row; */
+    display: flex;
+    flex-direction: row;
+    /*flex 布局*/
+    display: flex;
+    /*实现垂直居中*/
+    align-items: center;
+}
+.nameEdit{
+  margin-top: 130rpx;
 }
 .vip{
   width:100%;
