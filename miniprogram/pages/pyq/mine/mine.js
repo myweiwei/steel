@@ -189,12 +189,31 @@ close: function (e) {
 },
 toComment: function (e) {
   let me = this;
-  if (e.currentTarget.dataset.item.fromUid == me.data.userid) {
-    e.currentTarget.dataset.item.send1 = '回复@我:'
+
+  if (e.currentTarget.dataset.item.fromUid == app.globalData.userId) {
+    return;
+    // e.currentTarget.dataset.item.send1 = '回复@我:'
   }
   else {
     e.currentTarget.dataset.item.send1 = '回复@' + e.currentTarget.dataset.item.send + ':'
   }
+  me.setData({
+    avaShowList: e.currentTarget.dataset.item,
+    avaShow1: true
+  })
+},
+toComment1: function (e) {
+  let me = this;
+// console.log(e.currentTarget.dataset.itemName)
+// console.log(e.currentTarget.dataset.item)
+// console.log(e.currentTarget.dataset.item1)
+  if (e.currentTarget.dataset.item.fromUid == app.globalData.userId) {
+    return;
+  }
+  else {
+    e.currentTarget.dataset.item.send1 = '回复@' + e.currentTarget.dataset.item.send + ':'
+  }
+  e.currentTarget.dataset.item.commentId=e.currentTarget.dataset.item1.commentId;
   me.setData({
     avaShowList: e.currentTarget.dataset.item,
     avaShow1: true
@@ -225,9 +244,11 @@ toComment: function (e) {
 fan(e){
   let me=this;
   var index =e.currentTarget.dataset.index;
+  let uId=e.currentTarget.dataset.item.userId;
   let follow = e.currentTarget.dataset.item.isFollow == 1 ? 0 : 1;
   app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
-    me.data.list[index].isFollow=follow;
+    // me.data.list[index].isFollow=follow;
+    me.replaceListItem(me.data.list,uId,follow);
     me.setData({
       list:me.data.list
       })
@@ -243,18 +264,44 @@ fan(e){
         icon: 'none'
       })
     }
-    
+    var pages = getCurrentPages(); // 获取页面栈
+    var prevPage = pages[pages.length - 2]; // 上一个页面
+    prevPage.setData({
+     backData:{}
+    })
   })
 },
+    /**
+     * 遍历集合替换 关注
+     * @param {*} array 
+     * @param {*} id 
+     * @param {*} data 
+     */
+    replaceListItem: function(array,id,follow){
+      let me=this;
+      for (var i = 0; i < array.length; i++) {
+        if (array[i].userId == id){
+          array[i].isFollow=follow;
+        }
+      }
+      return -1; 
+    },
 toMy:function(e){
   var bean=  e.currentTarget.dataset.bean
   wx.navigateTo({
     url: '/pages/pyq/mine/mine?userId='+bean.userId
   })
 },
+// toPycItemInfo:function(e){
+//   wx.navigateTo({
+//     url: '/pages/pyq/pyqItemInfo/pyqItemInfo'
+//   })
+// },
 toPycItemInfo:function(e){
+  let item = e.currentTarget.dataset.bean;
+  console.log(item)
   wx.navigateTo({
-    url: '/pages/pyq/pyqItemInfo/pyqItemInfo'
+    url: '/pages/pyq/pyqItemInfo/pyqItemInfo?dynamicId='+item.dynamicId
   })
 },
 
@@ -277,6 +324,11 @@ addSc: function (e) {
      }
     me.setData({
       list:me.data.list
+      })
+      var pages = getCurrentPages(); // 获取页面栈
+      var prevPage = pages[pages.length - 2]; // 上一个页面
+      prevPage.setData({
+       backData:{}
       })
     // me.setData
   })

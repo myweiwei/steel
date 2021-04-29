@@ -16,7 +16,8 @@ Page({
     count:0,
     focus:false,
     address:false,
-    columns: ['咨询','求职','招聘'],
+    columns: [],
+    columnList:[],
     dynamicType:'',
     show:false,
     videoType:0
@@ -70,8 +71,12 @@ Page({
   },
   onConfirm1:function(val){
     let me=this;
+    console.log(val.detail)
+    me.data.columnCode = me.data.columnList[val.detail.index].code;
+    console.log(me.data.columnCode)
     me.setData({
       dynamicType: val.detail.value,
+      // type: val.detail.value,
       show: false
     })
   },
@@ -120,6 +125,24 @@ Page({
 
         }
       }
+    })
+  },
+  getDicsType: function () {
+    let me = this;
+    // https://eahost.lileiit.com/other/dics?type=DYNAMIC
+    app.wxRequest('get', 
+    '/other/dics',
+    {type:"DYNAMIC"},
+    function(data){
+      for (var i = 0; i < data.data.data.length; i++) {
+        me.data.columns.push(data.data.data[i].name);
+    }
+     console.log(me.data.columns)
+      me.setData({
+        columns: me.data.columns,
+        columnList: data.data.data
+      })
+      console.log(data.data.data)
     })
   },
   delImg:function(e){
@@ -214,7 +237,8 @@ Page({
     let me=this;
     let data={};
     data.dynamicTitle = me.data.dynamicTitle;
-    data.dynamicType = me.data.dynamicType;
+    data.code = me.data.code;
+    data.dynamicType = me.data.columnCode;
     data.dynamicImgVideo = me.data.fileArr.join(';');
     data.dynamicArea = me.data.province;
     data.videoType = me.data.videoType;
@@ -269,14 +293,13 @@ Page({
         me.setData({
           videoType:0
         })
-        for (let i = 0; i < me.data.fileList.length; i++)        {
+        for (let i = 0; i < me.data.fileList.length; i++){
           if (i == me.data.fileList.length - 1) {
             flag = 1;
           }
           await me.upFile(me.data.fileList[i].path, flag)
         }
-      }
-      else if (me.data.fileList1.length){
+      }else if (me.data.fileList1.length){
         me.setData({
           fileArr:[],
           videoType: 1
@@ -327,6 +350,7 @@ Page({
    */
   onLoad: function (options) {
     this.getsize();
+    this.getDicsType();
   },
   getsize(){
     let that=this;

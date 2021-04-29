@@ -59,6 +59,7 @@ Page({
     statusBarHeight:0,
     ownOther:false, //自己发的更多弹框
     columns:['删除','转发'],
+    backData:null,
     currentdynamic:{}
   },
   showOwnOther(e){
@@ -85,10 +86,13 @@ Page({
     let me=this;
     var index =e.currentTarget.dataset.index;
     let follow = e.currentTarget.dataset.item.isFollow == 1 ? 0 : 1;
+    console.log(e.currentTarget.dataset.item.userId);
+    let uId=e.currentTarget.dataset.item.userId;
     app.wxRequest('post', '/follow/follow/'+e.currentTarget.dataset.item.userId, {}, function (data) {
 
       if(me.data.tabTitle=="最热"){
-        me.data.popularList[index].isFollow=follow;
+        me.replaceListItem(me.data.popularList,uId,follow);
+        // me.data.popularList[index].isFollow=follow;
         me.setData({
           popularList:me.data.popularList
           })
@@ -105,7 +109,8 @@ Page({
           })
         }
     }else if(me.data.tabTitle=="同城"){
-      me.data.cityList[index].isFollow=follow;
+      me.replaceListItem(me.data.cityList,uId,follow);
+      // me.data.cityList[index].isFollow=follow;
       me.setData({
         cityList:me.data.cityList
         })
@@ -122,24 +127,26 @@ Page({
         })
       }
     }else if(me.data.tabTitle=="关注"){
-      me.data.followList[index].isFollow=follow;
-      me.setData({
-        followList:me.data.followList
-        })
-      if (data.data.data == '已关注' || data.data.data == '互相关注') {
-        wx.showToast({
-          title: "已关注",
-          icon: 'none'
-        })
-      }
-      else if (data.data.data == '关注' || data.data.data == '回关') {
-        wx.showToast({
-          title: "已取消关注",
-          icon: 'none'
-        })
-      }
+      me.initData();
+      // me.data.followList[index].isFollow=follow;
+      // me.setData({
+      //   followList:me.data.followList
+      //   })
+      // if (data.data.data == '已关注' || data.data.data == '互相关注') {
+      //   wx.showToast({
+      //     title: "已关注",
+      //     icon: 'none'
+      //   })
+      // }
+      // else if (data.data.data == '关注' || data.data.data == '回关') {
+      //   wx.showToast({
+      //     title: "已取消关注",
+      //     icon: 'none'
+      //   })
+      // }
     }else if(me.data.tabTitle=="推荐"){
-      me.data.recommendList[index].isFollow=follow;
+      me.replaceListItem(me.data.recommendList,uId,follow);
+      // me.data.recommendList[index].isFollow=follow;
       me.setData({
         recommendList:me.data.recommendList
         })
@@ -230,12 +237,31 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
   },
   toComment: function (e) {
     let me = this;
-    if (e.currentTarget.dataset.item.fromUid == app.globalData.userid) {
-      e.currentTarget.dataset.item.send1 = '回复@我:'
+
+    if (e.currentTarget.dataset.item.fromUid == app.globalData.userId) {
+      return;
+      // e.currentTarget.dataset.item.send1 = '回复@我:'
     }
     else {
       e.currentTarget.dataset.item.send1 = '回复@' + e.currentTarget.dataset.item.send + ':'
     }
+    me.setData({
+      avaShowList: e.currentTarget.dataset.item,
+      avaShow1: true
+    })
+  },
+  toComment1: function (e) {
+    let me = this;
+// console.log(e.currentTarget.dataset.itemName)
+// console.log(e.currentTarget.dataset.item)
+// console.log(e.currentTarget.dataset.item1)
+    if (e.currentTarget.dataset.item.fromUid == app.globalData.userId) {
+      return;
+    }
+    else {
+      e.currentTarget.dataset.item.send1 = '回复@' + e.currentTarget.dataset.item.send + ':'
+    }
+    e.currentTarget.dataset.item.commentId=e.currentTarget.dataset.item1.commentId;
     me.setData({
       avaShowList: e.currentTarget.dataset.item,
       avaShow1: true
@@ -246,6 +272,7 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
     let sta = e.currentTarget.dataset.sta;
     let arg = {};
     console.log(me.data.userid)
+    console.log(sta)
     if (sta == 1) {//二级评论
       if(!me.data.commentInfo1){
         return;
@@ -254,9 +281,10 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
       arg.dynamicId = me.data.avaShowList.dynamicId;
       arg.toUid = me.data.avaShowList.fromUid;
       arg.content = me.data.commentInfo1;
+      console.log(arg.parentCommentId+"  "+arg.dynamicId+"   "+arg.toUid)
     }
     else if (sta == 0) {//一级评论
-      if(!me.data.commentInfo){
+      if(!me.data.commentInfo){//296  187   166
         return;
       }
       arg.parentCommentId = 0;
@@ -446,13 +474,13 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
     '/dynamic/dynamicList?pageNum='+me.data.pageDataPopular.pageNum+'&pageSize='+me.data.pageDataPopular.pageSize+'&hot=1',
     {},
     function(data){
-      let count = 0;
-      for(let i=0;i<data.data.data.list.length;i++){
-        if (data.data.data.list[i].videoType=='1'){
-          data.data.data.list[i].videoindex=count;
-          ++count;
-        }
-      }
+      // let count = 0;
+      // for(let i=0;i<data.data.data.list.length;i++){
+      //   if (data.data.data.list[i].videoType=='1'){
+      //     data.data.data.list[i].videoindex=count;
+      //     ++count;
+      //   }
+      // }
       wx.nextTick(() => {
         if(me.data.pageDataPopular.pageNum>1){
           me.setData({
@@ -596,13 +624,13 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
   
       console.log("-----------------------")
       console.log(data.data.data)
-      let count = 0;
-      for(let i=0;i<data.data.data.list.length;i++){
-        if (data.data.data.list[i].videoType=='1'){
-          data.data.data.list[i].videoindex=count;
-          ++count;
-        }
-      }
+      // let count = 0;
+      // for(let i=0;i<data.data.data.list.length;i++){
+      //   if (data.data.data.list[i].videoType=='1'){
+      //     data.data.data.list[i].videoindex=count;
+      //     ++count;
+      //   }
+      // }
       wx.nextTick(() => {
         if(me.data.pageDataFollow.pageNum>1){//判断是否分页
           me.setData({
@@ -636,13 +664,13 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
   
       console.log("-----------------------")
       console.log(data.data.data)
-      let count = 0;
-      for(let i=0;i<data.data.data.list.length;i++){
-        if (data.data.data.list[i].videoType=='1'){
-          data.data.data.list[i].videoindex=count;
-          ++count;
-        }
-      }
+      // let count = 0;
+      // for(let i=0;i<data.data.data.list.length;i++){
+      //   if (data.data.data.list[i].videoType=='1'){
+      //     data.data.data.list[i].videoindex=count;
+      //     ++count;
+      //   }
+      // }
       wx.nextTick(() => {
         if(me.data.cityData.pageNum>1){//判断是否分页
           me.setData({
@@ -673,13 +701,13 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
   
       console.log("-----------------------")
       console.log(data.data.data)
-      let count = 0;
-      for(let i=0;i<data.data.data.list.length;i++){
-        if (data.data.data.list[i].videoType=='1'){
-          data.data.data.list[i].videoindex=count;
-          ++count;
-        }
-      }
+      // let count = 0;
+      // for(let i=0;i<data.data.data.list.length;i++){
+      //   if (data.data.data.list[i].videoType=='1'){
+      //     data.data.data.list[i].videoindex=count;
+      //     ++count;
+      //   }
+      // }
       wx.nextTick(() => {
         if(me.data.pageDataRecommend.pageNum>1){//判断是否分页
         me.setData({
@@ -702,10 +730,31 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
     })
   },
 
+  /**
+   * 遍历删除
+   * @param {*} array 
+   * @param {*} val 
+   */
    removeListItem: function(array,val){
       for (var i = 0; i < array.length; i++) {
         if (array[i].sid == val){
           array.splice(i, 1);
+        }
+      }
+      return -1; 
+    },
+
+    /**
+     * 遍历集合替换 关注
+     * @param {*} array 
+     * @param {*} id 
+     * @param {*} data 
+     */
+    replaceListItem: function(array,id,follow){
+      let me=this;
+      for (var i = 0; i < array.length; i++) {
+        if (array[i].userId == id){
+          array[i].isFollow=follow;
         }
       }
       return -1; 
@@ -765,10 +814,10 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
         if(support==0){
          me.data.recommendList[index].supportCount=me.data.recommendList[index].supportCount-1;
          me.removeListItem(me.data.recommendList[index].supportUsersIcon,app.globalData.userId);
-               
+        
         }else{
          me.data.recommendList[index].supportCount=me.data.recommendList[index].supportCount+1;
-           me.data.recommendList[index].supportUsersIcon.push({supportUsersIcon:app.globalData.userIcon,sid:app.globalData.userId})
+         me.data.recommendList[index].supportUsersIcon.push({supportUsersIcon:app.globalData.userIcon,sid:app.globalData.userId})
         }
        me.setData({
         recommendList:me.data.recommendList
@@ -827,6 +876,11 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
         else {
           app.getUser(that.initView);
         }
+
+
+  },
+  onRefreshDate:function(e){
+         this.initData();
   },
   getUserInfo: function () {
     let me = this;
@@ -844,12 +898,12 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
   },
   initView:function(){
     var me=this;
-    // me.getUserInfo();
+    me.getUserInfo();
     me.getLoc();
     if(me.data.tabTitle=="最热"){
       me.getPopularList();
      }else if(me.data.tabTitle=="同城"){
-       //  me.getCityList(me.unGeo);
+        // me.getCityList(me.unGeo);
      }else if(me.data.tabTitle=="关注"){
          me.getfollowList();
      }else if(me.data.tabTitle=="推荐"){
@@ -879,7 +933,12 @@ initData: function(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("--------------------------show")
+    console.log("--------------------------show"+this.data.backData)
+    if(this.data.backData!=null){
+      this.onRefreshDate();
+      this.data.backData=null;
+    }
+    
   },
 
   /**

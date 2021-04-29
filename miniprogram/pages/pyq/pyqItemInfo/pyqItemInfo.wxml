@@ -36,8 +36,8 @@
 			<view class='avaCon' wx:if='{{itemData.dynamicImgVideoList.length}}'>
 				<!-- 视频图片层 -->
 				<view wx:if='{{itemData.videoType==1}}'>
-					
-					<video  controls="false" custom-cache="{{false}}"    src="{{itemData.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+				
+					<video play-btn-position="center"  enable-play-gesture="true" controls="false" custom-cache="{{false}}" src="{{itemData.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 				</view>
 				<image wx:if='{{itemData.videoType==0}}' wx:for='{{itemData.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{itemData.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{itemData.dynamicImgVideoList.length>1?(itemData.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' bindtap='preview'></image>
 			</view>
@@ -73,16 +73,16 @@
 					<view wx:if='{{item.openFlag}}'>
 						<view class='commonInner' wx:for='{{item.eaDynamicCommentExtendList}}' wx:for-item="itemName" wx:key='{{commentId}}'>
 							<scroll-view scroll-y="true">
-								<view class='commCon' data-item='{{item}}' data-item1='{{itemName}}' catchtap='toComment' bindlongpress='longPress'>
+								<view class='commCon'  data-item='{{itemName}}' data-item1='{{item}}' catchtap='toComment1' bindlongpress='longPress'>
 									<view class='commImg'>
 										<image class="small" src='{{itemName.headIcon}}'></image>
 									</view>
 									<view>
 										<view class='commName'>
-											<text wx:if='{{itemName.fromUid!=userid}}'>{{itemName.send}}</text>
-											<text wx:if='{{itemName.fromUid==userid}}'>我</text>
+											<text wx:if='{{itemName.fromUid!=meId}}'>{{itemName.send}}</text>
+											<text wx:if='{{itemName.fromUid==meId}}'>我</text>
 											<text class='huifu'>回复</text>
-											<text wx:if='{{itemName.toUid!=userid}}'>{{itemName.receive}}</text>
+											<text wx:if='{{itemName.toUid!=meId}}'>{{itemName.receive}}</text>
 											<text wx:else>我</text>
 										</view>
 										<view>

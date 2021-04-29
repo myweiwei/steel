@@ -82,10 +82,12 @@ Page({
       arg.toUid = me.data.itemData.userId;
       arg.content = me.data.commentInfo;
       console.log(arg.dynamicId+"  "+arg.toUid+"   "+arg.content)
-    } else  {
-      arg.parentCommentId = me.data.commentItem.commentId;
+    } else  {//198  163   谢谢谢谢谢谢 
+
+      arg.parentCommentId = me.data.commentId;
+      // arg.parentCommentId = me.data.commentItem.commentId;
       arg.dynamicId = me.data.commentItem.dynamicId;
-      arg.toUid = me.data.commentItem.fromUid;
+      arg.toUid = me.data.commentItem.toUid;
       arg.content = me.data.commentInfo;
     }
     console.log("---------------------"+arg)
@@ -133,7 +135,11 @@ Page({
             icon: 'none'
           })
         }
-
+        var pages = getCurrentPages(); // 获取页面栈
+        var prevPage = pages[pages.length - 2]; // 上一个页面
+        prevPage.setData({
+         backData:{}
+        })
   })
   },
   getZan: function (id) {
@@ -213,9 +219,11 @@ Page({
   toComment: function (e) {
 // 评论一下吧
     let me = this;
-    console.log(e.currentTarget.dataset)
-    if (e.currentTarget.dataset.item.fromUid ==  app.globalData.userid) {
-      me.data.huifu = '回复@我:'
+    console.log(e.currentTarget.dataset.item.fromUid)
+    console.log(app.globalData.userId)
+    if (e.currentTarget.dataset.item.fromUid ==  app.globalData.userId) {
+      // me.data.huifu = '回复@我:'
+      return;
     }
     else {
       me.data.huifu = '回复@' + e.currentTarget.dataset.item.send + ':'
@@ -227,6 +235,27 @@ Page({
       commentItem:e.currentTarget.dataset.item,
       huifu:me.data.huifu
     })
+  },
+  toComment1: function (e) {
+    let me = this;
+// console.log(e.currentTarget.dataset.itemName)
+console.log(e.currentTarget.dataset.item.fromUid)
+console.log(app.globalData.userId)
+    if (e.currentTarget.dataset.item.fromUid == app.globalData.userId) {
+      return;
+    }
+    else {
+      me.data.huifu = '回复@' + e.currentTarget.dataset.item.send + ':'
+    }
+    // me.data.commentItem.commentId=e.currentTarget.dataset.item1.commentId;
+    me.setData({
+      showInput:true,
+      inputType:"2",   
+      commentId: e.currentTarget.dataset.item1.commentId,
+      commentItem:e.currentTarget.dataset.item,
+      huifu:me.data.huifu
+    })
+
   },
   //键盘失去焦点
   onBindblur:function(){

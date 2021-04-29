@@ -190,6 +190,12 @@
   color: #ee4040;
 }
 
+.huifu {
+  margin: 0 8rpx;
+  color: #818080;
+  font-size: 27rpx;
+}
+
 .view-row {
   /*实现垂直居中*/
   height: 100rpx;

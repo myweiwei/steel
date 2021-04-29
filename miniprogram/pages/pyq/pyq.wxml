@@ -4,8 +4,11 @@
 	<!-- <image class='myImg'  src='../../images/index/jinfang.png' bindtap='toMy'></image> -->
 	<van-tabs active="{{tabTitle}}" offset-top='{{statusBarHeight}}' offset-left='100px' swipeable sticky bind:change="onChangeTab">
 		<view slot="nav-left" style="width:70rpx;height:100%;padding:10rpx 20rpx;background:#fff;">
-			<view style="width:70rpx;height:70rpx;margin:0 10rpx;border-radius: 50%;overflow: hidden;" bindtap='toMe'>
-				<open-data type="userAvatarUrl"></open-data>
+			<view  bindtap='toMe'>
+				<!-- <open-data type="userAvatarUrl"></open-data> -->
+				<!-- <view>{{meIcon}}</view> -->
+						<!-- <image src="../../images/common/wangluo.png" ></image> -->
+						<image  style="width:70rpx;height:70rpx;margin:0 10rpx;border-radius: 50%;overflow: hidden;"  src="{{meIcon}}" ></image>
 			</view>
 
 		</view>
@@ -13,7 +16,7 @@
 			<view class='ava' wx:for='{{followList}}' wx:key='id' data-bean="{{item}}" bindtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
-						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
+						<image src="{{ item.headIcon}}" data-bean="{{item}}" bindtap='toMy'></image>
 						<view>
 							<text>{{item.nickName?item.nickName:"无"}}</text>
 							<view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
@@ -48,8 +51,9 @@
 							</view>
 					
 							<image class="video-image-play" src="../../images/pyq/bofang.png" mode="scaleToFill"></image>
-						</view> -->
-						<video  id="{{'gz'+_index}}" play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true"  src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+						</view> --> 
+						<!-- id="{{'gz'+_index}}" -->
+						<video  play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true"  src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
@@ -78,7 +82,7 @@
 				<view class="tc-cardBottom">
 					<view style=" width: {{(40*((item.supportUsersIcon.length<5?item.supportUsersIcon.length:5))+20)}}rpx;height:60rpx;">
 						<!-- <image  style=" position: absolute;left:80rpx" mode="aspectFill" src="../../images/enterprise/mendiantu.png" /> -->
-						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{index<5}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index)+20}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
+						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{index<5}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index)+20}}rpx" mode="aspectFill" src="{{itemIcon.supportUsersIcon}}" />
 					</view>
 
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
@@ -127,7 +131,8 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<video  id="{{'tc'+_index}}" play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true" wx:if="{{_index == item.videoindex}}"   src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+					<!-- id="{{'tc'+_index}}" -->
+						<video   play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true" wx:if="{{_index == item.videoindex}}"   src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
@@ -180,7 +185,7 @@
 			<view class='ava' wx:for='{{popularList}}' wx:key='id' data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
-						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toMy'></image>
+						<image src="{{item.headIcon}}" data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toMy'></image>
 						<view>
 							<text>{{item.nickName?item.nickName:"无"}}</text>
 							<view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
@@ -207,7 +212,8 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-						<video  id="{{'zr'+_index}}" play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true" wx:if="{{_index == item.videoindex}}"  src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+					 <!-- id="{{'zr'+_index}}" -->
+						<video  play-btn-position="center"  enable-play-gesture="true"  catchtap="son" hover-stop-propagation="true" src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
@@ -236,7 +242,7 @@
 				<view class="tc-cardBottom">
 					<view style=" width: {{(40*((item.supportUsersIcon.length<5?item.supportUsersIcon.length:5))+20)}}rpx;height:60rpx;">
 						<!-- <image  style=" position: absolute;left:80rpx" mode="aspectFill" src="../../images/enterprise/mendiantu.png" /> -->
-						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{index<5}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index)+20}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
+						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{index<5}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index)+20}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon}}" />
 					</view>
 
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
@@ -259,7 +265,7 @@
 			<view class='ava' wx:for='{{recommendList}}' wx:key='id' data-bean="{{item}}" bindtap='toPycItemInfo'>
 				<view class='flexBetween'>
 					<view class='avaInfo flexStart'>
-						<image src="{{ item.headIcon==null?'../../images/enterprise/mendiantu.png':item.headIcon}}" data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toMy'></image>
+						<image src="{{ item.headIcon}}" data-bean="{{item}}" hover-stop-propagation="true"  catchtap='toMy'></image>
 						<view>
 							<text>{{item.nickName?item.nickName:"无"}}</text>
 							<view class='avaTime'>{{item.timeDiff?item.timeDiff:"无"}}</view>
@@ -286,8 +292,8 @@
 				<view class='avaCon' wx:if='{{item.dynamicImgVideoList.length}}'>
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
-					
-						<video id="{{'tj'+_index}}" play-btn-position="center"  enable-play-gesture="true"   catchtap="son"   custom-cache="{{false}}"   src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+					<!-- id="{{'tj'+_index}}"  -->
+						<video play-btn-position="center"  enable-play-gesture="true"   catchtap="son"   custom-cache="{{false}}"   src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
@@ -316,7 +322,7 @@
 				<view class="tc-cardBottom">
 					<view style=" width: {{(40*((item.supportUsersIcon.length<5?item.supportUsersIcon.length:5))+20)}}rpx;height:60rpx;">
 						<!-- <image  style=" position: absolute;left:80rpx" mode="aspectFill" src="../../images/enterprise/mendiantu.png" /> -->
-						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{index<5}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index)+20}}rpx" mode="aspectFill" src="{{ itemIcon.supportUsersIcon==null?'../../images/enterprise/mendiantu.png':itemIcon.supportUsersIcon}}" />
+						<image wx:for="{{item.supportUsersIcon}}" wx:if="{{index<5}}" wx:for-item="itemIcon" data-index="{{index}}" style=" position: absolute;left: {{40*(index)+20}}rpx" mode="aspectFill" src="{{itemIcon.supportUsersIcon}}" />
 					</view>
 
 					<text  wx:if="{{item.supportCount}}" style="font-size:30rpx; margin-left: 5rpx;">等{{item.supportCount}}人点赞</text>
@@ -361,7 +367,7 @@
 				<view wx:if='{{item.openFlag}}'>
 					<view class='commonInner' wx:for='{{item.eaDynamicCommentExtendList}}' wx:for-item="itemName" wx:key='{{commentId}}'>
 						<scroll-view scroll-y="true">
-							<view class='commCon' data-item='{{item}}' data-item1='{{itemName}}' catchtap='toComment' bindlongpress='longPress'>
+							<view class='commCon' data-item='{{itemName}}' data-item1='{{item}}' catchtap='toComment1' bindlongpress='longPress'>
 								<view class='commImg'>
 									<image class="small" src='{{itemName.headIcon}}'></image>
 								</view>
