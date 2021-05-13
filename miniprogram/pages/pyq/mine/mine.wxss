@@ -231,7 +231,10 @@ page{
   width: 50rpx;
   height: 50rpx;
 }
-
+.flexEnd van-icon{
+  margin-right: 20rpx;
+  font-size:40rpx;
+}
 .info {
   color: #666;
   text-align: center;
@@ -321,9 +324,19 @@ button::after {
   border: none;
 }
 
+.optionView{
+  background: white;
+  border-radius:20rpx;
+}
 .option {
-  border-bottom: 1rpx solid #ccc;
-  padding: 20rpx 10rpx;
+  border-bottom: 0.3rpx solid rgb(234, 234, 234);
+  padding: 30rpx 10rpx;
+}
+.optionClose{
+  background: white; 
+  padding: 30rpx 10rpx;
+  margin-top: 20rpx;
+  border-radius:20rpx;
 }
 
 /* 地址 */

@@ -63,7 +63,46 @@ Page({
     currentdynamic:{}
   },
   showOwnOther(e){
-    let item=e.currentTarget.dataset.item;
+     let item=e.currentTarget.dataset.item;
+    //  if(item.isOwn==1){
+    //   wx.showActionSheet({
+    //     itemList: ['转发', '删除'],
+    //     success (res) {
+    //       console.log(res.tapIndex)
+    //       if(res.tapIndex==0){
+    //       this.onShareAppMessage();
+    //       }else if(res.tapIndex==1){
+    //           this.del(e);
+    //       }
+    //     },
+    //     fail (res) {
+    //       console.log(res.errMsg)
+    //     }
+    //   })
+    //  }else{
+    //   wx.showActionSheet({
+    //     itemList: ['转发', '投诉'],
+    //     success (res) {
+    //       console.log(res.tapIndex)
+    //       if(res.tapIndex==0){
+    //         wx.onShareAppMessage(() => {
+    //           return {
+    //             title: '转发标题',
+    //             imageUrl: '' // 图片 URL
+    //           }
+    //         })
+    //       }else if(res.tapIndex==1){
+            
+    //       }
+    //     },
+    //     fail (res) {
+    //       console.log(res.errMsg)
+    //     }
+    //   })
+    //  }
+
+
+    // let item=e.currentTarget.dataset.item;
     console.log(item)
     this.setData({
       ownOther:true,
@@ -200,33 +239,45 @@ Page({
     })
     
   },
+  videoStop(){
+    let me=this;
+        //停止正在播放的视频
+        if(me.data._index){
+         this.videoContextPrev = wx.createVideoContext(me.data._index)
+         this.videoContextPrev.stop();
+         this.setData({ //让video组件显示出来，不然点击时没有效果
+          _index:null
+        })
+        }
+  },
   //播放按钮点击时触发触发
   videoPlay(e) {
     let me=this;
-    // let indexId = e.currentTarget.dataset.id
-    // if(me.data.tabTitle=="最热"){
-    //   me._index="zr-"+ indexId
-    //  }else if(me.data.tabTitle=="同城"){
-    //    //  me.getCityList(me.unGeo);
-    //    me._index="tc-"+ indexId
-    //  }else if(me.data.tabTitle=="关注"){
-    //   me._index="gz-"+ indexId
-    //  }else if(me.data.tabTitle=="推荐"){
-    //   me._index="tj-"+ indexId
-    //  }
-    //  console.log(me._index)
-console.log(indexId)
+
+    me.videoStop();
+
+    let indexId = e.currentTarget.dataset.id
+    if(me.data.tabTitle=="最热"){
+      me.data._index="zr"+ indexId
+     }else if(me.data.tabTitle=="同城"){
+       //  me.getCityList(me.unGeo);
+       me.data._index="tc"+ indexId
+     }else if(me.data.tabTitle=="关注"){
+      me.data._index="gz"+ indexId
+     }else if(me.data.tabTitle=="推荐"){
+      me.data._index="tj"+ indexId
+     }
+     console.log(me.data._index)
+// console.log(indexId)
 this.setData({ //让video组件显示出来，不然点击时没有效果
-  _index:me._index
+  _index:me.data._index
 })
-    //停止正在播放的视频
-    let videoContextPrev = wx.createVideoContext(me._index)
-    videoContextPrev.stop();
+this.videoContextPrev = wx.createVideoContext(me.data._index)
 
     setTimeout(() => {
       //将点击视频进行播放
       // let videoContext = wx.createVideoContext(_index)
-      videoContextPrev.play();
+      this.videoContextPrev.play();
     }, 500)
   },
   preview: function (e) {
@@ -351,6 +402,7 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
       tabTitle:val.detail.title,
       tabActive:val.detail.index
     })
+    me.videoStop();
     me.initData();
   },
   onChange: function (val) {
@@ -560,7 +612,6 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
     
      }
 
-
   },
   getOwnList: function () {
     let me = this;
@@ -585,6 +636,9 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
 
   getLoc: function () {
     let that = this;
+    wx.showLoading({  
+    title: '正在加载...',
+    mask:true});
     wx.getLocation({
       success: function (res) {
         const url = `https://api.map.baidu.com/reverse_geocoding/v3/?ak=FTqHSN5H275UH2yIbPnMlE7qHBnb7etT&output=json&coordtype=wgs84ll&location=${res.latitude},${res.longitude}`;
@@ -608,7 +662,11 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
               });
               wx.hideLoading()
             }
-          }
+          },
+              fail (res) {
+                wx.hideLoading();
+                // console.log(res.errMsg)
+              }
         })
       }
     })
@@ -762,6 +820,7 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
   addSc: function (e) {
     let me = this;
     console.log("123");
+    wx.showLoading({mask:true});
     var index = e.currentTarget.dataset.index;
     let support = e.currentTarget.dataset.item.isSupport == 1 ? 0 : 1;
     var dynamicId = e.currentTarget.dataset.item.dynamicId;
@@ -822,8 +881,9 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
        me.setData({
         recommendList:me.data.recommendList
          })
-      
+         
       }
+      wx.hideLoading();
     })
   },
   //页面滚动触发
@@ -908,7 +968,8 @@ this.setData({ //让video组件显示出来，不然点击时没有效果
          me.getfollowList();
      }else if(me.data.tabTitle=="推荐"){
          me.getRecommendList();
-     }
+     }     
+  
   },
 initData: function(){
   var me=this;
@@ -926,7 +987,7 @@ initData: function(){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log("--------------------------onReady")
   },
 
   /**
@@ -934,10 +995,16 @@ initData: function(){
    */
   onShow: function () {
     console.log("--------------------------show"+this.data.backData)
-    if(this.data.backData!=null){
-      this.onRefreshDate();
-      this.data.backData=null;
+    if(!this.fristShow){
+      this.fristShow=1;
+      console.log("--------------------------show1")
+      return;
     }
+    this.initData();
+    // if(this.data.backData!=null){
+    //   this.onRefreshDate();
+    //   this.data.backData=null;
+    // }
     
   },
 
@@ -945,14 +1012,14 @@ initData: function(){
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("--------------------------onHide"+this.data.backData)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("--------------------------onUnload"+this.data.backData)
   },
 
   /**
@@ -1045,19 +1112,44 @@ initData: function(){
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  onShareAppMessage(options) {
+
+    　// 来自页面内的按钮的转发
+　　if( options.from == 'button' ){
+  this.onClose2();
+  const title=this.data.currentdynamic.dynamicTitle;
+const dynamicId='dynamicId='+this.data.currentdynamic.dynamicId;
     return {
-      path: '/pages/pyq/search/search?id=1',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
+      title: title,//todo
+      // imageUrl: 'xx.jpg',
+      // query: 'dynamicId='+this.data.currentdynamic.dynamicId,
+      // query: dynamicId,
+      path: '/pages/pyq/pyqItemInfo/pyqItemInfo?'+dynamicId
     }
+    options.target
+  }
   }
 })

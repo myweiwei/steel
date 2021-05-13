@@ -27,6 +27,7 @@ Page({
       pageNum: 1,
       pageSize: 100
     },
+    _index:null,
     statusBarHeight:0,  //状态栏高度
     titleBarHeight:0  //标题栏高度
   },
@@ -157,7 +158,7 @@ getList: function () {
         total: data.data.data.total
       })
       }
-      me.spHeight();
+      // me.spHeight();
 
     })
   })
@@ -219,20 +220,34 @@ toComment1: function (e) {
     avaShow1: true
   })
 },
+videoStop(){
+  let me=this;
+      //停止正在播放的视频
+      if(me.data._index){
+       this.videoContextPrev = wx.createVideoContext(me.data._index)
+       this.videoContextPrev.stop();
+       this.setData({ //让video组件显示出来，不然点击时没有效果
+        _index:null
+      })
+      }
+},
   //播放按钮点击时触发触发
   videoPlay(e) {
-    let _index = e.currentTarget.dataset.id
-    this.setData({ //让video组件显示出来，不然点击时没有效果
-      _index
-    })
-    //停止正在播放的视频
-    let videoContextPrev = wx.createVideoContext(_index.toString())
-    videoContextPrev.stop();
+    let me=this;
+    me.videoStop();
+    let indexId = e.currentTarget.dataset.id
+     me.data._index="list"+ indexId
+     console.log(me.data._index)
+// console.log(indexId)
+this.setData({ //让video组件显示出来，不然点击时没有效果
+  _index:me.data._index
+})
+this.videoContextPrev = wx.createVideoContext(me.data._index)
 
     setTimeout(() => {
       //将点击视频进行播放
-      let videoContext = wx.createVideoContext(_index)
-      videoContext.play();
+      // let videoContext = wx.createVideoContext(_index)
+      this.videoContextPrev.play();
     }, 500)
   },
   preview: function (e) {
@@ -264,11 +279,11 @@ fan(e){
         icon: 'none'
       })
     }
-    var pages = getCurrentPages(); // 获取页面栈
-    var prevPage = pages[pages.length - 2]; // 上一个页面
-    prevPage.setData({
-     backData:{}
-    })
+    // var pages = getCurrentPages(); // 获取页面栈
+    // var prevPage = pages[pages.length - 2]; // 上一个页面
+    // prevPage.setData({
+    //  backData:{}
+    // })
   })
 },
     /**
@@ -325,11 +340,11 @@ addSc: function (e) {
     me.setData({
       list:me.data.list
       })
-      var pages = getCurrentPages(); // 获取页面栈
-      var prevPage = pages[pages.length - 2]; // 上一个页面
-      prevPage.setData({
-       backData:{}
-      })
+      // var pages = getCurrentPages(); // 获取页面栈
+      // var prevPage = pages[pages.length - 2]; // 上一个页面
+      // prevPage.setData({
+      //  backData:{}
+      // })
     // me.setData
   })
 },
@@ -496,7 +511,20 @@ onChange1: function (val) {
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (options) {
+    　// 来自页面内的按钮的转发
+    　　if( options.from == 'button' ){
+      this.onClose2();
+      const title=this.data.currentdynamic.dynamicTitle;
+       const dynamicId='dynamicId='+this.data.currentdynamic.dynamicId;
+        return {
+          title: title,//todo
+          // imageUrl: 'xx.jpg',
+          // query: 'dynamicId='+this.data.currentdynamic.dynamicId,
+          // query: dynamicId,
+          path: '/pages/pyq/pyqItemInfo/pyqItemInfo?'+dynamicId
+        }
+        options.target
+      }
   }
 })

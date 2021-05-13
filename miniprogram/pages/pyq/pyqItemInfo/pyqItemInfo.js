@@ -19,6 +19,7 @@ Page({
     commentItem:"",
     dynamicId:'',
     huifu:"评论一下吧",
+    _index:null,
     tabActive:"a"
   },
   getItem: function (id) {
@@ -87,7 +88,7 @@ Page({
       arg.parentCommentId = me.data.commentId;
       // arg.parentCommentId = me.data.commentItem.commentId;
       arg.dynamicId = me.data.commentItem.dynamicId;
-      arg.toUid = me.data.commentItem.toUid;
+      arg.toUid = me.data.commentItem.fromUid;
       arg.content = me.data.commentInfo;
     }
     console.log("---------------------"+arg)
@@ -135,13 +136,27 @@ Page({
             icon: 'none'
           })
         }
-        var pages = getCurrentPages(); // 获取页面栈
-        var prevPage = pages[pages.length - 2]; // 上一个页面
-        prevPage.setData({
-         backData:{}
-        })
+        // var pages = getCurrentPages(); // 获取页面栈
+        // var prevPage = pages[pages.length - 2]; // 上一个页面
+        // prevPage.setData({
+        //  backData:{}
+        // })
   })
   },
+
+    //播放按钮点击时触发触发
+    videoPlay(e) {
+      let me=this;
+      me.setData({
+        _index:1
+      })
+  this.videoContextPrev = wx.createVideoContext("myvideo")
+      setTimeout(() => {
+        //将点击视频进行播放
+        // let videoContext = wx.createVideoContext(_index)
+        this.videoContextPrev.play();
+      }, 500)
+    },
   getZan: function (id) {
     let me = this;
     // https://eahost.lileiit.com/comment/{dynamicId}
@@ -171,7 +186,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    
+    console.log(options)
         this.setData({
          _index:null
         })
@@ -187,22 +202,7 @@ Page({
           app.getUser(that.initView);
         }
   },
-    //播放按钮点击时触发触发
-    videoPlay(e) {
-      let _index = e.currentTarget.dataset.id
-      this.setData({ //让video组件显示出来，不然点击时没有效果
-        _index
-      })
-      //停止正在播放的视频
-      let videoContextPrev = wx.createVideoContext(_index.toString())
-      videoContextPrev.stop();
-  
-      setTimeout(() => {
-        //将点击视频进行播放
-        let videoContext = wx.createVideoContext(_index)
-        videoContext.play();
-      }, 500)
-    },
+
     preview: function (e) {
       wx.previewImage({
         current: e.currentTarget.dataset.current, // 当前显示图片的http链接
@@ -308,8 +308,8 @@ console.log(app.globalData.userId)
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (query) {
+    console.log(query)
   },
 
   /**

@@ -181,6 +181,21 @@ Page({
       me.getTime();
     })
   },
+  getTeacherInfo: function () {
+    let me = this;
+    console.log("getTeacherInfo")
+    // https://eahost.lileiit.com/teacherInfo
+    app.wxRequest('get', '/teacherInfo', {}, function (data) {
+      console.log(data.data.data)
+      // me.setData({
+      // })
+    }, function (errData) {
+      console.log(errData)
+      // me.setData({
+      // })
+    })
+  },
+  
   getTime(){
     let me=this;
     let interval=setInterval(function(){
@@ -345,6 +360,7 @@ Page({
   onLoad: function (options) {
     let me=this;
    // me.getTime();
+   me.getTeacherInfo();
   },
   getUser: function () {
     let me = this;

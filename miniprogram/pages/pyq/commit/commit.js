@@ -1,4 +1,17 @@
-// pages/pyq/commit/commit.js
+const qiniuUploader = require("../../../utils/qiniuUploader.js");
+//index.js
+
+// 初始化七牛相关参数
+function initQiniu(token) {
+  var options = {
+    region: 'NCN', // 华北区
+    uptoken: token,
+    // uptokenURL: 'https://eahost.lileiit.com/personal/getUploadToken',
+    // uptoken: 'xxxx',
+    domain: 'http://ea.lileiit.com/'
+  };
+  qiniuUploader.init(options);
+}
 const app = getApp();
 Page({
   /**
@@ -108,7 +121,7 @@ Page({
     wx.showToast({
       title: '视频超出大小限制',
       icon: 'none',
-      duration: 1000
+      duration: 2000
     })
   },
   delVideo:function(){
@@ -243,6 +256,7 @@ Page({
     data.dynamicArea = me.data.province;
     data.videoType = me.data.videoType;
     app.wxRequest('post', '/dynamic/dynamic', data, function (data) {
+      console.log(data)
       if (data.statusCode==200){
         wx.showToast({
           title: '上传成功',
@@ -259,8 +273,7 @@ Page({
               videoType:0,
               dynamicTitle:''
             })
-           
-            wx.hideLoading()
+            // wx.hideLoading()
             wx.switchTab({
               url: "/pages/pyq/pyq",
             })
@@ -281,6 +294,7 @@ Page({
     var me = this;
     wx.showLoading({
       title: '上传中',
+      mask:true
     })
     let data = {};
     data.dynamicTitle = me.data.dynamicTitle;
@@ -316,34 +330,84 @@ Page({
 
   },
   upFile:function(path,i){
+    
+    // if (i){
+    //   wx.showToast({
+    //     title: '上传失败',
+    //     icon: 'error',
+    //     duration: 1000,
+    //   })
+    //   return;
+    // }
     let me=this;
+    console.log(me.data.token)
+    initQiniu(me.data.token);
     let arr=[];
     arr=me.data.fileArr;
-    return new Promise((resolve,reject)=>{
-      wx.uploadFile({
-        url: app.globalData.baseUrl +'/dynamic/fileupload',
-        filePath: path,
-        name: 'file',
-        formData: {
-        },
-        header: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': app.globalData.token
-        },
-        success: function (res) {
-          arr.push(JSON.parse(res.data).data);
-          if (i == 1 &&res.statusCode == 200){
-            me.setData({
-              fileArr:arr
-            })
-            me.send();
-          }
-          resolve('ok');
-        }, fail: function (err) {
-          reject();
-        }
-      })
-    })
+      // 交给七牛上传
+      qiniuUploader.upload(path, (res) => {
+        console.log(res.imageURL)
+        arr.push(res.imageURL);
+        console.log(arr)
+        me.setData({
+          fileArr:arr
+        })
+
+        me.setData({
+          'imageObject': res
+        });
+        console.log(me.data.imageObject);
+        me.send();
+      }, (error) => {
+        console.log(err)
+        reject();
+        wx.showToast({
+          title: '上传失败',
+          icon: 'error',
+          duration: 1000,
+        })
+      });
+
+    // let arr=[];
+    // arr=me.data.fileArr;
+    // return new Promise((resolve,reject)=>{
+    //   wx.uploadFile({
+    //     url: app.globalData.baseUrl +'/dynamic/fileupload',
+    //     filePath: path,
+    //     name: 'file',
+    //     formData: {
+    //     },
+    //     header: {
+    //       "Content-Type": "multipart/form-data",
+    //       'Authorization': app.globalData.token
+    //     },
+    //     success: function (res) {
+    //       console.log(res.statusCode)
+    //       if (i == 1 &&res.statusCode == 200){
+    //         arr.push(JSON.parse(res.data).data);
+    //         me.setData({
+    //           fileArr:arr
+    //         })
+    //         me.send();
+    //       }else{
+    //         wx.showToast({
+    //           title: '上传失败',
+    //           icon: 'error',
+    //           duration: 1000,
+    //         })
+    //       }
+    //       resolve('ok');
+    //     }, fail: function (err) {
+    //       console.log(err)
+    //       reject();
+    //       wx.showToast({
+    //         title: '上传失败',
+    //         icon: 'error',
+    //         duration: 1000,
+    //       })
+    //     }
+    //   })
+    // })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -351,6 +415,23 @@ Page({
   onLoad: function (options) {
     this.getsize();
     this.getDicsType();
+    this.getToken();
+  },
+  getToken: function () {
+    let me = this;
+    console.log("getTeacherInfo")
+    // https://eahost.lileiit.com/teacherInfo
+    app.wxRequest('get', 'personal/getUploadToken', {}, function (data) {
+      // console.log(data.data.data)
+      var token=data.data.data;
+      me.setData({
+        token:token
+      })
+    }, function (errData) {
+      console.log(errData)
+      // me.setData({
+      // })
+    })
   },
   getsize(){
     let that=this;

@@ -1,11 +1,11 @@
 <view class="head">
 	<view style="margin-top:{{statusBarHeight}}px ;height:{{titleBarHeight}}px;">
-		<van-icon bindtap="onBack" name="arrow-left" custom-style="align-items: center;display: flex;width:65rpx;height: 65rpx;font-size:40rpx;padding:10rpx" />
+		<van-icon bindtap="onBack" name="arrow-left" custom-style="align-items: center;display: flex;width:65rpx;height: 65rpx;font-size:50rpx;padding:10rpx;margin-left: 5rpx;" />
 	</view>
 
-	<view style="width:100%;height:80rpx;padding:15rpx 0;">
+	<view style="width:100%;height:60rpx;padding:15rpx 0;">
 		<view style="position: absolute;right: 20rpx;">
-			<van-button color="rgba(45, 45, 45, 0.372)" hairline round size="small">编辑资料</van-button>
+			<!-- <van-button color="rgba(45, 45, 45, 0.372)" hairline round size="small">编辑资料</van-button> -->
 		</view>
 	</view>
 	<view class="hRow">
@@ -57,7 +57,14 @@
 					<!-- 视频图片层 -->
 					<view wx:if='{{item.videoType==1}}'>
 					<!-- id="{{'tj'+_index}}"  -->
-						<video play-btn-position="center"  enable-play-gesture="true"   catchtap="son"   custom-cache="{{false}}"   src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video>
+						<!-- <video play-btn-position="center"  enable-play-gesture="true"   catchtap="son"   custom-cache="{{false}}"   src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'></video> -->
+
+							<video id="{{'list'+ index}}" enable-progress-gesture="{{false}}"  play-btn-position="center" auto-pause-if-open-native="{{true}}"  enable-play-gesture="{{true}}"  catchtap="son" hover-stop-propagation="{{true}}"  src="{{item.dynamicImgVideoList[0]}}" object-fit='cover'>
+						<view  data-id="{{index}}" catchtap="videoPlay"  class="video-image"  style="display:{{_index == 'list'+ index ? 'none' : 'block'}}">
+						<image style="width:100%;height:100%"  mode="aspectFill"  src="{{item.dynamicImgVideoList[0]+'?vframe/jpg/offset/0'}}"></image> 
+						<image class="video-image-play" src="../../../images/pyq/bofang.png" mode="scaleToFill"></image>
+						</view>
+           </video>
 					</view>
 					<image wx:if='{{item.videoType==0}}' wx:for='{{item.dynamicImgVideoList}}' wx:for-item="itemName" wx:key='{{itemName}}' src='{{itemName}}' data-urls='{{item.dynamicImgVideoList}}' data-current='{{itemName}}' mode='aspectFill' lazy-load class='{{item.dynamicImgVideoList.length>1?(item.dynamicImgVideoList.length==2?"twoImg":"moreImg"):""}}' hover-stop-propagation="true"  catchtap='preview'></image>
 				</view>
@@ -193,12 +200,26 @@
 		</van-cell-group>
 	</van-popup>
 	<!-- 自己发的朋友圈的更多弹框 -->
-	<van-popup show="{{ ownOther }}" position="bottom" custom-style="height: 50%;padding:70px 20rpx;box-sizing:border-box;" round closeable bind:close="onClose2">
+	<!-- <van-popup show="{{ ownOther }}" position="bottom" custom-style="height: 50%;padding:70px 20rpx;box-sizing:border-box;" round closeable bind:close="onClose2">
 		<view class='option'>
 			<button open-type="share">转发</button>
 		</view>
 		<view class='option'>
 			<button wx:if='{{currentdynamic.isOwn==1}}' data-item="{{currentdynamic}}" bindtap='del'>删除</button>
 			<button wx:else data-item="{{currentdynamic}}">投诉</button>
+		</view>
+	</van-popup> -->
+		<van-popup show="{{ ownOther }}" position="bottom" custom-style="padding:20px 20rpx;box-sizing:border-box;background:#00000000;" round  bind:close="onClose2">
+			<view class="optionView">
+	   		<view class='option'>
+	   		<button open-type="share">转发</button>
+	   	</view>
+	   	<view style="padding: 30rpx 10rpx;">
+	   		<button wx:if='{{currentdynamic.isOwn==1}}' data-item="{{currentdynamic}}" bindtap='del'>删除</button>
+	   		<button wx:else data-item="{{currentdynamic}}">投诉</button>
+		  </view>
+  	</view>
+		<view class='optionClose'  bindtap="onClose2" >
+			<button>取消</button>
 		</view>
 	</van-popup>

@@ -13,7 +13,7 @@
 			</view>
 		</van-uploader>
 		<!-- upload-icon="plus"  -->
-		<van-uploader max-size="52428800" compressed="false" bind:oversize="onOverSize" bind:after-read="afterRead1" max-count="1" accept="video"   wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
+		<van-uploader max-size="{{52428800}}" compressed="{{false}}" bind:oversize="onOverSize" bind:after-read="afterRead1" max-count="1" accept="video"   wx:if='{{count==0||(!fileList.length&&!fileList1.length)}}'>
 			<view class='videoLoa' style="width:{{(windowWidth-56)/3}}px;height:{{(windowWidth-56)/3}}px;margin-left: 10px;">
 				<van-icon name="video-o" size='50rpx' color='#ccc' />
 				<view>上传视频</view>
