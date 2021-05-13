@@ -185,7 +185,7 @@ Page({
     let me = this;
     console.log("getTeacherInfo")
     // https://eahost.lileiit.com/teacherInfo
-    app.wxRequest('get', '/teacherInfo', {}, function (data) {
+    app.wxRequest('get', '/teacherInfo/', {}, function (data) {
       console.log(data.data.data)
       // me.setData({
       // })
@@ -359,8 +359,17 @@ Page({
    */
   onLoad: function (options) {
     let me=this;
-   // me.getTime();
-   me.getTeacherInfo();
+   if (app.globalData.token == '') {
+    app.getUser(me.initData());
+  }
+  else {
+    me.initData();
+  }
+  },
+  initData: function () {
+    let me=this;
+    // me.getTime();
+    me.getTeacherInfo();
   },
   getUser: function () {
     let me = this;
