@@ -636,9 +636,9 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
 
   getLoc: function () {
     let that = this;
-    // wx.showLoading({  
-    // title: '正在加载...',
-    // mask:true});
+    wx.showLoading({  
+    title: '正在加载...',
+    mask:true});
     wx.getLocation({
       success: function (res) {
         const url = `https://api.map.baidu.com/reverse_geocoding/v3/?ak=FTqHSN5H275UH2yIbPnMlE7qHBnb7etT&output=json&coordtype=wgs84ll&location=${res.latitude},${res.longitude}`;
@@ -648,23 +648,24 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
           url,
           data: {},
           success: function (res) {
-            // wx.hideLoading()
             if (res.data.status == "0") {
               that.setData({
                 unGeo: res.data.result.addressComponent.city
               });
           
               console.log(res.data.result.addressComponent.city)
-             that.getCityList(res.data.result.addressComponent.city);   
+             that.getCityList(res.data.result.addressComponent.city);
+              wx.hideLoading()
             } else {
               that.setData({
                 unGeo: '未知位置',
               });
+              wx.hideLoading()
             }
           },
               fail (res) {
-                // wx.hideLoading();
-                console.log(res)
+                wx.hideLoading();
+                // console.log(res.errMsg)
               }
         })
       }
