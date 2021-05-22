@@ -1,8 +1,8 @@
 // pages/pyq/pyq.js
 const app = getApp();
-let meigeSP = [] //每个视频的距离顶部的高度
-let distance = 0 //标记页面是向下还是向上滚动
-let indexKey = 0 //标记当前滚动到那个视频了
+// let meigeSP = [] //每个视频的距离顶部的高度
+// let distance = 0 //标记页面是向下还是向上滚动
+// let indexKey = 0 //标记当前滚动到那个视频了
 Page({
   data: {
     meId:'',
@@ -13,24 +13,28 @@ Page({
     openFlag: false,
     commCount: 2,
     commentInfo: '',
-    tabTitle:'同城',
+    tabTitle:'推荐',
     baseUrl: '',
     tabPage:0,
     pageDataFollow: {//关注 分页
+      hasNextPage:true,
       pageNum: 1,
-      pageSize: 100
+      pageSize: 10
     },
     cityData: {//同城 分页
+      hasNextPage:true,
       pageNum: 1,
-      pageSize: 100
+      pageSize: 10
     },
     pageDataPopular: {//最热 分页
+      hasNextPage:true,
       pageNum: 1,
-      pageSize: 100
+      pageSize: 10
     },
     pageDataRecommend: {//推荐 分页
+      hasNextPage:true,
       pageNum: 1,
-      pageSize: 100
+      pageSize: 10
     },
     ownpageData: {
       pageNum: 1,
@@ -60,7 +64,8 @@ Page({
     ownOther:false, //自己发的更多弹框
     columns:['删除','转发'],
     backData:null,
-    currentdynamic:{}
+    currentdynamic:{},
+    isLoadingMore:false //是否处于上拉加载中
   },
   showOwnOther(e){
      let item=e.currentTarget.dataset.item;
@@ -225,20 +230,20 @@ Page({
     })
   },
   //获取每个视频的距离顶部的高度
-  spHeight() {
-    //微信api获取节点
-    let query = wx.createSelectorQuery();
-    query.selectAll('.shipin-list').boundingClientRect() //每个视频的高度
-    query.exec((rect) => {
-      rect[0].forEach(item => {
-        console.log(item)
-        meigeSP.push(item.top)
-      })
-      console.log(meigeSP)
-      meigeSP.splice(0,1)
-    })
+  // spHeight() {
+  //   //微信api获取节点
+  //   let query = wx.createSelectorQuery();
+  //   query.selectAll('.shipin-list').boundingClientRect() //每个视频的高度
+  //   query.exec((rect) => {
+  //     rect[0].forEach(item => {
+  //       console.log(item)
+  //       meigeSP.push(item.top)
+  //     })
+  //     console.log(meigeSP)
+  //     meigeSP.splice(0,1)
+  //   })
     
-  },
+  // },
   videoStop(){
     let me=this;
         //停止正在播放的视频
@@ -403,7 +408,7 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
       tabActive:val.detail.index
     })
     me.videoStop();
-    me.initData();
+    me.initData('cut');
   },
   onChange: function (val) {
     let me = this;
@@ -428,6 +433,9 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
       success: function (res) {
         if (res.confirm) {
           app.wxRequest('delete', '/dynamic/' + id, {}, function (data) {
+            me.setData({
+              ownOther:true
+            })
             wx.showToast({
               title: '删除成功',
               icon: 'success'
@@ -546,8 +554,11 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
         })
         }
       
-        me.spHeight();
+        // me.spHeight();
       })
+      me.setData({
+        isLoadingMore:false
+        })
       // me.setData({
       //   list: data.data.data.list,
       //   total: data.data.data.total
@@ -556,9 +567,16 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
   },
   getMore: function () {
     var me=this;
+    if(me.data.isLoadingMore){//加载中
+      console.log("加载中...")
+      return;
+    }
+    me.setData({
+    isLoadingMore:true
+    })
     if(me.data.tabTitle=="最热"){
       let list = "pageDataPopular.pageNum";
-      if (me.data.popularList.length >= me.data.pageDataPopular.pageSize) {
+      if (me.data.pageDataPopular.hasNextPage) { 
         me.setData({
           [list]: ++me.data.pageDataPopular.pageNum
         })
@@ -571,7 +589,7 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
       }
      }else if(me.data.tabTitle=="同城"){//
       let list = "cityData.pageNum";
-      if (me.data.cityList.length >= me.data.cityData.pageSize) {
+      if (me.data.cityData.hasNextPage) {
         me.setData({
           [list]: ++me.data.cityData.pageNum
         })
@@ -584,7 +602,7 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
       }
      }else if(me.data.tabTitle=="关注"){
       let list = "pageDataFollow.pageNum";
-      if (me.data.followList.length >= me.data.pageDataFollow.pageSize) {
+      if (me.data.pageDataFollow.hasNextPage) {
         me.setData({
           [list]: ++me.data.pageDataFollow.pageNum
         })
@@ -598,7 +616,7 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
 
      }else if(me.data.tabTitle=="推荐"){//
       let list = "pageDataRecommend.pageNum";
-      if (me.data.recommendList.length >= me.data.pageDataRecommend.pageSize) {
+      if (me.data.pageDataRecommend.hasNextPage) {
         me.setData({
           [list]: ++me.data.pageDataRecommend.pageNum
         })
@@ -700,9 +718,11 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
             total: data.data.data.total
           })
         }
-        me.spHeight();
+        // me.spHeight();
       })
-
+      me.setData({
+        isLoadingMore:false
+        })
       // me.setData({
       //   cityList: data.data.data.list,
       //   total: data.data.data.total
@@ -740,9 +760,11 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
           total: data.data.data.total
         })
         }
-        me.spHeight();
+        // me.spHeight();
       })
-
+      me.setData({
+        isLoadingMore:false
+        })
 
 
     })
@@ -752,6 +774,7 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
    */
   getRecommendList: function (area) {
     let me = this;
+    console.log(me.data.pageDataRecommend.pageSize)
     app.wxRequest('get', 
     '/dynamic/dynamicList?pageNum='+me.data.pageDataRecommend.pageNum+'&pageSize='+me.data.pageDataRecommend.pageSize,
     {}, function(data){//
@@ -777,9 +800,11 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
           total: data.data.data.total
         })
       }
-        me.spHeight();
+        // me.spHeight();
       })
- 
+      me.setData({
+        isLoadingMore:false
+        })
       // me.setData({
       //   cityList: data.data.data.list,
       //   total: data.data.data.total
@@ -970,8 +995,36 @@ this.videoContextPrev = wx.createVideoContext(me.data._index)
      }     
   
   },
-initData: function(){
+initData: function(o){
   var me=this;
+if(o=="cut"){
+  me.setData({
+    pageDataFollow: {//关注 分页
+    hasNextPage:true,
+    pageNum: 1,
+    pageSize: 10
+  },
+  cityData: {//同城 分页
+    hasNextPage:true,
+    pageNum: 1,
+    pageSize: 10
+  },
+  pageDataPopular: {//最热 分页
+    hasNextPage:true,
+    pageNum: 1,
+    pageSize: 10
+  },
+  pageDataRecommend: {//推荐 分页
+    hasNextPage:true,
+    pageNum: 1,
+    pageSize: 10
+  },
+  followList:[], //关注
+  popularList:[], //最热
+  cityList:[], //同城
+  recommendList:[], //推荐
+})
+}
   if(me.data.tabTitle=="最热"){
     me.getPopularList();
    }else if(me.data.tabTitle=="同城"){

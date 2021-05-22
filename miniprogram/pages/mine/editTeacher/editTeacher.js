@@ -1,4 +1,17 @@
-// pages/mine/regTeacher/regTeacher.js
+const qiniuUploader = require("../../../utils/qiniuUploader.js");
+//index.js
+
+// 初始化七牛相关参数
+function initQiniu(token) {
+  var options = {
+    region: 'NCN', // 华北区
+    uptoken: token,
+    // uptokenURL: 'https://eahost.lileiit.com/personal/getUploadToken',
+    // uptoken: 'xxxx',
+    domain: 'http://ea.lileiit.com/'
+  };
+  qiniuUploader.init(options);
+}
 const app = getApp();
 Page({
   data: {
@@ -164,6 +177,8 @@ Page({
   onChange: function (val) {
     let me = this;
     let label = val.target.dataset.name;
+    console.log(label)
+        console.log(label)
     me.setData({
       [label]: val.detail
     })
@@ -201,12 +216,121 @@ Page({
       }
     }, 1000)
   },
+  getTeacherInfo: function () {
+    let me = this;
+    console.log("getTeacherInfo")
+    // https://eahost.lileiit.com/teacherInfo
+    app.wxRequest('get', '/teacherInfo', {}, function (data) {
+      // console.log(data.data.data)
+      console.log(data.data)
+      var data=data.data.data;
+
+     me.data.fileList.push({url:data.headIcon, isImage: true});
+     console.log(me.data)
+     var fileListZp1=[data.teacherResourceList[0]];
+     console.log(data.teacherResourceList[0])
+     console.log(data.teacherResourceList[0]!=undefined)
+     if (  data.teacherResourceList[0]!=undefined) {
+    //  if(fileListZp1!=null){
+      fileListZp1[0].url=fileListZp1[0].resource;
+      fileListZp1[0].path=fileListZp1[0].resource;
+      fileListZp1[0].type=fileListZp1[0].resourceType;
+      var isvideo= fileListZp1[0].resourceType=="video";
+      if(isvideo){
+        fileListZp1[0].isVideo=true;
+      }else{
+        fileListZp1[0].isImage=true;
+      }
+     }else{
+      fileListZp1=[];
+     }
+     
+     var fileListZp2=[data.teacherResourceList[1]];
+     if (data.teacherResourceList[1]!=undefined) {
+    //  if(fileListZp2!=null){
+      console.log(fileListZp2)
+      fileListZp2[0].url=fileListZp2[0].resource;
+      fileListZp2[0].path=fileListZp2[0].resource;
+      fileListZp2[0].type=fileListZp2[0].resourceType;
+     var isvideo= fileListZp2[0].resourceType=="video";
+      if(isvideo){
+        fileListZp2[0].isVideo=true;
+      }else{
+        fileListZp2[0].isImage=true;
+      }
+    
+     }else{
+      fileListZp2=[];
+     }
+     var fileListZp3=[data.teacherResourceList[2]];
+
+     if ( data.teacherResourceList[2]!=undefined) {
+    //  if(fileListZp3!=null){
+      fileListZp3[0].url=fileListZp3[0].resource;
+      fileListZp3[0].path=fileListZp3[0].resource;
+      fileListZp3[0].type=fileListZp3[0].resourceType;
+      var isvideo= fileListZp3[0].resourceType=="video";
+      if(isvideo){
+        fileListZp3[0].isVideo=true;
+      }else{
+        fileListZp3[0].isImage=true;
+      }
+     }else{
+      fileListZp3=[];
+     }
+     var fileListZp4=[data.teacherResourceList[3]];
+     if ( data.teacherResourceList[3]!=undefined) {
+    //  if(fileListZp4!=null){
+      fileListZp4[0].url=fileListZp4[0].resource;
+      fileListZp4[0].path=fileListZp4[0].resource;
+      fileListZp4[0].type=fileListZp4[0].resourceType;
+      var isvideo= fileListZp4[0].resourceType=="video";
+      if(isvideo){
+        fileListZp4[0].isVideo=true;
+      }else{
+        fileListZp4[0].isImage=true;
+      }
+     }else{
+      fileListZp4=[];
+     }
+      me.setData({
+        teacherId:data.teacherId,
+        fileList:me.data.fileList,
+        fileListZp1:fileListZp1,
+        fileListZp2:fileListZp2,
+        fileListZp3: fileListZp3,
+        fileListZp4: fileListZp4,
+        realName: data.realName,
+        headIcon: data.headIcon,
+        idCardNumber: data.idCardNumber,
+        teacherJobPosition: data.teacherJobPosition,
+        teacherGoodAt: data.teacherGoodAt,
+        teacherDescription: data.teacherDescription,
+        imgtxtSolvePrice:data.imgtxtSolvePrice,
+        videoSolvePrice:data.videoSolvePrice,
+        phoneNumber: data.phone,
+        smsCode: data.smsCode,
+        solveStatus:data.solveStatus,
+        teacherResourceList:data.teacherResourceList
+      })
+    }, function (errData) {
+      console.log(errData)
+      // me.setData({
+      // })
+    })
+  },
   submit: async function () {
     let me = this;
     // wx.showLoading({
     //   title: '正在提交',
     // })
+    // console.log(me.data.token)
+    initQiniu(me.data.token);
+    wx.showLoading({
+      title: '正在提交'
+    })
     let solveStatus = 2;
+    console.log("8")
     if (!me.data.fileList.length) {
       wx.showToast({
         title: '请上传头像',
@@ -215,8 +339,12 @@ Page({
       return;
     }
     else {
+      console.log("9")
       await me.upFile(me.data.fileList, 0);
+      
+    console.log(me.data.teacherResourceList)
     }
+    console.log("10")
     if (me.data.fileListZp1.length) {
       await me.upFile(me.data.fileListZp1, 1);
     }
@@ -230,6 +358,7 @@ Page({
       await me.upFile(me.data.fileListZp4, 4);
     }
     var arg = {
+      teacherId:me.data.teacherId,
       realName: me.data.realName,
       headIcon: me.data.headIcon,
       idCardNumber: me.data.idCardNumber,
@@ -243,7 +372,10 @@ Page({
       solveStatus: solveStatus,
       teacherResourceList: me.data.teacherResourceList
     }
-    app.wxRequest('post', '/registerTeacher', arg, function (data) {
+    console.log(arg)
+    // https://eahost.lileiit.com/updateTeacherInfo
+    app.wxRequest('post', '/updateTeacherInfo', arg, function (data) {
+      console.log("12")
       if (data.data.status != 200) {
         wx.showToast({
           title: data.data.msg,
@@ -261,6 +393,12 @@ Page({
           }
         });
       }
+    }, function (err) {
+      console.log(err)
+      wx.showToast({
+        title: "提交失败",
+        icon: "error"
+      })
     })
   },
   upFile: function (file, type) {
@@ -275,27 +413,40 @@ Page({
         });
         reject();
       }
-      wx.uploadFile({
-        url: app.globalData.baseUrl + '/dynamic/fileupload',
-        filePath: arr[0].path,
-        name: 'file',
-        formData: {
-        },
-        header: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': app.globalData.token
-        },
-        success: function (res) {
+      
+    if(file[0].url){
+      // console.log(file[0].url);return
+      me.setData({
+        headIcon: file[0].url
+      })  
+       resolve('ok');
+       return;
+    }
+    console.log(arr[0].path);
+      // wx.uploadFile({
+      //   url: app.globalData.baseUrl + '/dynamic/fileupload',
+      //   filePath: arr[0].path,
+      //   name: 'file',
+      //   formData: {
+      //   },
+      //   header: {
+      //     "Content-Type": "multipart/form-data",
+      //     'Authorization': app.globalData.token
+      //   },
+      //   success: function (res) 
+              // 交给七牛上传
+      qiniuUploader.upload(arr[0].path, (res) => {
           if (type == 0) {
+            console.log(res.imageURL)
             me.setData({
-              headIcon: JSON.parse(res.data).data
+              headIcon: res.imageURL
             })
           }
           else if (type == 1) {
             let arg = {};
             let arr = me.data.teacherResourceList;
             arg.resourceType = me.data.fileListZp1[0].type;
-            arg.resource = JSON.parse(res.data).data;
+            arg.resource =  res.imageURL;
             arr.push(arg);
             me.setData({
               teacherResourceList: arr
@@ -303,9 +454,9 @@ Page({
           }
           else if (type == 2) {
             let arg = {};
-            let arr = Object.assign(me.data.teacherResourceList);
+            let arr =me.data.teacherResourceList;
             arg.resourceType = me.data.fileListZp2[0].type;
-            arg.resource = JSON.parse(res.data).data;
+            arg.resource = res.imageURL;
             arr.push(arg);
             me.setData({
               teacherResourceList: arr
@@ -313,9 +464,9 @@ Page({
           }
           else if (type == 3) {
             let arg = {};
-            let arr = Object.assign(me.data.teacherResourceList);
+            let arr = me.data.teacherResourceList;
             arg.resourceType = me.data.fileListZp3[0].type;
-            arg.resource = JSON.parse(res.data).data;
+            arg.resource = res.imageURL;
             arr.push(arg);
             me.setData({
               teacherResourceList: arr
@@ -323,18 +474,24 @@ Page({
           }
           else if (type == 4) {
             let arg = {};
-            let arr = Object.assign(me.data.teacherResourceList);
+            let arr = me.data.teacherResourceList;
             arg.resourceType = me.data.fileListZp4[0].type;
-            arg.resource = JSON.parse(res.data).data;
+            arg.resource = res.imageURL;
             arr.push(arg);
             me.setData({
               teacherResourceList: arr
             })
           }
           resolve('ok');
-        }, fail: function (err) {
-          reject();
         }
+        // , fail: function (err) 
+        , (error) => {
+          reject();
+          wx.showToast({
+            title: '上传失败',
+            icon: 'error',
+            duration: 1000,
+          })
       })
     })
 
@@ -345,6 +502,24 @@ Page({
   onLoad: function (options) {
     let me = this;
     // me.getTime();
+    me.getTeacherInfo();
+    this.getToken();
+  },
+  getToken: function () {
+    let me = this;
+    console.log("getTeacherInfo")
+    // https://eahost.lileiit.com/teacherInfo
+    app.wxRequest('get', 'personal/getUploadToken', {}, function (data) {
+      // console.log(data.data.data)
+      var token=data.data.data;
+      me.setData({
+        token:token
+      })
+    }, function (errData) {
+      console.log(errData)
+      // me.setData({
+      // })
+    })
   },
   getUser: function () {
     let me = this;
@@ -450,6 +625,7 @@ Page({
           arg.path = res.tempFiles[0].tempFilePath
           arr.push(arg);
         }
+        console.log(arr)
         if (type == 'zp') {
           me.setData({
             fileListZp1: arr
@@ -482,23 +658,39 @@ Page({
       success(res) {
         if (res.confirm) {
           if (type == 'zp') {
+            if (  me.data.teacherResourceList[0]!=undefined) {
+              me.data.teacherResourceList.splice(0, 1);
+            }
             me.setData({
-              fileListZp1: []
+              fileListZp1: [],
+              teacherResourceList:me.data.teacherResourceList
             })
           }
           if (type == 'zp1') {
+            if (  me.data.teacherResourceList[1]!=undefined) {
+              me.data.teacherResourceList.splice(1, 1);
+            }
             me.setData({
-              fileListZp2: []
+              fileListZp2: [],
+              teacherResourceList:me.data.teacherResourceList
             })
           }
           if (type == 'zp2') {
+            if (  me.data.teacherResourceList[2]!=undefined) {
+              me.data.teacherResourceList.splice(2, 1);
+            }
             me.setData({
-              fileListZp3: []
+              fileListZp3: [],
+              teacherResourceList:me.data.teacherResourceList
             })
           }
           if (type == 'zp3') {
+            if (  me.data.teacherResourceList[3]!=undefined) {
+              me.data.teacherResourceList.splice(3, 1);
+            }
             me.setData({
-              fileListZp4: []
+              fileListZp4: [],
+              teacherResourceList:me.data.teacherResourceList
             })
           }
         } else if (res.cancel) {

@@ -1,8 +1,16 @@
 <!--index.wxml-->
-<view class="container">
-	<scroll-view scroll-y="true" style="height: 99%;background:#f5f6f6">
+<view class="container;">
+<!-- background:#f5f6f6 -->
+	<scroll-view scroll-y="true" style="height: 99%;">
 		<view style='position:relative;'>
-			<view class='flexBetween' style='position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;margin-top:{{statusBarHeight+"px"}}'>
+			<!-- <view class='flexBetween_1' style='margin-top:{{statusBarHeight+"px"}}'>
+				<view style='flex:1;max-width:160rpx;margin-right:10rpx;' class='city flexStart' data-curr='{{curCity}}' bindtap='chooseAddress'>
+					<text class='curcity'>{{curCity}}</text>
+					<van-icon name="arrow-down" color="#fff" />
+				</view>
+				<van-search shape='round' style='width:380rpx;z-index:100;color:#fff' input-class='search_ipt' />
+			</view> -->
+				<view class='flexBetween' style='position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;margin-top:{{statusBarHeight+"px"}}'>
 				<view style='flex:1;max-width:160rpx;margin-right:10rpx;' class='city flexStart' data-curr='{{curCity}}' bindtap='chooseAddress'>
 					<text class='curcity'>{{curCity}}</text>
 					<van-icon name="arrow-down" color="#fff" />
@@ -11,7 +19,7 @@
 			</view>
 			<view class="page-section page-section-spacing swiper">
 				<swiper indicator-dots="{{indicatorDots}}" style='height:100%;display:flex;align-items:center' indicator-color='#fff' indicator-active-color='#1c43aa' bindchange="handleChange" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
-					<block wx:for="{{background}}" wx:key="*this">
+					<block wx:for="{{background}}" wx:key="index">
 						<swiper-item class="item">
 							<view class="swiper-item">
 								<image src="{{item.bannerImg}}" class="itemImg"> </image>
@@ -72,7 +80,9 @@
 						</view>
 					</view>
 					<view class='enterprise_list'>
-						<view class="list" wx:for="{{ qiyeArr }}" wx:for-item="item" wx:key="{{item.enterpriseId}}">
+						<view class="list" wx:for="{{ qiyeArr }}" wx:for-item="item" wx:key="index"  
+						  data-id="{{item.enterpriseId}}"
+              data-distance="{{item}}" bindtap="enterpriseClick">
 							<view style="width: 100%; text-align: center;">
 								<image style="width: 100rpx; height: 100rpx;border-radius: 8rpx;" src="{{item.enterpriseLogo}}" />
 							</view>
@@ -83,7 +93,7 @@
         <view class="news">
           <view class="news_content">
             <view class="title bottom">全国曝光率，让急事变得不急</view>
-            <view wx:for='{{newsList}}' class="flexStart news_list">
+            <view wx:for='{{newsList}}'  wx:key="index" class="flexStart news_list">
               <text class="{{item.title=='招聘'?'zp':item.title=='求职'?'qz':''}}">{{item.title}}</text>
               <view>{{item.text}}</view>
             </view>
@@ -97,7 +107,7 @@
 						</view>
 					</view>
 					<view class='product_list'>
-						<view class="list" wx:for="{{ jishiArr }}" wx:for-item="item" data-bean="{{item}}" bindtap="onItemClick" wx:key='{{item.teacherId}}'>
+						<view class="list" wx:for="{{ jishiArr }}" wx:if="{{index<4}}"  wx:for-index="index" wx:for-item="item" data-bean="{{item}}" bindtap="onItemClick" wx:key='index'>
 							<view class="remenJishiCard">
 								<view class="gradual">
 									<view class="headRow">

@@ -1,4 +1,17 @@
-// pages/mine/regTeacher/regTeacher.js
+const qiniuUploader = require("../../../utils/qiniuUploader.js");
+//index.js
+
+// 初始化七牛相关参数
+function initQiniu(token) {
+  var options = {
+    region: 'NCN', // 华北区
+    uptoken: token,
+    // uptokenURL: 'https://eahost.lileiit.com/personal/getUploadToken',
+    // uptoken: 'xxxx',
+    domain: 'http://ea.lileiit.com/'
+  };
+  qiniuUploader.init(options);
+}
 const app = getApp();
 Page({
   data: {
@@ -181,20 +194,6 @@ Page({
       me.getTime();
     })
   },
-  getTeacherInfo: function () {
-    let me = this;
-    console.log("getTeacherInfo")
-    // https://eahost.lileiit.com/teacherInfo
-    app.wxRequest('get', '/teacherInfo/', {}, function (data) {
-      console.log(data.data.data)
-      // me.setData({
-      // })
-    }, function (errData) {
-      console.log(errData)
-      // me.setData({
-      // })
-    })
-  },
   
   getTime(){
     let me=this;
@@ -221,6 +220,8 @@ Page({
     // wx.showLoading({
     //   title: '正在提交',
     // })
+    // console.log(me.data.token)
+    initQiniu(me.data.token);
     let solveStatus=2;
     if (!me.data.fileList.length){
       wx.showToast({
@@ -290,27 +291,28 @@ Page({
         });
         reject();
       }
-      wx.uploadFile({
-        url: app.globalData.baseUrl + '/dynamic/fileupload',
-        filePath: arr[0].path,
-        name: 'file',
-        formData: {
-        },
-        header: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': app.globalData.token
-        },
-        success: function (res) {
+      // wx.uploadFile({
+      //   url: app.globalData.baseUrl + '/dynamic/fileupload',
+      //   filePath: arr[0].path,
+      //   name: 'file',
+      //   formData: {
+      //   },
+      //   header: {
+      //     "Content-Type": "multipart/form-data",
+      //     'Authorization': app.globalData.token
+      //   },
+      //   success: function (res) {
+          qiniuUploader.upload(arr[0].path, (res) => {
           if(type==0){
             me.setData({
-              headIcon: JSON.parse(res.data).data
+              headIcon:res.imageURL
             })
           }
           else if(type==1){
             let arg={};
             let arr = me.data.teacherResourceList;
             arg.resourceType=me.data.fileListZp1[0].type;
-            arg.resource = JSON.parse(res.data).data;
+            arg.resource =res.imageURL;
             arr.push(arg);
             me.setData({
               teacherResourceList:arr
@@ -318,9 +320,9 @@ Page({
           }
           else if (type == 2) {
             let arg = {};
-            let arr = Object.assign(me.data.teacherResourceList);
+            let arr = me.data.teacherResourceList;
             arg.resourceType = me.data.fileListZp2[0].type;
-            arg.resource = JSON.parse(res.data).data;
+            arg.resource = res.imageURL;
             arr.push(arg);
             me.setData({
               teacherResourceList: arr
@@ -328,9 +330,9 @@ Page({
           }
           else if (type == 3) {
             let arg = {};
-            let arr = Object.assign(me.data.teacherResourceList);
+            let arr = me.data.teacherResourceList;
             arg.resourceType = me.data.fileListZp3[0].type;
-            arg.resource = JSON.parse(res.data).data;
+            arg.resource = res.imageURL;
             arr.push(arg);
             me.setData({
               teacherResourceList: arr
@@ -338,18 +340,24 @@ Page({
           }
           else if (type == 4) {
             let arg = {};
-            let arr = Object.assign(me.data.teacherResourceList);
+            let arr = me.data.teacherResourceList;
             arg.resourceType = me.data.fileListZp4[0].type;
-            arg.resource = JSON.parse(res.data).data;
+            arg.resource = res.imageURL;
             arr.push(arg);
             me.setData({
               teacherResourceList: arr
             })
           }
           resolve('ok');
-        }, fail: function (err) {
-          reject();
         }
+        // , fail: function (err) {
+          , (error) => {
+              reject();
+              wx.showToast({
+                title: '上传失败',
+                icon: 'error',
+                duration: 1000,
+              })
       })
     })
     
@@ -359,18 +367,26 @@ Page({
    */
   onLoad: function (options) {
     let me=this;
-   if (app.globalData.token == '') {
-    app.getUser(me.initData());
-  }
-  else {
-    me.initData();
-  }
-  },
-  initData: function () {
-    let me=this;
-    // me.getTime();
-    me.getTeacherInfo();
-  },
+   // me.getTime();
+  //  me.getTeacherInfo();
+  this.getToken();
+},
+getToken: function () {
+  let me = this;
+  console.log("getTeacherInfo")
+  // https://eahost.lileiit.com/teacherInfo
+  app.wxRequest('get', 'personal/getUploadToken', {}, function (data) {
+    // console.log(data.data.data)
+    var token=data.data.data;
+    me.setData({
+      token:token
+    })
+  }, function (errData) {
+    console.log(errData)
+    // me.setData({
+    // })
+  })
+},
   getUser: function () {
     let me = this;
     wx.getUserInfo({

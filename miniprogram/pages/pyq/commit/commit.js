@@ -310,7 +310,9 @@ Page({
         for (let i = 0; i < me.data.fileList.length; i++){
           if (i == me.data.fileList.length - 1) {
             flag = 1;
+            console.log(flag)
           }
+          console.log(i)
           await me.upFile(me.data.fileList[i].path, flag)
         }
       }else if (me.data.fileList1.length){
@@ -340,10 +342,11 @@ Page({
     //   return;
     // }
     let me=this;
-    console.log(me.data.token)
+    // console.log(me.data.token)
     initQiniu(me.data.token);
     let arr=[];
     arr=me.data.fileArr;
+     return new Promise((resolve,reject)=>{
       // 交给七牛上传
       qiniuUploader.upload(path, (res) => {
         console.log(res.imageURL)
@@ -357,9 +360,12 @@ Page({
           'imageObject': res
         });
         console.log(me.data.imageObject);
+        if (i == 1 ){
         me.send();
+        }
+        resolve('ok');
       }, (error) => {
-        console.log(err)
+        // console.log(err)
         reject();
         wx.showToast({
           title: '上传失败',
@@ -367,6 +373,8 @@ Page({
           duration: 1000,
         })
       });
+     
+    })
 
     // let arr=[];
     // arr=me.data.fileArr;

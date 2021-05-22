@@ -209,7 +209,7 @@
           <van-button data-index='1' size="normal" class="smallBtn" color="#3a83ea" round  bindtap='prev'>上一步</van-button>
         </view>
         <view  class="smallBtn" style="margin-left:1%">
-          <van-button data-index='1' size="normal" class="smallBtn"  color="#3a83ea" round  bindtap='submit'>注  册</van-button>
+          <van-button data-index='1' size="normal" class="smallBtn"  color="#3a83ea" round  bindtap='submit'>修  改</van-button>
         </view>
       </view>
     </view>

@@ -14,6 +14,7 @@ Page({
     duration: 500,
     jishiArr:[],
     qiyeArr:[],
+    fristShow:true,
     msgList: [
       { url: "url", title: "恭喜xxx完成任务退回200进入领奖区" },
       { url: "url", title: "恭喜xxx获得XXX奖励" },
@@ -32,9 +33,17 @@ Page({
   },
   onItemClick: function (e) {
     var bean = e.currentTarget.dataset.bean
+    console.log(bean)
     wx.navigateTo({
       url: '/pages/technician/technicianDetail/technicianDetail?teacherId=' + bean.teacherId
     })
+  },
+  enterpriseClick:function(event){
+    var distance = event.currentTarget.dataset.distance;
+    var enterpriseId = event.currentTarget.dataset.enterpriseId;
+    wx.navigateTo({
+      url: '/pages/enterprise/enterpriseDetail/enterpriseDetail?distance=' + distance  + "&enterpriseId=" + enterpriseId
+    });
   },
   getLocation: function () {
     let vm = this;
@@ -220,6 +229,22 @@ Page({
         }
       }
     })
+    var that = this;
+    that.setData({
+      baseUrl: app.globalData.baseUrl
+    })
+    if (app.globalData.token == '') {
+      //app.getUser(that.funcList);
+      app.getUser(that.funcList);
+   
+    }
+    else { 
+    that.funcList()
+    // that.getJishi('')
+    // that.getLocation()
+    // that.getQiye()
+    }
+    
   },
   getBanner:function(){
     let me = this;
@@ -262,22 +287,11 @@ Page({
     })
   },
   onShow:function(){
-    var that = this;
-    that.setData({
-      baseUrl: app.globalData.baseUrl
-    })
-    if (app.globalData.token == '') {
-      //app.getUser(that.funcList);
-      app.getUser(that.funcList);
-   
-    }
-    else { 
-    that.funcList()
-    that.getLocation()
-    that.getJishi('')
-    that.getQiye()
-    }
-    
+if(this.data.fristShow){
+  this.setData({fristShow:false})
+  return;
+}
+this.funcList();
   },
   getData:function(){
   

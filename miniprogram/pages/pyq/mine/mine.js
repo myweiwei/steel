@@ -60,6 +60,29 @@ Page({
       })
     }
   },
+  del: function (e) {
+    let id = e.currentTarget.dataset.item.dynamicId;
+    let me = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除该动态吗',
+      success: function (res) {
+        if (res.confirm) {
+          app.wxRequest('delete', '/dynamic/' + id, {}, function (data) {
+            me.setData({
+              ownOther:true
+            })
+            wx.showToast({   
+              title: '删除成功',
+              icon: 'success'
+            });
+            me.initData();
+          })
+        } else {
+        }
+      }
+    })
+  },
   onClose2(){
     this.setData({
       ownOther: false

@@ -152,7 +152,7 @@
     .product_list .list {
       width: 50%;
       margin-bottom: 40rpx;
-      height:260rpx;
+      /* height:260rpx; */
       /* margin: 0 10rpx; */
       /* background: #f7f7f7; */
       /* padding: 20rpx 0; */
@@ -263,11 +263,13 @@
       margin-top: 10rpx;
     }
 
+    .flexBetween_1 {  position:absolute;top:10rpx;z-index:1000;margin-left:30rpx;box-sizing:border-box;}
+
     /* .gt_btn .flexBetween .fonWei {
       margin: 0 4rpx;
     } */
 
-    .gt_btn .image {
+    /* .gt_btn .image {
       width: 125rpx;
       height: 45rpx;
       position: relative;
@@ -285,7 +287,7 @@
       left: 11%;
       transform: translate(-50% -50%);
       color: #fff;
-    }
+    } */
 
     .van-search__content {
       background: rgba(255, 255, 255, 0.4) !important;
@@ -347,7 +349,7 @@
       margin: 0 8rpx;
       padding-top: 20rpx;
       padding-bottom: 10rpx;
-      height: 99%;
+      /* height: 99%; */
       /* width: 100%; */
       box-shadow: 3rpx 3rpx 10rpx rgba(37, 37, 37, 0.1);
       border-radius: 10rpx;
@@ -506,4 +508,8 @@
     }
     .news_list .qz {
       color:#4075ba;
+    }
+
+    .itemriceview text{
+      margin-left: 10rpx;
     }

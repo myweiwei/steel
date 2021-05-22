@@ -33,28 +33,40 @@
       </view>
     </view>
     <view class="detailDescribe">
-      <view style="padding-right: 70rpx;">
+      <view style="padding-right: 70rpx;margin-left: 30rpx;">
         <text ><text class="fonBold">专业擅长：</text> {{technicianData.teacherGoodAt}}</text>
 
       </view>
-      <view style="padding-right: 70rpx;padding-top: 30rpx;">
+      <view style="padding-right: 70rpx;padding-top: 30rpx;margin-left: 30rpx;">
         <text><text class="fonBold">个人简介：</text> {{technicianData.teacherDescription}}</text>
       </view>
 
       <view class="showView" style="padding-top: 30rpx;">
-        <text class="fonBold">作品展示</text>
-        <van-row gutter="18">
+        <text class="fonBold" style="margin-left: 30rpx;">作品展示</text>
+              <scroll-view  scroll-x style="white-space: nowrap;">
+              <view style="display: flex;flex-direction: row;padding:0 20rpx;width:100%" >
+              <View style="display: flex;flex-direction: row;  width: 240rpx; height: 150rpx;margin:10 10rpx;border-radius: 6rpx;" wx:for="{{technicianData.teacherResourceList}}" wx:key="dataArr" wx:for-index="index" wx:for-item="item" data-bean="{{item}}" bindtap=""  >
+                <image class="imgItem"  wx:if="{{item.resourceType=='img'}}"src="{{item.resource}}" data-src="{{item.resource}}" bindtap="preview"></image>
+                <video  class="imgItem" wx:if="{{item.resourceType=='video'}}" src="{{item.resource}}" object-fit='cover' show-progress></video>
+              </View>
+
+              </view>
+                 <!-- <view style="width: 100%;height: 150rpx; flex-direction: row;">
+                     </view> -->
+        <!-- <van-row gutter="10">
           <van-col wx:for="{{technicianData.teacherResourceList}}" wx:key="dataArr" wx:for-index="index" wx:for-item="item" data-bean="{{item}}" bindtap="" span="8">
             <image class="imgItem" src="{{item.resource}}" data-src="{{item.resource}}" bindtap="preview"></image>
 
           </van-col>
 
-        </van-row>
+        </van-row> -->
+              </scroll-view>
+
 
       </view>
     </view>
 
-    <view class="evaluateView">
+    <view class="evaluateView" style="padding-left: 30rpx;">
       <view class="showView">
         <text class="fonBold">用户评价</text>
         <view wx:for="{{teacherComments}}" class="ebt" wx:key="dataArr" wx:for-index="index" wx:for-item="item" data-bean="{{item}}">

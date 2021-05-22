@@ -26,7 +26,7 @@
     来店体验
       </view>
       <scroll-view>
-        <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
+        <image src="../../../images/enterprise/follow.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
         <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
         <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx;  margin-right:20rpx;border-radius:5rpx;"/>
       </scroll-view>

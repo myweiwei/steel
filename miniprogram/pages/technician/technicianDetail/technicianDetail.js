@@ -47,10 +47,14 @@ Page({
       })
       return ;
     }
+    console.log(this.data.teacherId)
+    console.log(this.data.technicianData.videoSolvePrice)
     var url = 'consult/payment/videoPayment?teacherId=' + this.data.teacherId + '&payMoney=' + this.data.technicianData.videoSolvePrice + '&phone=' + this.data.phone;
     app.wxRequest('get', url, {}, function (data) {
+      console.log(data)
       if (data.data.status == 200) {
         var payData = data.data.data;
+        console.log(payData)
         wx.requestPayment({
           timeStamp: payData.timeStamp,
           nonceStr: payData.nonceStr,
@@ -63,6 +67,7 @@ Page({
             })
           },
           fail(res) {
+            console.log(res)
             wx.showToast({
               title: '支付失败',
               icon: 'none'
@@ -71,6 +76,8 @@ Page({
           }
         })
       }
+    }, function (err) {
+      console.log(err)
     })
 
   },
@@ -91,11 +98,13 @@ Page({
     })
   },
   getTechDetail:function(teacherId){
-    var me=this;
-    var url="teacherInfo?teacherId="+teacherId;
+    var me=this
+    var url="teacherInfoByTeacherId/"+teacherId;
+    // https://eahost.lileiit.com/teacherInfoByTeacherId/49
     app.wxRequest('get', url, {}, function (data) {
+      console.log(data.data)
       if (data.data.status == 200) {
-        me.setData({technicianData:data.data.data[0]});
+        me.setData({technicianData:data.data.data});
       }
     })
   },

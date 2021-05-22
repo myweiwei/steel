@@ -72,7 +72,9 @@ Page({
     var me = this;
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
+        console.log(data.data)
         var data = data.data.data;
+
         var arr = 'markers[0].longitude';
         var arr2 = 'markers[0].latitude';
         me.setData({
@@ -88,6 +90,8 @@ Page({
           enterpriseImgs: data.enterpriseImgs
         });
       }
+    }, function (err) {
+      console.log(err)
     })
 
   },
