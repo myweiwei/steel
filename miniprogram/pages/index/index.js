@@ -39,8 +39,8 @@ Page({
     })
   },
   enterpriseClick:function(event){
-    var distance = event.currentTarget.dataset.distance;
-    var enterpriseId = event.currentTarget.dataset.enterpriseId;
+    var distance = event.currentTarget.dataset.distance.distance;
+    var enterpriseId = event.currentTarget.dataset.distance.enterpriseId;
     wx.navigateTo({
       url: '/pages/enterprise/enterpriseDetail/enterpriseDetail?distance=' + distance  + "&enterpriseId=" + enterpriseId
     });
@@ -169,11 +169,11 @@ Page({
       })
     })
   },
-  moreProduct:function(){
-    wx.navigateTo({
-      url: '/pages/product/product'
-    })
-  },
+  // moreProduct:function(){
+  //   wx.navigateTo({
+  //     url: '/pages/product/product'
+  //   })
+  // },
   toPyq:function(){
     wx.navigateTo({
       url: '/pages/pyq/pyq'

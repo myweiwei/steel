@@ -74,7 +74,7 @@
 				<view class='enterprise'>
 					<view class='normal_title flexBetween'>
 						<view class="title">热门企业</view>
-						<view class='flexStart' bindtap="moreProduct">
+						<view class='flexStart' bindtap="goEnterprise">
 							<text style="font-size:25rpx;color: #686868;">更多</text>
 							<!-- <van-icon name="arrow" /> -->
 						</view>

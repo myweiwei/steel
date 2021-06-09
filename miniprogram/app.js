@@ -47,6 +47,7 @@ App({
             data: {
             },
             success: function (data) {
+              console.log(data.data.data)
               me.globalData.token= data.data.data;
               me. getUserInfo();
               callback(me.globalData.token);

@@ -27,8 +27,9 @@ Page({
     this.searchData(this.data.longtitude, this.data.latitude, this.data.keyword);
   },
   onItemClick:function(event){
-    var distance = event.currentTarget.dataset.distance;
-    var enterpriseId = event.currentTarget.dataset.enterpriseId;
+    var distance = event.currentTarget.dataset.distance.distance;
+    var enterpriseId = event.currentTarget.dataset.distance.enterpriseId;
+    console.log(event)
     wx.navigateTo({
       url: '/pages/enterprise/enterpriseDetail/enterpriseDetail?distance=' + distance  + "&enterpriseId=" + enterpriseId
     });
@@ -83,7 +84,9 @@ Page({
       { text: "澳门", value: "澳门" },
       { text: "台湾", value: "台湾" }
     ]
-    app.wxRequest('get', '/other/dics', {}, function (data) {
+
+    app.wxRequest('get', '/other/dics?type=COMPANY_BUSINESS', {}, function (data) {
+      console.log(data.data)
       if (data.data.status == 200) {
         let arr = data.data.data;
         let arr1 = [{ text: '标签', value: 0 }];
@@ -99,6 +102,8 @@ Page({
           option1: areaList
         })
       }
+    },function (err) {
+      console.log(err)
     })
   },
   //发起搜索请求，首次进入没有关键词，默认按距离搜索

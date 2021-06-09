@@ -322,13 +322,15 @@ Page({
   },
   initEnterpriseType:function(){
     var me = this;
-    app.wxRequest('get', '/enterprise/enterpriseType', {}, function (data) {
+    app.wxRequest('get', '/other/dics?type=COMPANY_BUSINESS', {}, function (data) {
+      console.log(data.data)
       if (data.data.status == 200) {
        var arr = [];
        for(let i = 0; i < data.data.data.length; i++){
          var arg = {};
-         arg.name = data.data.data[i];
+         arg.name = data.data.data[i].name;
          arg.active = false;
+         arg.code=data.data.data[i].code;
          arr.push(arg);
        }
        me.setData({liList:arr});

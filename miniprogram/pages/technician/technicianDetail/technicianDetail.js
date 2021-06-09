@@ -24,6 +24,11 @@ Page({
     this.setData({
       imgList:arr
     })
+    // wx.previewMedia({
+    //       current: currentUrl, // 当前显示图片的http链接
+    //       type:"video",
+    //       urls: this.data.imgList // 需要预览的图片http链接列表
+    //     })
     wx.previewImage({
       current: currentUrl, // 当前显示图片的http链接
       urls: this.data.imgList // 需要预览的图片http链接列表

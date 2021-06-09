@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
  <scroll-view scroll-y="true" style="height: calc(100% - 130rpx);margin-bottom:130rpx">
-  <image wx:for="{{enterpriseImgs}}" wx:if="{{item.resourceType==1}}" src="{{item.resource}}" mode="scaleToFill" class="topPicture"/>
+  <!-- <image wx:for="{{enterpriseImgs}}" wx:if="{{item.resourceType==1}}" src="{{item.resource}}" mode="scaleToFill" class="topPicture"/> -->
   <view class="top">
     <view class="left">
       <image src="{{logo}}" class="logo"></image>
@@ -22,13 +22,13 @@
         <view style="font-size:27rpx; margin-bottom:20rpx;">企业简介</view>
       </view>
       <view style="font-size:26rpx; margin-bottom:20rpx;">
-      致力于打造全球高端消费服务平台，主要经营不锈钢的加工设备制造厂商不锈钢表面处理厂商不锈钢金属加工厂商，锈钢装修工程厂商，店内有很多老师傅，可以上门服务，支持定制化。欢迎
-    来店体验
+      {{enterpriseDescription}}
       </view>
       <scroll-view>
-        <image src="../../../images/enterprise/follow.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
+      <image wx:for="{{enterpriseImgs}}" wx:if="{{item.resourceType==1}}" src="{{item.resource}}" mode="scaleToFill" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
+        <!-- <image src="../../../images/enterprise/follow.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
         <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx; margin-right:20rpx; border-radius:5rpx;"/>
-        <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx;  margin-right:20rpx;border-radius:5rpx;"/>
+        <image src="../../../images/enterprise/mendiantu.png" style="width:190rpx; height:160rpx;  margin-right:20rpx;border-radius:5rpx;"/> -->
       </scroll-view>
     </view>
   <!--企业员工-->

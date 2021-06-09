@@ -230,7 +230,12 @@ Page({
       value:val.detail
     })
   },
- 
+  toVip:function(){
+    let me=this;
+    wx.redirectTo({
+      url: '/packageA/pages/regVipEnterprise/regVipEnterprise',
+    })
+  },
 
   addNew:function(){
     let me = this;

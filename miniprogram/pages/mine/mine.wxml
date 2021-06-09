@@ -16,7 +16,7 @@
   
     </view>
   </view>
-  <view class="vip">
+  <view class="vip" bindtap="toVip">
     <image src="../../images/my/enterprise_vip.png" mode="aspectFit" style="width:150rpx; height:32rpx; margin-left:75rpx; margin-top:27rpx;"></image>
     <view style="margin-top:25rpx; color:#d9b588; margin-left:42rpx; font-size:30rpx;">立享6大超值特权</view>
     <image src="../../images/my/vip_see.png" mode="aspectFit" style="width:170rpx; height:42rpx; margin-left:35rpx; margin-top:25rpx; "></image>

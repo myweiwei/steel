@@ -58,19 +58,27 @@ Page({
     var that = this;
     var distance=options.distance;
     var enterpriseId=options.enterpriseId;
-    that.setData({distance:distance,enterpriseId:enterpriseId});
+    console.log(enterpriseId)
+    that.setData({
+      distance:distance,
+      enterpriseId:enterpriseId
+    });
     
     if (app.globalData.token == '') {
       app.getUser(that.initData(enterpriseId));
     }
     else {
+      console.log(enterpriseId)
       that.initData(enterpriseId);
     }
   },
   initData:function(enterpriseId){
+    console.log(enterpriseId)
     var url = "/enterprise/detailInfo/" + enterpriseId;
+    console.log(url)
     var me = this;
     app.wxRequest('get', url, {}, function (data) {
+      console.log(data.data)
       if (data.data.status == 200) {
         console.log(data.data)
         var data = data.data.data;
@@ -84,6 +92,7 @@ Page({
           address:data.enterpriseAddress,
           enterpriseType:data.enterpriseType,
           telephone:data.enterpriseTelephone,
+          enterpriseDescription:data.enterpriseDescription,
           [arr]:data.longitude,
           [arr2]:data.latitude,
           logo:data.enterpriseLogo,
@@ -97,12 +106,15 @@ Page({
   },
   goodsData:function(){
     var enterpriseId = this.data.enterpriseId;
+    console.log(enterpriseId)
     var url = "/enterprise/goods/" + enterpriseId;
     var me = this;
     app.wxRequest('get', url, {}, function (data) {
       if (data.data.status == 200) {
         me.setData({goods:data.data.data});
       }
+    }, function (err) {
+console.log(err)
     })
 
   }
